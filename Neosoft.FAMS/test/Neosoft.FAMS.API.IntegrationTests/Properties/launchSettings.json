@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Neosoft.FAMS.API.IntegrationTests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
