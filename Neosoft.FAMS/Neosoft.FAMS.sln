@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neosoft.FAMS.Application.Un
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neosoft.FAMS.Persistence.IntegrationTests", "test\Neosoft.FAMS.Persistence.IntegrationTests\Neosoft.FAMS.Persistence.IntegrationTests.csproj", "{97ADAADE-F578-4017-8835-9356624B4E8C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{ABCBD37C-603F-4F82-851D-A2E4C698B0C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neosoft.FAMS.WebApp", "Neosoft.FAMS.WebApp\Neosoft.FAMS.WebApp.csproj", "{C10B253C-3B47-41E2-A917-FBFF2568B0AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +77,10 @@ Global
 		{97ADAADE-F578-4017-8835-9356624B4E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97ADAADE-F578-4017-8835-9356624B4E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97ADAADE-F578-4017-8835-9356624B4E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C10B253C-3B47-41E2-A917-FBFF2568B0AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C10B253C-3B47-41E2-A917-FBFF2568B0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C10B253C-3B47-41E2-A917-FBFF2568B0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C10B253C-3B47-41E2-A917-FBFF2568B0AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +98,8 @@ Global
 		{A474F5A2-BBD7-4D0F-BC2D-96F09CE2C0AE} = {7497E97D-DF4E-43BA-97B2-03936F3F96C4}
 		{DEBAEBDB-758D-40CB-800E-6FBA9195830C} = {7497E97D-DF4E-43BA-97B2-03936F3F96C4}
 		{97ADAADE-F578-4017-8835-9356624B4E8C} = {7497E97D-DF4E-43BA-97B2-03936F3F96C4}
+		{ABCBD37C-603F-4F82-851D-A2E4C698B0C8} = {21FB8E4B-D985-4805-AECB-2A729203E18F}
+		{C10B253C-3B47-41E2-A917-FBFF2568B0AA} = {ABCBD37C-603F-4F82-851D-A2E4C698B0C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9D7B4DF-A382-448A-BC1F-C0A5CEE65D84}
