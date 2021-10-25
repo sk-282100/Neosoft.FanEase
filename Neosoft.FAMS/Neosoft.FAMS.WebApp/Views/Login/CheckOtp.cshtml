@@ -1,5 +1,4 @@
-﻿@using Neosoft.FAMS.WebApp.Models.LoginModel.Login;
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,17 +17,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 </head>
-<div class="wrapper">
+
+<div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Tabs Titles -->
-        <h2 class="active"> Forgot password ?</h2>
+        <h2 class="active"> Forgot Password? </h2>
 
 
         <!-- Login Form -->
-        @using (Html.BeginForm("SendOtp", "Login", FormMethod.Post))
+        @using (Html.BeginForm("CheckOtp", "Login", FormMethod.Post))
         {
-                <input type="text" class="fadeIn second" name="Username" placeholder="Enter Username">
-                <input type="submit" class="fadeIn fourth" value="Send OTP">
+            <input type="text" class="fadeIn second" name="Otp" placeholder="Enter OTP">
+            <input type="submit" class="fadeIn fourth" value="Submit">
         }
 
     </div>
