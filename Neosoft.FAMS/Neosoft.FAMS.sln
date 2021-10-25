@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neosoft.FAMS.Persistence.In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{ABCBD37C-603F-4F82-851D-A2E4C698B0C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neosoft.FAMS.WebApp", "Neosoft.FAMS.WebApp\Neosoft.FAMS.WebApp.csproj", "{C10B253C-3B47-41E2-A917-FBFF2568B0AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neosoft.FAMS.WebApp", "Neosoft.FAMS.WebApp\Neosoft.FAMS.WebApp.csproj", "{C10B253C-3B47-41E2-A917-FBFF2568B0AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

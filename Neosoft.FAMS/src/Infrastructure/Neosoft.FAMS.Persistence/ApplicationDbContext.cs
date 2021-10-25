@@ -26,6 +26,7 @@ namespace Neosoft.FAMS.Persistence
         public DbSet<Event> Events { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<UserDemo> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -69,7 +70,18 @@ namespace Neosoft.FAMS.Persistence
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                 CategoryId = concertGuid
             });
+            modelBuilder.Entity<UserDemo>().HasData(new UserDemo
+            {
+                Id = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"),
+                FirstName = "John Egbert Live",
+                MiddleName = "Egbert",
+                LastName = "John Egbert",
+                DateOfJoining = DateTime.Now.AddMonths(6),
+                IsAdmin=false,
+                CreatedBy="1",
+                CreatedDate=DateTime.Now,
 
+            });
             modelBuilder.Entity<Event>().HasData(new Event
             {
                 EventId = Guid.Parse("{3448D5A4-0F72-4DD7-BF15-C14A46B26C00}"),

@@ -13,9 +13,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Core\Neosoft.FAMS.Application\Neosoft.FAMS.Application.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Migrations\" />
-	</ItemGroup>
 	
 </Project>
