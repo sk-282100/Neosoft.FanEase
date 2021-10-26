@@ -1,11 +1,17 @@
-using Neosoft.FAMS.Domain.Common;
-using System;
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
 
 namespace Neosoft.FAMS.Domain.Entities
 {
-    public class Event : AuditableEntity
+    public partial class Event
     {
         public Guid EventId { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public string Artist { get; set; }
@@ -13,7 +19,7 @@ namespace Neosoft.FAMS.Domain.Entities
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public Guid CategoryId { get; set; }
-        public Category Category { get; set; }
 
+        public virtual Category Category { get; set; }
     }
 }
