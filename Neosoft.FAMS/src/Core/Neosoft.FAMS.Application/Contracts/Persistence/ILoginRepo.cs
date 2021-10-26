@@ -7,6 +7,7 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     public interface ILoginRepo
     {
         public LoginModel GetLoginDetail(string UserName, string Password);
+        public bool CheckUsername(string userName);
         public class LoginModel
         {
             public string UserName { get; set; }

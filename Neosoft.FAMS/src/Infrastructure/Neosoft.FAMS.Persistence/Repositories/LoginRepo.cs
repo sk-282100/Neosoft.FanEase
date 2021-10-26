@@ -1,4 +1,6 @@
-﻿using Neosoft.FAMS.Application.Contracts.Persistence;
+﻿using Microsoft.Extensions.Logging;
+using Neosoft.FAMS.Application.Contracts.Persistence;
+using Neosoft.FAMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,5 +19,26 @@ namespace Neosoft.FAMS.Persistence.Repositories
             return obj;
 
         }
+        private readonly ILogger _logger;
+        public LoginRepo(ApplicationDbContext dbContext, ILogger<Login> logger)
+        {
+            _logger = logger;
+        }
+        List<LoginModel> list = new List<LoginModel>
+        {
+            new LoginModel{UserName="test",Password="test"},
+            new LoginModel{UserName="test1",Password="test1"},
+        };
+
+        public bool CheckUsername(string userName)
+        {
+            var status = list.Find(p => p.UserName == userName);
+            if (status != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
