@@ -27,7 +27,10 @@ namespace Neosoft.FAMS.Persistence
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<UserDemo> Users { get; set; }
-      
+
+        public DbSet<Login> Logins { get; set; }
+        public DbSet<RoleType> RoleTypes { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

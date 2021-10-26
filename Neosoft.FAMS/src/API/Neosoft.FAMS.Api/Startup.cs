@@ -18,9 +18,11 @@ using Neosoft.FAMS.Api.SwaggerHelper;
 using Neosoft.FAMS.Api.Utility;
 using Neosoft.FAMS.Application;
 using Neosoft.FAMS.Application.Contracts;
+using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Identity;
 using Neosoft.FAMS.Infrastructure;
 using Neosoft.FAMS.Persistence;
+using Neosoft.FAMS.Persistence.Repositories;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
@@ -55,6 +57,7 @@ namespace Neosoft.FAMS.Api
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
+            services.AddScoped<ILoginRepo, LoginRepo>();
             services.AddControllers();
             services.AddDataProtection();
             services.AddCors(options =>
