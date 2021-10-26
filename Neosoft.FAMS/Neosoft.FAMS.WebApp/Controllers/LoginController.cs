@@ -50,18 +50,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View(model);
         }
 
-        public IActionResult ForgotPassword()
-        {
-            return View(new Login());
-        }
-        [HttpPost]
-        public IActionResult ForgotPassword(Login model)
-        {
-            string Password = model.Password;
-            //_logInUserService.GetLoginUserDetail(model.Username, model.Password);
-            return RedirectToAction("Index", "Login");
-        }
-
         public ActionResult SendOtp()
         {
             return View();
@@ -86,12 +74,53 @@ namespace Neosoft.FAMS.WebApp.Controllers
             smtp.EnableSsl = true;
             smtp.Credentials = new System.Net.NetworkCredential("kajalpadhiyar962@gmail.com", "Nisha@11");
             smtp.Send(mm);
+
+            /*
+            bool status = repo.SaveOtp(to,code);
+            if(status)
+            {
+                return RedirectToAction("CheckOtp", "Login");
+            }
+            else
+            {
+                
+            }
+            
+            //method
+           public bool SaveOtp(string user,string code)
+           {
+            
             DateTime currentTime = DateTime.Now;
-            DateTime x30MinsLater = currentTime.AddMinutes(30);
-            Console.WriteLine(string.Format("{0} {1}", currentTime, x30MinsLater));
+            DateTime x10MinsLater = currentTime.AddMinutes(10);
+            Console.WriteLine(string.Format("{0} {1}", currentTime, x10MinsLater));
+
+            Login lUser = (from c in db.Logins
+                               where c.UserName == user
+                               select c).FirstOrDefault();
+            int id = lUser.Id;
+
+            if(id!=null)
+            {
+                PasswordResetRequest passwordResetRequest = new PasswordResetRequest();
+                passwordResetRequest.Add(id);
+                passwordResetRequest.Add(currentTime);
+                passwordResetRequest.Add(code);
+                passwordResetRequest.Add(x10MinsLater);
+                db.PasswordResetRequests.Add(passwordResetRequest);
+                Save();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            }
+             */
             return RedirectToAction("CheckOtp", "Login");
+
         }
-       
+
 
         public ActionResult CheckOtp()
         {
@@ -100,13 +129,93 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public ActionResult CheckOtp(string Otp)
         {
-            string abc=Otp;
+            string code=Otp;
+
+            /*
+            bool status = repo.CheckOtp(user, code);
+            if (status)
+            {
+                return RedirectToAction("ForgotPassword", "Login");
+            }
+            else
+            {
+
+            }
+
+            //method
+           public bool CheckOtp(string user,string code)
+           {
+            
             DateTime currentTime = DateTime.Now;
-            DateTime x30MinsLater = currentTime.AddMinutes(30);
-            int result = DateTime.Compare(x30MinsLater,currentTime);
+
+            Login lUser = (from c in db.Logins
+                               where c.UserName == user
+                               select c).FirstOrDefault();
+            int id = lUser.Id;
+
+            PasswordResetRequest r = (from c in db.PasswordResetRequest
+                               where c.LoginId == id
+                               select c).FirstOrDefault();
+            DateTime expairyDate = r.ExpiredOn;
+
+            int result = DateTime.Compare(currentTime, expairyDate);
+
+            if(result<0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+            }
+            */
             return RedirectToAction("ForgotPassword", "Login");
         }
-            public IActionResult Logout()
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ForgotPassword(Login model)
+        {
+            string Password = model.Password;
+
+
+            /*
+            bool status = repo.ResetPassword(user, Password);
+            if (status)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+
+            }
+
+            //method
+           public bool ResetPassword(string user,string Password)
+           {
+
+            Login lUser = (from c in db.Logins
+                               where c.UserName == user
+                               select c).FirstOrDefault();
+            int id = lUser.Id; 
+
+
+            Login updatedCust = (from c in db.Logins
+                              where c.Id == id
+                              select c).FirstOrDefault();
+            updatedCust.Password = Password; 
+            Save();
+
+            */
+
+            return RedirectToAction("Index", "Login");
+        }
+        public IActionResult Logout()
         {
             HttpContext.Session.Remove("Username");
             return RedirectToAction("Home", "Login");
