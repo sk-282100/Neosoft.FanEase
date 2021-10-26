@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Queries;
 using System;
@@ -31,6 +32,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         public async Task<IActionResult> ForgotPassword(CheckUsernameCommand checkUsernameCommand)
         {
             var data = _mediator.Send(checkUsernameCommand);
+            return Ok(data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordCommand resetPasswordCommand)
+        {
+            var data = _mediator.Send(resetPasswordCommand);
             return Ok(data);
         }
     }

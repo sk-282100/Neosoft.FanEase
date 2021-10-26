@@ -39,6 +39,15 @@ namespace Neosoft.FAMS.Persistence.Repositories
             }
             return false;
         }
+        public void ResetPassword(string password, string oldPassword)
+        {
+            Test test = new Test();
+            test.oldPassword = "123";
+            if (test.oldPassword == oldPassword)
+            {
+                test.oldPassword = password;
+            }
 
+        }
     }
 }
