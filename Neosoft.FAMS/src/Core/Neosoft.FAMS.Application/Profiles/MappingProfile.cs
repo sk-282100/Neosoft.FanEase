@@ -8,7 +8,7 @@ using Neosoft.FAMS.Application.Features.Events.Queries.GetEventDetail;
 using Neosoft.FAMS.Application.Features.Events.Queries.GetEventsExport;
 using Neosoft.FAMS.Application.Features.Events.Queries.GetEventsList;
 using Neosoft.FAMS.Application.Features.Orders.Queries.GetOrdersForMonth;
-//using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
+using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Domain.Entities;
 
@@ -35,7 +35,7 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<Event, EventListVm>().ConvertUsing<EventVmCustomMapper>();
             CreateMap<UserDemo, UserListVm>().ConvertUsing<UserVmCustomMapper>();
 
-            //CreateMap<UserDemo, CreateUserCommand>().ReverseMap();
+            CreateMap<UserDemo, CreateUserCommand>().ReverseMap();
         }
     }
 }

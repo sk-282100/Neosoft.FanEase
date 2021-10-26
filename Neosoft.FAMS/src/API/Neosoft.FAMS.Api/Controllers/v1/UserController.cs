@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-//using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
+using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Domain.Entities;
 using System;
@@ -37,14 +37,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(dtos);
         }
 
-        //[HttpGet("save", Name = "SaveUser")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public async Task<ActionResult> Create([FromBody] CreateUserCommand createUserCommand)
-        //{
-        //    _logger.LogInformation("SaveUser Initiated");
-        //    var dtos = await _mediator.Send(createUserCommand);
-        //    _logger.LogInformation("SaveUser Completed");
-        //    return Ok(dtos);
-        //}
+        [HttpGet("save", Name = "SaveUser")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> Create([FromBody] CreateUserCommand createUserCommand)
+        {
+            _logger.LogInformation("SaveUser Initiated");
+            var dtos = await _mediator.Send(createUserCommand);
+            _logger.LogInformation("SaveUser Completed");
+            return Ok(dtos);
+        }
     }
 }
