@@ -24,8 +24,6 @@
   <ItemGroup>
     <Folder Include="Features\ContentCreator\Commands\" />
     <Folder Include="Features\ContentCreator\Queries\" />
-    <Folder Include="Features\Viewer\Commands\" />
-    <Folder Include="Features\Viewer\Queries\" />
   </ItemGroup>
 
 </Project>
