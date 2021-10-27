@@ -25,6 +25,11 @@ namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Update
         public async Task<Response<bool>> Handle(UpdateViewerCommand request, CancellationToken cancellationToken)
         {
             //var eventToUpdate = await _viewerRepo.GetByIdAsync(request.ViewerId);
+            var validator = new UpdateViewerByIdValidator(_viewerRepo);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
             var update = _mapper.Map<ViewerDetail>(request);
             await _viewerRepo.UpdateAsync(update);
 
