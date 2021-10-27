@@ -2,6 +2,8 @@ using AutoMapper;
 using Neosoft.FAMS.Application.Features.Categories.Commands.CreateCateogry;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesList;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
+using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Events.Commands.CreateEvent;
 using Neosoft.FAMS.Application.Features.Events.Commands.UpdateEvent;
 using Neosoft.FAMS.Application.Features.Events.Queries.GetEventDetail;
@@ -38,6 +40,10 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<UserDemo, UserListVm>().ConvertUsing<UserVmCustomMapper>();
 
             CreateMap<UserDemo, CreateUserCommand>().ReverseMap();
+            CreateMap<ContentCreaterCommand, ContentCreatorDetail>().ReverseMap();
+            CreateMap<ContentCreatorDto, ContentCreatorDetail>().ReverseMap();
+
+
             CreateMap<ViewerCreateCommand, ViewerDetail>().ReverseMap();
             CreateMap<ViewerDto, ViewerDetail>().ReverseMap();
         }

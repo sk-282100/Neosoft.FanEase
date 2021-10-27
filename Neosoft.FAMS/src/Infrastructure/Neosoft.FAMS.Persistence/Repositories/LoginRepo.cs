@@ -32,5 +32,6 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Password == oldPassword);
         }
+
     }
 }
