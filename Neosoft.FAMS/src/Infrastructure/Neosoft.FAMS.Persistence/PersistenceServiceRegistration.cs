@@ -19,6 +19,8 @@ namespace Neosoft.FAMS.Persistence
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILoginRepo, LoginRepo>();
+
             return services;
         }
     }

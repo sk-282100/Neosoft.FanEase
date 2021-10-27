@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace Neosoft.FAMS.Domain.Entities
 {
     public partial class ViewerDetail
     {
+        [Key]
         public long ViewerId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

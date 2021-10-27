@@ -30,6 +30,12 @@ namespace Neosoft.FAMS.Persistence
 
         public DbSet<Login> Logins { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<ContentCreatorDetail> ContentCreatorDetails { get; set; }
+        public DbSet<ViewerDetail> ViewerDetails { get; set; }
+
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

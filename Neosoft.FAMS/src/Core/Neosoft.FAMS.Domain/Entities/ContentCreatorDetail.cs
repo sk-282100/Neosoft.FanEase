@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace Neosoft.FAMS.Domain.Entities
 {
     public partial class ContentCreatorDetail
     {
+        [Key]
         public long ContentCreatorId { get; set; }
         public string ProfilePhotoPath { get; set; }
         public string CreatorName { get; set; }
@@ -19,6 +21,6 @@ namespace Neosoft.FAMS.Domain.Entities
         public bool? Status { get; set; }
         public DateTime? CreatedOn { get; set; }
         public string AdditionalRemark { get; set; }
-        public long Id { get; set; }
+        public long LoginId { get; set; }
     }
 }
