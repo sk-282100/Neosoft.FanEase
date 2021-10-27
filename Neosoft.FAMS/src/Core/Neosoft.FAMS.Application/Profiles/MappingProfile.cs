@@ -13,6 +13,7 @@ using Neosoft.FAMS.Application.Features.Orders.Queries.GetOrdersForMonth;
 using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
+using Neosoft.FAMS.Application.Features.Viewer.Commands.Update;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 using Neosoft.FAMS.Domain.Entities;
 
@@ -46,6 +47,8 @@ namespace Neosoft.FAMS.Application.Profiles
 
             CreateMap<ViewerCreateCommand, ViewerDetail>().ReverseMap();
             CreateMap<ViewerDto, ViewerDetail>().ReverseMap();
+            CreateMap<UpdateViewerCommand, ViewerDetail>().ReverseMap();
+
         }
     }
 }

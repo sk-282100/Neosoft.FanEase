@@ -22,7 +22,6 @@
   </ItemGroup>
 	
   <ItemGroup>
-    <Folder Include="Features\Viewer\Commands\" />
     <Folder Include="Features\Viewer\Queries\" />
     <Folder Include="Features\ContentCreator\Commands\" />
     <Folder Include="Features\ContentCreator\Queries\" />

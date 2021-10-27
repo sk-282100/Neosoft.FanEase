@@ -9,6 +9,7 @@ using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetById;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Delete;
+using Neosoft.FAMS.Application.Features.Viewer.Commands.Update;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -52,6 +53,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             var deleteQuery = new DeleteViewerByIdCommand { ViewerId = id };
             var data = await _mediator.Send(deleteQuery);
+            return Ok(data);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateById([FromRoute] long id,UpdateViewerCommand updateViewer)
+        {
+            updateViewer.ViewerId = id;
+            var data = await _mediator.Send(updateViewer);
             return Ok(data);
         }
     }
