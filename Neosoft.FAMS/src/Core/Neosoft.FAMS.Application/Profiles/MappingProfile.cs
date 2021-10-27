@@ -3,6 +3,7 @@ using Neosoft.FAMS.Application.Features.Categories.Commands.CreateCateogry;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesList;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create;
+using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Events.Commands.CreateEvent;
 using Neosoft.FAMS.Application.Features.Events.Commands.UpdateEvent;
@@ -46,6 +47,7 @@ namespace Neosoft.FAMS.Application.Profiles
 
             CreateMap<ViewerCreateCommand, ViewerDetail>().ReverseMap();
             CreateMap<ViewerDto, ViewerDetail>().ReverseMap();
+            CreateMap<UpdateCreatorByIdCommand, ContentCreatorDetail>().ReverseMap();
         }
     }
 }
