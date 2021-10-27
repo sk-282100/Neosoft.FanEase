@@ -53,16 +53,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Core\Neosoft.FAMS.Application\Neosoft.FAMS.Application.csproj" />
-		<ProjectReference Include="..\..\Infrastructure\Neosoft.FAMS.Identity\Neosoft.FAMS.Identity.csproj" />
-		<ProjectReference Include="..\..\Infrastructure\Neosoft.FAMS.Infrastructure\Neosoft.FAMS.Infrastructure.csproj" />
-		<ProjectReference Include="..\..\Infrastructure\Neosoft.FAMS.Persistence\Neosoft.FAMS.Persistence.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Folder Include="Logs\" />
 	  <Folder Include="scripts\" />
 	  <Folder Include="swaggerhelper\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Core\Neosoft.FAMS.Application\Neosoft.FAMS.Application.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\Neosoft.FAMS.Identity\Neosoft.FAMS.Identity.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\Neosoft.FAMS.Infrastructure\Neosoft.FAMS.Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\Neosoft.FAMS.Persistence\Neosoft.FAMS.Persistence.csproj" />
 	</ItemGroup>
 
 

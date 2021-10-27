@@ -22,6 +22,12 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
         }
         public async Task<Response<long>> Handle(ContentCreaterCommand request, CancellationToken cancellationToken)
         {
+            var validator = new ContentCreatorCommandValidator(_creatorRepo);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new Exceptions.ValidationException(validationResult);
+
             string password = "Pass123";
             var createrData = await _creatorRepo.AddLoginDetailAsync(request.EmailId,password);
 

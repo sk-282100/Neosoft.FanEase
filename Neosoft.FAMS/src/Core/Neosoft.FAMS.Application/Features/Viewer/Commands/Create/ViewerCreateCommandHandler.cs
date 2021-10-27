@@ -23,7 +23,13 @@ namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Create
         }
         public async Task<Response<long>> Handle(ViewerCreateCommand request, CancellationToken cancellationToken)
         {
-            
+
+            var validator = new ViewerCommandValidator(_viewerRepo);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new Exceptions.ValidationException(validationResult);
+
             var data=await _viewerRepo.AddAsync(_mapper.Map<ViewerDetail>(request));
             var response = new Response<long>(data.ViewerId,"Inserted Successfully"); 
             return response;
