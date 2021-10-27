@@ -21,8 +21,12 @@ namespace Neosoft.FAMS.Application.Features.Login.Commands
         }
         public async Task<bool> Handle(CheckUsernameCommand request, CancellationToken cancellationToken)
         {
-            bool data = _loginRepository.CheckUsername(request.UserName);
-            return data;
+            var data = await _loginRepository.CheckUsername(request.UserName);
+            if (data != null)
+            {
+                return true;
+            }
+            return false;
         }
 
 

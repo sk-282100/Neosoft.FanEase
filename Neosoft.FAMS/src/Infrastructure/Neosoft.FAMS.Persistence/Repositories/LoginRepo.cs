@@ -4,50 +4,33 @@ using Neosoft.FAMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using static Neosoft.FAMS.Application.Contracts.Persistence.ILoginRepo;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
     public class LoginRepo:ILoginRepo
     {
-        public LoginModel GetLoginDetail(string userName, string Password)
-        {
-            LoginModel obj = new LoginModel();
-            obj.UserName = "admin";
-            obj.Password = "Admin";
-            obj.RoleID = 1;
-            return obj;
-
-        }
+        private readonly ApplicationDbContext _dbContext;
         private readonly ILogger _logger;
         public LoginRepo(ApplicationDbContext dbContext, ILogger<Login> logger)
         {
+            _dbContext = dbContext;
             _logger = logger;
         }
-        List<LoginModel> list = new List<LoginModel>
+        public async Task<Login> GetLoginDetail(string userName, string Password)
         {
-            new LoginModel{UserName="test",Password="test"},
-            new LoginModel{UserName="test1",Password="test1"},
-        };
-
-        public bool CheckUsername(string userName)
-        {
-            var status = list.Find(p => p.UserName == userName);
-            if (status != null)
-            {
-                return true;
-            }
-            return false;
+            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
         }
-        public void ResetPassword(string password, string oldPassword)
+        public async Task<Login> CheckUsername(string userName)
         {
-            Test test = new Test();
-            test.oldPassword = "123";
-            if (test.oldPassword == oldPassword)
-            {
-                test.oldPassword = password;
-            }
-
+            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
+        }
+        public async Task<Login> ResetPassword(string password, string oldPassword)
+        {
+            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Password == oldPassword);
         }
     }
 }

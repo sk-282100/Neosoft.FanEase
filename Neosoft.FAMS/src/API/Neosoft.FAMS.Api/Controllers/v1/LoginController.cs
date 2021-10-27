@@ -22,23 +22,26 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
         [HttpPost]
+        [Route("")]
         public async Task<IActionResult> Login(LoginQuery loginQuery)
         {
-            var data = _mediator.Send(loginQuery);
+            var data = await _mediator.Send(loginQuery);
             return Ok(data);
         }
 
         [HttpPost]
+        [Route("Forgot-Password")]
         public async Task<IActionResult> ForgotPassword(CheckUsernameCommand checkUsernameCommand)
         {
-            var data = _mediator.Send(checkUsernameCommand);
+            var data = await _mediator.Send(checkUsernameCommand);
             return Ok(data);
         }
 
         [HttpPost]
+        [Route("Reset-Password")]
         public async Task<IActionResult> ResetPassword(ResetPasswordCommand resetPasswordCommand)
         {
-            var data = _mediator.Send(resetPasswordCommand);
+            var data = await _mediator.Send(resetPasswordCommand);
             return Ok(data);
         }
     }

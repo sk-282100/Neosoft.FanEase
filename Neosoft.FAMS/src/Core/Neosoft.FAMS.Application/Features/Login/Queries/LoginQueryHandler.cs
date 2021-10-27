@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Infrastructure.EncryptDecrypt;
 
 namespace Neosoft.FAMS.Application.Features.Login.Queries
 {
@@ -20,12 +21,11 @@ namespace Neosoft.FAMS.Application.Features.Login.Queries
         }
         public async Task<int> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
-
-            var data = _loginRepository.GetLoginDetail(request.UserName,request.Password);
-            if (data.UserName == request.UserName && data.Password == request.Password)
+            var data = await _loginRepository.GetLoginDetail(request.UserName,request.Password);
+            //data.Password = EncryptionDecryption.DecryptString(data.Password);
+            if (data.Username == request.UserName && data.Password == request.Password)
             {
-
-                return data.RoleID;
+                return (int)data.RoleId;
             }
             return 0;
         }
