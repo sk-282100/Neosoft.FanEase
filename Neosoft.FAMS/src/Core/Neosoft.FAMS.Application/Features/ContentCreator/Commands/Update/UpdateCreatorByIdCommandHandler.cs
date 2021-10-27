@@ -23,8 +23,12 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update
         }
         public async Task<Response<bool>> Handle(UpdateCreatorByIdCommand request, CancellationToken cancellationToken)
         {
+            var validator = new UpdateCreatorByIdvalidator(_creatorRepo);
+            var validationResult = await validator.ValidateAsync(request);
 
-            
+            if (validationResult.Errors.Count > 0)
+                throw new Exceptions.ValidationException(validationResult);
+
             var update = _mapper.Map<ContentCreatorDetail>(request);
             await _creatorRepo.UpdateAsync(update);
 

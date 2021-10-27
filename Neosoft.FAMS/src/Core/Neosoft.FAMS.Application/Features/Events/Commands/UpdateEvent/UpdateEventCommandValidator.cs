@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Neosoft.FAMS.Application.Features.Events.Commands.UpdateEvent
 {
