@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
+using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetById;
 using System;
@@ -51,6 +52,16 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var delete = new DeleteCreatorByIdCommand { CreatorId = id };
             var data =  await _mediator.Send(delete);
             return Ok(data);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateById([FromRoute] long id,UpdateCreatorByIdCommand updateCreatorByIdCommand)
+        {
+            updateCreatorByIdCommand.ContentCreatorId = id;
+            var data = await _mediator.Send(updateCreatorByIdCommand);
+            return Ok(data);
+
         }
     }
 }
