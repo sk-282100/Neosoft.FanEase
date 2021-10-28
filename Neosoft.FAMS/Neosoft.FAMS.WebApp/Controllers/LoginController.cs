@@ -9,15 +9,18 @@ using Neosoft.FAMS.WebApp.Models.LoginModel.ResetPassword;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using Neosoft.FAMS.WebApp.Services.Interface;
+using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class LoginController : Controller
     {
         ILogin _login;
-        public LoginController(ILogin login)
+        IUser _user;
+        public LoginController(ILogin login, IUser user)
         {
             _login = login;
+            _user = user;
         }
         public IActionResult Index()
         {
@@ -28,16 +31,28 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             string Username = model.Username;
             string Password = model.Password;
+           // var userList = _user.GetAllUserList();
+
+            var serviceresult=_user.SaveUser(new CreateUserCommand {
+            DateOfJoining=DateTime.Now,
+            FirstName="John",
+            IsAdmin=true,
+            LastName="john",
+            MiddleName="John"
+            });
             int result = _login.CheckUsernameAndPassword(Username, Password);
-            if (Username == "admin@gmail.com" && Password == "Admin123")
+            if (result == 1)
             {
                 HttpContext.Session.SetString("Username", model.Username);
                 return RedirectToAction("Index", "Admin");
             }
-            else
+            else if (result == 2)
             {
                 HttpContext.Session.SetString("Username", model.Username);
                 return RedirectToAction("Index", "Creator");
+            }
+            else {
+                return RedirectToAction("Index", "Login");
             }
         }
         public IActionResult Home()

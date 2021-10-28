@@ -1,4 +1,7 @@
 ﻿using Neosoft.FAMS.Application.Features.Login.Queries;
+using Neosoft.FAMS.Application.Features.Users.Queries;
+using Neosoft.FAMS.Application.Responses;
+using Neosoft.FAMS.Domain.Entities;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
@@ -16,8 +19,8 @@ namespace Neosoft.FAMS.WebApp.Services
     {
         #region private variables
         private static HttpClient _client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
-        readonly string _baseUrl ="";
-        readonly string _path = "";
+        readonly string _baseUrl = "https://localhost:44330/";
+        readonly string _path = "api/Login";
         #endregion
         public Login()
         {
@@ -29,19 +32,25 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+        /// <summary>
+        /// Author: Shankar Kadam
+        /// Date: 29-10-2021
+        /// Reason: To validate user credential and get user role
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public int CheckUsernameAndPassword(string userName, string password) {
+            var result = 0;
             var uri = API.Login.CheckUsernameAndPassword(_path, userName, password);
-            LoginQuery _loginQuery = new LoginQuery();
-            _loginQuery.Password = password;
-            _loginQuery.UserName = userName;
-            var content = JsonConvert.SerializeObject(_loginQuery);
-            HttpResponseMessage response = _client.GetAsync(uri,new StringContent(content, Encoding.Default,
-                "application/json")).Result;
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
-                var jsonDataProviders = response.Content.ReadAsStringAsync().Result;
+                result =Convert.ToInt32( response.Content.ReadAsStringAsync().Result);
             }
-            return 0;
+            return result;
         }
+
+       
     }
 }

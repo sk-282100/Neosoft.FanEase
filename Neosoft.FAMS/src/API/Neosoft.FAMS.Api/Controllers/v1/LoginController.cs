@@ -21,26 +21,49 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             _mediator = mediator;
         }
 
-        [HttpPost]
-        [Route("")]
-        public async Task<IActionResult> Login(LoginQuery loginQuery)
+        /// <summary>
+        /// Author: Shankar Kadam
+        /// Date: 29-10-2021
+        /// Reason: To validate user credential and get user role
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("CheckUsernameAndPassword")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> CheckUsernameAndPassword(string username, string password)
         {
+            LoginQuery loginQuery = new LoginQuery();
+            loginQuery.Password = password;
+            loginQuery.UserName = username;
             var data = await _mediator.Send(loginQuery);
             return Ok(data);
         }
 
-        [HttpPost]
-        [Route("Forgot-Password")]
-        public async Task<IActionResult> ForgotPassword(CheckUsernameCommand checkUsernameCommand)
+        [HttpGet]
+        [Route("checkUsername")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> ForgotPassword(string EmailAddress)
         {
+            CheckUsernameCommand checkUsernameCommand = new CheckUsernameCommand();
+            checkUsernameCommand.UserName = EmailAddress;
             var data = await _mediator.Send(checkUsernameCommand);
             return Ok(data);
         }
 
-        [HttpPost]
-        [Route("Reset-Password")]
-        public async Task<IActionResult> ResetPassword(ResetPasswordCommand resetPasswordCommand)
+        [HttpGet]
+        [Route("ResetPassword")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> ResetPassword(string EmailAddress, string OldPassword, string NewPassword)
         {
+            ResetPasswordCommand resetPasswordCommand=new ResetPasswordCommand();
+            resetPasswordCommand.newPassword = EmailAddress;
+            resetPasswordCommand.oldPassword = OldPassword;
+            resetPasswordCommand.newPassword = NewPassword;
             var data = await _mediator.Send(resetPasswordCommand);
             return Ok(data);
         }
