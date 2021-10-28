@@ -22,9 +22,19 @@ namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Delete
         }
         public async Task<Response<bool>> Handle(DeleteViewerByIdCommand request, CancellationToken cancellationToken)
         {
-            _viewerRepo.DeleteAsync(new ViewerDetail { ViewerId=request.ViewerId});
-            var response = new Response<bool> { Data = true,Message= "Deleted Successfully" ,Succeeded=true};
-            return response;
+            var data = await _viewerRepo.GetByIdAsync(request.ViewerId);
+            if (data != null)
+            {
+                await _viewerRepo.DeleteAsync(data);
+                var response = new Response<bool> { Data = true, Message = "Deleted Successfully", Succeeded = true };
+                return response;
+            }
+            else
+            {
+                var response = new Response<bool> { Message = "No Data Found", Succeeded = true };
+                return response;
+            }
+           
         }
     }
 }

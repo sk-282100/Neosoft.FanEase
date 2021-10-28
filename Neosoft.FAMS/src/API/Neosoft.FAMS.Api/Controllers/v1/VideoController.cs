@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
+using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetById;
 using System;
@@ -26,6 +28,25 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             var data = await _mediator.Send(videoCreateCommand);
             return Ok(data);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteById([FromRoute] long id)
+        {
+            var delete = new DeleteVideoByIdCommand { VideoId = id };
+            var data = await _mediator.Send(delete);
+            return Ok(data);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateById([FromRoute] long id, UpdateVideoByIdCommand updateVideoByIdCommand)
+        {
+            updateVideoByIdCommand.VideoId = id;
+            var data = await _mediator.Send(updateVideoByIdCommand);
+            return Ok(data);
+
         }
 
         [HttpGet]

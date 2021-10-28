@@ -11,7 +11,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
 {
     public class ContentCreatorRepo : BaseRepository<ContentCreatorDetail>, IContentCreatorRepo
     {
-        private readonly ApplicationDbContext _dbContext;
+        private new readonly ApplicationDbContext _dbContext;
         private readonly ILogger _logger;
         public ContentCreatorRepo(ApplicationDbContext dbContext, ILogger<ContentCreatorDetail> logger) : base(dbContext, logger)
         {
@@ -21,7 +21,9 @@ namespace Neosoft.FAMS.Persistence.Repositories
         public async Task<Login> AddLoginDetailAsync(string email,string password)
         {
             var user = new Login {Username=email,Password=password,RoleId=2 };
-           var result= await _dbContext.AddAsync<Login>(user);
+            var result= await _dbContext.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+            result.Entity.Id = await _dbContext.Logins.MaxAsync(u => u.Id) + 1;
             return result.Entity;
         }
         public async Task<ContentCreatorDetail> GetByIdAsync(long id)

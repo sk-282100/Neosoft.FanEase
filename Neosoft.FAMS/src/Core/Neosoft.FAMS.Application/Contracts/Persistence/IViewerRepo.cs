@@ -9,5 +9,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     public interface IViewerRepo : IAsyncRepository<ViewerDetail>
     {
         Task<ViewerDetail> GetByIdAsync(long id);
+        Task<Login> AddLoginDetailAsync(string emailId, string password);
     }
 }

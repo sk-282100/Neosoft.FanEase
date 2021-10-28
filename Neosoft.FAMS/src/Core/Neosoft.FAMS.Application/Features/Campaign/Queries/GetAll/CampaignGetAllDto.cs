@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll
+{
+    public class CampaignGetAllDto
+    {
+        public string CampaignName { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public long? CreatedBy { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public bool? IsDeleted { get; set; }
+    }
+}

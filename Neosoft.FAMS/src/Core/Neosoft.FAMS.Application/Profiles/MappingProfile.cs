@@ -1,4 +1,9 @@
 using AutoMapper;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
+using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
+using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Categories.Commands.CreateCateogry;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesList;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
@@ -14,6 +19,7 @@ using Neosoft.FAMS.Application.Features.Orders.Queries.GetOrdersForMonth;
 using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetById;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
