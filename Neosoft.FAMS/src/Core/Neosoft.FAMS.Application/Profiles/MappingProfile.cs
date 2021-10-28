@@ -20,6 +20,8 @@ using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetById;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Update;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
@@ -64,6 +66,10 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<CreateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
             CreateMap<AdvertisementListQueryDto, AdvertisementDetail>().ReverseMap();
             CreateMap<UpdateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
+
+            CreateMap<VideoCreateCommand, VideoDetail>().ReverseMap();
+           
+            CreateMap<VideoGetAllDto, VideoDetail>().ReverseMap();
 
             CreateMap<VideoCreateCommand, VideoDetail>().ReverseMap();
             CreateMap<UpdateVideoByIdCommand, VideoDetail>().ReverseMap();
