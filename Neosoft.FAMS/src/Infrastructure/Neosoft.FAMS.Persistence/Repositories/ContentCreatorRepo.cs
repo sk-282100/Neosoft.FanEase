@@ -21,7 +21,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         public async Task<Login> AddLoginDetailAsync(string email,string password)
         {
             var user = new Login {Username=email,Password=password,RoleId=2 };
-           var result= await _dbContext.AddAsync<Login>(user);
+           var result= await _dbContext.AddAsync(user);
             return result.Entity;
         }
         public async Task<ContentCreatorDetail> GetByIdAsync(long id)
