@@ -8,11 +8,17 @@ using Neosoft.FAMS.WebApp.Models.LoginModel.Login;
 using Neosoft.FAMS.WebApp.Models.LoginModel.ResetPassword;
 using System.Net.Mail;
 using System.Security.Cryptography;
+using Neosoft.FAMS.WebApp.Services.Interface;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class LoginController : Controller
     {
+        ILogin _login;
+        public LoginController(ILogin login)
+        {
+            _login = login;
+        }
         public IActionResult Index()
         {
             return View(new Login());
@@ -22,6 +28,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             string Username = model.Username;
             string Password = model.Password;
+            int result = _login.CheckUsernameAndPassword(Username, Password);
             if (Username == "admin@gmail.com" && Password == "Admin123")
             {
                 HttpContext.Session.SetString("Username", model.Username);
