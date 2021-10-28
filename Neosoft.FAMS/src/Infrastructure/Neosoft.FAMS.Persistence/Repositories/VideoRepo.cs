@@ -18,5 +18,9 @@ namespace Neosoft.FAMS.Persistence.Repositories
             _dbContext = dbContext;
             _logger = logger;
         }
+        public async Task<VideoDetail> GetByIdAsync(long id)
+        {
+            return await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.VideoId == id);
+        }
     }
 }
