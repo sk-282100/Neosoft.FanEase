@@ -25,9 +25,11 @@ namespace Neosoft.FAMS.Application.Features.Video.Command.Create
 
         public async Task<Response<long>> Handle(VideoCreateCommand request, CancellationToken cancellationToken)
         {
-            //var data = await _videoRepo.AddAsync(_mapper.Map<VideoDetail>(request));
-            //var response = new Response<long>(data.VideoId, "Inserted Successfully");
-            //return response;
+            var validator = new VideoCreateCommandValidator(_videoRepo);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new Exceptions.ValidationException(validationResult);
 
             var record = _mapper.Map<VideoDetail>(request);
             record.CreatedOn = DateTime.Now;
