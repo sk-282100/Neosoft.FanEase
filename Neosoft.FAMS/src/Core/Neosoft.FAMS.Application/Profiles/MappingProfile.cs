@@ -58,6 +58,13 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<UpdateCreatorByIdCommand, ContentCreatorDetail>().ReverseMap();
             CreateMap<UpdateViewerCommand, ViewerDetail>().ReverseMap();
 
+            CreateMap<CampaignCreateCommand, CampaignDetail>().ReverseMap();
+            CreateMap<CampaignGetAllDto, CampaignDetail>().ReverseMap();
+
+            CreateMap<CreateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
+            CreateMap<AdvertisementListQueryDto, AdvertisementDetail>().ReverseMap();
+            CreateMap<UpdateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
+
         }
     }
 }
