@@ -36,7 +36,6 @@ namespace Neosoft.FAMS.Persistence
         public DbSet<AdvertisementDetail> AdvertisementDetails { get; set; }
         public DbSet<AdvertisementPlacementDetail> AdvertisementPlacementDetails { get; set; }
         public DbSet<ContentCreatorDetail> ContentCreatorDetails { get; set; }
-        public DbSet<ViewerDetail> ViewerDetails { get; set; }
         
         public DbSet<VideoDetail> VideoDetails { get; set; }
 

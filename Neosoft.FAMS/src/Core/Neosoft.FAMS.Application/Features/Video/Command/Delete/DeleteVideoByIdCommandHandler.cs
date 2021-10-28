@@ -23,7 +23,7 @@ namespace Neosoft.FAMS.Application.Features.Video.Commands.Delete
 
         public async Task<Response<bool>> Handle(DeleteVideoByIdCommand request, CancellationToken cancellationToken)
         {
-            _videoRepo.DeleteAsync(new VideoDetail { VideoId = request.VideoId });
+            await _videoRepo.DeleteAsync(new VideoDetail { VideoId = request.VideoId });
 
             var response = new Response<bool> { Data = true, Message = "Deleted Successfully", Succeeded = true };
             return response;
