@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-#nullable disable
-
-namespace Neosoft.FAMS.Domain.Entities
+namespace Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll
 {
-    public partial class CampaignDetail
+    public class CampaignGetAllDto
     {
-        [Key]
-        public long CampaignId { get; set; }
         public string CampaignName { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }

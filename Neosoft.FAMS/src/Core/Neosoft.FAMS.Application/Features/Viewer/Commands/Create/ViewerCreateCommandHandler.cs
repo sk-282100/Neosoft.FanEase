@@ -30,7 +30,13 @@ namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Create
             if (validationResult.Errors.Count > 0)
                 throw new Exceptions.ValidationException(validationResult);
 
-            var data=await _viewerRepo.AddAsync(_mapper.Map<ViewerDetail>(request));
+            var viewerLoginData = await _viewerRepo.AddLoginDetailAsync(request.EmailId, request.Password);
+
+
+            var record = _mapper.Map<ViewerDetail>(request);
+            record.LoginId = viewerLoginData.Id;
+            record.CreatedOn = DateTime.Now;
+            var data = await _viewerRepo.AddAsync(record);
             var response = new Response<long>(data.ViewerId,"Inserted Successfully"); 
             return response;
         }

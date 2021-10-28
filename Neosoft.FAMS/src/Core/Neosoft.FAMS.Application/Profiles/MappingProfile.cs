@@ -1,4 +1,9 @@
 using AutoMapper;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
+using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
+using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Categories.Commands.CreateCateogry;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesList;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
@@ -52,6 +57,13 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<ViewerDto, ViewerDetail>().ReverseMap();
             CreateMap<UpdateCreatorByIdCommand, ContentCreatorDetail>().ReverseMap();
             CreateMap<UpdateViewerCommand, ViewerDetail>().ReverseMap();
+
+            CreateMap<CampaignCreateCommand, CampaignDetail>().ReverseMap();
+            CreateMap<CampaignGetAllDto, CampaignDetail>().ReverseMap();
+
+            CreateMap<CreateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
+            CreateMap<AdvertisementListQueryDto, AdvertisementDetail>().ReverseMap();
+            CreateMap<UpdateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
 
             CreateMap<VideoCreateCommand, VideoDetail>().ReverseMap();
             CreateMap<UpdateVideoByIdCommand, VideoDetail>().ReverseMap();

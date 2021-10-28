@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Contracts.Persistence
 {
-    public interface IViewerRepo : IAsyncRepository<ViewerDetail>
+    public interface ICampaignDetailRepo : IAsyncRepository<CampaignDetail>
     {
-        Task<ViewerDetail> GetByIdAsync(long id);
-        Task<Login> AddLoginDetailAsync(string emailId, string password);
+        Task<CampaignDetail> GetByIdAsync(long id);
     }
 }
