@@ -20,5 +20,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Neosoft.FAMS.Domain\Neosoft.FAMS.Domain.csproj" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Features\Viewer\Queries\" />
+    <Folder Include="Features\ContentCreator\Queries\" />
+  </ItemGroup>
 
 </Project>

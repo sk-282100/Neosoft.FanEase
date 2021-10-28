@@ -1,20 +1,18 @@
-﻿using System;
+﻿using MediatR;
+using Neosoft.FAMS.Application.Responses;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using System.Text;
 
-#nullable disable
-
-namespace Neosoft.FAMS.Domain.Entities
+namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Update
 {
-    public partial class ViewerDetail
+    public class UpdateViewerCommand: IRequest<Response<bool>>
     {
-        [Key]
         public long ViewerId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public long? LoginId { get; set; }
-        public DateTime? CreatedOn { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public long? CityId { get; set; }

@@ -1,14 +1,15 @@
-﻿using System;
+﻿using MediatR;
+using Neosoft.FAMS.Application.Responses;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using System.Text;
 
-#nullable disable
-
-namespace Neosoft.FAMS.Domain.Entities
+namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update
 {
-    public partial class ContentCreatorDetail
+    public class UpdateCreatorByIdCommand : IRequest<Response<bool>>
     {
-        [Key]
+        [ReadOnly(true)]
         public long ContentCreatorId { get; set; }
         public string ProfilePhotoPath { get; set; }
         public string CreatorName { get; set; }
