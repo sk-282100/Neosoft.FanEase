@@ -23,7 +23,8 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             var user = new Login { Username = email, Password = password, RoleId = 3 };
             var result = await _dbContext.AddAsync<Login>(user);
-            result.Entity.Id = await _dbContext.Logins.MaxAsync(u => u.Id) + 1;
+            await _dbContext.SaveChangesAsync();
+            result.Entity.Id = await _dbContext.Logins.MaxAsync(u => u.Id);
             return result.Entity;
         }
 
