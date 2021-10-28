@@ -35,16 +35,12 @@ namespace Neosoft.FAMS.WebApp.Services
             _loginQuery.Password = password;
             _loginQuery.UserName = userName;
             var content = JsonConvert.SerializeObject(_loginQuery);
-<<<<<<< HEAD
-            //HttpResponseMessage response = _client.GetAsync(uri,new StringContent(content, Encoding.Default,
-            //    "application/json")).Result;
-=======
-            //HttpResponseMessage response = _client.GetAsync(uri,new StringContent(content, Encoding.Default,"application/json")).Result;
->>>>>>> 02d2547a88c8d2055af4db8cfd62c80c4fda7762
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    var jsonDataProviders = response.Content.ReadAsStringAsync().Result;
-            //}
+            HttpResponseMessage response = _client.GetAsync(uri,new StringContent(content, Encoding.Default,
+                "application/json")).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataProviders = response.Content.ReadAsStringAsync().Result;
+            }
             return 0;
         }
     }
