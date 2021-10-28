@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-#nullable disable
-
-namespace Neosoft.FAMS.Domain.Entities
+namespace Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll
 {
-    public partial class AdvertisementDetail
+    public class AdvertisementListQueryDto
     {
-        [Key]
         public long AdvertisementId { get; set; }
         public string Title { get; set; }
         public DateTime? StartDate { get; set; }

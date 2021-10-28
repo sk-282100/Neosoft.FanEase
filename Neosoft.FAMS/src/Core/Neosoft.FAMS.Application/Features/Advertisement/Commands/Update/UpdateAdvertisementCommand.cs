@@ -1,14 +1,13 @@
-﻿using System;
+﻿using MediatR;
+using Neosoft.FAMS.Application.Responses;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-#nullable disable
-
-namespace Neosoft.FAMS.Domain.Entities
+namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.Update
 {
-    public partial class AdvertisementDetail
+    public class UpdateAdvertisementCommand : IRequest<Response<bool>>
     {
-        [Key]
         public long AdvertisementId { get; set; }
         public string Title { get; set; }
         public DateTime? StartDate { get; set; }
@@ -19,8 +18,6 @@ namespace Neosoft.FAMS.Domain.Entities
         public string VideoPath { get; set; }
         public string Url { get; set; }
         public long? PlacementId { get; set; }
-        public long? CreatedBy { get; set; }
-        public DateTime? CreatedOn { get; set; }
         public bool? IsDeleted { get; set; }
         public short? Status { get; set; }
     }
