@@ -21,5 +21,7 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update
         public bool? Status { get; set; }
         public string AdditionalRemark { get; set; }
         public long LoginId { get; set; }
+        public DateTime? CreatedOn { get; set; }
+
     }
 }
