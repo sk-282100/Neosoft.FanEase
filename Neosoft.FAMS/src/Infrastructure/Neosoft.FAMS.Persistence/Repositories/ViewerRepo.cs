@@ -19,6 +19,14 @@ namespace Neosoft.FAMS.Persistence.Repositories
             _logger = logger;
         }
 
+        public async Task<Login> AddLoginDetailAsync(string email, string password)
+        {
+            var user = new Login { Username = email, Password = password, RoleId = 3 };
+            var result = await _dbContext.AddAsync<Login>(user);
+            result.Entity.Id = await _dbContext.Logins.MaxAsync(u => u.Id) + 1;
+            return result.Entity;
+        }
+
         public async Task<ViewerDetail> GetByIdAsync(long id)
         {
             return await _dbContext.ViewerDetails.FirstOrDefaultAsync(p => p.ViewerId == id);

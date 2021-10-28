@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace Neosoft.FAMS.Domain.Entities
 {
     public partial class VideoDetail
     {
+        [Key]
         public long VideoId { get; set; }
         public string VideoImage { get; set; }
         public DateTime? StartDate { get; set; }

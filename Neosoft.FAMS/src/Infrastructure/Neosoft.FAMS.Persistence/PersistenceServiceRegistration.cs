@@ -22,6 +22,10 @@ namespace Neosoft.FAMS.Persistence
             services.AddScoped<ILoginRepo, LoginRepo>();
             services.AddScoped<IContentCreatorRepo,ContentCreatorRepo>();
             services.AddScoped<IViewerRepo, ViewerRepo>();
+            services.AddScoped<IVideoRepository, VideoRepo>();
+            services.AddScoped<ICampaignDetailRepo, CampaignDetailRepo>();
+            services.AddScoped<IAdvertisementRepo, AdvertisementRepo>();
+
             return services;
         }
     }

@@ -30,6 +30,7 @@ namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Update
 
             if (validationResult.Errors.Count > 0)
                 throw new ValidationException(validationResult);
+
             var update = _mapper.Map<ViewerDetail>(request);
             await _viewerRepo.UpdateAsync(update);
 
