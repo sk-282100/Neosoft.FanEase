@@ -23,14 +23,11 @@ namespace Neosoft.FAMS.Application.Features.Video.Commands.Update
 
         public async Task<Response<bool>> Handle(UpdateVideoByIdCommand request, CancellationToken cancellationToken)
         {
-
             var update = _mapper.Map<VideoDetail>(request);
             await _videoRepo.UpdateAsync(update);
 
             var Response = new Response<bool> { Data = true, Message = "Updated Successfully", Succeeded = true };
             return Response;
-
-
         }
     }
 }

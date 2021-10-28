@@ -55,6 +55,7 @@ namespace Neosoft.FAMS.Application.Profiles
 
             CreateMap<VideoCreateCommand, VideoDetail>().ReverseMap();
             CreateMap<UpdateVideoByIdCommand, VideoDetail>().ReverseMap();
+            
         }
     }
 }
