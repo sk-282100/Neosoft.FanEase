@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Delete;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Campaign.Queries.GetById;
 using System;
@@ -54,6 +55,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var delete = new DeleteCampaignByIdCommand { CampaignId = id };
             var data = await _mediator.Send(delete);
             return Ok(data);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateCampaignCommand updateCampaign)
+        {
+            var result = await _mediator.Send(updateCampaign);
+            return Ok(result);
         }
     }
 }

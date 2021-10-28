@@ -22,6 +22,12 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.Update
         }
         public async Task<Response<bool>> Handle(UpdateAdvertisementCommand request, CancellationToken cancellationToken)
         {
+            var validator = new UpdateAdvertisementValidator(_advertisementRepo);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new Exceptions.ValidationException(validationResult);
+
             var update = _mapper.Map<AdvertisementDetail>(request);
             await _advertisementRepo.UpdateAsync(update);
 

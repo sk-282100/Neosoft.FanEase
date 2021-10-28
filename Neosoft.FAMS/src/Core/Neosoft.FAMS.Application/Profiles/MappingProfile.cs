@@ -3,6 +3,7 @@ using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Categories.Commands.CreateCateogry;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesList;
@@ -62,6 +63,7 @@ namespace Neosoft.FAMS.Application.Profiles
 
             CreateMap<CampaignCreateCommand, CampaignDetail>().ReverseMap();
             CreateMap<CampaignGetAllDto, CampaignDetail>().ReverseMap();
+            CreateMap<UpdateCampaignCommand, CampaignDetail>().ReverseMap();
 
             CreateMap<CreateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
             CreateMap<AdvertisementListQueryDto, AdvertisementDetail>().ReverseMap();
