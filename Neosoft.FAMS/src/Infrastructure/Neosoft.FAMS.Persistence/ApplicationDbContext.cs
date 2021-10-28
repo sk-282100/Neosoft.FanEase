@@ -34,6 +34,10 @@ namespace Neosoft.FAMS.Persistence
         public DbSet<City> Cities { get; set; }
         public DbSet<ContentCreatorDetail> ContentCreatorDetails { get; set; }
         public DbSet<ViewerDetail> ViewerDetails { get; set; }
+        
+        public DbSet<VideoDetail> VideoDetails { get; set; }
+
+
         public DbSet<PasswordResetRequest> PasswordResetRequests { get; set; }
         public DbSet<CampaignDetail> CampaignDetails { get; set; }
 

@@ -15,6 +15,8 @@ using Neosoft.FAMS.Application.Features.Events.Queries.GetEventsList;
 using Neosoft.FAMS.Application.Features.Orders.Queries.GetOrdersForMonth;
 using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Users.Queries;
+using Neosoft.FAMS.Application.Features.Video.Command.Create;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Update;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
@@ -53,6 +55,8 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<UpdateCreatorByIdCommand, ContentCreatorDetail>().ReverseMap();
             CreateMap<UpdateViewerCommand, ViewerDetail>().ReverseMap();
 
+            CreateMap<VideoCreateCommand, VideoDetail>().ReverseMap();
+            CreateMap<UpdateVideoByIdCommand, VideoDetail>().ReverseMap();
             CreateMap<CampaignCreateCommand, CampaignDetail>().ReverseMap();
             CreateMap<CampaignGetAllDto, CampaignDetail>().ReverseMap();
 

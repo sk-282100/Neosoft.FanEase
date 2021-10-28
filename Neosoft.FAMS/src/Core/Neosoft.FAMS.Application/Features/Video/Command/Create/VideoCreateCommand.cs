@@ -1,15 +1,13 @@
-﻿using System;
+﻿using MediatR;
+using Neosoft.FAMS.Application.Responses;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-#nullable disable
-
-namespace Neosoft.FAMS.Domain.Entities
+namespace Neosoft.FAMS.Application.Features.Video.Command.Create
 {
-    public partial class VideoDetail
+    public class VideoCreateCommand:IRequest<Response<long>>
     {
-        [Key]
-        public long VideoId { get; set; }
         public string VideoImage { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
@@ -19,9 +17,9 @@ namespace Neosoft.FAMS.Domain.Entities
         public string VideoUrl { get; set; }
         public string UploadVideoPath { get; set; }
         public short? VideoCategoryId { get; set; }
-        public long? CreatedBy { get; set; }
-        public DateTime? CreatedOn { get; set; }
-        public bool? IsDeleted { get; set; }
+        
+       
+        
         public short? VideoStatus { get; set; }
         public bool? PublishStatus { get; set; }
     }

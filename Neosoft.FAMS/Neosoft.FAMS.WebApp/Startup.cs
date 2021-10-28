@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Neosoft.FAMS.WebApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace Neosoft.FAMS.WebApp
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            services.AddScoped<Services.Interface.ILogin, Login>();
             //services.AddDbContext<SuperHeroContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DemoCustDb")));
         }
