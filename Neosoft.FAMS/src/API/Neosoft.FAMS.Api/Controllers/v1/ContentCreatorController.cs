@@ -55,10 +55,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
         [HttpPut]
-        [Route("{id}")]
-        public async Task<IActionResult> UpdateById([FromRoute] long id,UpdateCreatorByIdCommand updateCreatorByIdCommand)
+        public async Task<IActionResult> UpdateById(UpdateCreatorByIdCommand updateCreatorByIdCommand)
         {
-            updateCreatorByIdCommand.ContentCreatorId = id;
             var data = await _mediator.Send(updateCreatorByIdCommand);
             return Ok(data);
 

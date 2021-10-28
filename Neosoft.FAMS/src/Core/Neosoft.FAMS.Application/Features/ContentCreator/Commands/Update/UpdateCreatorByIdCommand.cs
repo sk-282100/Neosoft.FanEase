@@ -9,7 +9,6 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update
 {
     public class UpdateCreatorByIdCommand : IRequest<Response<bool>>
     {
-        [ReadOnly(true)]
         public long ContentCreatorId { get; set; }
         public string ProfilePhotoPath { get; set; }
         public string CreatorName { get; set; }
@@ -20,7 +19,6 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update
         public string EmailId { get; set; }
         public string MobileNumber { get; set; }
         public bool? Status { get; set; }
-        public DateTime? CreatedOn { get; set; }
         public string AdditionalRemark { get; set; }
         public long LoginId { get; set; }
     }
