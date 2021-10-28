@@ -22,7 +22,6 @@
   </ItemGroup>
 	
   <ItemGroup>
-    <Folder Include="Features\Video\Queries\" />
     <Folder Include="Features\Viewer\Queries\" />
     <Folder Include="Features\ContentCreator\Queries\" />
   </ItemGroup>

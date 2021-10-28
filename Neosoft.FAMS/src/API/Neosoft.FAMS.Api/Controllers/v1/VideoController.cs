@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetById;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,13 +40,28 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
         [HttpPut]
-        [Route("{id}")]
-        public async Task<IActionResult> UpdateById([FromRoute] long id, UpdateVideoByIdCommand updateVideoByIdCommand)
-        {
-            updateVideoByIdCommand.VideoId = id;
+        [Route("")]
+        public async Task<IActionResult> Update([FromBody] UpdateVideoByIdCommand updateVideoByIdCommand)
+        {           
             var data = await _mediator.Send(updateVideoByIdCommand);
             return Ok(data);
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var videoQuery = new VideoGetAllCommand();
+            var data = await _mediator.Send(videoQuery);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetAll([FromRoute] long id)
+        {
+            var videoQuery = new VideoGetByIdCommand { VideoId = id };
+            var data = await _mediator.Send(videoQuery);
+            return Ok(data);
         }
 
     }
