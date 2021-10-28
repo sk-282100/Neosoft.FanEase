@@ -23,10 +23,5 @@ namespace Neosoft.FAMS.Persistence.Repositories
             return await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.VideoId == id);
         }
 
-        public async Task<VideoDetail> GetByIdAsync(long id)
-        {
-            return await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.VideoId == id);
-
-        }
     }
 }
