@@ -57,10 +57,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
         [HttpPut]
-        [Route("{id}")]
-        public async Task<IActionResult> UpdateById([FromRoute] long id,UpdateViewerCommand updateViewer)
+        public async Task<IActionResult> UpdateById([FromBody]UpdateViewerCommand updateViewer)
         {
-            updateViewer.ViewerId = id;
             var data = await _mediator.Send(updateViewer);
             return Ok(data);
         }

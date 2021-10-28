@@ -24,6 +24,12 @@ namespace Neosoft.FAMS.Application.Features.Campaign.Commands.Create
         public async Task<Response<long>> Handle(CampaignCreateCommand request, CancellationToken cancellationToken)
         {
 
+            var validator = new CampaignCreateValidator(_campaignDetailRepo);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new Exceptions.ValidationException(validationResult);
+
             var record = _mapper.Map<CampaignDetail>(request);
             record.CreatedOn = DateTime.Now;
             record.CreatedBy = 2;

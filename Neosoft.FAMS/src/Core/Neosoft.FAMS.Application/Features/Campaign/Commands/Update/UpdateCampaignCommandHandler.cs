@@ -24,6 +24,12 @@ namespace Neosoft.FAMS.Application.Features.Campaign.Commands.Update
 
         public async Task<Response<bool>> Handle(UpdateCampaignCommand request, CancellationToken cancellationToken)
         {
+            var validator = new UpdateCampaignValidator(_campaignDetailRepo);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new Exceptions.ValidationException(validationResult);
+
             var update = _mapper.Map<CampaignDetail>(request);
             await _campaignDetailRepo.UpdateAsync(update);
 
