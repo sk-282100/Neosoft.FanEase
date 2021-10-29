@@ -14,9 +14,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
     public class AdminController : Controller
     {
         ICreator _creator;
-        public AdminController(ICreator creator)
+        IViewer _viewer;
+        public AdminController(ICreator creator, IViewer viewer)
         {
             _creator = creator;
+            _viewer = viewer;
         }
         public IActionResult Index()
         {
@@ -42,6 +44,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public ActionResult CreatorsList()
         {
             var data = _creator.GetAllCreator();
+            ViewData["data"] = data;
+            return View();
+        }
+
+        public ActionResult ViewerList()
+        {
+            var data = _viewer.GetAllViewer();
             ViewData["data"] = data;
             return View();
         }

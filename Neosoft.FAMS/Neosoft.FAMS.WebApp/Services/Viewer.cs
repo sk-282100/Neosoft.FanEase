@@ -1,4 +1,5 @@
 ﻿using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
+using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Services.Interface;
@@ -29,6 +30,20 @@ namespace Neosoft.FAMS.WebApp.Services
                 _client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
+        }
+        public List<ViewerDto> GetAllViewer()
+        {
+            var result = new List<ViewerDto>();
+            var uri = API.Viewer.GetAllViewer(_baseUrl, _path);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<ViewerDto>>(jsonDataStatus);
+                result = data.ToList();
+                return result;
+            }
+            return result;
         }
         public async Task<long> SaveViewer(ViewerCreateCommand viewerCreateCommand)
         {

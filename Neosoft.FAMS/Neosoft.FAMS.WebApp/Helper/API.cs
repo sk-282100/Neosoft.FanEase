@@ -19,8 +19,8 @@ namespace Neosoft.FAMS.WebApp.Helper
         }
         public static class Viewer
         {
-            //public static string GetAllUserList(string baseUri) => $"{baseUri}/GetAllUserList?api-version=1";
-            public static string SaveViewer(string path,string baseUri) => $"{path}{baseUri}?api-version=1";
+            public static string GetAllViewer(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+            public static string SaveViewer(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
         }
         public static class Creator
         {
