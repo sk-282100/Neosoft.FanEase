@@ -1,4 +1,5 @@
 ﻿using Neosoft.FAMS.Application.Features.Events.Login.Commands;
+using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Queries;
 using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Application.Responses;
@@ -56,6 +57,19 @@ namespace Neosoft.FAMS.WebApp.Services
         {
             bool result = false;
             var uri = API.Login.SavePassword(_baseUrl, _path, resetPasswordCommand.Username, resetPasswordCommand.Password, resetPasswordCommand.newPassword);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                result = bool.Parse(response.Content.ReadAsStringAsync().Result);
+            }
+            return result;
+
+        }
+        public async Task<bool> SaveOTP(CheckUsernameCommand checkUsernameCommand)
+        {
+            bool result = false;
+            var uri = API.Login.SaveOTP(_baseUrl, _path, checkUsernameCommand.UserName);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
 
             if (response.IsSuccessStatusCode)

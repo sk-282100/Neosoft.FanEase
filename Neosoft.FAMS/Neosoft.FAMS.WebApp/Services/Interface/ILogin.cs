@@ -1,4 +1,5 @@
 ﻿using Neosoft.FAMS.Application.Features.Events.Login.Commands;
+using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Domain.Entities;
 using System;
@@ -12,6 +13,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
     {
         public int CheckUsernameAndPassword(string userName, string password);
         Task<bool> SavePassword(ResetPasswordCommand resetPasswordCommand);
-
+        Task<bool> SaveOTP(CheckUsernameCommand checkUsernameCommand);
     }
 }
