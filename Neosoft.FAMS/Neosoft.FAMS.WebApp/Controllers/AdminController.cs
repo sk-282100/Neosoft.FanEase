@@ -15,10 +15,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
     {
         ICreator _creator;
         IViewer _viewer;
-        public AdminController(ICreator creator, IViewer viewer)
+        IVideo _video;
+        public AdminController(ICreator creator, IViewer viewer,IVideo video)
         {
             _creator = creator;
             _viewer = viewer;
+            _video = video;
         }
         public IActionResult Index()
         {
@@ -39,6 +41,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public ActionResult VideoTable()
         {
+            var data = _video.GetAllVideoList();
+            ViewData["data"] = data;
             return View();
         }
         public ActionResult CreatorsList()
