@@ -43,5 +43,10 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
             return data;
         }
+
+        public async Task<PasswordResetRequest> CheckOtp(long LoginId,string Otp)
+        {
+            return await _dbContext.PasswordResetRequests.FirstOrDefaultAsync(u => u.LoginId == LoginId);
+        }
     }
 }

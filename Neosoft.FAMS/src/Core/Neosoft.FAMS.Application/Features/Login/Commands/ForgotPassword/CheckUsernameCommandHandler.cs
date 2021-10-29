@@ -27,7 +27,7 @@ namespace Neosoft.FAMS.Application.Features.Login.Commands
             long id = data.Id;
             if (data != null)
             {
-                /*Random rdm = new Random();
+                Random rdm = new Random();
                 int code = rdm.Next(1000, 9999);
                 string to = request.UserName;
                 string subject = "For reset password";
@@ -43,12 +43,12 @@ namespace Neosoft.FAMS.Application.Features.Login.Commands
                 smtp.UseDefaultCredentials = false;
                 smtp.EnableSsl = true;
                 smtp.Credentials = new System.Net.NetworkCredential("kajalpadhiyar962@gmail.com", "Nisha@11");
-                smtp.Send(mm);*/
+                smtp.Send(mm);
 
                     PasswordResetRequest passwordResetRequest = new PasswordResetRequest();
                     passwordResetRequest.LoginId=id;
                     passwordResetRequest.RequestedOn=DateTime.Now;
-                    passwordResetRequest.ValidCode="1234";
+                    passwordResetRequest.ValidCode=code.ToString();
                     passwordResetRequest.ExpiredOn= DateTime.Now.AddMinutes(10);
                    var datatwo = await _loginRepository.AddCode(passwordResetRequest);
                    if(datatwo!=null)

@@ -38,6 +38,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
         [HttpPost]
+        [Route("Check-Otp")]
+        public async Task<IActionResult> CheckOtp(CheckOtpQuery checkOtp)
+        {
+            var data = await _mediator.Send(checkOtp);
+            return Ok(data);
+        }
+
+
+        [HttpPost]
         [Route("Reset-Password")]
         public async Task<IActionResult> ResetPassword(ResetPasswordCommand resetPasswordCommand)
         {

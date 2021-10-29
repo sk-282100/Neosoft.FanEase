@@ -12,6 +12,7 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         Task<Login> ResetPassword(string password, string oldPassword);
          Task<Login> CheckUsername(string userName);
         Task<PasswordResetRequest> AddCode(PasswordResetRequest passwordResetRequest);
+        Task<PasswordResetRequest> CheckOtp(long id,string Otp);
 
     }
 }
