@@ -1,4 +1,5 @@
-﻿using Neosoft.FAMS.Application.Features.Users.Queries;
+﻿using Neosoft.FAMS.Application.Features.Events.Login.Commands;
+using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
   public  interface ILogin
     {
         public int CheckUsernameAndPassword(string userName, string password);
+        Task<bool> SavePassword(ResetPasswordCommand resetPasswordCommand);
 
-        
     }
 }

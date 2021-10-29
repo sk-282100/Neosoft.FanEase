@@ -6,7 +6,8 @@ namespace Neosoft.FAMS.WebApp.Models.LoginModel.ResetPassword
 {
     public class ResetPassword
     {
-        public string oldPassword { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
         public string newPassword { get; set; }
     }
 }

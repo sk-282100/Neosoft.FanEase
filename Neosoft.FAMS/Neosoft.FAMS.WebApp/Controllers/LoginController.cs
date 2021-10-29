@@ -10,6 +10,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
+using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -49,7 +50,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             else if (result == 2)
             {
                 HttpContext.Session.SetString("Username", model.Username);
-                return RedirectToAction("Index", "Creator");
+                return RedirectToAction("ResetPassword", "Login");
             }
             else {
                 return RedirectToAction("Index", "Login");
@@ -66,10 +67,17 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult ResetPassword(ResetPassword model)
         {
-            string oldPassword = model.oldPassword;
+
+            string Password = model.Password;
             string newPassword = model.newPassword;
-            //_logInUserService.GetLoginUserDetail(model.Username, model.Password);
-            return View(model);
+            var serviceresult = _login.SavePassword(new ResetPasswordCommand
+            {
+                Username = "test",
+                Password = Password,
+                newPassword = newPassword
+            });
+
+            return RedirectToAction("Index", "Login");
         }
 
         public ActionResult SendOtp()
