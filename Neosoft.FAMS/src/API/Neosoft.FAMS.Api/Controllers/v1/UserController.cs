@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
-    [ApiVersion("1")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -27,7 +27,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             _logger = logger;
         }
 
-        [HttpGet("all", Name = "GetAllUserList")]
+        [HttpGet()]
+        [Route("GetAllUserList")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAllUserList()
         {
@@ -37,7 +38,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(dtos);
         }
 
-        [HttpPost("save", Name = "SaveUser")]
+        [HttpPost(Name = "SaveUser")]
+        [Route("SaveUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Create([FromBody] CreateUserCommand createUserCommand)
         {
