@@ -33,6 +33,7 @@ namespace Neosoft.FAMS.Application.Features.Video.Command.Create
 
             var record = _mapper.Map<VideoDetail>(request);
             record.CreatedOn = DateTime.Now;
+            
             record.CreatedBy = 2;
             record.IsDeleted = false;
             var data = await _videoRepo.AddAsync(record);

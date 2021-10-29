@@ -35,6 +35,7 @@ namespace Neosoft.FAMS.WebApp
             services.AddScoped<Services.Interface.ICreator, Creator>();
 
             services.AddScoped<Services.Interface.IUser, User>();
+            services.AddScoped<Services.Interface.IVideo, Video>();
             services.AddScoped<Services.Interface.IViewer, Viewer>();
 
             //services.AddDbContext<SuperHeroContext>(options =>
