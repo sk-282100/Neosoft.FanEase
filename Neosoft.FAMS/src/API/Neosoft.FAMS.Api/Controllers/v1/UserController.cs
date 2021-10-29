@@ -38,7 +38,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(dtos);
         }
 
-        [HttpPost(Name = "SaveUser")]
+        [HttpPost]
         [Route("SaveUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Create([FromBody] CreateUserCommand createUserCommand)
