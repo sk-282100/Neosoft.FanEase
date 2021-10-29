@@ -32,8 +32,11 @@ namespace Neosoft.FAMS.WebApp
                 options.Cookie.IsEssential = true;
             });
             services.AddScoped<Services.Interface.ILogin, Login>();
+            services.AddScoped<Services.Interface.ICreator, Creator>();
+
             services.AddScoped<Services.Interface.IUser, User>();
             services.AddScoped<Services.Interface.IVideo, Video>();
+            services.AddScoped<Services.Interface.IViewer, Viewer>();
 
             //services.AddDbContext<SuperHeroContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DemoCustDb")));

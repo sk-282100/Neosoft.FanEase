@@ -23,7 +23,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<IActionResult> Create(ContentCreaterCommand createCommand)
+        public async Task<IActionResult> Create([FromBody]ContentCreaterCommand createCommand)
         {
             var data = await _mediator.Send(createCommand);
             return Ok(data);

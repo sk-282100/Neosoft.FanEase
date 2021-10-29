@@ -1,7 +1,7 @@
-﻿@using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+﻿@using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 @{
-    ViewData["Title"] = "ExistingCampaign";
- var records = (List<ContentCreatorDto>)ViewData["data"];
+    ViewData["Title"] = "ViewerList";
+    var records = (List<ViewerDto>)ViewData["data"];
 }
 
 <head>
@@ -46,50 +46,45 @@
                     <a class="nav-link text-truncate" href="~/Admin/Index" id="sidetext" style="color:white"><i class="fa fa-home" style="color:white"></i>  Dashboard</a>
 
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" href="~/Admin/CreatorsList" id="sidetext" style="color:white"><i class="bi bi-person-fill" style="color:white"></i>  Content Creators</a>
+
+                </li>
                 <li class="nav-item" style="background-color: #F5F5F5; width: 400px;">
 
-                    <a class="nav-link text-truncate" id="sidetext" href="~/Admin/CreatorsList" style="background-color: #F5F5F5;width:400px;color:black;"> <i class="bi bi-person-fill"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: black;"> Content Creators</span></a>
+                    <a class="nav-link text-truncate" id="sidetext" href="~/Admin/ViewerList" style="background-color: #F5F5F5;width:400px;color:black;"> <i class="bi bi-person-fill"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: black;"> Viewers</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Admin/ViewerList" id="sidetext" style="color:white"><i class="bi bi-person-fill" style="color:white"></i>  Viewers</a>
 
-                </li>
             </ul>
         </div>
         <div class="col pt-2">
             <br /><br />
             <div class="row header">
-                <h3 style="text-align: left; margin-left: 15px; color: #56baed;">Content Creators</h3>
-                <button style="margin-left: auto; margin-right: 5px; margin-bottom: 5px; width: 260px; height: 50px; background-color: #56baed; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
+                <h3 style="text-align: left; margin-left: 15px; color: #56baed;">Viewers</h3>
             </div>
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
                     <thead style="background-color: #56baed;color:white;">
                         <tr>
-                            <th>Asset ID</th>
-                            <th>Content Creator Name</th>
+                            <th>Viewer ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Email ID</th>
                             <th>Contact Number</th>
                             <th>Account Created Date</th>
-                            <th class="no-sort">Status</th>
-                            <th class="no-sort">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var record in records)
                         {
-                            <tr>
-                                <td>@record.ContentCreatorId</td>
-                                <td>@record.CreatorName.ToString()</td>
-                                <td>@record.EmailId</td>
-                                <td>@record.MobileNumber</td>
-                                <td>@record.CreatedOn</td>
-                                <td style="color:limegreen">@record.Status</td>
-                                <td>
-                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@record.ViewerId</td>
+                            <td>@record.FirstName.ToString()</td>
+                            <td>@record.LastName.ToString()</td>
+                            <td>@record.EmailId</td>
+                            <td>@record.MobileNumber</td>
+                            <td>@record.CreatedOn</td>
+                        </tr>
                         }
                     </tbody>
                 </table>
