@@ -63,9 +63,6 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
 
-        [HttpPost]
-        [Route("Reset-Password")]
-        public async Task<IActionResult> ResetPassword(ResetPasswordCommand resetPasswordCommand)
         [HttpGet]
         [Route("ResetPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
