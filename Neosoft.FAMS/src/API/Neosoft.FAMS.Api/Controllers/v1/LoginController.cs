@@ -67,11 +67,11 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [Route("ResetPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> ResetPassword(string EmailAddress, string OldPassword, string NewPassword)
+        public async Task<IActionResult> ResetPassword(string EmailAddress, string Password, string NewPassword)
         {
             ResetPasswordCommand resetPasswordCommand=new ResetPasswordCommand();
-            resetPasswordCommand.newPassword = EmailAddress;
-            resetPasswordCommand.oldPassword = OldPassword;
+            resetPasswordCommand.Username = EmailAddress;
+            resetPasswordCommand.Password = Password;
             resetPasswordCommand.newPassword = NewPassword;
             var data = await _mediator.Send(resetPasswordCommand);
             return Ok(data);

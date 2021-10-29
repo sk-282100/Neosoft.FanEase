@@ -11,11 +11,11 @@ using System.Linq;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
-    public class LoginRepo:ILoginRepo
+    public class LoginRepo : BaseRepository<Login>, ILoginRepo
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly ILogger _logger;
-        public LoginRepo(ApplicationDbContext dbContext, ILogger<Login> logger)
+        public LoginRepo(ApplicationDbContext dbContext, ILogger<Login> logger) : base(dbContext, logger)
         {
             _dbContext = dbContext;
             _logger = logger;
@@ -28,9 +28,9 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
         }
-        public async Task<Login> ResetPassword(string password, string oldPassword)
+        public async Task<Login> ResetPassword(string userName, string Password)
         {
-            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Password == oldPassword);
+            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
         }
 
         public async Task<PasswordResetRequest> AddCode(PasswordResetRequest passwordResetRequest)

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Contracts.Persistence
 {
-    public interface ILoginRepo
+    public interface ILoginRepo : IAsyncRepository<Login>
     {
          Task<Login> GetLoginDetail(string UserName, string Password);
-        Task<Login> ResetPassword(string password, string oldPassword);
-         Task<Login> CheckUsername(string userName);
+        Task<Login> ResetPassword(string UserName, string Password);
+        Task<Login> CheckUsername(string userName);
         Task<PasswordResetRequest> AddCode(PasswordResetRequest passwordResetRequest);
         Task<PasswordResetRequest> CheckOtp(long id,string Otp);
 
