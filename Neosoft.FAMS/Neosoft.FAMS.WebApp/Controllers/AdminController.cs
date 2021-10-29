@@ -25,23 +25,47 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
         
-        public ActionResult CreatorRegisteration()
+        public IActionResult CreatorRegisteration()
         {
+            ViewData["isInsert"] = false;
             return View();
         }
         [HttpPost]
-        public ActionResult CreatorRegisteration(CreatorRegisteration registeration)
+        public async  Task<IActionResult> CreatorRegisteration(CreatorRegisteration registeration)
         {
             registeration.CityId = 1;
             registeration.CountryId = 1;
-            _creator.SaveCreatorDetail(registeration);
+            long id = await _creator.SaveCreatorDetail(registeration);
+            if(id>0)
+                ViewData["isInsert"] = true;
             return View();
         }
-        public ActionResult VideoTable()
+        [HttpGet]
+        public IActionResult EditCreator([FromRoute]long id)
+        {
+            var data = _creator.GetCreatorById(id);
+            ViewData["data"] = data;
+            return View();
+        }
+       
+        [HttpPost]
+        public IActionResult EditCreator([FromRoute]long id,CreatorRegisteration editCreator)
+        {
+            editCreator.ContentCreatorId = id;
+            editCreator.CityId = 1;
+            editCreator.CountryId = 1;
+            var isupdated = _creator.UpdateCreatorDetail(editCreator);
+            if(isupdated.IsCompleted)
+                return RedirectToAction("CreatorsList");
+
+            var data = _creator.GetCreatorById(1);
+            return RedirectToAction("CreatorsList");
+        }
+        public IActionResult VideoTable()
         {
             return View();
         }
-        public ActionResult CreatorsList()
+        public IActionResult CreatorsList()
         {
             var data = _creator.GetAllCreator();
             ViewData["data"] = data;

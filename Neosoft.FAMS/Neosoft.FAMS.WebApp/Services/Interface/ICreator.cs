@@ -11,5 +11,8 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
     {
         public List<ContentCreatorDto> GetAllCreator();
         public Task<long> SaveCreatorDetail(CreatorRegisteration registeration);
+        public ContentCreatorDto GetCreatorById(long id);
+        public Task<bool> UpdateCreatorDetail(CreatorRegisteration registeration);
+
     }
 }

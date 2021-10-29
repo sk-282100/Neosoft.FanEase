@@ -19,6 +19,8 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
         public string AdditionalRemark { get; set; }
         public long LoginId { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public bool? Status { get; set; }
+
 
     }
 }

@@ -9,6 +9,7 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
 {
     public class CreatorRegisteration
     {
+        public long ContentCreatorId { get; set; }
         [DisplayName("Profile Photo")]
         public string ProfilePhotoPath { get; set; }
 

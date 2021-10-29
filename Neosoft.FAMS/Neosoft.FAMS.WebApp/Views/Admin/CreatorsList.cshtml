@@ -78,18 +78,25 @@
                     <tbody>
                         @foreach (var record in records)
                         {
-                            <tr>
-                                <td>@record.ContentCreatorId</td>
-                                <td>@record.CreatorName.ToString()</td>
-                                <td>@record.EmailId</td>
-                                <td>@record.MobileNumber</td>
-                                <td>@record.CreatedOn</td>
-                                <td style="color:limegreen">@record.Status</td>
-                                <td>
-                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@record.ContentCreatorId</td>
+                            <td>@record.CreatorName.ToString()</td>
+                            <td>@record.EmailId</td>
+                            <td>@record.MobileNumber</td>
+                            <td>@record.CreatedOn</td>
+                            @if (record.Status != null)
+                            {
+                                <td style="color:limegreen">Active</td>
+                            }
+                            else
+                            {
+                                <td style="color:red">Deactive</td>
+                            }
+                            <td>
+                                <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
