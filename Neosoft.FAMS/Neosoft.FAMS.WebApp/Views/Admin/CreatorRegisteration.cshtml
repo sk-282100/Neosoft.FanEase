@@ -39,15 +39,20 @@
                     <div class="form-row">
                         <label id="lbl" for="formFileMultiple" class="form-label">Add Images or Add Video</label>
                         <input class="form-control" type="file" id="formFileMultiple" multiple />
+
                         <div class="form-group col-md-6">
                             <label id="lbl" class="form-group required">Name</label>
-                            <input type="text" class="fadeIn second" placeholder="Enter Name">
+                            <input type="text" class="fadeIn second" name="CreatorName" placeholder="Enter Name">
+
                             <label id="lbl">Address1</label>
-                            <input type="text" class="fadeIn third" placeholder="Address1">
+                            <input type="text" class="fadeIn third" name="Address1" placeholder="Address1">
+
                             <label id="lbl">Country</label>
                             <select id="formCity" name="CountryId">Country</select>
+
                             <label id="lbl">Mobile Number</label>
-                            <input type="text" class="fadeIn second" placeholder="Enter mobile number">
+                            <input type="text" class="fadeIn second" name="MobileNumber" placeholder="Enter mobile number">
+
                             <label id="lbl">
                                 Status &nbsp;&nbsp;&nbsp;
                                 <input name="Status" type="radio" value=1 />Active &nbsp;&nbsp;&nbsp;
@@ -56,14 +61,17 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label id="lbl">Email</label>
-                            <input type="text" class="fadeIn first" placeholder="Enter Email ID">
+                            <input type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
+
                             <label id="lbl">Address2</label>
-                            <input type="text" class="fadeIn second" placeholder="Address2"><br />
+                            <input type="text" class="fadeIn second" name="Address2" placeholder="Address2"><br />
+
                             <label id="lbl">City</label>
+
                             <select id="formCity" name="CityId">City</select>
                             <div style="float:left">
                                 <label id="lbl">Additional remark</label>
-                                <textarea type="text" class="fadeIn third" rows="4" placeholder="Additional remark"></textarea>
+                                <textarea type="text" class="fadeIn third" rows="4" name="AdditionalRemark" placeholder="Additional remark"></textarea>
                             </div>
                             <br /><br />
                         </div>
