@@ -24,7 +24,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ViewerCreateCommand viewerCreateCommand)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Create([FromBody] ViewerCreateCommand viewerCreateCommand)
         {
             var data = await _mediator.Send(viewerCreateCommand);
             return Ok(data);
