@@ -16,5 +16,11 @@ namespace Neosoft.FAMS.WebApp.Helper
             public static string GetAllUserList(string baseUri) => $"{baseUri}/GetAllUserList?api-version=1";
             public static string SaveUser(string baseUri) => $"{baseUri}/SaveUser?api-version=1";
         }
+        public static class Video
+        {
+              public static string GetAllVideoList(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+
+            public static string CreateVideo(string baseUri,string path) => $"{baseUri}{path}?api-version=1";
+        }
     }
 }
