@@ -28,10 +28,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public ActionResult ViewerRegisteration()
         {
+            ViewData["isInsert"] = false;
             return View();
         }
         [HttpPost]
-        public ActionResult ViewerRegisteration(ViewerRegisteration viewerRegisteration)
+        public async Task<ActionResult> ViewerRegisteration(ViewerRegisteration viewerRegisteration)
         {
             string FirstName = viewerRegisteration.FirstName;
             string MiddleName = viewerRegisteration.MiddleName;
@@ -41,7 +42,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             string EmailId = viewerRegisteration.EmailId;
             string MobileNumber = viewerRegisteration.MobileNumber;
             string password = viewerRegisteration.Password;
-            var serviceresult = _viewer.SaveViewer(new ViewerCreateCommand
+            long id  = await _viewer.SaveViewer(new ViewerCreateCommand
             {
                 FirstName=FirstName,
                 MiddleName=MiddleName,
@@ -54,6 +55,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 CityId=1,
                 CountryId=2
             });
+            if (id > 0)
+                ViewData["isInsert"] = true;
 
             return View();
         }
