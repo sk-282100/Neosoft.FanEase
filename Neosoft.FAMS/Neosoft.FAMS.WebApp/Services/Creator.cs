@@ -48,7 +48,7 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<long> SaveCreatorDetail(CreatorRegisteration registeration)
         {
             long result = 0;
-            var uri = API.Creator.GetAllCreator(_baseUrl, _path);
+            var uri = API.Creator.SaveCreator(_baseUrl, _path);
             var content = JsonConvert.SerializeObject(registeration);
             HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
                           "application/json"));
@@ -61,5 +61,35 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        public ContentCreatorDto GetCreatorById(long id)
+        {
+            var result = new ContentCreatorDto();
+            var uri = API.Creator.GetCreatorById(_baseUrl, _path,id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<ContentCreatorDto>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+        public async Task<bool> UpdateCreatorDetail(CreatorRegisteration registeration)
+        {
+            bool result = false;
+            var uri = API.Creator.SaveCreator(_baseUrl, _path);
+            var content = JsonConvert.SerializeObject(registeration);
+            HttpResponseMessage response = await _client.PutAsync(uri, new StringContent(content, Encoding.Default,
+                          "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<Response<bool>>(jsonDataStatus);
+                result = data.Data;
+                return result;
+            }
+            return result;
+        }
+
     }
 }
