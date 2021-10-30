@@ -1,5 +1,8 @@
-﻿@using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
+﻿
+@using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
     ViewData["Title"] = "ViewerList";
     var records = (List<ViewerDto>)ViewData["data"];
 }
@@ -58,7 +61,6 @@
             </ul>
         </div>
         <div class="col pt-2">
-            <br /><br />
             <div class="row header">
                 <h3 style="text-align: left; margin-left: 15px; color: #56baed;">Viewers</h3>
             </div>
@@ -77,26 +79,19 @@
                     <tbody>
                         @foreach (var record in records)
                         {
-                        <tr>
-                            <td>@record.ViewerId</td>
-                            <td>@record.FirstName.ToString()</td>
-                            <td>@record.LastName.ToString()</td>
-                            <td>@record.EmailId</td>
-                            <td>@record.MobileNumber</td>
-                            <td>@record.CreatedOn</td>
-                        </tr>
+                            <tr>
+                                <td>@record.ViewerId</td>
+                                <td>@record.FirstName.ToString()</td>
+                                <td>@record.LastName.ToString()</td>
+                                <td>@record.EmailId</td>
+                                <td>@record.MobileNumber</td>
+                                <td>@record.CreatedOn</td>
+                            </tr>
                         }
                     </tbody>
                 </table>
             </div>
-            <script>
-                $(document).ready(function () {
-                    $('#myTable').dataTable({
-                        "columnDefs": [{ targets: 'no-sort', orderable: false }]
-                    });
-                    console.log(1);
-                });
-            </script>
+
         </div>
     </div>
 </div>

@@ -5,7 +5,13 @@
     <title>@ViewData["Title"] - FanEase_Portal</title>
     <!---<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
     <link rel="stylesheet" href="~/css/site.css" />
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
+    <style>
+        .btnLoginSignIn {
+            color: cornflowerblue;
+            height:80px;
+        }
+    </style>
 </head>
 <body style="background-color: #F5F5F5;">
 
@@ -51,11 +57,11 @@
                 }
                 @if (@Context.Session.GetString("Username") == null)
                 {
-                    <form class="form-inline" action="~/Viewer/ViewerRegisteration">
-                        <input type="submit" class="" value="Sign In">
+                    <form class="form-inline " action="~/Viewer/ViewerRegisteration">
+                        <input type="submit" class="" style="background-color:whitesmoke;color:dodgerblue" value="Sign In">
                     </form>
-                    <form class="form-inline" action="~/Login/Index">
-                        <input type="submit" class="" value="Log In">
+                    <form class="form-inline " action="~/Login/Index">
+                        <input type="submit" class="" style="background-color:whitesmoke;color:dodgerblue" value="Log In">
                     </form>
                 }
             </div>
@@ -80,6 +86,8 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)

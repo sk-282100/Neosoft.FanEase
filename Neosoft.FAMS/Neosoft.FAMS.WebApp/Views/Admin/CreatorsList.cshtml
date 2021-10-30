@@ -1,7 +1,9 @@
 ﻿@using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 @{
+   Layout = "~/Views/Shared/_Layout.cshtml";
+
     ViewData["Title"] = "ExistingCampaign";
- var records = (List<ContentCreatorDto>)ViewData["data"];
+    var records = (List<ContentCreatorDto>)ViewData["data"];
 }
 
 <head>
@@ -57,12 +59,10 @@
             </ul>
         </div>
         <div class="col pt-2">
-            <br /><br />
-                  <div class="row header">
-                      <h3 style="text-align: left; margin-left: 15px; color: #56baed;">Content Creators</h3>
-                      <button style="margin-left: 10px; text-align: left; float:left; margin-right: 5px; margin-bottom: 5px; width: 160px; height: 50px; background-color: #56baed; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "VideoTable", "Admin")'"> List All Videos</button>
-                      <button style="margin-left: auto; margin-right: 5px; margin-bottom: 5px; width: 260px; height: 50px; background-color: #56baed; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
-                  </div>
+            <div class="row header">
+                <h3 style="text-align: left; margin-left: 15px; color: #56baed;">Content Creators</h3>
+                <button style="margin-left: auto; margin-right: 5px; margin-bottom: 5px; width: 260px; height: 50px; background-color: #56baed; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
+            </div>
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
                     <thead style="background-color: #56baed;color:white;">
@@ -102,14 +102,6 @@
                     </tbody>
                 </table>
             </div>
-            <script>
-                $(document).ready(function () {
-                    $('#myTable').dataTable({
-                        "columnDefs": [{ targets: 'no-sort', orderable: false }]
-                    });
-                    console.log(1);
-                });
-            </script>
         </div>
     </div>
 </div>
