@@ -44,22 +44,23 @@
                     <!-- Login Form -->
                     @using (Html.BeginForm("EditCreator", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
+                        <input  id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
                         <div class="form-row">
                             <label id="lbl" for="formFileMultiple" class="form-label">Add Profile Image</label>
                             <input class="form-control" type="file" name="ProfilePhotoPath" id="formFileMultiple" multiple />
 
                             <div class="form-group col-md-6">
                                 <label id="lbl" class="form-group required">Name</label>
-                                <input type="text" class="fadeIn second" name="CreatorName"  value="@records.CreatorName" >
+                                <input type="text" class="fadeIn second" name="CreatorName" value="@records.CreatorName">
 
                                 <label id="lbl">Address1</label>
-                                <input type="text" class="fadeIn third" name="Address1" value="@records.Address1" >
+                                <input type="text" class="fadeIn third" name="Address1" value="@records.Address1">
 
                                 <label id="lbl">Country</label>
                                 <select id="formCity" name="CountryId">Country</select>
 
                                 <label id="lbl">Mobile Number</label>
-                                <input type="text" class="fadeIn second" name="MobileNumber" value="@records.MobileNumber" >
+                                <input type="text" class="fadeIn second" name="MobileNumber" value="@records.MobileNumber">
 
                                 <label id="lbl">
                                     Status &nbsp;&nbsp;&nbsp;
@@ -69,7 +70,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label id="lbl">Email</label>
-                                <input type="text" class="fadeIn first" name="EmailId" value="@records.EmailId" >
+                                <input type="text" class="fadeIn first" name="EmailId" value="@records.EmailId">
 
                                 <label id="lbl">Address2</label>
                                 <input type="text" class="fadeIn second" value="@records.Address2" name="Address2" placeholder="Address2"><br />

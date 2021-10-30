@@ -35,5 +35,7 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
 
         [DisplayName("Additional Remark")]
         public string AdditionalRemark { get; set; }
+
+        public DateTime? CreatedOn { get; set; }
     }
 }
