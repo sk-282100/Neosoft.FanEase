@@ -79,6 +79,19 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
 
         }
+        public async Task<int> CheckOTP(CheckOtpQuery checkOtpQuery)
+        {
+            int result = 0;
+            var uri = API.Login.CheckOTP(_baseUrl, _path, checkOtpQuery.Otp);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                result = Convert.ToInt32(response.Content.ReadAsStringAsync().Result);
+
+            }
+            return result;
+        }
 
 
     }

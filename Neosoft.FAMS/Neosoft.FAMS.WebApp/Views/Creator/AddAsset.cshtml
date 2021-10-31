@@ -1,6 +1,7 @@
-﻿
+﻿@model AddAsset;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
 }
 <head>
@@ -55,13 +56,13 @@
                                     Advertisement Title<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
                                 </label>
-                                <input type="text" class="fadeIn second" name="Title" placeholder="Enter Video Title">
+                                <input asp-for="Title" type="text" class="fadeIn second" name="Title" placeholder="Enter Video Title">
 
                                 <label id="lbl">
                                     Content Type<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
                                 </label>
-                                <select name="ContentType" id="ContentType">
+                                <select asp-for="ContentTypeId" name="ContentType" id="ContentType">
                                     <option value="Image">Images</option>
                                     <option value="Video">Videos</option>
                                 </select>
@@ -70,7 +71,7 @@
                                     Advertisement Description<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
                                 </label>
-                                <textarea type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
+                                <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
                             </div>
 
                             <div class="form-group col-md-6">
@@ -78,35 +79,35 @@
                                     Start Time<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" })
                                 </label>
-                                <input type="text" class="fadeIn first" name="StartTime" placeholder="HH:MM AM/PM">
+                                <input asp-for="StartTime" type="text" class="fadeIn first" name="StartTime" placeholder="HH:MM AM/PM">
 
                                 <label id="lbl">
                                     End Time<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" })
                                 </label>
-                                <input type="text" class="fadeIn second" name="EndTime" placeholder="HH:MM AM/PM">
+                                <input asp-for="EndTime" type="text" class="fadeIn second" name="EndTime" placeholder="HH:MM AM/PM">
 
                                 <label id="lbl">
                                     Advertisement Placement<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
                                 </label>
-                                <select name="AdvertisementPlacement" id="AdvertisementPlacement">
-                                    <option value="Top-Left">Top-Left</option>
-                                    <option value="Top-Right">Top-Right</option>
-                                    <option value="Bottom-Left">Bottom-Left</option>
-                                    <option value="Bottom-Right">Bottom-Right</option>
+                                <select asp-for="PlacementId" name="AdvertisementPlacement" id="AdvertisementPlacement">
+                                    <option value="1">Top-Left</option>
+                                    <option value="2">Top-Right</option>
+                                    <option value="3">Bottom-Left</option>
+                                    <option value="4">Bottom-Right</option>
                                 </select>
 
                                 <label id="lbl">
                                     Video or Image URL<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
                                 </label>
-                                <input type="text" class="fadeIn second" placeholder="Enter Website URL">
+                                <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
                                 <label id="lbl" for="formFileMultiple" class="form-label">Add Images or Add Video<sup style="color:red">*</sup></label>
                                 <input class="form-control" type="file" name="Url" id="formFileMultiple" multiple />
-                          </div>
+                            </div>
                         </div>
-                        <input type="submit" id="btnCancel" class="fadeIn fourth" value="Cancel">
+                        <input type="submit" id="btnCancel" class="fadeIn fourth" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'" value="Cancel">
                         <input type="submit" class="fadeIn fourth" value="Save">
                     }
                 </div>

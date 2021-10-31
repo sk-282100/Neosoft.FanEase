@@ -33,7 +33,7 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Description { get; set; }
 
-        
+
         [Required(ErrorMessage = "Url is required")]
         [DisplayName("Url")]
         public string Url { get; set; }

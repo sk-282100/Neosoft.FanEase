@@ -12,6 +12,7 @@ using Neosoft.FAMS.WebApp.Services.Interface;
 using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Commands;
+using Neosoft.FAMS.Application.Features.Login.Queries;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -117,11 +118,16 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CheckOtp(string Otp)
+        public ActionResult CheckOtp(PasswordResetRequest passwordResetRequest)
         {
-            string code=Otp;
+            string code = passwordResetRequest.Otp;
+            var serviceresult = _login.CheckOTP(new CheckOtpQuery
+            {
+                Otp = code,
 
-           
+            });
+
+
             return RedirectToAction("ForgotPassword", "Login");
         }
 
