@@ -31,6 +31,13 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 27-10-2021
+        /// Reason: It will give List of all viewers
+        /// </summary>
+        /// <returns></returns>
         public List<ViewerDto> GetAllViewer()
         {
             var result = new List<ViewerDto>();
@@ -45,6 +52,14 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 25-10-2021
+        /// Reason: It will add new viewer and returns ViewerId
+        /// </summary>
+        /// <param name="viewerCreateCommand"></param>
+        /// <returns></returns>
         public async Task<long> SaveViewer(ViewerCreateCommand viewerCreateCommand)
         {
             var uri = API.Viewer.SaveViewer(_baseUrl,_path);

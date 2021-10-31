@@ -42,6 +42,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 25-10-2021
+        /// Reason: 1 It will check whether username is valid
+        ///         2 If valid then it will send OTP
+        /// </summary>
+        /// <param name="EmailAddress"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("checkUsername")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -54,6 +62,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 25-10-2021
+        /// Reason: It will check whether OTP is valid or not and also check whether it is expired or not
+        /// </summary>
+        /// <param name="Otp"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("CheckOtp")]
         [ProducesResponseType(StatusCodes.Status200OK)]
