@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.WebApp.Models.LoginModel;
-using Neosoft.FAMS.WebApp.Models.LoginModel;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using Neosoft.FAMS.WebApp.Services.Interface;
@@ -101,8 +100,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult SendOtp(Login login)
         {
-            if (ModelState.IsValid)
-            {
+           // if (ModelState.IsValid)
+            //{
                 string Username = login.Username;
                 var serviceresult = _login.SaveOTP(new CheckUsernameCommand
                 {
@@ -110,7 +109,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
                 });
                 return RedirectToAction("CheckOtp", "Login");
-            }
+           // }
             return View();
 
         }

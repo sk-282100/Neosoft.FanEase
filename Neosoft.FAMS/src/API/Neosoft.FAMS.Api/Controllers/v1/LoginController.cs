@@ -67,6 +67,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 27-10-2021
+        /// Reason: To ResetPassword Using oldPassword and newPassword
+        /// </summary>
+        /// <param name="EmailAddress"></param>
+        /// <param name="Password"></param>
+        /// <param name="NewPassword"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("ResetPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
