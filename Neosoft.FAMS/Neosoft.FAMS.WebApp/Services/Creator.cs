@@ -32,6 +32,12 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:27/10/2021
+        /// Reason:Get All Creators List
+        /// </summary>
+        /// <returns></returns>
         public List<ContentCreatorDto> GetAllCreator()
         {
             var result= new List<ContentCreatorDto>();
@@ -46,6 +52,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:27/10/2021
+        /// Reason:Save Creators Details
+        /// </summary>
+        /// <param name="registeration"></param>
+        /// <returns></returns>
         public async Task<long> SaveCreatorDetail(CreatorRegisteration registeration)
         {
             long result = 0;
@@ -62,6 +75,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:27/10/2021
+        /// Reason:View Creator By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ContentCreatorDto GetCreatorById(long id)
         {
             var result = new ContentCreatorDto();
@@ -75,6 +95,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:27/10/2021
+        /// Reason:Update Creator's Details
+        /// </summary>
+        /// <param name="update"></param>
+        /// <returns></returns>
         public async Task<bool> UpdateCreatorDetail(UpdateCreatorByIdCommand update)
         {
             bool result = false;

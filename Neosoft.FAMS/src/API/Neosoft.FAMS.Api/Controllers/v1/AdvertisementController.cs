@@ -22,12 +22,25 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             _mediator = mediator;
         }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:25/10/2021
+        /// Reason:It will Add New Advertisement
+        /// </summary>
+        /// <param name="createAdvertisement"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddAdvertisement([FromBody]CreateAdvertisementCommand createAdvertisement)
         {
             var result = await _mediator.Send(createAdvertisement);
             return Ok(result);
         }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:25/10/2021
+        /// Reason:It will Get List of All Advertisment as a List
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -35,6 +48,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var result = await _mediator.Send(getAdvertisement);
             return Ok(result);
         }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:25/10/2021
+        /// Reason:It will get Details of a Specific Advertisement by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetById([FromRoute]long id)
@@ -43,6 +63,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var result = await _mediator.Send(getAdvertisement);
             return Ok(result);
         }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:25/10/2021
+        /// Reason:It will Delete Details of Specific Advertisement by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteById([FromRoute] long id)
@@ -51,6 +78,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var result = await _mediator.Send(getAdvertisement);
             return Ok(result);
         }
+
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:25/10/2021
+        /// Reason:It will Update Specific Advertisement by Id
+        /// </summary>
+        /// <param name="updateAdvertisement"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateAdvertisementCommand updateAdvertisement)
         {

@@ -32,8 +32,13 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:27/10/2021
+        /// Reason: Getting All Videos
+        /// </summary>
+        /// <returns></returns>
 
-  
         public List<VideoGetAllDto> GetAllVideoList()
         {
             var result = new List<VideoGetAllDto>();
@@ -48,7 +53,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:27/10/2021
+        /// Reason:Saving Video Details
+        /// </summary>
+        /// <param name="videocreateCommand"></param>
+        /// <returns></returns>
         public async Task<long> CreateVideo(VideoCreateCommand videocreateCommand)
         {
             var uri = API.Video.CreateVideo(_baseUrl,_path);
