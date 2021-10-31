@@ -1,9 +1,11 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Neosoft.FAMS.WebApp.Profiles;
 using Neosoft.FAMS.WebApp.Services;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,13 @@ namespace Neosoft.FAMS.WebApp
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new Mappers());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddScoped<Services.Interface.ILogin, Login>();
             services.AddScoped<Services.Interface.ICreator, Creator>();
 
