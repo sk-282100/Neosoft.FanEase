@@ -30,7 +30,7 @@
             <a class="navbar-brand" style="background-color: #56baed;">FanEase</a>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                @if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("Username") == "admin@gmail.com")
+                @if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "1")
                 {
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
@@ -42,7 +42,7 @@
                         <a asp-controller="Login" asp-action="Logout" style="background-color:red;color:white;padding:3px;">Logout</a>
                     </div>
                 }
-                else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("Username") == "creator@gmail.com")
+                else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "2")
                 {
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
