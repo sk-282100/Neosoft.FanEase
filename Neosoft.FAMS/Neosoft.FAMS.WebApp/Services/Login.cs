@@ -53,6 +53,14 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 27-10-2021
+        /// Reason: To Reset Password using oldPassword and newPassword
+        /// </summary>
+        /// <param name="resetPasswordCommand"></param>
+        /// <returns></returns>
+
         public async Task<bool> SavePassword(ResetPasswordCommand resetPasswordCommand)
         {
             bool result = false;
@@ -66,6 +74,15 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
 
         }
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 27-10-2021
+        /// Reason: To check valid Username & send OTP to valid emailId
+        /// </summary>
+        /// <param name="checkUsernameCommand"></param>
+        /// <returns></returns>
+
         public async Task<bool> SaveOTP(CheckUsernameCommand checkUsernameCommand)
         {
             bool result = false;
@@ -79,6 +96,14 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
 
         }
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 27-10-2021
+        /// Reason: To check valid OTP
+        /// </summary>
+        /// <param name="checkOtpQuery"></param>
+        /// <returns></returns>
         public async Task<int> CheckOTP(CheckOtpQuery checkOtpQuery)
         {
             int result = 0;

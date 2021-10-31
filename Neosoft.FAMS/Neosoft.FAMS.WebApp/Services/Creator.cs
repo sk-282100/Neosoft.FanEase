@@ -60,6 +60,7 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <param name="registeration"></param>
         /// <returns></returns>
         public async Task<long> SaveCreatorDetail(CreatorRegisteration registeration)
+        public async Task<long> SaveCreatorDetail(UpdateCreatorByIdCommand registeration)
         {
             long result = 0;
             var uri = API.Creator.SaveCreator(_baseUrl, _path);

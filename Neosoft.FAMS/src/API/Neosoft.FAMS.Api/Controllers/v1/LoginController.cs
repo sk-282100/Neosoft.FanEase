@@ -42,6 +42,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 25-10-2021
+        /// Reason: 1 It will check whether username is valid
+        ///         2 If valid then it will send OTP
+        /// </summary>
+        /// <param name="EmailAddress"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("checkUsername")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -54,6 +62,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 25-10-2021
+        /// Reason: It will check whether OTP is valid or not and also check whether it is expired or not
+        /// </summary>
+        /// <param name="Otp"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("CheckOtp")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -67,6 +82,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 27-10-2021
+        /// Reason: To ResetPassword Using oldPassword and newPassword
+        /// </summary>
+        /// <param name="EmailAddress"></param>
+        /// <param name="Password"></param>
+        /// <param name="NewPassword"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("ResetPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]

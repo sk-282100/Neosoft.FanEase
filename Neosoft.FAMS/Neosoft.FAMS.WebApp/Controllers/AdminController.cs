@@ -45,11 +45,15 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public async  Task<IActionResult> CreatorRegisteration(CreatorRegisteration registeration)
         {
             registeration.CreatedOn = DateTime.Now;
+            registeration.CityId = 1;
+            registeration.CountryId = 1;
             if (ModelState.IsValid)
             {
-                registeration.CityId = 1;
-                registeration.CountryId = 1;
-                long id = await _creator.SaveCreatorDetail(registeration);
+                var updateCreator = _mapper.Map<UpdateCreatorByIdCommand>(registeration);
+                string uniqueFileName = UploadedFile(registeration);
+                updateCreator.ProfilePhotoPath = uniqueFileName;
+
+                long id = await _creator.SaveCreatorDetail(updateCreator);
                 if (id > 0)
                     ViewData["isInsert"] = true;
                 return View();
@@ -78,8 +82,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 updateCreator.ProfilePhotoPath = uniqueFileName;
 
                 var isupdated = _creator.UpdateCreatorDetail(updateCreator);
-                if (isupdated.IsCompleted)
-                    return RedirectToAction("CreatorsList");
+                return RedirectToAction("CreatorsList");
                
             }
             var record = _creator.GetCreatorById(id);
