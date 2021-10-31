@@ -54,11 +54,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
-        [HttpPost]
-        [Route("Check-Otp")]
-        public async Task<IActionResult> CheckOtp(CheckOtpQuery checkOtp)
+        [HttpGet]
+        [Route("CheckOtp")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> CheckOtp(string Otp)
         {
-            var data = await _mediator.Send(checkOtp);
+            CheckOtpQuery checkOtpQuery = new CheckOtpQuery();
+            checkOtpQuery.Otp = Otp;
+            var data = await _mediator.Send(checkOtpQuery);
             return Ok(data);
         }
 

@@ -1,4 +1,4 @@
-﻿@using Neosoft.FAMS.WebApp.Models.LoginModel.Login;
+﻿@model Login;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -25,7 +25,7 @@
                 Username<sup style="color:red">*</sup>
                 @Html.ValidationMessage("Username", "", new { @class = "text-danger" })
             </label>
-            <input type="text" class="fadeIn second" name="Username" placeholder="Enter Username">
+            <input asp-for="Username" type="text" class="fadeIn second" name="Username" placeholder="Enter Username">
             <input type="submit" class="fadeIn fourth" value="Send OTP">
         }
 

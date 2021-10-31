@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Neosoft.FAMS.WebApp.Models.LoginModel.Login;
-using Neosoft.FAMS.WebApp.Models.LoginModel.ResetPassword;
+using Neosoft.FAMS.WebApp.Models.LoginModel;
+using Neosoft.FAMS.WebApp.Models.LoginModel;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Commands;
+using Neosoft.FAMS.Application.Features.Login.Queries;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -49,11 +50,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 if (result == 1)
                 {
                     HttpContext.Session.SetString("Username", model.Username);
+                    HttpContext.Session.SetString("RoleId", result.ToString());
+
                     return RedirectToAction("Index", "Admin");
                 }
                 else if (result == 2)
                 {
                     HttpContext.Session.SetString("Username", model.Username);
+                    HttpContext.Session.SetString("RoleId", result.ToString());
                     return RedirectToAction("ResetPassword", "Login");
                 }
                 else
@@ -117,11 +121,16 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CheckOtp(string Otp)
+        public ActionResult CheckOtp(PasswordResetRequest passwordResetRequest)
         {
-            string code=Otp;
+            string code = passwordResetRequest.Otp;
+            var serviceresult = _login.CheckOTP(new CheckOtpQuery
+            {
+                Otp = code,
 
-           
+            });
+
+
             return RedirectToAction("ForgotPassword", "Login");
         }
 

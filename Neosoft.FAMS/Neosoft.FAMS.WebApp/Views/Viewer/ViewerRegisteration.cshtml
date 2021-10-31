@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ViewerRegisteration;
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
 }
@@ -34,19 +35,19 @@
                         First Name<sup style="color:red">*</sup>
                         @Html.ValidationMessage("FirstName", "", new { @class = "text-danger" })
                     </label>
-                    <input type="text" class="fadeIn second" name="FirstName" placeholder="First Name">
+                    <input asp-for="FirstName" type="text" class="fadeIn second" name="FirstName" placeholder="First Name">
 
                     <label id="lbl">
                         Last Name<sup style="color:red">*</sup>
                         @Html.ValidationMessage("LastName", "", new { @class = "text-danger" })
                     </label>
-                    <input type="text" class="fadeIn third" name="LastName" placeholder="Last Name">
+                    <input asp-for="LastName" type="text" class="fadeIn third" name="LastName" placeholder="Last Name">
 
                     <label id="lbl">
                         Address2<sup style="color:red">*</sup>
                         @Html.ValidationMessage("Address2", "", new { @class = "text-danger" })
                     </label>
-                    <input type="text" class="fadeIn second" name="Address2" placeholder="Address2">
+                    <input asp-for="Address2" type="text" class="fadeIn second" name="Address2" placeholder="Address2">
 
                     <label id="lbl">Country<sup style="color:red">*</sup></label>
                     <select id="formCity" style="margin:10px 10px 0px 35px" name="CountryId">Country</select>
@@ -55,26 +56,26 @@
                         Email<sup style="color:red">*</sup>
                         @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
                     </label>
-                    <input type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
+                    <input asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
                 </div>
                 <div class="form-group col-md-6">
                     <label id="lbl">
                         Middle Name<sup style="color:red">*</sup>
                         @Html.ValidationMessage("MiddleName", "", new { @class = "text-danger" })
                     </label>
-                    <input type="text" class="fadeIn first" name="MiddleName" placeholder="Middle Name">
+                    <input asp-for="MiddleName" type="text" class="fadeIn first" name="MiddleName" placeholder="Middle Name">
 
                     <label id="lbl">
                         Address1<sup style="color:red">*</sup>
                         @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
                     </label>
-                    <input type="text" class="fadeIn second" name="Address1" placeholder="Address1">
+                    <input asp-for="Address1" type="text" class="fadeIn second" name="Address1" placeholder="Address1">
 
                     <label id="lbl">
                         Contact<sup style="color:red">*</sup>
                         @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
                     </label>
-                    <input type="text" class="fadeIn second" name="MobileNumber" placeholder="Enter mobile number"><br />
+                    <input asp-for="MobileNumber" type="text" class="fadeIn second" name="MobileNumber" placeholder="Enter mobile number"><br />
 
                     <label id="lbl">City<sup style="color:red">*</sup></label>
                     <select id="formCity" style="margin:10px 10px 0px 35px" name="CityId">City</select>
@@ -83,7 +84,7 @@
                         Password<sup style="color:red">*</sup>
                         @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
                     </label>
-                    <input type="password" class="fadeIn first" name="Password" placeholder="Enter password">
+                    <input asp-for="Password" type="password" class="fadeIn first" name="Password" placeholder="Enter password">
                 </div>
             </div>
             <input type="button" id="btnCancel" onclick="window.location= '@Url.Action( "Index", "Login")'" class="fadeIn fourth" value="Cancel">
