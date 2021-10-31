@@ -39,7 +39,8 @@
                 <table id="myTable" class="table table-bordered table-sm table-hover">
                     <thead style="background-color: #56baed;color:white;">
                         <tr>
-                            <th>Asset ID</th>
+                            <th>Sr No.</th>
+                            <th>Profile</th>
                             <th>Content Creator Name</th>
                             <th>Email ID</th>
                             <th>Contact Number</th>
@@ -49,10 +50,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @{ var i = 1;}
                         @foreach (var record in records)
                         {
                             <tr>
-                                <td>@record.ContentCreatorId</td>
+                                <td>@i</td>
+                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" height="50px" width="50px" class="rounded-circle" /></td>
                                 <td>@record.CreatorName.ToString()</td>
                                 <td>@record.EmailId</td>
                                 <td>@record.MobileNumber</td>
@@ -70,6 +73,7 @@
                                     <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
                                 </td>
                             </tr>
+                            i++;
                         }
                     </tbody>
                 </table>

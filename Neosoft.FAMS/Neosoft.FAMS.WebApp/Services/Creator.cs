@@ -1,4 +1,5 @@
-﻿using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+﻿using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Models.CreatorModel;
@@ -74,11 +75,11 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-        public async Task<bool> UpdateCreatorDetail(CreatorRegisteration registeration)
+        public async Task<bool> UpdateCreatorDetail(UpdateCreatorByIdCommand update)
         {
             bool result = false;
             var uri = API.Creator.SaveCreator(_baseUrl, _path);
-            var content = JsonConvert.SerializeObject(registeration);
+            var content = JsonConvert.SerializeObject(update);
             HttpResponseMessage response = await _client.PutAsync(uri, new StringContent(content, Encoding.Default,
                           "application/json"));
             if (response.IsSuccessStatusCode)

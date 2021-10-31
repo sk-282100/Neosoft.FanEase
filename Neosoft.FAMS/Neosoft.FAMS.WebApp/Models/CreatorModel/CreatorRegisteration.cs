@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,7 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         public long ContentCreatorId { get; set; }
 
         [DisplayName("Profile Photo")]
-        public string ProfilePhotoPath { get; set; }
+        public IFormFile ProfilePhotoPath { get; set; }
 
         [DisplayName("Creator Name")]
         [Required(ErrorMessage ="Name is required")]
