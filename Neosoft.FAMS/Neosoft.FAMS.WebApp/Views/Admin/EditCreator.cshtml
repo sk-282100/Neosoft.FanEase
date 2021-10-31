@@ -1,5 +1,5 @@
 ﻿@using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
-
+@model CreatorRegisteration
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -57,13 +57,13 @@
                                     Name<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("CreatorName", "", new { @class = "text-danger" })
                                 </label>
-                                <input type="text" class="fadeIn second" name="CreatorName" value="@records.CreatorName">
+                                <input asp-for="CreatorName" type="text" class="fadeIn second" name="CreatorName" value="@records.CreatorName">
 
                                 <label id="lbl">
                                     Address1<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
                                 </label>
-                                <input type="text" class="fadeIn third" name="Address1" value="@records.Address1">
+                                <input asp-for="Address1" type="text" class="fadeIn third" name="Address1" value="@records.Address1">
 
                                 <label id="lbl">Country<sup style="color:red">*</sup></label>
                                 <select id="formCity" style="margin:10px 10px 0px 35px" name="CountryId">Country</select>
@@ -72,7 +72,7 @@
                                     Mobile Number<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
                                 </label>
-                                <input type="text" class="fadeIn second" name="MobileNumber" value="@records.MobileNumber">
+                                <input asp-for="MobileNumber" type="text" class="fadeIn second" name="MobileNumber" value="@records.MobileNumber">
 
                                 <label id="lbl">
                                     Status &nbsp;&nbsp;&nbsp;
@@ -85,7 +85,7 @@
                                     Email<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
                                 </label>
-                                <input type="text" class="fadeIn first" name="EmailId" value="@records.EmailId">
+                                <input asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" value="@records.EmailId">
 
                                 <label id="lbl">Address2</label>
                                 <input type="text" class="fadeIn second" value="@records.Address2" name="Address2" placeholder="Address2"><br />
