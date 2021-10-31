@@ -1,4 +1,5 @@
-﻿@*
+﻿@model AddVideo;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -40,11 +41,11 @@
                 </h2><br />
                 <h6>Video Thumbnail Image :   @Html.ValidationMessage("VideoImage", "", new { @class = "text-danger" })</h6>
                 <img id="blah" class="img-thumbnail" src="#" alt="Thumbnail image">
-                <input class="form-control" type="file" name="VideoImage" value="img.jpeg" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;"/>
+                <input asp-for="VideoImage" class="form-control"  type="file" name="VideoImage" value="img.jpeg" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;"/>
                 @*<input type='file' name="" VideoImage" onchange="readURL(this);" />*@
                 <br /><br /><br />
                 <h6>Video Title :  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</h6>
-                <input type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title">
+                <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title">
                 <br /><br />
                 <h6>Video Description</h6>
                 <textarea class="form-control mb-2 mr-sm-2" id="txt_desc" placeholder="Description"></textarea>
@@ -52,7 +53,7 @@
                 <div class="col pt-2">
                     <br /><br /><br />
                                 <h6>Go Live Date & Time :  @Html.ValidationMessage("appt", "", new { @class = "text-danger" })</h6>
-                    <input type="date" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="appt" name="appt" min="00:00" max="23:00" required>
+                    <input type="date" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="appt" type="time"  id="appt" name="appt" min="00:00" max="23:00">
 
                     <br /><br /><br />
                     <h6>Video Type</h6>
@@ -70,7 +71,7 @@
                     </select><br />
 
                              <h6>MP4 Video URL :  @Html.ValidationMessage("VideoUrl", "", new { @class = "text-danger" })</h6>
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="txt_VideoURL" name="VideoUrl" placeholder="Video URL">
+                    <input asp-for="VideoUrl" type="text"  class="form-control mb-2 mr-sm-2" id="txt_VideoURL" name="VideoUrl" placeholder="Video URL">
                     <br />
                     <div id="temp">
                         <label id="lbl_mp4videoFile">
