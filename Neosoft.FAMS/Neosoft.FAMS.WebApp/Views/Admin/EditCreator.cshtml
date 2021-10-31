@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
     var records = (ContentCreatorDto)ViewData["data"];
 
 }
@@ -44,7 +45,7 @@
                     <!-- Login Form -->
                     @using (Html.BeginForm("EditCreator", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        <input  id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
+                        <input id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
                         <div class="form-row">
                             <label id="lbl" for="formFileMultiple" class="form-label">Add Profile Image</label>
                             <input class="form-control" type="file" name="ProfilePhotoPath" id="formFileMultiple" multiple />
@@ -64,8 +65,8 @@
 
                                 <label id="lbl">
                                     Status &nbsp;&nbsp;&nbsp;
-                                    <input name="Status" type="radio" value=1 />Active &nbsp;&nbsp;&nbsp;
-                                    <input name="Status" type="radio" value=2 />Deactive
+                                    <input name="Status" type="radio" value=true />Active &nbsp;&nbsp;&nbsp;
+                                    <input name="Status" type="radio" value=false />Deactive
                                 </label>
                             </div>
                             <div class="form-group col-md-6">
@@ -85,6 +86,7 @@
                                 <br /><br />
                             </div>
                         </div>
+                        <input type="button" id="btnCancel" onclick="window.location= '@Url.Action( "CreatorsList", "Admin")'" class="fadeIn fourth" value="Cancel">
                         <input type="submit" class="fadeIn fourth" value="Update">
                     }
                 </div>
