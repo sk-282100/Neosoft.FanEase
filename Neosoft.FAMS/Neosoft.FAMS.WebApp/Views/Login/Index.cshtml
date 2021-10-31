@@ -32,7 +32,7 @@
                 Password<sup style="color:red">*</sup>
                 @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
             </label>
-            <input asp-for="Password" type="text" class="fadeIn third" name="Password" placeholder="Password">
+            <input asp-for="Password" type="password" class="fadeIn third" name="Password" placeholder="Password">
 
             <input type="submit" class="fadeIn fourth" value="Log In">
         }
