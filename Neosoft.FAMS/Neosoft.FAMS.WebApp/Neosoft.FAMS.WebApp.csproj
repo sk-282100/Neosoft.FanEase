@@ -24,4 +24,8 @@
     <ProjectReference Include="..\src\Core\Neosoft.FAMS.Domain\Neosoft.FAMS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Uploads\Creators\Images\" />
+  </ItemGroup>
+
 </Project>

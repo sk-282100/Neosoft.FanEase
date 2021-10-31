@@ -7,14 +7,13 @@
 
 }
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/CreatorRegisteration.css" />
+    <style>
+        label span {
+            font-size: 12px;
+        }
+    </style>
 </head>
 <div class="container-fluid">
 
@@ -46,21 +45,33 @@
                     @using (Html.BeginForm("EditCreator", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <input id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
+                        <input id="LoginId" name="LoginId" value="@records.LoginId" type="hidden" />
+                        <input id="ContentCreatorId" name="ContentCreatorId" value="@records.ContentCreatorId" type="hidden" />
+
                         <div class="form-row">
                             <label id="lbl" for="formFileMultiple" class="form-label">Add Profile Image</label>
-                            <input class="form-control" type="file" name="ProfilePhotoPath" id="formFileMultiple" multiple />
+                            <input class="form-control" type="file" name="ProfilePhotoPath" value="@records.ProfilePhotoPath" id="formFileMultiple" multiple />
 
                             <div class="form-group col-md-6">
-                                <label id="lbl" class="form-group required">Name</label>
+                                <label id="lbl" class="form-group required">
+                                    Name<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("CreatorName", "", new { @class = "text-danger" })
+                                </label>
                                 <input type="text" class="fadeIn second" name="CreatorName" value="@records.CreatorName">
 
-                                <label id="lbl">Address1</label>
+                                <label id="lbl">
+                                    Address1<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
+                                </label>
                                 <input type="text" class="fadeIn third" name="Address1" value="@records.Address1">
 
-                                <label id="lbl">Country</label>
-                                <select id="formCity" name="CountryId">Country</select>
+                                <label id="lbl">Country<sup style="color:red">*</sup></label>
+                                <select id="formCity" style="margin:10px 10px 0px 35px" name="CountryId">Country</select>
 
-                                <label id="lbl">Mobile Number</label>
+                                <label id="lbl">
+                                    Mobile Number<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
+                                </label>
                                 <input type="text" class="fadeIn second" name="MobileNumber" value="@records.MobileNumber">
 
                                 <label id="lbl">
@@ -70,15 +81,18 @@
                                 </label>
                             </div>
                             <div class="form-group col-md-6">
-                                <label id="lbl">Email</label>
+                                <label id="lbl">
+                                    Email<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
+                                </label>
                                 <input type="text" class="fadeIn first" name="EmailId" value="@records.EmailId">
 
                                 <label id="lbl">Address2</label>
                                 <input type="text" class="fadeIn second" value="@records.Address2" name="Address2" placeholder="Address2"><br />
 
-                                <label id="lbl">City</label>
+                                <label id="lbl">City<sup style="color:red">*</sup></label>
+                                <select id="formCity" style="margin:10px 10px 0px 35px" name="CityId">City</select>
 
-                                <select id="formCity" name="CityId">City</select>
                                 <div style="float:left">
                                     <label id="lbl">Additional remark</label>
                                     <textarea type="text" class="fadeIn third" value="@records.AdditionalRemark" rows="4" name="AdditionalRemark" placeholder="Additional remark"></textarea>

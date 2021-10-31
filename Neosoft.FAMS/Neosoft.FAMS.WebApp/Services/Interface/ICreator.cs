@@ -1,4 +1,5 @@
-﻿using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+﻿using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.WebApp.Models.CreatorModel;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public List<ContentCreatorDto> GetAllCreator();
         public Task<long> SaveCreatorDetail(CreatorRegisteration registeration);
         public ContentCreatorDto GetCreatorById(long id);
-        public Task<bool> UpdateCreatorDetail(CreatorRegisteration registeration);
+        public Task<bool> UpdateCreatorDetail(UpdateCreatorByIdCommand update);
 
     }
 }
