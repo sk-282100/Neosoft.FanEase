@@ -49,11 +49,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 if (result == 1)
                 {
                     HttpContext.Session.SetString("Username", model.Username);
+                    HttpContext.Session.SetString("RoleId", result.ToString());
+
                     return RedirectToAction("Index", "Admin");
                 }
                 else if (result == 2)
                 {
                     HttpContext.Session.SetString("Username", model.Username);
+                    HttpContext.Session.SetString("RoleId", result.ToString());
                     return RedirectToAction("ResetPassword", "Login");
                 }
                 else
