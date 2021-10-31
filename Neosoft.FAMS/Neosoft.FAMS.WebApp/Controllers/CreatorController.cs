@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
 using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.WebApp.Models.VideoModel;
+using Neosoft.FAMS.WebApp.Models.AdvertisementModel;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             return View();
         }
-        public ActionResult AddAsset()
+        public ActionResult AddAsset(AddAsset addAsset)
         {
             return View();
         }

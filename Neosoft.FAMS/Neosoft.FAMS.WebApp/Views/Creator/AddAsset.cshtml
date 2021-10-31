@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
@@ -72,14 +73,24 @@
                     {
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label id="lbl" class="form-group required">Advertisement Title</label>
+                                <label id="lbl" class="form-group required">
+                                    Advertisement Title<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
+                                </label>
                                 <input type="text" class="fadeIn second" placeholder="Enter Video Title">
-                                <label id="lbl">Content Type</label>
+                                
+                                <label id="lbl">
+                                    Content Type<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("ContentType", "", new { @class = "text-danger" })
+                                </label>
                                 <select name="ContentType" id="ContentType">
                                     <option value="Image">Images</option>
                                     <option value="Video">Videos</option>
                                 </select>
-                                <label id="lbl">Advertisement Description</label>
+                                <label id="lbl">
+                                    Advertisement Description<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
+                                </label>
                                 <textarea type="text" rows="6" class="fadeIn second" placeholder="Enter Description"></textarea>
                             </div>
                             <div class="form-group col-md-6">
