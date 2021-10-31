@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Neosoft.FAMS.WebApp.Models.LoginModel.Login
+namespace Neosoft.FAMS.WebApp.Models.LoginModel
 {
   public  class Login
     {

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Login;
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -25,13 +26,14 @@
                 Username<sup style="color:red">*</sup>
                 @Html.ValidationMessage("Username", "", new { @class = "text-danger" })
             </label>
-            <input type="text" class="fadeIn second" name="Username" placeholder="Username">
+            <input asp-for="Username" type="text" class="fadeIn second" name="Username" placeholder="Username">
 
             <label id="lbl" class="form-group required">
                 Password<sup style="color:red">*</sup>
                 @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
             </label>
-            <input type="text" class="fadeIn third" name="Password" placeholder="Password">
+            <input asp-for="Password" type="text" class="fadeIn third" name="Password" placeholder="Password">
+
             <input type="submit" class="fadeIn fourth" value="Log In">
         }
 
