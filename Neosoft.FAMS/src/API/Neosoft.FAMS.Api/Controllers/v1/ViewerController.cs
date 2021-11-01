@@ -22,7 +22,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             _mediator = mediator;
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale,Kajal Padhiyar
+        /// Date:25/10/2021
+        /// Reason:It will Create new Viewer
+        /// </summary>
+        /// <param name="viewerCreateCommand"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] ViewerCreateCommand viewerCreateCommand)
@@ -30,7 +36,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(viewerCreateCommand);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale,Kajal Padhiyar
+        /// Date:25/10/2021
+        /// Reason:It will Get All Viewer's List
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -38,7 +49,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(viewerQuery);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale,Kajal Padhiyar
+        /// Date:25/10/2021
+        /// Reason:It will Get Details of Specific Viewer Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetAll([FromRoute] long id)
@@ -47,7 +64,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(viewerQuery);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale,Kajal Padhiyar
+        /// Date:25/10/2021
+        /// Reason: It will Delete Viewer by a Specific Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteById([FromRoute] long id)
@@ -56,7 +79,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(deleteQuery);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale,Kajal Padhiyar
+        /// Date:25/10/2021
+        /// Reason: It will Update Viewer by Id
+        /// </summary>
+        /// <param name="updateViewer"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateById([FromBody]UpdateViewerCommand updateViewer)
         {

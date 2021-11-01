@@ -14,26 +14,13 @@
 <div class="container-fluid">
 
     <div class="row" style="background-color: #F5F5F5;">
-        <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
-            <ul class="nav flex-column flex-nowrap overflow-hidden">
-
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Admin/Index" id="sidetext" style="color:white"><i class="fa fa-home" style="color:white"></i>  Dashboard</a>
-
-                </li>
-                <li class="nav-item" style="background-color: #F5F5F5; width: 400px;">
-
-                    <a class="nav-link text-truncate" id="sidetext" href="~/Admin/CreatorsList" style="background-color: #F5F5F5;width:400px;color:black;"> <i class="bi bi-person-fill"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: black;"> Content Creators</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Admin/ViewerList" id="sidetext" style="color:white"><i class="bi bi-person-fill" style="color:white"></i>  Viewers</a>
-                </li>
-            </ul>
-        </div>
+        @Html.Partial("_SideBar")
         <div class="col pt-2">
             <div class="row header">
                 <h3>Content Creators</h3>
                 <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location= '@Url.Action( "CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
+               @* <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location= '@Url.Action( "VideoTable", "Admin")'"><i class="fa fa-plus"></i> View Video List</button>
+*@
             </div>
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
@@ -55,7 +42,7 @@
                         {
                             <tr>
                                 <td>@i</td>
-                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" height="50px" width="50px" class="rounded-circle" /></td>
+                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height:50px;width:50px;"  class="rounded-circle" /></td>
                                 <td>@record.CreatorName.ToString()</td>
                                 <td>@record.EmailId</td>
                                 <td>@record.MobileNumber</td>
