@@ -101,8 +101,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult SendOtp(Login login)
         {
-           // if (ModelState.IsValid)
-            //{
+           if (ModelState.IsValid)
+            {
                 string Username = login.Username;
                 var serviceresult = _login.SaveOTP(new CheckUsernameCommand
                 {
@@ -110,7 +110,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
                 });
                 return RedirectToAction("CheckOtp", "Login");
-           // }
+            }
             return View();
 
         }

@@ -46,6 +46,7 @@ namespace Neosoft.FAMS.WebApp
             services.AddScoped<Services.Interface.IUser, User>();
             services.AddScoped<Services.Interface.IVideo, Video>();
             services.AddScoped<Services.Interface.IViewer, Viewer>();
+            services.AddScoped<Services.Interface.ICampaign, Campaign>();
 
             //services.AddDbContext<SuperHeroContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DemoCustDb")));

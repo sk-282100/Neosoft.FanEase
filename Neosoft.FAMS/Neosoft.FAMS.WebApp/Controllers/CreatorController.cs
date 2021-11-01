@@ -10,15 +10,19 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
+using Neosoft.FAMS.WebApp.Models.CampaignModel;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class CreatorController : Controller
     {
         IVideo _video;
-        public CreatorController(IVideo video)
+        ICampaign _campaign;
+        public CreatorController(IVideo video,ICampaign campaign)
         {
             _video = video;
+            _campaign = campaign;
         }
         public IActionResult Index()
         {
@@ -81,12 +85,31 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
             return View();
         }
-        public ActionResult AddCampaignView()
+        public IActionResult AddCampaignView()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult AddCampaignView(CreateCampaign model)
+        {
+            string CampaignName = model.CampaignName;
+            DateTime StartDate = (DateTime)model.StartDate;
+            DateTime EndDate = (DateTime)model.EndDate;
+            var serviceresult = _campaign.SaveCampaignDetail(new CampaignCreateCommand
+            {
+                CampaignName = CampaignName,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                CreatedBy = 2,
+                CreatedOn = DateTime.Now
+            });
+            return View();
+        }
+
         public ActionResult ExistingCampaign()
         {
+            var data = _campaign.GetAllCampaign();
+            ViewData["data"] = data;
             return View();
         }
         public ActionResult AddAsset(AddAsset addAsset)

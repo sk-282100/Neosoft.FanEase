@@ -35,9 +35,9 @@
                 <h2>
                     <a href="" data-target="#sidebar" class="d-md-none"><i class="fa fa-bars"></i></a> Add Video
                 </h2><br />
-                <h6>Video Thumbnail Image :   @Html.ValidationMessage("VideoImage", "", new { @class = "text-danger" })</h6>
+                <h6>Video Thumbnail Image :  </h6>
                 <img id="blah" class="img-thumbnail" src="#" alt="Thumbnail image">
-                <input asp-for="VideoImage" class="form-control"  type="file" name="VideoImage" value="img.jpeg" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;"/>
+                <input  class="form-control"  type="file" name="VideoImage" value="img.jpeg" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;"/>
                 @*<input type='file' name="" VideoImage" onchange="readURL(this);" />*@
                 <br /><br /><br />
                 <h6>Video Title :  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</h6>

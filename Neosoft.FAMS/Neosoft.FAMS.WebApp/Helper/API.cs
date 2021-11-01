@@ -40,5 +40,14 @@ namespace Neosoft.FAMS.WebApp.Helper
 
             public static string CreateVideo(string baseUri,string path) => $"{baseUri}{path}?api-version=1";
         }
+
+        public static class Campaign
+        {
+
+            public static string GetAllCampaign(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+            public static string SaveCampaign(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+
+
+        }
     }
 }
