@@ -21,9 +21,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
     {
         IVideo _video;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public CreatorController(IVideo video,IWebHostEnvironment webHostEnvironment)
         ICampaign _campaign;
-        public CreatorController(IVideo video,ICampaign campaign)
+        public CreatorController(IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment)
         {
             _video = video;
             _webHostEnvironment = webHostEnvironment;
