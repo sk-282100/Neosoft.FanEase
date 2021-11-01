@@ -34,9 +34,10 @@
                         <input id="ContentCreatorId" name="ContentCreatorId" value="@records.ContentCreatorId" type="hidden" />
 
                         <div class="form-row">
-                            <label id="lbl" for="formFileMultiple" class="form-label">Add Profile Image</label>
-                            <input class="form-control" type="file" name="ProfilePhotoPath" value="@records.ProfilePhotoPath" id="formFileMultiple" multiple />
-                            <img src="~/Uploads/Creators/Images/@records.ProfilePhotoPath" height="150px" width="150px">
+                            <label id="lbl" for="formFileMultiple" class="form-label">Update Profile Image</label>
+                            <input class="form-control" type="file" name="ProfilePhotoPath" value="@records.ProfilePhotoPath" id="formFileMultiple"  />
+                            <img src="~/Uploads/Creators/Images/@records.ProfilePhotoPath"  style="height:150px;width:150px;">
+
                             <div class="form-group col-md-6">
                                 <label id="lbl" class="form-group required">
                                     Name<sup style="color:red">*</sup>
@@ -61,8 +62,16 @@
 
                                 <label id="lbl">
                                     Status &nbsp;&nbsp;&nbsp;
-                                    <input name="Status" type="radio" value=true />Active &nbsp;&nbsp;&nbsp;
-                                    <input name="Status" type="radio" value=false />Deactive
+                                    @if (records.Status.Value == true)
+                                    {
+                                        <input asp-for="Status" name="Status" type="radio" value=true checked  /><label>Active &nbsp; &nbsp; &nbsp;</label>
+                                        <input asp-for="Status" name="Status" type="radio" value=false /><label>Deactive</label>
+                                     }
+                                    else
+                                    {
+                                        <input asp-for="Status" name="Status" type="radio" value=true /><label>Active &nbsp; &nbsp; &nbsp;</label>
+                                        <input asp-for="Status" name="Status" type="radio" value=false checked /> <label>Deactive</label>
+                                    }
                                 </label>
                             </div>
                             <div class="form-group col-md-6">
