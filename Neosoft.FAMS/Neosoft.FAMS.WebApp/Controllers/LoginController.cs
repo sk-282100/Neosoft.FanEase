@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.WebApp.Models.LoginModel;
-using Neosoft.FAMS.WebApp.Models.LoginModel;
+
 using System.Net.Mail;
 using System.Security.Cryptography;
 using Neosoft.FAMS.WebApp.Services.Interface;
