@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -37,6 +38,8 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [Required(ErrorMessage = "Url is required")]
         [DisplayName("Url")]
         public string Url { get; set; }
+
+        public IFormFile ProfilePhotoPath { get; set; }
 
         [Required(ErrorMessage = "Placement is required")]
         [DisplayName("Placement")]

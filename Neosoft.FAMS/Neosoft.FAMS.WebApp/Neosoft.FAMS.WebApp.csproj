@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Uploads\Asset\Images\" />
     <Folder Include="wwwroot\Uploads\Creators\Images\" />
     <Folder Include="wwwroot\Uploads\Creators\Videos\" />
   </ItemGroup>
