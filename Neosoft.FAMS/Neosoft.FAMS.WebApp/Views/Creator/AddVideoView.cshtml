@@ -17,16 +17,12 @@
     <div class="row" style="background-color: #F5F5F5;">
         <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
             <ul class="nav flex-column flex-nowrap overflow-hidden">
-
                 <li class="nav-item">
                     <a class="nav-link text-truncate" href="~/Creator/Index" id="sidetext" style="color:white"><i class="fa fa-home" style="color:white"></i>  Dashboard</a>
-
                 </li>
                 <li class="nav-item" style="background-color: #F5F5F5; width: 400px;">
-
                     <a class="nav-link text-truncate" id="sidetext" href="~/Creator/VideoTable" style="background-color: #F5F5F5;width:400px;color:black;"> <i class="bi bi-camera-video-fill"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: black;"> Videos</span></a>
                 </li>
-
                 <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" id="sidetext" style="color:white"><i class="fas fa-rocket" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Campaigns</span></a></li>
                 <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddAsset" id="sidetext" style="color:white"><i class="bi bi-youtube" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Media</span></a></li>
                 <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Template</span></a></li>
@@ -50,7 +46,7 @@
                 <h6>Video Description</h6>
                 <textarea class="form-control mb-2 mr-sm-2" id="txt_desc" placeholder="Description"></textarea>
             </div>
-                <div class="col pt-2">
+             <div class="col pt-2">
                     <br /><br /><br />
                                 <h6>Go Live Date & Time :  @Html.ValidationMessage("appt", "", new { @class = "text-danger" })</h6>
                     <input type="date" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="appt" type="time"  id="appt" name="appt" min="00:00" max="23:00">

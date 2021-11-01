@@ -23,13 +23,26 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             _mediator = mediator;
         }
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:25/10/2021
+        /// Reason: Adding Video with Details
+        /// </summary>
+        /// <param name="videoCreateCommand"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Create(VideoCreateCommand videoCreateCommand)
         {
             var data = await _mediator.Send(videoCreateCommand);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:25/10/2021
+        /// Reason: Deleting By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteById([FromRoute] long id)
@@ -38,7 +51,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(delete);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:25/10/2021
+        /// Reason: Update Video By Id
+        /// </summary>
+        /// <param name="updateVideoByIdCommand"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("")]
         public async Task<IActionResult> Update([FromBody] UpdateVideoByIdCommand updateVideoByIdCommand)
@@ -46,7 +65,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(updateVideoByIdCommand);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:25/10/2021
+        /// Reason: Getting All Video List 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -54,7 +78,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(videoQuery);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:25/10/2021
+        /// Reason:Getting Video By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetAll([FromRoute] long id)

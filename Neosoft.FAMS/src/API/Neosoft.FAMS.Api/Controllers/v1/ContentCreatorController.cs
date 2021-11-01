@@ -22,12 +22,26 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             _mediator = mediator;
         }
+        /// <summary>
+        /// Author :Aman Sharma,Sana Haju
+        /// Date : 25/10/2021
+        /// Reason : It will Add New Content Creator
+        /// </summary>
+        /// <param name="createCommand"></param>
+        /// <returns>name="ContentCreatorId</returns>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]ContentCreaterCommand createCommand)
         {
             var data = await _mediator.Send(createCommand);
             return Ok(data);
         }
+
+        /// <summary>
+        /// Author:Aman Sharma,Sana Haju
+        /// Date:25/10/2021
+        /// Reason:It Will Get All Content Creators List
+        /// </summary>
+        /// <returns>Name:"List of All Content Creators"</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -35,6 +49,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(creatorQuery);
             return Ok(data);
         }
+        /// <summary>
+        /// Author:Aman Sharma,Sana Haju
+        /// Date:25/10/2021
+        /// Reason:It will return Content Creators of specific Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetById([FromRoute] long id)
@@ -45,6 +66,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
                 return Ok(data);
             return BadRequest();
         }
+        /// <summary>
+        /// Author:Aman Sharma, Sana Haju
+        /// Date:25/10/2021
+        /// Reason:Deleting Record from a specific Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteById([FromRoute] long id)
@@ -53,7 +81,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data =  await _mediator.Send(delete);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author:Aman Sharma, Sana Haju
+        /// Date:25/10/2021
+        /// Reason:It Will Update Recoed of a specific Id
+        /// </summary>
+        /// <param name="updateCreatorByIdCommand"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateById(UpdateCreatorByIdCommand updateCreatorByIdCommand)
         {
