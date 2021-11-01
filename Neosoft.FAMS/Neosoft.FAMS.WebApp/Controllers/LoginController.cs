@@ -193,6 +193,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("Username");
+            HttpContext.Session.Remove("RoleId");
+            HttpContext.Session.Remove("LoginId");
+
             return RedirectToAction("Home", "Login");
         }
     }
