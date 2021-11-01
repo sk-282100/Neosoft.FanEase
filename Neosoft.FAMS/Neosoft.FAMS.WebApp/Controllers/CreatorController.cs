@@ -27,8 +27,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         ICampaign _campaign;
         IAsset _asset;
-        public CreatorController(IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
-        public CreatorController(IMapper mapper,IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment)
+       
+        public CreatorController(IMapper mapper,IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
         {
             _mapper = mapper;
             _video = video;
@@ -155,8 +155,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = data;
             TempData["imgPath"] = data.VideoImage;
             TempData["VideoPath"] = data.UploadVideoPath;
-            var data = _asset.GetAllAsset();
-            ViewData["data"] = data;
+            //var data = _asset.GetAllAsset();
+            //ViewData["data"] = data;
             return View();
         }
         [HttpPost]
