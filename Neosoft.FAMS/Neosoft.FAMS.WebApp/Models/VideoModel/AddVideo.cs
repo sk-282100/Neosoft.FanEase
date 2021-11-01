@@ -13,6 +13,8 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         public IFormFile VideoImage { get; set; }
         [Required(ErrorMessage = "Date And Time is required")]
         public DateTime? appt { get; set; }
+        public DateTime? endappt { get; set; }
+
         [Required(ErrorMessage = "Title is required")]
         [MaxLength(30,ErrorMessage="Title Length Cannot Exceed 30 characters")]
         public string Title { get; set; }
@@ -20,7 +22,7 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         public short? VideoTypeId { get; set; }
         [Required(ErrorMessage = "Video Url is required")]
         public string VideoUrl { get; set; }
-        public string UploadVideoPath { get; set; }
+        public IFormFile UploadVideoPath { get; set; }
         public short? VideoCategoryId { get; set; }
 
     }

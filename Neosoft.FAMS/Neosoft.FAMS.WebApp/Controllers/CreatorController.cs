@@ -11,21 +11,26 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.WebApp.Models.CampaignModel;
 using Microsoft.AspNetCore.Hosting;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class CreatorController : Controller
     {
+        IMapper  _mapper;
         IVideo _video;
         private readonly IWebHostEnvironment _webHostEnvironment;
         ICampaign _campaign;
         IAsset _asset;
         public CreatorController(IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
+        public CreatorController(IMapper mapper,IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment)
         {
+            _mapper = mapper;
             _video = video;
             _webHostEnvironment = webHostEnvironment;
             _campaign = campaign;
@@ -46,7 +51,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public ActionResult VideoTable()
         {
-            var data = _video.GetAllVideoList();
+            var data = _video.VideoGetById(6);
             ViewData["data"] = data;
             return View();
         }
@@ -61,31 +66,20 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult AddVideoView(AddVideo model)
         {
             DateTime StartDate = (DateTime)model.appt;
-            DateTime EndDate = (DateTime)model.appt;
-            string Title = model.Title;
-            short VideoTypeId = (short)model.VideoTypeId;
-
-            string VideoUrl = model.VideoUrl;
-            //short CreatedBy = 1;
-
-            //bool IsDeleted = false;
-
-
-
-
-            var serviceresult = _video.CreateVideo(new VideoCreateCommand
+            DateTime EndDate = (DateTime)model.endappt;
+            _video.CreateVideo(new VideoCreateCommand
             {
                 VideoImage = VideoImageFile(model),
                 StartDate = StartDate,
                 EndDate=EndDate,
-                Title=Title,
-                VideoTypeId=VideoTypeId,
-                VideoUrl=VideoUrl,
+                Title= model.Title,
+                VideoTypeId= (short)model.VideoTypeId,
+                VideoUrl = model.VideoUrl,
                 PlayerTypeId = 1,
                 VideoStatus = 1,
                 PublishStatus = false,
-                VideoCategoryId = 1,
-                UploadVideoPath = "abd"
+                VideoCategoryId = model.VideoCategoryId,
+                UploadVideoPath = VideoFile(model)
 
             }) ;
 
@@ -152,8 +146,51 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public ActionResult SelectAsset()
         {
+            return View();
+        }
+        public IActionResult EditVideoView([FromRoute] long id)
+        {
+
+            var data = _video.VideoGetById(id);
+            ViewData["data"] = data;
+            TempData["imgPath"] = data.VideoImage;
+            TempData["VideoPath"] = data.UploadVideoPath;
             var data = _asset.GetAllAsset();
             ViewData["data"] = data;
+            return View();
+        }
+
+        public IActionResult EditVideoView([FromRoute] long id, AddVideo editVideo)
+        {
+            //editCreator.CountryId = 1;
+            if (ModelState.IsValid)
+            {
+                var updateVideo = _mapper.Map<UpdateVideoByIdCommand>(editVideo);
+                if (editVideo.VideoImage == null && editVideo.UploadVideoPath != null)
+                    updateVideo.VideoImage = TempData["imgPath"].ToString();
+                else if (editVideo.UploadVideoPath == null && editVideo.VideoImage != null)
+                    updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
+                else if (editVideo.UploadVideoPath == null && editVideo.VideoImage == null)
+                {
+                    updateVideo.VideoImage = TempData["imgPath"].ToString();
+                    updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
+
+                }
+                else
+                {
+                    string thumbnail = VideoImageFile(editVideo);
+                    updateVideo.VideoImage = thumbnail;
+
+                    string video = VideoFile(editVideo);
+                    updateVideo.VideoImage = video;
+                }
+
+                var isupdated = _video.UpdateVideoDetail(updateVideo);
+                return RedirectToAction("VideoTable");
+
+            }
+            var record = _video.VideoGetById(id);
+            ViewData["data"] = record;
             return View();
         }
 
@@ -188,6 +225,23 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 }
             }
             return uniqueFileName;
+        }
+
+        public string VideoFile(AddVideo model)
+        {
+            string video = null;
+
+            if (model.VideoImage != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Creators/Videos");
+                video = Guid.NewGuid().ToString() + "_" + model.UploadVideoPath.FileName;
+                string filePath = Path.Combine(uploadsFolder, video);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.VideoImage.CopyTo(fileStream);
+                }
+            }
+            return video;
         }
     }
 }
