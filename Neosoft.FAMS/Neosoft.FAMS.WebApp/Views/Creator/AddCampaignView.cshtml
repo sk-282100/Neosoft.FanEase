@@ -14,51 +14,51 @@
 
 <div class="container-fluid">
 
-    <div class="row" style="background-color: #F5F5F5;">
-        <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
-            <ul class="nav flex-column flex-nowrap overflow-hidden">
-                <li class="nav-item" width: 400px;"><a class="nav-link text-truncate" href="#" style="color:white"><i class="fa fa-home" style="color:white;"></i><span class="d-none d-sm-inline" id="sidetext" style="color: white;">  DashBoard</span></a> </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" id="sidetext" style="color:white"><i class="bi bi-camera-video-fill" style="color:white"></i>  Videos</a></li>
-                <li class="nav-item"><a class="nav-link text-truncate"  href="~/Creator/AddCampaignView" id="sidetext" style="background-color: #F5F5F5;width:400px;color:black;"><i class="fas fa-rocket" style="color:black"></i> <span class="d-none d-sm-inline" id="sidetext" style="color: black;">Campaigns</span></a></li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddAsset" id="sidetext" style="color:white"><i class="bi bi-youtube" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Media</span></a></li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Template</span></a></li>
-            </ul>
-        </div>
-        <div class="col pt-2">
-            <h3>Add New Video</h3><br /><br />
-            <div id="try" style="display:flex">
-                <div>
-                    <a><label style="text-decoration:underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
-                    <a href="~/Creator/ExistingCampaign"><label>Select Existing Campaign</label></a>
-                </div>
-                <div style="margin-left:auto;margin-right:0;">
-                    <a href="~/Creator/SelectAsset"><label>View Existing Assets</label></a>&emsp;&emsp;
-                    <a href="~/Creator/AddAsset"><label>Add More Asset</label></a>
-                </div>
-            </div>
-            @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div id="createCampaign">
-                <h6>Campaign Name :</h6>
-                <input type="text" name="CampaignName" class="form-control mb-2 mr-sm-2" id="txt_campaignName" placeholder="Campaign Name ">
-                <div style="display:flex">
-                    <div>
-                        <p>Start Date of Campaign &emsp;&emsp;&emsp;&emsp;</p>
-                        <input name="StartDate" type="date" />&emsp;&emsp;&emsp;&emsp;
-                    </div>
-                    <div>
-                        <p>End Date of Campaign</p>
-                        <input name="EndDate" type="date" />
-                    </div>
-                </div>
-                <div style="float: right;">
-                    <button type="button" onclick="window.location= '@Url.Action( "ExistingCampaign", "Creator")'" class="btn btn-secondary">Cancel</button>
-                    <input type="submit" class="btn btn-primary" value="Proceed" />
-                </div>
-            </div>
-            }
-        </div>
+<div class="row" style="background-color: #F5F5F5;">
+    <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
+        <ul class="nav flex-column flex-nowrap overflow-hidden">
+            <li class="nav-item" width: 400px;"><a class="nav-link text-truncate" href="#" style="color:white"><i class="fa fa-home" style="color:white;"></i><span class="d-none d-sm-inline" id="sidetext" style="color: white;">  DashBoard</span></a> </li>
+            <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" id="sidetext" style="color:white"><i class="bi bi-camera-video-fill" style="color:white"></i>  Videos</a></li>
+            <li class="nav-item"><a class="nav-link text-truncate"  href="~/Creator/AddCampaignView" id="sidetext" style="background-color: #F5F5F5;width:400px;color:black;"><i class="fas fa-rocket" style="color:black"></i> <span class="d-none d-sm-inline" id="sidetext" style="color: black;">Campaigns</span></a></li>
+            <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddAsset" id="sidetext" style="color:white"><i class="bi bi-youtube" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Media</span></a></li>
+            <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Template</span></a></li>
+        </ul>
     </div>
-
-
+    <div class="col pt-2">
+        <h3>Add New Video</h3><br /><br />
+        <div id="try" style="display:flex">
+            <div>
+                <a><label style="text-decoration:underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
+                <a href="~/Creator/ExistingCampaign"><label>Select Existing Campaign</label></a>
+            </div>
+            <div style="margin-left:auto;margin-right:0;">
+                <a href="~/Creator/SelectAsset"><label>View Existing Assets</label></a>&emsp;&emsp;
+                <a href="~/Creator/AddAsset"><label>Add More Asset</label></a>
+            </div>
+        </div>
+        @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
+        {
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="txt_campaignName">Campaign Name :</label>
+                <input type="text" name="CampaignName" class="form-control" placeholder="Campaign Name ">
+            </div>
+            <div class="col-6"></div>
+            <div class="form-group col-6">
+                <label for="start_campaign">Start Date of Campaign :</label>
+                <input type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
+            </div> 
+            <div class="col-6"></div>
+            <div class="form-group col-6">
+                <label for="end_campaign">Start Date of Campaign :</label>
+                <input type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
+            </div>
+            <div style="float: right;">
+                <button type="button" onclick="window.location= '@Url.Action( "ExistingCampaign", "Creator")'" class="btn btn-secondary">Cancel</button>
+                <input type="submit" class="btn btn-primary" style="height:40px;margin-top:0px;padding-top:10px;" value="Proceed" />
+            </div>
+        </div>
+        }
     </div>
+</div>
+</div>

@@ -12,7 +12,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
 {
   public  interface ILogin
     {
-        public int CheckUsernameAndPassword(string userName, string password);
+        public List<object> CheckUsernameAndPassword(string userName, string password);
         Task<bool> SavePassword(ResetPasswordCommand resetPasswordCommand);
         Task<bool> SaveOTP(CheckUsernameCommand checkUsernameCommand);
         Task<int> CheckOTP(CheckOtpQuery checkOtpQuery);

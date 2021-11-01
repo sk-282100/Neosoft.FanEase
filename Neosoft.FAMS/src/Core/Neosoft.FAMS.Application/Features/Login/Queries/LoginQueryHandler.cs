@@ -10,7 +10,7 @@ using Neosoft.FAMS.Infrastructure.EncryptDecrypt;
 
 namespace Neosoft.FAMS.Application.Features.Login.Queries
 {
-    public class LoginQueryHandler : IRequestHandler<LoginQuery, int>
+    public class LoginQueryHandler : IRequestHandler<LoginQuery, List<object>>
     {
         private readonly ILoginRepo _loginRepository;
         private readonly IMapper _mapper;
@@ -19,15 +19,19 @@ namespace Neosoft.FAMS.Application.Features.Login.Queries
             _loginRepository = loginRepository;
             _mapper = mapper;
         }
-        public async Task<int> Handle(LoginQuery request, CancellationToken cancellationToken)
+        public async Task<List<object>> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
+            List<object> result = new List<object>();
             var data = await _loginRepository.GetLoginDetail(request.UserName,request.Password);
             //data.Password = EncryptionDecryption.DecryptString(data.Password);
             if (data.Username == request.UserName && data.Password == request.Password)
             {
-                return (int)data.RoleId;
+                result.Add(data.Id);
+                result.Add(data.RoleId);
+
+                return result;
             }
-            return 0;
+            return null;
         }
     }
 }

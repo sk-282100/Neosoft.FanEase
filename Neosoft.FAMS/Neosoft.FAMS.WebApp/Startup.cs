@@ -29,15 +29,14 @@ namespace Neosoft.FAMS.WebApp
             services.AddControllersWithViews();
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new Mappers());
             });
-
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
             services.AddScoped<Services.Interface.ILogin, Login>();

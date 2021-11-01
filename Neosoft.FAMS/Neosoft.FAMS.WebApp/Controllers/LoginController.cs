@@ -46,23 +46,34 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     LastName = "john",
                     MiddleName = "John"
                 });
-                int result = _login.CheckUsernameAndPassword(Username, Password);
-                if (result == 1)
+                var data = _login.CheckUsernameAndPassword(Username, Password);
+                if (data != null)
                 {
-                    HttpContext.Session.SetString("Username", model.Username);
-                    HttpContext.Session.SetString("RoleId", result.ToString());
+                    int RoleId = Convert.ToInt32(data[1]);
+                    HttpContext.Session.SetString("LoginId", data[0].ToString());
 
-                    return RedirectToAction("Index", "Admin");
-                }
-                else if (result == 2)
-                {
-                    HttpContext.Session.SetString("Username", model.Username);
-                    HttpContext.Session.SetString("RoleId", result.ToString());
-                    return RedirectToAction("ResetPassword", "Login");
+                    if (RoleId == 1)
+                    {
+                        HttpContext.Session.SetString("Username", model.Username);
+                        HttpContext.Session.SetString("RoleId", RoleId.ToString());
+
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else if (RoleId == 2)
+                    {
+                        HttpContext.Session.SetString("Username", model.Username);
+                        HttpContext.Session.SetString("RoleId", RoleId.ToString());
+                        return RedirectToAction("ResetPassword", "Login");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Login");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Login");
+                    ModelState.AddModelError("","Invalid credentials");
+                    return View();
                 }
             }
             return View();
@@ -182,6 +193,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("Username");
+            HttpContext.Session.Remove("RoleId");
+            HttpContext.Session.Remove("LoginId");
+
             return RedirectToAction("Home", "Login");
         }
     }

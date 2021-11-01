@@ -1,52 +1,143 @@
-﻿
-
-#ProgressCircleBar {
-    margin-top: 100px;
-    margin-right: 0px;
-    text-align: center;
-    font-family: 'Oswald', cursive;
+﻿.progress {
+    width: 150px;
+    height: 150px;
+    background: none;
+    position: relative;
 }
 
-    #ProgressCircleBar .round {
-        min-height: 25px;
-        margin-top: 30px;
-        position: relative;
-        margin-bottom: 20px;
+    .progress::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 6px solid #eee;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
-        #ProgressCircleBar .round strong {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -50px;
-            transform: translate(-50%);
-            font-size: 40px;
-            color: red;
-            font-weight: 100;
+    .progress > span {
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+
+    .progress .progress-left {
+        left: 0;
+    }
+
+    .progress .progress-bar {
+        width: 100%;
+        height: 100%;
+        background: none;
+        border-width: 6px;
+        border-style: solid;
+        position: absolute;
+        top: 0;
+    }
+
+    .progress .progress-left .progress-bar {
+        left: 100%;
+        border-top-right-radius: 80px;
+        border-bottom-right-radius: 80px;
+        border-left: 0;
+        -webkit-transform-origin: center left;
+        transform-origin: center left;
+    }
+
+    .progress .progress-right {
+        right: 0;
+    }
+
+        .progress .progress-right .progress-bar {
+            left: -100%;
+            border-top-left-radius: 80px;
+            border-bottom-left-radius: 80px;
+            border-right: 0;
+            -webkit-transform-origin: center right;
+            transform-origin: center right;
         }
 
-    #ProgressCircleBar span {
-        display: block;
-        color: red;
-        font-size: 16px;
-        margin-top: 10px 0px 110px 20px;
+    .progress .progress-value {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
-button {
-    width: 90px;
-    height: 50px;
-    float: right;
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSE
+* ==========================================
+*
+*/
+
+
+.rounded-lg {
+    border-radius: 1rem;
 }
 
-.container {
-    width: 70%;
-    height: 100%;
-    margin: 2px auto;
+.text-gray {
+    color: #aaa;
+}
+
+div.h4 {
+    line-height: 1rem;
 }
 
 
-h2 {
+
+.panel-top > .panel-heading {
+    color: #00415d;
+    background-color: #fff;
+    border-color: #fff;
     text-align: center;
-    font-family: "Verdana", sans-serif;
-    font-size: 30px;
+}
+
+    .panel-top > .panel-heading a {
+        text-decoration: none;
+        color: #666;
+        font-weight: bold;
+        font-size: 15px;
+        -webkit-transition: all 0.1s linear;
+        -moz-transition: all 0.1s linear;
+        transition: all 0.1s linear;
+    }
+
+        .panel-top > .panel-heading a.active {
+            color: #56baed;
+            font-size: 18px;
+        }
+
+    .panel-top > .panel-heading hr {
+        margin-top: 10px;
+        margin-bottom: 0px;
+        clear: both;
+        border: 0;
+        height: 1px;
+        background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+        background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+        background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+        background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    }
+
+.panel-top input[type="text"], .panel-top input[type="email"], .panel-top input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.panel-top input:hover,
+.panel-top input:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
 }
