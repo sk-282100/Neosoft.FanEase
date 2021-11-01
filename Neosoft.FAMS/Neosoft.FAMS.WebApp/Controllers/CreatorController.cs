@@ -47,7 +47,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public ActionResult VideoTable()
         {
-            var data = _video.VideoGetById(6);
+            var data = _video.VideosCreatedByContentCreator(1);
             ViewData["data"] = data;
             return View();
         }
@@ -116,16 +116,16 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult EditVideoView([FromRoute] long id)
         {
-
             var data = _video.VideoGetById(id);
             ViewData["data"] = data;
             TempData["imgPath"] = data.VideoImage;
             TempData["VideoPath"] = data.UploadVideoPath;
             return View();
         }
-
+        [HttpPost]
         public IActionResult EditVideoView([FromRoute] long id, AddVideo editVideo)
         {
             //editCreator.CountryId = 1;

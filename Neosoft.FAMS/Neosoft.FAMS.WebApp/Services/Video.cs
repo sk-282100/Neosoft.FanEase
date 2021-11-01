@@ -22,6 +22,7 @@ namespace Neosoft.FAMS.WebApp.Services
         private static HttpClient _client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
         readonly string _baseUrl = "https://localhost:44330/";
         readonly string _path = "api/Video";
+        private readonly string _pathofCC = "api/Video/Videos";
         #endregion
         public Video()
         {
@@ -77,6 +78,20 @@ namespace Neosoft.FAMS.WebApp.Services
             return _long;
         }
 
+        public List<VideoGetAllDto> VideosCreatedByContentCreator(long id)
+        {
+            var result = new List<VideoGetAllDto>();
+            var uri = API.Video.VideosByContentCreator(_baseUrl, _pathofCC,id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<VideoGetAllDto>>(jsonDataStatus);
+                result = data.ToList();
+                return result;
+            }
+            return result;
+        }
         public VideoGetAllDto VideoGetById(long id)
         {
             var result = new VideoGetAllDto();
