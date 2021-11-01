@@ -5,7 +5,38 @@
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/AdminDashboard.css" />
     <script src="~/js/AdminDashboard.js"></script>
+    <script>
+        window.onload = function () {
 
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+                title:{
+                    text: ""
+                },
+                data: [{        
+                    type: "line",
+                    indexLabelFontSize: 16,
+                    dataPoints: [
+                        { y: 450 },
+                        { y: 414},
+                        { y: 520, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
+                        { y: 460 },
+                        { y: 450 },
+                        { y: 500 },
+                        { y: 480 },
+                        { y: 480 },
+                        { y: 410 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
+                        { y: 500 },
+                        { y: 480 },
+                        { y: 510 }
+                    ]
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
 </head>
 <div class="row" style="background-color: #F5F5F5;">
     <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
@@ -118,14 +149,15 @@
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <div class="jumbotron" style="height:600px;margin:5px 20px 15px 30px;">
-                    <div class="container" style="height:20px;">
-                        <h2 class="h6 font-weight-bold text-left mb-4" style="color: black;">Engagement Analysis</h2>
-
-                        <div id="chartContainer" style="height:640px;"></div>
-                        <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+                <div class="jumbotron" style="height:670px;margin:5px 20px 15px 30px;">
+                    <div class="panel panel-top">
+                        <div class="panel-heading">
+                            <h2 class="h6 font-weight-bold text-left mb-4" style="color: black; text-align: left;">Engagement Analysis</h2>
+                            <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+                            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                        </div>
+                        </div>
                     </div>
-                </div>
             </div>
 
             <div class="form-group col-md-6">
