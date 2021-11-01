@@ -15,6 +15,7 @@ using AutoMapper;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.WebApp.Models.CampaignModel;
 using Microsoft.AspNetCore.Hosting;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Controllers
@@ -25,12 +26,15 @@ namespace Neosoft.FAMS.WebApp.Controllers
         IVideo _video;
         private readonly IWebHostEnvironment _webHostEnvironment;
         ICampaign _campaign;
+        IAsset _asset;
+        public CreatorController(IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
         public CreatorController(IMapper mapper,IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment)
         {
             _mapper = mapper;
             _video = video;
             _webHostEnvironment = webHostEnvironment;
             _campaign = campaign;
+            _asset = asset;
         }
         public IActionResult Index()
         {
@@ -108,10 +112,38 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = data;
             return View();
         }
-        public ActionResult AddAsset(AddAsset addAsset)
+        public IActionResult AddAsset()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult AddAsset(AddAsset addAsset)
+        {
+            string Title = addAsset.Title;
+            DateTime StartDate = (DateTime)addAsset.StartTime;
+            DateTime EndDate = (DateTime)addAsset.EndTime;
+            short ContentTypeId = (short)addAsset.ContentTypeId;
+            string Description = addAsset.Description;
+            string Url = addAsset.Url;
+            string uniqueFileName = UploadedFile(addAsset);
+            long PlacementId = (long)addAsset.PlacementId;
+            var serviceresult = _asset.SaveAssetDetail(new CreateAdvertisementCommand
+            {
+                Title = Title,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                ContentTypeId = ContentTypeId,
+                Description = Description,
+                Url = Url,
+                ImagePath = uniqueFileName,
+                PlacementId = PlacementId,
+                CreatedBy = 2,
+                CreatedOn = DateTime.Now,
+                VideoPath = "abc.mp4"
+            });
+            return View();
+        }
+
         public ActionResult SelectAsset()
         {
             return View();
@@ -123,6 +155,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = data;
             TempData["imgPath"] = data.VideoImage;
             TempData["VideoPath"] = data.UploadVideoPath;
+            var data = _asset.GetAllAsset();
+            ViewData["data"] = data;
             return View();
         }
         [HttpPost]
@@ -175,6 +209,22 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 }
             }
             return thumbnail;
+        }
+        private string UploadedFile(AddAsset model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ProfilePhotoPath != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Asset/Images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfilePhotoPath.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ProfilePhotoPath.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
 
         public string VideoFile(AddVideo model)

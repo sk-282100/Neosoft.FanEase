@@ -56,5 +56,13 @@ namespace Neosoft.FAMS.WebApp.Helper
 
 
         }
+
+        public static class Asset
+        {
+            public static string GetAllAsset(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+            public static string SaveAsset(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+
+
+        }
     }
 }
