@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -76,6 +77,43 @@ namespace Neosoft.FAMS.WebApp.Services
             return _long;
         }
 
-        
+        public VideoGetAllDto VideoGetById(long id)
+        {
+            var result = new VideoGetAllDto();
+            var uri = API.Video.VideoGetById(_baseUrl, _path, id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<VideoGetAllDto>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:01/11/2021
+        /// Reason TO update Video By ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateVideoDetail(UpdateVideoByIdCommand update)
+        {
+            bool result = false;
+            var uri = API.Video.SaveVideo(_baseUrl, _path);
+            var content = JsonConvert.SerializeObject(update);
+            HttpResponseMessage response = await _client.PutAsync(uri, new StringContent(content, Encoding.Default,
+                "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<Response<bool>>(jsonDataStatus);
+                result = data.Data;
+                return result;
+            }
+            return result;
+        }
+
+
     }
 }

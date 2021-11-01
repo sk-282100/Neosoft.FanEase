@@ -23,7 +23,6 @@
 	
   <ItemGroup>
     <Folder Include="Features\Viewer\Queries\" />
-    <Folder Include="Features\ContentCreator\Queries\" />
   </ItemGroup>
 
 </Project>

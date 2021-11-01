@@ -4,6 +4,7 @@ using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,12 @@ namespace Neosoft.FAMS.Persistence.Repositories
         public async Task<VideoDetail> GetByIdAsync(long id)
         {
             return await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.VideoId == id);
+        }
+        public async Task<List<VideoDetail>> GetCreatedByIdAsync(long id)
+        {
+
+            return await _dbContext.VideoDetails.Where(p => p.CreatedBy == id).ToListAsync();
+
         }
 
     }
