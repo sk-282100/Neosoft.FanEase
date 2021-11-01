@@ -66,6 +66,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             var data = _creator.GetCreatorById(id);
             ViewData["data"] = data;
+            TempData["imgPath"] = data.ProfilePhotoPath;
             return View();
         }
        
@@ -78,8 +79,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 var updateCreator = _mapper.Map<UpdateCreatorByIdCommand>(editCreator);
-                string uniqueFileName = UploadedFile(editCreator);
-                updateCreator.ProfilePhotoPath = uniqueFileName;
+                if (editCreator.ProfilePhotoPath == null)
+                    updateCreator.ProfilePhotoPath = TempData["imgPath"].ToString();
+                else
+                {
+                    string uniqueFileName = UploadedFile(editCreator);
+                    updateCreator.ProfilePhotoPath = uniqueFileName;
+                }
 
                 var isupdated = _creator.UpdateCreatorDetail(updateCreator);
                 return RedirectToAction("CreatorsList");

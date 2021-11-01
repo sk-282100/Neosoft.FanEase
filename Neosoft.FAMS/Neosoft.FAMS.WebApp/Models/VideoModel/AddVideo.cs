@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Neosoft.FAMS.WebApp.Models.VideoModel
 {
     public class AddVideo
     {
-        [Required(ErrorMessage = "Video Image is required")]
-        public string VideoImage { get; set; }
+        
+        public IFormFile VideoImage { get; set; }
         [Required(ErrorMessage = "Date And Time is required")]
         public DateTime? appt { get; set; }
         [Required(ErrorMessage = "Title is required")]

@@ -23,8 +23,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             _mediator = mediator;
         }
         /// <summary>
-        /// Author :Aman Sharma,Sana Haju
-        /// Date : 25/10/2021
+        /// Author :Aman Sharma,Sana Haju <br></br>
+        /// Date : 25/10/2021 <br></br>
         /// Reason : It will Add New Content Creator
         /// </summary>
         /// <param name="createCommand"></param>
@@ -41,7 +41,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// Date:25/10/2021
         /// Reason:It Will Get All Content Creators List
         /// </summary>
-        /// <returns>Name:"List of All Content Creators"</returns>
+        /// <returns>List of All Content Creators</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -50,8 +50,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
         /// <summary>
-        /// Author:Aman Sharma,Sana Haju
-        /// Date:25/10/2021
+        /// Author:Aman Sharma,Sana Haju <br></br>
+        /// Date:25/10/2021 <br></br>
         /// Reason:It will return Content Creators of specific Id
         /// </summary>
         /// <param name="id"></param>
@@ -67,9 +67,9 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return BadRequest();
         }
         /// <summary>
-        /// Author:Aman Sharma, Sana Haju
-        /// Date:25/10/2021
-        /// Reason:Deleting Record from a specific Id
+        /// Author:Aman Sharma, Sana Haju <br></br>
+        /// Date:25/10/2021 <br></br>
+        /// Reason:Will delete content creator for a specific Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -81,10 +81,10 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data =  await _mediator.Send(delete);
             return Ok(data);
         }
-        /// <summary>
-        /// Author:Aman Sharma, Sana Haju
-        /// Date:25/10/2021
-        /// Reason:It Will Update Recoed of a specific Id
+        /// <summary> 
+        /// Author:Aman Sharma, Sana Haju <br></br>
+        /// Date:25/10/2021 <br></br>
+        /// Reason:It Will Update Record of a specific content creator by id 
         /// </summary>
         /// <param name="updateCreatorByIdCommand"></param>
         /// <returns></returns>

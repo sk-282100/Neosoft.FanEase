@@ -8,20 +8,25 @@ using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.WebApp.Models.CampaignModel;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class CreatorController : Controller
     {
         IVideo _video;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public CreatorController(IVideo video,IWebHostEnvironment webHostEnvironment)
         ICampaign _campaign;
         public CreatorController(IVideo video,ICampaign campaign)
         {
             _video = video;
+            _webHostEnvironment = webHostEnvironment;
             _campaign = campaign;
         }
         public IActionResult Index()
@@ -53,7 +58,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult AddVideoView(AddVideo model)
         {
-            string VideoImage = model.VideoImage;
             DateTime StartDate = (DateTime)model.appt;
             DateTime EndDate = (DateTime)model.appt;
             string Title = model.Title;
@@ -69,7 +73,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
             var serviceresult = _video.CreateVideo(new VideoCreateCommand
             {
-                VideoImage = "abcd",
+                VideoImage = VideoImageFile(model),
                 StartDate = StartDate,
                 EndDate=EndDate,
                 Title=Title,
@@ -119,6 +123,23 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public ActionResult SelectAsset()
         {
             return View();
+        }
+
+        private string VideoImageFile(AddVideo model)
+        {
+            string thumbnail = null;
+
+            if (model.VideoImage != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Creators/Videos");
+                thumbnail = Guid.NewGuid().ToString() + "_" + model.VideoImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, thumbnail);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.VideoImage.CopyTo(fileStream);
+                }
+            }
+            return thumbnail;
         }
     }
 }
