@@ -32,7 +32,6 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
             var createrData = await _creatorRepo.AddLoginDetailAsync(request.EmailId,password);
 
             var record = _mapper.Map<ContentCreatorDetail>(request);
-            record.LoginId = createrData.Id;
             record.CreatedOn = DateTime.Now;
 
             var data = await _creatorRepo.AddAsync(record);

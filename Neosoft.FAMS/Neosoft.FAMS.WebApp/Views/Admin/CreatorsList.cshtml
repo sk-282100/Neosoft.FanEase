@@ -40,27 +40,30 @@
                         @{ var i = 1;}
                         @foreach (var record in records)
                         {
-                            <tr>
-                                <td>@i</td>
-                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height:50px;width:50px;"  class="rounded-circle" /></td>
-                                <td>@record.CreatorName.ToString()</td>
-                                <td>@record.EmailId</td>
-                                <td>@record.MobileNumber</td>
-                                <td>@record.CreatedOn</td>
-                                @if (record.Status == true)
-                                {
-                                    <td style="color:limegreen">Active</td>
-                                }
-                                else
-                                {
-                                    <td style="color:red">Deactive</td>
-                                }
-                                <td>
-                                    <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                </td>
-                            </tr>
-                            i++;
+                            if (!@record.isDeleted)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height:50px;width:50px;"  class="rounded-circle" /></td>
+                                    <td>@record.CreatorName.ToString()</td>
+                                    <td>@record.EmailId</td>
+                                    <td>@record.MobileNumber</td>
+                                    <td>@record.CreatedOn</td>
+                                    @if (record.Status == true)
+                                    {
+                                        <td style="color:limegreen">Active</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="color:red">Deactive</td>
+                                    }
+                                    <td>
+                                        <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
                         }
                     </tbody>
                 </table>

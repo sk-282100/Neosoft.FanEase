@@ -120,5 +120,18 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        public ContentCreatorDto GetCreatorByEmail(string username)
+        {
+            var result = new ContentCreatorDto();
+            var uri = API.Creator.GetCreatorByEmail(_baseUrl, _path, username);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<ContentCreatorDto>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
     }
 }

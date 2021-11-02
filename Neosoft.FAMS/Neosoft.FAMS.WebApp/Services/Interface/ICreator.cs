@@ -14,6 +14,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public Task<long> SaveCreatorDetail(UpdateCreatorByIdCommand registeration);
         public ContentCreatorDto GetCreatorById(long id);
         public Task<bool> UpdateCreatorDetail(UpdateCreatorByIdCommand update);
+        public ContentCreatorDto GetCreatorByEmail(string username);
 
     }
 }

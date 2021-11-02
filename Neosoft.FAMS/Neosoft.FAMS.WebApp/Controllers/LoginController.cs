@@ -18,11 +18,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class LoginController : Controller
     {
-        ILogin _login;
-        IUser _user;
-        public LoginController(ILogin login, IUser user)
+        private ILogin _login;
+        private ICreator _creator;
+        private IUser _user;
+        public LoginController(ILogin login, IUser user,ICreator creator)
         {
             _login = login;
+            _creator = creator;
             _user = user;
         }
         public IActionResult Index()
@@ -63,6 +65,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     {
                         HttpContext.Session.SetString("Username", model.Username);
                         HttpContext.Session.SetString("RoleId", RoleId.ToString());
+                        var creatorData = _creator.GetCreatorByEmail(HttpContext.Session.GetString("Username"));
+                        if(creatorData.isPassowrdUpdated)
+                            return RedirectToAction("Index", "Creator");
                         return RedirectToAction("ResetPassword", "Login");
                     }
                     else

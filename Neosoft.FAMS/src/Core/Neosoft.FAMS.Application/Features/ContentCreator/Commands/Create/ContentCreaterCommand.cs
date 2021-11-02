@@ -17,7 +17,7 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
         public string EmailId { get; set; }
         public string MobileNumber { get; set; }
         public string AdditionalRemark { get; set; }
-        public long LoginId { get; set; }
+        public long CreatedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public bool? Status { get; set; }
 

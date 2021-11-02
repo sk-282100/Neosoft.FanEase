@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Routing;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
@@ -50,6 +51,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             registeration.CreatedOn = DateTime.Now;
             registeration.CityId = 1;
             registeration.CountryId = 1;
+            registeration.CreatedBy = long.Parse(HttpContext.Session.GetString("LoginId"));
             if (ModelState.IsValid)
             {
                 var updateCreator = _mapper.Map<UpdateCreatorByIdCommand>(registeration);
