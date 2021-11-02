@@ -92,17 +92,24 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult AddCampaignView(CreateCampaign model)
         {
-            string CampaignName = model.CampaignName;
-            DateTime StartDate = (DateTime)model.StartDate;
-            DateTime EndDate = (DateTime)model.EndDate;
-            var serviceresult = _campaign.SaveCampaignDetail(new CampaignCreateCommand
+            if (ModelState.IsValid)
             {
-                CampaignName = CampaignName,
-                StartDate = StartDate,
-                EndDate = EndDate,
-                CreatedBy = 2,
-                CreatedOn = DateTime.Now
-            });
+                string CampaignName = model.CampaignName;
+                DateTime StartDate = (DateTime) model.StartDate;
+                DateTime EndDate = (DateTime) model.EndDate;
+                var serviceresult = _campaign.SaveCampaignDetail(new CampaignCreateCommand
+                {
+                    CampaignName = CampaignName,
+                    StartDate = StartDate,
+                    EndDate = EndDate,
+                    CreatedBy = 2,
+                    CreatedOn = DateTime.Now
+                });
+                if (serviceresult!= null)
+                    ViewData["isInsert"] = true;
+                return View();
+            }
+            ViewData["isInsert"] = false;
             return View();
         }
 
@@ -146,6 +153,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public ActionResult SelectAsset()
         {
+            var data = _asset.GetAllAsset();
+            ViewData["data"] = data;
             return View();
         }
         [HttpGet]
@@ -155,8 +164,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = data;
             TempData["imgPath"] = data.VideoImage;
             TempData["VideoPath"] = data.UploadVideoPath;
-            //var data = _asset.GetAllAsset();
-            //ViewData["data"] = data;
             return View();
         }
         [HttpPost]
