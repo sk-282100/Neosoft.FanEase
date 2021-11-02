@@ -11,5 +11,9 @@ namespace Neosoft.FAMS.Domain.Entities
         [Key]
         public long CountryId { get; set; }
         public string CountryName { get; set; }
+        public bool IsActive { get; set; }
+        public int Sequence { get; set; }
+        public string SortName { get; set; }
+        public string PhoneCode { get; set; }
     }
 }

@@ -31,6 +31,7 @@ namespace Neosoft.FAMS.Persistence
         public DbSet<Login> Logins { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<States> State { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<ViewerDetail> ViewerDetails { get; set; }
         public DbSet<AdvertisementDetail> AdvertisementDetails { get; set; }
