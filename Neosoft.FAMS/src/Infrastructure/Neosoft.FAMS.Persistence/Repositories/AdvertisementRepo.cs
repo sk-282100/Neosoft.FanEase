@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
@@ -21,6 +22,14 @@ namespace Neosoft.FAMS.Persistence.Repositories
         public async Task<AdvertisementDetail> GetByIdAsync(long id)
         {
             return await _dbContext.AdvertisementDetails.FirstOrDefaultAsync(p => p.AdvertisementId == id);
+        }
+
+        public async Task<CampaignAdvertiseMapping> AddMapperDataAsync(CampaignAdvertiseMapping entity)
+        {
+            var result = await _dbContext.CampaignAdvertiseMappings.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+            result.Entity.CampaignAdvertiseMappingId = await _dbContext.CampaignAdvertiseMappings.MaxAsync(u => u.CampaignAdvertiseMappingId);
+            return result.Entity;
         }
     }
 }

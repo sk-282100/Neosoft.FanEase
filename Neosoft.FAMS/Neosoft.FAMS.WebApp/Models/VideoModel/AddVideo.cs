@@ -12,18 +12,24 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         
         public IFormFile VideoImage { get; set; }
         [Required(ErrorMessage = "Date And Time is required")]
-        public DateTime? appt { get; set; }
-        public DateTime? endappt { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         [Required(ErrorMessage = "Title is required")]
         [MaxLength(30,ErrorMessage="Title Length Cannot Exceed 30 characters")]
         public string Title { get; set; }
         
         public short? VideoTypeId { get; set; }
+        public short? PlayerTypeId { get; set; }
+
+
         [Required(ErrorMessage = "Video Url is required")]
         public string VideoUrl { get; set; }
         public IFormFile UploadVideoPath { get; set; }
         public short? VideoCategoryId { get; set; }
+        public short? VideoStatus { get; set; }
+        public bool? PublishStatus { get; set; }
+
 
     }
 }

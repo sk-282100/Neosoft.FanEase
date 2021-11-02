@@ -1,4 +1,5 @@
 using AutoMapper;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
@@ -69,6 +70,7 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<CreateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
             CreateMap<AdvertisementListQueryDto, AdvertisementDetail>().ReverseMap();
             CreateMap<UpdateAdvertisementCommand, AdvertisementDetail>().ReverseMap();
+            CreateMap<CampaignAdvertiseMapping, AddCampaignAdvertisementCommand>().ReverseMap();
 
             CreateMap<VideoCreateCommand, VideoDetail>().ReverseMap();
            

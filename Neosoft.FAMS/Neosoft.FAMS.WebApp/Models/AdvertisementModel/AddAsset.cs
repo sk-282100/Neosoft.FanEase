@@ -10,7 +10,6 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
 {
     public class AddAsset
     {
-        public long AdvertisementId { get; set; }
 
         [DisplayName("Advertisement Title")]
         [Required(ErrorMessage = "Title is required")]
@@ -19,11 +18,11 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
 
         [Required(ErrorMessage = "Start Time is required")]
         [DisplayName("Start Time")]
-        public DateTime? StartTime { get; set; }
+        public DateTime? StartDate { get; set; }
 
         [Required(ErrorMessage = "End Time is required")]
         [DisplayName("End Time")]
-        public DateTime? EndTime { get; set; }
+        public DateTime? EndDate { get; set; }
 
         [Required(ErrorMessage = "Content Type is required")]
         [DisplayName("Content Type")]

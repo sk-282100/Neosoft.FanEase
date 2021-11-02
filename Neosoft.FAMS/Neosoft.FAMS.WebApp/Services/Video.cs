@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.WebApp.Models;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -65,17 +66,18 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<long> CreateVideo(VideoCreateCommand videocreateCommand)
         {
             var uri = API.Video.CreateVideo(_baseUrl,_path);
-            var _long = new long();
+            long result = 0;
             var content = JsonConvert.SerializeObject(videocreateCommand);
             HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
                            "application/json"));
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
-                var result = JsonConvert.DeserializeObject<Response<Guid>>(jsonDataStatus);
-                _long = Convert.ToInt64(result.Data);
+                var data = JsonConvert.DeserializeObject<Response<long>>(jsonDataStatus);
+                result = (long) data.Data;
+                MappingViewModel.VideoId = result;
             }
-            return _long;
+            return result;
         }
 
         public List<VideoGetAllDto> VideosCreatedByContentCreator(long id)

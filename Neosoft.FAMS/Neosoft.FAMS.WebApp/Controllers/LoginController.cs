@@ -66,7 +66,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
                         HttpContext.Session.SetString("Username", model.Username);
                         HttpContext.Session.SetString("RoleId", RoleId.ToString());
                         var creatorData = _creator.GetCreatorByEmail(HttpContext.Session.GetString("Username"));
-                        if(creatorData.isPassowrdUpdated)
+                        HttpContext.Session.SetString("ContentCreatorId", creatorData.ContentCreatorId.ToString());
+
+                        if (creatorData.isPassowrdUpdated)
                             return RedirectToAction("Index", "Creator");
                         return RedirectToAction("ResetPassword", "Login");
                     }
@@ -100,12 +102,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 string newPassword = model.newPassword;
                 var serviceresult = _login.SavePassword(new ResetPasswordCommand
                 {
-                    Username = "test",
+                    Username = HttpContext.Session.GetString("Username"),
                     Password = Password,
                     newPassword = newPassword
                 });
 
-                return RedirectToAction("SendOtp", "Login");
+                return RedirectToAction("Index", "Login");
             }
             return View();
         }

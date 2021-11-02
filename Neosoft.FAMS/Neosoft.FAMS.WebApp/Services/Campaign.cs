@@ -9,6 +9,7 @@ using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
+using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
 
@@ -59,6 +60,7 @@ namespace Neosoft.FAMS.WebApp.Services
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var data = JsonConvert.DeserializeObject<Response<long>>(jsonDataStatus);
                 result = data.Data;
+                MappingViewModel.CampaignId = result;
                 return result;
             }
             return result;

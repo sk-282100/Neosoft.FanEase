@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -80,8 +81,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
         /// <summary>
-        /// Author:Aman Sharma
-        /// Date:25/10/2021
+        /// Author:Aman Sharma<br></br>
+        /// Date:25/10/2021<br></br>
         /// Reason:It will Update Specific Advertisement by Id
         /// </summary>
         /// <param name="updateAdvertisement"></param>
@@ -90,6 +91,20 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         public async Task<IActionResult> Update([FromBody] UpdateAdvertisementCommand updateAdvertisement)
         {
             var result = await _mediator.Send(updateAdvertisement);
+            return Ok(result);
+        }
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 02/11/2021<br></br>
+        /// Reason : It will Add CampaignAdvertise Mapped Data
+        /// </summary>
+        /// <param name="addCampaignAdvertisement"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AddCampaignAdvertiseData")]
+        public async Task<IActionResult> CampaignAdvertisementMapping([FromBody] AddCampaignAdvertisementCommand addCampaignAdvertisement)
+        {
+            var result = await _mediator.Send(addCampaignAdvertisement);
             return Ok(result);
         }
     }

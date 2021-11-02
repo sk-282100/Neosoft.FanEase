@@ -1,9 +1,8 @@
 ﻿@model AddVideo;
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
 }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
@@ -35,6 +34,15 @@
                 <h2>
                     <a href="" data-target="#sidebar" class="d-md-none"><i class="fa fa-bars"></i></a> Add Video
                 </h2><br />
+                @if (@isInserted)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Data Inserted!</strong> Added Successfully
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
                 <h6>Video Thumbnail Image :  </h6>
                 <img id="blah" class="img-thumbnail" src="#" alt="Thumbnail image">
                 <input  class="form-control"  type="file" name="VideoImage" value="img.jpeg" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;"/>
@@ -50,12 +58,12 @@
                 <br /><br /><br />
                 <div class="row">
                     <div>
-                        <h6>Go Live Date & Time : @Html.ValidationMessage("appt", "", new {@class = "text-danger"})</h6>
-                        <input type="date"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="appt" type="time" id="appt" name="appt" min="00:00" max="23:00">
+                        <h6>Go Live Date & Time : @Html.ValidationMessage("StartDate", "", new {@class = "text-danger"})</h6>
+                        <input type="date"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="StartDate" type="time" id="appt" name="StartDate" min="00:00" max="23:00">
                     </div>
                     <div>
-                        <h6>Go End Date & Time : @Html.ValidationMessage("endappt", "", new {@class = "text-danger"})</h6>
-                        <input type="date"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="endappt" type="time" id="appt" name="endappt" min="00:00" max="23:00">
+                        <h6>Go End Date & Time : @Html.ValidationMessage("EndDate", "", new {@class = "text-danger"})</h6>
+                        <input type="date"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="EndDate" type="time" id="appt" name="EndDate" min="00:00" max="23:00">
                     </div>
                 </div>
                 <br /><br /><br />
