@@ -59,7 +59,7 @@
                             Campaign Name :<sup style="color:red">*</sup>
                             @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
                         </label>
-                        <input type="text" name="CampaignName" class="form-control" placeholder="Campaign Name ">
+                        <input asp-for="CampaignName" type="text" name="CampaignName" class="form-control" placeholder="Campaign Name ">
                     </div>
                     <div class="col-6"></div>
                     <div class="form-group col-6">
@@ -67,7 +67,7 @@
                             Start Date of Campaign :<sup style="color:red">*</sup>
                             @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
                         </label>
-                        <input type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
+                        <input asp-for="StartDate" type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
                     </div>
                     <div class="col-6"></div>
                     <div class="form-group col-6">
@@ -75,7 +75,7 @@
                             End Date of Campaign :<sup style="color:red">*</sup>
                             @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
                         </label>
-                        <input type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
+                        <input asp-for="EndDate" type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
                     </div>
                     <div style="float: right;">
                         <button type="button" onclick="window.location= '@Url.Action( "ExistingCampaign", "Creator")'" class="btn btn-secondary">Cancel</button>
