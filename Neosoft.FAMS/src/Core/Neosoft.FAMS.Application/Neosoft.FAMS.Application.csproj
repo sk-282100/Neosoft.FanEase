@@ -22,6 +22,7 @@
   </ItemGroup>
 	
   <ItemGroup>
+    <Folder Include="Features\Common\Commands\" />
     <Folder Include="Features\Viewer\Queries\" />
   </ItemGroup>
 
