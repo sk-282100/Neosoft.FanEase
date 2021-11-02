@@ -59,6 +59,7 @@ namespace Neosoft.FAMS.WebApp.Services
         /// </summary>
         /// <param name="registeration"></param>
         /// <returns></returns>
+        
         public async Task<long> SaveCreatorDetail(UpdateCreatorByIdCommand registeration)
         {
             long result = 0;
