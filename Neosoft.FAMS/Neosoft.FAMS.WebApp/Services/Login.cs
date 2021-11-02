@@ -42,15 +42,16 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public int CheckUsernameAndPassword(string userName, string password) {
-            var result = 0;
+        public List<object> CheckUsernameAndPassword(string userName, string password) {
             var uri = API.Login.CheckUsernameAndPassword(_path, userName, password);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
-                result =Convert.ToInt32( response.Content.ReadAsStringAsync().Result);
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var result = JsonConvert.DeserializeObject<List<object>>(jsonDataStatus);
+                return result;
             }
-            return result;
+            return null;
         }
 
         /// <summary>

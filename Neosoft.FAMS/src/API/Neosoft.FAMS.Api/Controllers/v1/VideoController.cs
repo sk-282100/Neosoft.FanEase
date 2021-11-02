@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetCreatedById;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -90,6 +91,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         public async Task<IActionResult> GetAll([FromRoute] long id)
         {
             var videoQuery = new VideoGetByIdCommand { VideoId = id };
+            var data = await _mediator.Send(videoQuery);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route(("Videos/{id}"))]
+        public async Task<IActionResult> GetVideosofCreator([FromRoute] long id)
+        {
+            var videoQuery = new VideoGetCreatedByIdQuery { CreatedById = id };
             var data = await _mediator.Send(videoQuery);
             return Ok(data);
         }

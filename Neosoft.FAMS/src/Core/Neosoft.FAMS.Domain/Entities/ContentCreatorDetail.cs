@@ -22,5 +22,7 @@ namespace Neosoft.FAMS.Domain.Entities
         public DateTime? CreatedOn { get; set; }
         public string AdditionalRemark { get; set; }
         public long LoginId { get; set; }
+       /* public bool isPassowrdUpdated { get; set; }
+        public bool isDeleted { get; set; }*/
     }
 }

@@ -19,12 +19,13 @@
             <div class="row header">
                 <h3>Content Creators</h3>
                 <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location= '@Url.Action( "CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
-               @* <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location= '@Url.Action( "VideoTable", "Admin")'"><i class="fa fa-plus"></i> View Video List</button>
-*@
+                <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location= '@Url.Action( "VideoTable", "Admin")'"><i class="fa fa-plus"></i> View Video List</button>
+
             </div>
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
-                    <thead style="background-color: #56baed;color:white;">
+                    <thead style="background-color: #5
+                                                    baed;color:white;">
                         <tr>
                             <th>Sr No.</th>
                             <th>Profile</th>
@@ -42,7 +43,7 @@
                         {
                             <tr>
                                 <td>@i</td>
-                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" height="50px" width="50px" class="rounded-circle" /></td>
+                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height:50px;width:50px;"  class="rounded-circle" /></td>
                                 <td>@record.CreatorName.ToString()</td>
                                 <td>@record.EmailId</td>
                                 <td>@record.MobileNumber</td>

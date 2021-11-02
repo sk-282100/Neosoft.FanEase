@@ -13,6 +13,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Routing;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.WebApp.Models.VideoModel;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -66,6 +69,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             var data = _creator.GetCreatorById(id);
             ViewData["data"] = data;
+            TempData["imgPath"] = data.ProfilePhotoPath;
             return View();
         }
        
@@ -78,8 +82,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 var updateCreator = _mapper.Map<UpdateCreatorByIdCommand>(editCreator);
-                string uniqueFileName = UploadedFile(editCreator);
-                updateCreator.ProfilePhotoPath = uniqueFileName;
+                if (editCreator.ProfilePhotoPath == null)
+                    updateCreator.ProfilePhotoPath = TempData["imgPath"].ToString();
+                else
+                {
+                    string uniqueFileName = UploadedFile(editCreator);
+                    updateCreator.ProfilePhotoPath = uniqueFileName;
+                }
 
                 var isupdated = _creator.UpdateCreatorDetail(updateCreator);
                 return RedirectToAction("CreatorsList");
@@ -108,6 +117,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = data;
             return View();
         }
+        
         private string UploadedFile(CreatorRegisteration model)
         {
             string uniqueFileName = null;

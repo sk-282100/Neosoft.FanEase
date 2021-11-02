@@ -1,14 +1,10 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Campaign.Queries.GetById;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Api.Controllers.v1

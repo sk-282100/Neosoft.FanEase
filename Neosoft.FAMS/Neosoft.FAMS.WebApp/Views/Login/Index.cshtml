@@ -10,6 +10,9 @@
         label span {
             font-size: 12px;
         }
+        .help-block ul {
+            list-style-type: none;
+        }
     </style>
 </head>
 
@@ -22,6 +25,7 @@
         <!-- Login Form -->
         @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            <div asp-validation-summary="All" class="text text-danger help-block"></div>
             <label id="lbl" class="form-group required">
                 Username<sup style="color:red">*</sup>
                 @Html.ValidationMessage("Username", "", new { @class = "text-danger" })

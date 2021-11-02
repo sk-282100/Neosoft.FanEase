@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -21,6 +22,7 @@ namespace Neosoft.FAMS.WebApp.Services
         private static HttpClient _client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
         readonly string _baseUrl = "https://localhost:44330/";
         readonly string _path = "api/Video";
+        private readonly string _pathofCC = "api/Video/Videos";
         #endregion
         public Video()
         {
@@ -76,6 +78,57 @@ namespace Neosoft.FAMS.WebApp.Services
             return _long;
         }
 
-        
+        public List<VideoGetAllDto> VideosCreatedByContentCreator(long id)
+        {
+            var result = new List<VideoGetAllDto>();
+            var uri = API.Video.VideosByContentCreator(_baseUrl, _pathofCC,id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<VideoGetAllDto>>(jsonDataStatus);
+                result = data.ToList();
+                return result;
+            }
+            return result;
+        }
+        public VideoGetAllDto VideoGetById(long id)
+        {
+            var result = new VideoGetAllDto();
+            var uri = API.Video.VideoGetById(_baseUrl, _path, id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<VideoGetAllDto>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+        /// <summary>
+        /// Author:Raj Bhosale
+        /// Date:01/11/2021
+        /// Reason TO update Video By ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateVideoDetail(UpdateVideoByIdCommand update)
+        {
+            bool result = false;
+            var uri = API.Video.SaveVideo(_baseUrl, _path);
+            var content = JsonConvert.SerializeObject(update);
+            HttpResponseMessage response = await _client.PutAsync(uri, new StringContent(content, Encoding.Default,
+                "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<Response<bool>>(jsonDataStatus);
+                result = data.Data;
+                return result;
+            }
+            return result;
+        }
+
+
     }
 }

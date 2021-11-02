@@ -48,7 +48,7 @@
                     }
 
                     <!-- Login Form -->
-                    @using (Html.BeginForm("Index", "Advertisement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("AddAsset", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -62,9 +62,9 @@
                                     Content Type<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
                                 </label>
-                                <select asp-for="ContentTypeId" name="ContentType" id="ContentType">
-                                    <option value="Image">Images</option>
-                                    <option value="Video">Videos</option>
+                                <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType">
+                                    <option value="1">Images</option>
+                                    <option value="2">Videos</option>
                                 </select>
 
                                 <label id="lbl">
@@ -79,19 +79,19 @@
                                     Start Time<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" })
                                 </label>
-                                <input asp-for="StartTime" type="text" class="fadeIn first" name="StartTime" placeholder="HH:MM AM/PM">
+                                <input asp-for="StartTime" type="datetime-local" class="fadeIn second" name="StartTime" placeholder="HH:MM AM/PM">
 
                                 <label id="lbl">
                                     End Time<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" })
                                 </label>
-                                <input asp-for="EndTime" type="text" class="fadeIn second" name="EndTime" placeholder="HH:MM AM/PM">
+                                <input asp-for="EndTime" type="datetime-local" class="fadeIn second" name="EndTime" placeholder="HH:MM AM/PM">
 
                                 <label id="lbl">
                                     Advertisement Placement<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
                                 </label>
-                                <select asp-for="PlacementId" name="AdvertisementPlacement" id="AdvertisementPlacement">
+                                <select asp-for="PlacementId" name="PlacementId" id="AdvertisementPlacement">
                                     <option value="1">Top-Left</option>
                                     <option value="2">Top-Right</option>
                                     <option value="3">Bottom-Left</option>
@@ -103,8 +103,9 @@
                                     @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
-                                <label id="lbl" for="formFileMultiple" class="form-label">Add Images or Add Video<sup style="color:red">*</sup></label>
-                                <input class="form-control" type="file" name="Url" id="formFileMultiple" multiple />
+
+                                <label id="lbl" for="formFileMultiple" class="form-label">Add Images or Add Video</label>
+                                <input class="form-control" type="file" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" multiple />
                             </div>
                         </div>
                         <input type="submit" id="btnCancel" class="fadeIn fourth" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'" value="Cancel">

@@ -1,6 +1,7 @@
 ﻿@using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "VideoList";
     var records = (List<VideoGetAllDto>)ViewData["data"];
 }
@@ -11,76 +12,61 @@
 <div class="container-fluid">
 
     <div class="row" style="background-color: #F5F5F5;">
-        <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
-            <ul class="nav flex-column flex-nowrap overflow-hidden">
-
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Admin/Index" id="sidetext" style="color:white"><i class="fa fa-home" style="color:white"></i>  Dashboard</a>
-
-                </li>
-                <li class="nav-item" style="background-color: #F5F5F5; width: 400px;">
-
-                    <a class="nav-link text-truncate" id="sidetext" href="~/Admin/CreatorsList" style="background-color: #F5F5F5;width:400px;color:black;"> <i class="bi bi-person-fill"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: black;"> Content Creators</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Admin/ViewerList" id="sidetext" style="color:white"><i class="bi bi-person-fill" style="color:white"></i>  Viewers</a>
-
-                </li>
-            </ul>
-        </div>
+        @Html.Partial("_SideBar")
         <div class="col pt-2">
-            <a href="~/Admin/CreatorsList"> < Back to Content Creators</a>
-            <br /><br />
-            <div class="row header">
-                <h3 style="text-align: left; margin-left: 15px; color: #56baed;">John Abraham Videos</h3>
-            </div>
-            <div style="margin-top:20px;">
+           
+            <div style="margin-top:20px; width: 60%;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
                     <thead style="background-color: #56baed;color:white;">
-                        <tr>
-                            <th>Video ID</th>
-                            <th class="no-sort">Thumbnail Image</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Video Title</th>
-                            <th class="no-sort">Video Type</th>
-                            <th>Player Type</th>
-                            <th>Video URL</th>
-                            <th>Upload Video Path</th>
-                            <th>Video Category</th>
-                            <th class="no-sort">Created By</th>
-                            <th class="no-sort">Created On</th>
-                        </tr>
+                    <tr>
+                        <th>Video ID</th>
+                        <th class="no-sort">Thumbnail Image</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Video Title</th>
+                        <th class="no-sort">Video Type</th>
+                        <th>Player Type</th>
+                        <th>Video URL</th>
+                        <th>Upload Video Path</th>
+                        <th>Video Category</th>
+                        <th class="no-sort">Created By</th>
+                        <th class="no-sort">Created On</th>
+                        <th>Action</th>
+                    </tr>
                     </thead>
                     <tbody>
                         @foreach (var record in records)
                         {
-                            <tr>
-                                <td>@record.VideoId</td>
-                                <td>@record.VideoImage.ToString()</td>
-                                <td>@record.StartDate.ToString()</td>
-                                <td>@record.EndDate.ToString()</td>
-                                <td>@record.Title</td>
-                                <td>@record.VideoTypeId</td>
-                                <td>@record.PlayerTypeId</td>
-                                <td>@record.VideoUrl</td>
-                                <td>@record.UploadVideoPath</td>
-                                <td>@record.VideoCategoryId</td>
-                                <td>@record.CreatedBy</td>
-                                <td>@record.CreatedOn</td>
-                            </tr>
+                        <tr>
+                            <td>@record.VideoId</td>
+                            <td>@record.VideoImage.ToString()</td>
+                            <td>@record.StartDate.ToString()</td>
+                            <td>@record.EndDate.ToString()</td>
+                            <td>@record.Title</td>
+                            <td>@record.VideoTypeId</td>
+                            <td>@record.PlayerTypeId</td>
+                            <td>@record.VideoUrl</td>
+                            <td>@record.UploadVideoPath</td>
+                            <td>@record.VideoCategoryId</td>
+                            <td>@record.CreatedBy</td>
+                            <td>@record.CreatedOn</td>
+                            <td>
+                                <a class="edit" href="EditCreator/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
             </div>
-            <script>
+            @*<script>
                 $(document).ready(function () {
                     $('#myTable').dataTable({
                         "columnDefs": [{ targets: 'no-sort', orderable: false }]
                     });
                     console.log(1);
                 });
-            </script>
+            </script>*@
         </div>
     </div>
 </div>
