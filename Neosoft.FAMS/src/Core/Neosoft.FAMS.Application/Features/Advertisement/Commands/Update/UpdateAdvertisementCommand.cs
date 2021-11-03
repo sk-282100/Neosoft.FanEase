@@ -21,6 +21,7 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.Update
         public bool? IsDeleted { get; set; }
         public short? Status { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public long CreatedBy { get; set; }
 
     }
 }

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Routing;
+using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.WebApp.Models.VideoModel;
 
@@ -108,6 +109,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = record;
             return View();
         }
+        [HttpGet]
+        public IActionResult DeleteCreator([FromRoute]long id)
+        {
+            var delete = new DeleteCreatorByIdCommand { CreatorId = id };
+            var isDeleted = _creator.DeleteCreator(delete);
+            TempData["isDeleted"] = true;
+            return RedirectToAction("CreatorsList");
+        }
         public IActionResult VideoTable()
         {
             var data = _video.GetAllVideoList();
@@ -116,6 +125,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public IActionResult CreatorsList()
         {
+            if(TempData["isDeleted"]!=null)
+            {
+                ViewData["isDelete"] = TempData["isDeleted"];
+            }
+            else
+            {
+                ViewData["isDelete"] = false;
+            }
             var data = _creator.GetAllCreator();
             ViewData["data"] = data;
             return View();
