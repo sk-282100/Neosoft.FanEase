@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Controllers
@@ -85,6 +86,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public IActionResult AddCampaignView()
         {
+            var data = _asset.GetAllAsset();
+            ViewData["data"] = data;
             ViewData["isInsert"] = false;
             return View();
         }
@@ -139,6 +142,42 @@ namespace Neosoft.FAMS.WebApp.Controllers
             TempData["AdvertisementId"] = result.Result;
 
             AddMappedData();
+            return View();
+        }
+
+
+
+        [HttpGet]
+        public IActionResult EditAsset([FromRoute] long id)
+        {
+            var data = _asset.GetAssetById(id);
+            ViewData["data"] = data;
+            TempData["imgPath"] = data.ImagePath;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditAsset([FromRoute] long id, AddAsset editCreator)
+        {
+            editCreator.AdvertisementId = id;
+            if (ModelState.IsValid)
+            {
+                var updateCreator = _mapper.Map<UpdateAdvertisementCommand>(editCreator);
+                if (editCreator.ProfilePhotoPath == null)
+                    updateCreator.ImagePath = TempData["imgPath"].ToString();
+                else
+                {
+                    string uniqueFileName = UniqueName(editCreator.ProfilePhotoPath);
+                    updateCreator.ImagePath = uniqueFileName;
+                    updateCreator.VideoPath = uniqueFileName;
+                }
+
+                var isupdated = _asset.UpdateAssetDetail(updateCreator);
+                return RedirectToAction("SelectAsset");
+
+            }
+            var record = _asset.GetAssetById(id);
+            ViewData["data"] = record;
             return View();
         }
 

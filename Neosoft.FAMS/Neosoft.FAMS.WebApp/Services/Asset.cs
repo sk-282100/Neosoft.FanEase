@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.WebApp.Models;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -80,6 +81,37 @@ namespace Neosoft.FAMS.WebApp.Services
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var data = JsonConvert.DeserializeObject<Response<long>>(jsonDataStatus);
+                result = data.Data;
+                return result;
+            }
+            return result;
+        }
+
+        public AdvertisementListQueryDto GetAssetById(long id)
+        {
+            var result = new AdvertisementListQueryDto();
+            var uri = API.Asset.GetAssetById(_baseUrl, _path, id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<AdvertisementListQueryDto>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+
+        public async Task<bool> UpdateAssetDetail(UpdateAdvertisementCommand update)
+        {
+            bool result = false;
+            var uri = API.Asset.SaveAsset(_baseUrl, _path);
+            var content = JsonConvert.SerializeObject(update);
+            HttpResponseMessage response = await _client.PutAsync(uri, new StringContent(content, Encoding.Default,
+                "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<Response<bool>>(jsonDataStatus);
                 result = data.Data;
                 return result;
             }

@@ -1,0 +1,116 @@
+﻿@using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll
+@model AddAsset;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var records = (AdvertisementListQueryDto)ViewData["data"];
+}
+<head>
+    <link rel="stylesheet" href="~/css/temp.css" />
+    <link rel="stylesheet" href="~/css/AddAsset.css" />
+    <style>
+        label span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<div class="container-fluid">
+
+    <div class="row" style="background-color: #F5F5F5;">
+        <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
+            <ul class="nav flex-column flex-nowrap overflow-hidden">
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" href="~/Creator/Index" id="sidetext" style="color:white"><i class="fa fa-home" style="color:white"></i>  Dashboard</a>
+
+                </li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" id="sidetext" style="color:white"><i class="bi-camera-video-fill" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white"> Video</span></a></li>
+
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" id="sidetext" style="color:white"><i class="fas fa-rocket" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Campaigns</span></a></li>
+                <li class="nav-item" style="background-color: #F5F5F5; width: 400px;">
+
+                    <a class="nav-link text-truncate" id="sidetext" href="~/Creator/AddAsset" style="background-color: #F5F5F5;width:400px;color:black;"> <i class="bi bi-youtube"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: black;"> Media</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Template</span></a></li>
+            </ul>
+        </div>
+        <div class="col pt-2">
+            <div class="wrapper">
+                <div id="formContent">
+                    <!-- Tabs Titles -->
+                    <h1 class="active">ADD ASSET </h1>
+
+                    <!-- Login Form -->
+                    @using (Html.BeginForm("EditAsset", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        DateTime EndDate = (DateTime)records.EndDate;
+                        DateTime StartDate = (DateTime)records.StartDate;
+                        <input id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
+                        <input id="CreatedBy" name="CreatedBy" value="@records.CreatedBy" type="hidden" />
+                        <input id="AdvertisementId" name="AdvertisementId" value="@records.AdvertisementId" type="hidden" />
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label id="lbl" class="form-group required">
+                                    Advertisement Title<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
+                                </label>
+                                <input asp-for="Title" type="text" class="fadeIn second" name="Title" value="@records.Title">
+
+                                <label id="lbl">
+                                    Content Type<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
+                                </label>
+                                <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType">
+                                    <option value="1">Images</option>
+                                    <option value="2">Videos</option>
+                                </select>
+
+                                <label id="lbl">
+                                    Advertisement Description<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
+                                </label>
+                                <input style="height: 200px;" asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" value="@records.Description"/>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label id="lbl">
+                                    Start Time<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" })
+                                </label>
+                                @Html.EditorFor(model => StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <label id="lbl">
+                                    End Time<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" })
+                                </label>
+                                @Html.EditorFor(model =>EndDate, new { htmlAttributes = new { @class = "form-control" } })
+
+                                <label id="lbl">
+                                    Advertisement Placement<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
+                                </label>
+                                <select asp-for="PlacementId" name="PlacementId" id="AdvertisementPlacement">
+                                    <option value="1">Top-Left</option>
+                                    <option value="2">Top-Right</option>
+                                    <option value="3">Bottom-Left</option>
+                                    <option value="4">Bottom-Right</option>
+                                </select>
+
+                                <label id="lbl">
+                                    Video or Image URL<sup style="color:red">*</sup>
+                                    @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
+                                </label>
+                                <input asp-for="Url" type="text" class="fadeIn second" value="@records.Url">
+
+
+                                <label id="lbl" for="formFileMultiple" class="form-label">Add Images or Add Video</label>
+                                <input class="form-control" type="file" name="ProfilePhotoPath" value="@records.ImagePath" id="formFileMultiple" multiple />
+                                <img src="~/Uploads/Creators/Videos/@records.ImagePath" style="height:150px;width:150px;">
+                            </div>
+                        </div>
+                        <input type="submit" id="btnCancel" class="fadeIn fourth" onclick="window.location= '@Url.Action( "AddCampaignView", "Creator")'" value="Cancel">
+                        <input type="submit" class="fadeIn fourth" value="Save">
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

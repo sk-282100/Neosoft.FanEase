@@ -61,6 +61,7 @@ namespace Neosoft.FAMS.WebApp.Helper
         {
             public static string GetAllAsset(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string SaveAsset(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+            public static string GetAssetById(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
             public static string SaveCampaignAdvertisementMappedData(string baseUri, string path) => $"{baseUri}{path}/AddCampaignAdvertiseData?api-version=1";
 
         }
