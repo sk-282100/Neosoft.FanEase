@@ -11,9 +11,11 @@
 
     <link rel="stylesheet" href="~/css/temp.css" />
     <script src="~/js/AddVideo.js"></script>
+    <link rel="stylesheet" href="~/css/StepBar.css" />
+    <script src="~/js/StepBar.js"></script>
     <style>
-        label span{
-            font-size:12px;
+        label span {
+            font-size: 12px;
         }
     </style>
 </head>
@@ -51,6 +53,16 @@
                     </button>
                 </div>
             }
+            <body onload="myFunction('bar1')">
+                <div id="wrapper">
+                    <br>
+                    <span class='baricon'>1</span>
+                    <span id="bar1" class='progress_bar'></span>
+                    <span class='baricon'>2</span>
+                    <span id="bar2" class='progress_bar'></span>
+                    <span class='baricon'>3</span>
+                </div>
+            </body>
             @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
             {
                 <div class="row">
@@ -78,8 +90,8 @@
                         <input asp-for="EndDate" type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
                     </div>
                     <div style="float: right;">
-                        <button type="button" onclick="window.location= '@Url.Action( "ExistingCampaign", "Creator")'" class="btn btn-secondary">Cancel</button>
-                        <input type="submit" class="btn btn-primary" style="height:40px;margin-top:0px;padding-top:10px;" value="Proceed" />
+                        <button type="button" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
+                        <input type="submit" class="btn btn-primary"  style="height:40px;margin-top:0px;padding-top:10px;" value="Proceed" />
                     </div>
                 </div>
             }

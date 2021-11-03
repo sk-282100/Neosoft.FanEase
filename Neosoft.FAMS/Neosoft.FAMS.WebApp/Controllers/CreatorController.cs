@@ -79,7 +79,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 {
                     ViewData["isInsert"] = true;
                 }
-                return View();
+                return RedirectToAction("AddCampaignView", "Creator");
             }
             return View();
         }
@@ -102,7 +102,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 {
                     ViewData["isInsert"] = true;
                 }
-                return View();
+                return RedirectToAction("AddAsset", "Creator");
             }
             ViewData["isInsert"] = false;
             return View();
