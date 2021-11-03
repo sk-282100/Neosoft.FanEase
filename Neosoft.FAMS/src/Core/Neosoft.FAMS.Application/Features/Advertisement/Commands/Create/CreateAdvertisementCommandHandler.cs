@@ -28,6 +28,8 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.Create
             if (validationResult.Errors.Count > 0)
                 throw new Exceptions.ValidationException(validationResult);
 
+            request.IsDeleted = false;
+            request.Status = 1;
             var data =  await _advertisementRepo.AddAsync(_mapper.Map<AdvertisementDetail>(request));
             var response = new Response<long> { Data = data.AdvertisementId, Message = "Added Successfully", Succeeded = true };
             return response;

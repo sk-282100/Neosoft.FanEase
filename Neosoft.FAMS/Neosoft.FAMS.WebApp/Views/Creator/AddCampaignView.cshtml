@@ -6,6 +6,7 @@
     ViewData["Title"] = "AddCampaignView";
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
     var records = (List<AdvertisementListQueryDto>)ViewData["data"];
+    bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
 }
 
 
@@ -19,6 +20,10 @@
     <style>
         label span {
             font-size: 12px;
+        }
+        #deleteTag:hover {
+            color: #56baed;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -57,14 +62,14 @@
                 </div>
             }
             <body onload="myFunction('bar1')">
-                <div id="wrapper">
-                    <br>
-                    <span class='baricon'>1</span>
-                    <span id="bar1" class='progress_bar'></span>
-                    <span class='baricon'>2</span>
-                    <span id="bar2" class='progress_bar'></span>
-                    <span class='baricon'>3</span>
-                </div>
+            <div id="wrapper">
+                <br>
+                <span class='baricon'>1</span>
+                <span id="bar1" class='progress_bar'></span>
+                <span class='baricon'>2</span>
+                <span id="bar2" class='progress_bar'></span>
+                <span class='baricon'>3</span>
+            </div>
             </body>
             @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
             {
@@ -97,23 +102,31 @@
                         <input type="submit" class="btn btn-primary"  style="height:40px;margin-top:0px;padding-top:10px;" value="Proceed" />
                     </div>
                 </div>
-
+                @if (@isDeleted)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Data Deleted Successfully !</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
                 <div style="margin-top:20px;">
                     <table id="myTable" class="table table-bordered table-sm table-hover">
                         <thead style="background-color: #56baed;color:white;">
-                            <tr>
-                                <th class="no-sort">Thumbnail Image</th>
-                                <th>Content Type</th>
-                                <th>Asset Title</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th class="no-sort">Action</th>
-                            </tr>
+                        <tr>
+                            <th class="no-sort">Thumbnail Image</th>
+                            <th>Content Type</th>
+                            <th>Asset Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th class="no-sort">Action</th>
+                        </tr>
                         </thead>
                         <tbody>
                         @foreach (var record in records)
                         {
-                            if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")))
+                            if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted==false)
                             {
                                 <tr>
                                     <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
@@ -123,13 +136,28 @@
                                     <td>@record.EndDate</td>
                                     <td>
                                         <a class="edit" href="EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                        <a id="deleteTag" class="delete" onClick="deleteAsset('DeleteAsset/@record.AdvertisementId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i  class="material-icons"></i></a>
+
                                     </td>
                                 </tr>
                             }
                         }
                         </tbody>
                     </table>
+                    @* Popup Modal *@
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body" style="height: 60px;">
+                                    Are you sure you want to Delete this record?
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="AddCampaignView" class="btn btn-secondary" >No</a>
+                                    <a id="hrefElement" class="btn btn-primary">Yes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <script>
                     $(document).ready(function () {
@@ -143,3 +171,11 @@
         </div>
     </div>
 </div>
+<script>
+    function deleteAsset(hrefLink) {
+        console.log(hrefLink);
+        var element = document.getElementById("hrefElement");
+        console.log(element);
+        element.href = hrefLink.toLocaleString();
+    }
+</script>

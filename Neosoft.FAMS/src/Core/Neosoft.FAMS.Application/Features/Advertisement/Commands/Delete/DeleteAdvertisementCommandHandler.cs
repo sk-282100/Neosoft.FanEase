@@ -24,10 +24,12 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete
         public async Task<Response<bool>> Handle(DeleteAdvertisementCommand request, CancellationToken cancellationToken)
         {
             var data = await _advertisementRepo.GetByIdAsync(request.AdvertisementId);
+            data.IsDeleted = true;
             if (data != null)
             {
-                
-                await _advertisementRepo.DeleteAsync(data);
+
+                //await _advertisementRepo.DeleteAsync(data);
+                await _advertisementRepo.UpdateAsync(data);
 
                 var response = new Response<bool> { Data = true, Message = "Deleted Successfully", Succeeded = true };
                 return response;

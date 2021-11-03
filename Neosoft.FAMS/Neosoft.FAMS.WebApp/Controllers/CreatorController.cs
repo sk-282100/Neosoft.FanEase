@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 
@@ -159,28 +160,37 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditAsset([FromRoute] long id, AddAsset editCreator)
+        public IActionResult EditAsset([FromRoute] long id, AddAsset editAsset)
         {
-            editCreator.AdvertisementId = id;
+            editAsset.AdvertisementId = id;
             if (ModelState.IsValid)
             {
-                var updateCreator = _mapper.Map<UpdateAdvertisementCommand>(editCreator);
-                if (editCreator.ProfilePhotoPath == null)
-                    updateCreator.ImagePath = TempData["imgPath"].ToString();
+                var updateAsset = _mapper.Map<UpdateAdvertisementCommand>(editAsset);
+                if (editAsset.ProfilePhotoPath == null)
+                    updateAsset.ImagePath = TempData["imgPath"].ToString();
                 else
                 {
-                    string uniqueFileName = UniqueName(editCreator.ProfilePhotoPath);
-                    updateCreator.ImagePath = uniqueFileName;
-                    updateCreator.VideoPath = uniqueFileName;
+                    string uniqueFileName = UniqueName(editAsset.ProfilePhotoPath);
+                    updateAsset.ImagePath = uniqueFileName;
+                    updateAsset.VideoPath = uniqueFileName;
                 }
 
-                var isupdated = _asset.UpdateAssetDetail(updateCreator);
+                var isupdated = _asset.UpdateAssetDetail(updateAsset);
                 return RedirectToAction("SelectAsset");
 
             }
             var record = _asset.GetAssetById(id);
             ViewData["data"] = record;
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeleteAsset([FromRoute] long id)
+        {
+            var delete = new DeleteAdvertisementCommand { AdvertisementId = id };
+            var isDeleted = _asset.DeleteAsset(delete);
+            TempData["isDeleted"] = true;
+            return RedirectToAction("AddCampaignView");
         }
 
         public ActionResult SelectAsset()
