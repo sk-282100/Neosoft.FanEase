@@ -28,6 +28,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         ICampaign _campaign;
         IAsset _asset;
        
+
         public CreatorController(IMapper mapper,IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
         {
             _mapper = mapper;
@@ -35,6 +36,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _webHostEnvironment = webHostEnvironment;
             _campaign = campaign;
             _asset = asset;
+           
         }
         public IActionResult Index()
         {
@@ -56,8 +58,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
 
-       
-
+        
         public IActionResult AddVideoView()
         {
             return View();
