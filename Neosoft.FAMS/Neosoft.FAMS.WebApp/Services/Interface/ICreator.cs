@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
 
 namespace Neosoft.FAMS.WebApp.Services.Interface
 {
@@ -15,6 +16,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public ContentCreatorDto GetCreatorById(long id);
         public Task<bool> UpdateCreatorDetail(UpdateCreatorByIdCommand update);
         public ContentCreatorDto GetCreatorByEmail(string username);
+        public Task<bool> DeleteCreator(DeleteCreatorByIdCommand command);
 
     }
 }
