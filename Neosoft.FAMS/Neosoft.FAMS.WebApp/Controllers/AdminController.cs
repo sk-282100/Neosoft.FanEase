@@ -28,19 +28,27 @@ namespace Neosoft.FAMS.WebApp.Controllers
         IVideo _video;
         IMapper _mapper;
         private readonly IWebHostEnvironment webHostEnvironment;
-        public AdminController(ICreator creator, IViewer viewer,IVideo video, IWebHostEnvironment hostEnvironment, IMapper mapper)
+        ICommon _common;
+
+        public AdminController(ICreator creator, IViewer viewer,IVideo video, IWebHostEnvironment hostEnvironment, IMapper mapper, ICommon common)
         {
             _mapper = mapper;
             _creator = creator;
             _viewer = viewer;
             _video = video;
             webHostEnvironment = hostEnvironment;
+            _common = common;
         }
         public IActionResult Index()
         {
             return View();
         }
-        
+        [HttpGet]
+        public IActionResult GetCountry()
+        {
+            return Json(_common.GetCountryList());
+
+        }
         public IActionResult CreatorRegisteration()
         {
             ViewData["isInsert"] = false;

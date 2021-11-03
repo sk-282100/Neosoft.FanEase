@@ -28,18 +28,22 @@ namespace Neosoft.FAMS.WebApp.Helper
         }
         public static class Creator
         {
-            public static string GetAllCreator(string baseUri,string path) => $"{baseUri}{path}?api-version=1";
+            public static string GetAllCreator(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string SaveCreator(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
-            public static string GetCreatorById(string baseUri, string path,long id) => $"{baseUri}{path}/{id}?api-version=1";
+            public static string GetCreatorById(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
 
             public static string GetCreatorByEmail(string baseUri, string path, string username) => $"{baseUri}{path}/getCreatorByEmail?username={username}?api-version=1";
             public static string DeleteCreator(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
         }
+        public static class Common
+        {
+            public static string GetCountryList(string path) => $"{path}/GetCountryList?api-version=1";
+        }
         public static class Video
         {
-              public static string GetAllVideoList(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+            public static string GetAllVideoList(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
 
-            public static string CreateVideo(string baseUri,string path) => $"{baseUri}{path}?api-version=1";
+            public static string CreateVideo(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
 
             public static string SaveVideo(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string VideoGetById(string baseUrl, string path, long id) =>
@@ -62,6 +66,7 @@ namespace Neosoft.FAMS.WebApp.Helper
         {
             public static string GetAllAsset(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string SaveAsset(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+            public static string GetAssetById(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
             public static string SaveCampaignAdvertisementMappedData(string baseUri, string path) => $"{baseUri}{path}/AddCampaignAdvertiseData?api-version=1";
 
         }

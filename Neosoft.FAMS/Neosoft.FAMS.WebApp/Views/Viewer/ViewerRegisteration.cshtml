@@ -54,9 +54,9 @@
 
                     <label id="lbl">
                         Email<sup style="color:red">*</sup>
-                        @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("EmailId", "", new { @class = "text-danger " })
                     </label>
-                    <input asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
+                    <input  asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
                 </div>
                 <div class="form-group col-md-6">
                     <label id="lbl">
@@ -94,3 +94,4 @@
 
     </div>
 </div>
+

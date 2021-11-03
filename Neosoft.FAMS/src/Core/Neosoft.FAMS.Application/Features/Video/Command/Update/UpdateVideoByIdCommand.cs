@@ -22,5 +22,6 @@ namespace Neosoft.FAMS.Application.Features.Video.Commands.Update
         public short? VideoCategoryId { get; set; }
         public short? VideoStatus { get; set; }
         public bool? PublishStatus { get; set; }
+        public long CreatedBy { get; set; }
     }
 }
