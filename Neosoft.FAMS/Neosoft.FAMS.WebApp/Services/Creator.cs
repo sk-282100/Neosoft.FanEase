@@ -1,4 +1,5 @@
-﻿using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
+﻿using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
+using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
@@ -12,6 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -132,6 +134,19 @@ namespace Neosoft.FAMS.WebApp.Services
                 return data;
             }
             return result;
+        }
+        [HttpDelete]
+        public async Task<bool> DeleteCreator(DeleteCreatorByIdCommand command)
+        {
+            var uri = API.Creator.DeleteCreator(_baseUrl, _path, command.CreatorId);
+            HttpResponseMessage response = await _client.DeleteAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<Response<bool>>(jsonDataStatus);
+                return data.Data;
+            }
+            return false;
         }
     }
 }

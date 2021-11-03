@@ -4,6 +4,8 @@
 
     ViewData["Title"] = "ExistingCampaign";
     var records = (List<ContentCreatorDto>)ViewData["data"];
+    bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
+
 }
 
 <head>
@@ -22,51 +24,61 @@
                 <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location= '@Url.Action( "VideoTable", "Admin")'"><i class="fa fa-plus"></i> View Video List</button>
 
             </div>
+            @if (@isDeleted)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Data Deleted Successfully !</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
                     <thead style="background-color: #56baed; color: white;">
-                        <tr>
-                            <th>Sr No.</th>
-                            <th>Profile</th>
-                            <th>Content Creator Name</th>
-                            <th>Email ID</th>
-                            <th>Contact Number</th>
-                            <th>Account Created Date</th>
-                            <th class="no-sort">Status</th>
-                            <th class="no-sort">Action</th>
-                        </tr>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Profile</th>
+                        <th>Content Creator Name</th>
+                        <th>Email ID</th>
+                        <th>Contact Number</th>
+                        <th>Account Created Date</th>
+                        <th class="no-sort">Status</th>
+                        <th class="no-sort">Action</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @{ var i = 1;}
-                        @foreach (var record in records)
+                    @{ var i = 1;}
+                    @foreach (var record in records)
+                    {
+                        if (!@record.isDeleted)
                         {
-                            if (!@record.isDeleted)
-                            {
-                                <tr>
-                                    <td>@i</td>
-                                    <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height:50px;width:50px;"  class="rounded-circle" /></td>
-                                    <td>@record.CreatorName.ToString()</td>
-                                    <td>@record.EmailId</td>
-                                    <td>@record.MobileNumber</td>
-                                    <td>@record.CreatedOn</td>
-                                    @if (record.Status == true)
-                                    {
-                                        <td style="color:limegreen">Active</td>
-                                    }
-                                    else
-                                    {
-                                        <td style="color:red">Deactive</td>
-                                    }
-                                    <td>
-                                        <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    </td>
-                                </tr>
-                                i++;
-                            }
+                            <tr>
+                                <td>@i</td>
+                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height:50px;width:50px;"  class="rounded-circle" /></td>
+                                <td>@record.CreatorName.ToString()</td>
+                                <td>@record.EmailId</td>
+                                <td>@record.MobileNumber</td>
+                                <td>@record.CreatedOn</td>
+                                @if (record.Status == true)
+                                {
+                                    <td style="color:limegreen">Active</td>
+                                }
+                                else
+                                {
+                                    <td style="color:red">Deactive</td>
+                                }
+                                <td>
+                                    <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                    <a class="delete" href="DeleteCreator/@record.ContentCreatorId.ToString()" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                </td>
+                            </tr>
+                            i++;
                         }
+                    }
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
