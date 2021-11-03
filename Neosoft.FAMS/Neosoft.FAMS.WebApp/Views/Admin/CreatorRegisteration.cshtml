@@ -12,6 +12,9 @@
         label span {
             font-size: 12px;
         }
+        .help-block ul {
+            list-style-type: none;
+        }
     </style>
 </head>
 <div class="container-fluid">
@@ -24,6 +27,7 @@
                 <div id="formContent">
                     <!-- Tabs Titles -->
                     <h2 class="active"> ADD Creator </h2>
+                    <div asp-validation-summary="All" class="text text-danger help-block"></div>
                     @if (@isInserted)
                     {
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -52,9 +56,12 @@
                                     @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="Address1" type="text" class="fadeIn third" name="Address1" placeholder="Address1">
-
+                                
                                 <label id="lbl">Country<sup style="color:red">*</sup></label>
-                                <select id="formCity" style="margin:10px 10px 0px 35px" name="CountryId">Country</select>
+                                <select id="formCountry" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="Country">
+                                   
+                                </select>
+       
 
                                 <label id="lbl">
                                     Mobile Number<sup style="color:red">*</sup>
@@ -78,10 +85,15 @@
 
                                 <label id="lbl">Address2</label>
                                 <input type="text" class="fadeIn second" name="Address2" placeholder="Address2"><br />
+                                
+                                <label id="lbl">State<sup style="color:red">*</sup></label>
+                                <select id="formState" style="margin: 10px 10px 0px 35px" name="CountryId">
 
-                                <label id="lbl">Country<sup style="color:red">*</sup></label>
-                                <select id="formCountry" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="Country">
-                                   
+                                </select>
+                               
+                                <label id="lbl">City<sup style="color:red">*</sup></label>
+                                <select id="formCity" style="margin: 10px 10px 0px 35px" name="CityId">
+
                                 </select>
 
                                 <div style="float:left">

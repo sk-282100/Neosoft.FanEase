@@ -38,6 +38,9 @@ namespace Neosoft.FAMS.WebApp.Helper
         public static class Common
         {
             public static string GetCountryList(string path) => $"{path}/GetCountryList?api-version=1";
+            public static string GetStateList(string path,int id) => $"{path}/GetStateList?countryId={id}&api-version=1";
+            public static string GetCityList(string path,int id) => $"{path}/GetCityList?stateId={id}&api-version=1";
+
         }
         public static class Video
         {

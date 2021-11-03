@@ -46,6 +46,36 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result.ToList();
         }
+        public List<ListViewModel> GetStateList(int CountryId)
+        {
+            IEnumerable<ListViewModel> result = null;
+            var uri = API.Common.GetStateList(_path,CountryId);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var deserializedata = JsonConvert.DeserializeObject<Response<IEnumerable<States>>>(jsonDataStatus);
+                result =
+                    from data in deserializedata.Data.ToList()
+                    select new ListViewModel { id = data.Id, text = data.Name };
+            }
+            return result.ToList();
+        }
 
+        public List<ListViewModel> GetCityList(int StateId)
+        {
+            IEnumerable<ListViewModel> result = null;
+            var uri = API.Common.GetCityList(_path, StateId);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var deserializedata = JsonConvert.DeserializeObject<Response<IEnumerable<City>>>(jsonDataStatus);
+                result =
+                    from data in deserializedata.Data.ToList()
+                    select new ListViewModel { id = data.Id, text = data.Name };
+            }
+            return result.ToList();
+        }
     }
 }
