@@ -14,6 +14,7 @@ using Neosoft.FAMS.WebApp.Models.AdvertisementModel;
 using Neosoft.FAMS.WebApp.Models.CampaignModel;
 using Neosoft.FAMS.WebApp.Models.VideoModel;
 using Neosoft.FAMS.WebApp.Models.ViewerModel;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Profiles
 {
@@ -24,7 +25,7 @@ namespace Neosoft.FAMS.WebApp.Profiles
 
             CreateMap<UpdateCreatorByIdCommand, CreatorRegisteration>().ReverseMap();
             CreateMap<CreateAdvertisementCommand, AddAsset>().ReverseMap();
-
+            CreateMap<UpdateVideoByIdCommand, AddVideo>().ReverseMap();
             CreateMap<VideoCreateCommand, AddVideo>().ReverseMap();
             CreateMap<CampaignCreateCommand, CreateCampaign>().ReverseMap();
             CreateMap<ViewerCreateCommand, ViewerRegisteration>().ReverseMap();

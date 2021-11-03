@@ -23,14 +23,18 @@ namespace Neosoft.FAMS.Application.Features.Login.Queries
         {
             List<object> result = new List<object>();
             var data = await _loginRepository.GetLoginDetail(request.UserName,request.Password);
-            //data.Password = EncryptionDecryption.DecryptString(data.Password);
-            if (data.Username == request.UserName && data.Password == request.Password)
+            if (data != null)
             {
-                result.Add(data.Id);
-                result.Add(data.RoleId);
+                //data.Password = EncryptionDecryption.DecryptString(data.Password);
+                if (data.Username == request.UserName && data.Password == request.Password)
+                {
+                    result.Add(data.Id);
+                    result.Add(data.RoleId);
 
-                return result;
+                    return result;
+                }
             }
+
             return null;
         }
     }

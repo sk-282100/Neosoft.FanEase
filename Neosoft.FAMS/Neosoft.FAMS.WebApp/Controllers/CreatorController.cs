@@ -54,7 +54,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public ActionResult VideoTable()
         {
-            var data = _video.VideosCreatedByContentCreator(1);
+            var data = _video.VideosCreatedByContentCreator(2);
             ViewData["data"] = data;
             return View();
         }

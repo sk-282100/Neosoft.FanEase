@@ -24,9 +24,11 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete
         public async Task<Response<bool>> Handle(DeleteCreatorByIdCommand request, CancellationToken cancellationToken)
         {
             var data = await _creatorRepo.GetByIdAsync(request.CreatorId);
+            data.isDeleted = true;
             if (data != null)
             {
-                await _creatorRepo.DeleteAsync(data);
+               // await _creatorRepo.DeleteAsync(data);
+               await _creatorRepo.UpdateAsync(data);
 
                 var response = new Response<bool> { Data = true, Message = "Deleted Successfully", Succeeded = true };
                 return response;
