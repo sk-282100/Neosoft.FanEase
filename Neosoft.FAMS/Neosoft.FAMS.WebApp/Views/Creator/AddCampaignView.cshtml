@@ -1,8 +1,11 @@
-﻿@model CreateCampaign;
+﻿@using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll
+@using Microsoft.AspNetCore.Http
+@model CreateCampaign;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "AddCampaignView";
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
+    var records = (List<AdvertisementListQueryDto>)ViewData["data"];
 }
 
 
@@ -82,6 +85,48 @@
                         <input type="submit" class="btn btn-primary" style="height:40px;margin-top:0px;padding-top:10px;" value="Proceed" />
                     </div>
                 </div>
+
+                <div style="margin-top:20px;">
+                    <table id="myTable" class="table table-bordered table-sm table-hover">
+                        <thead style="background-color: #56baed;color:white;">
+                            <tr>
+                                <th class="no-sort">Thumbnail Image</th>
+                                <th>Content Type</th>
+                                <th>Asset Title</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th class="no-sort">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var record in records)
+                        {
+                            if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")))
+                            {
+                                <tr>
+                                    <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                    <td>Image</td>
+                                    <td>@record.Title</td>
+                                    <td>@record.StartDate</td>
+                                    <td>@record.EndDate</td>
+                                    <td>
+                                        <a class="edit" href="EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $('#myTable').dataTable({
+                            "columnDefs": [{ targets: 'no-sort', orderable: false }]
+                        });
+                        console.log(1);
+                    });
+                </script>
             }
         </div>
     </div>

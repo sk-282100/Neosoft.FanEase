@@ -1,17 +1,18 @@
 ﻿@model CreatorRegisteration;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
 }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/CreatorRegisteration.css" />
-  <style>
-      label span{
-          font-size:12px;
-      }
-  </style>
+    <script  src="~/js/ContentCreator.js" ></script>
+    <style>
+        label span {
+            font-size: 12px;
+        }
+    </style>
 </head>
 <div class="container-fluid">
 
@@ -77,8 +78,10 @@
                                 <label id="lbl">Address2</label>
                                 <input type="text" class="fadeIn second" name="Address2" placeholder="Address2"><br />
 
-                                <label id="lbl">City<sup style="color:red">*</sup></label>
-                                <select id="formCity" style="margin:10px 10px 0px 35px" name="CityId">City</select>
+                                <label id="lbl">Country<sup style="color:red">*</sup></label>
+                                <select id="formCountry" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="Country">
+                                   
+                                </select>
 
                                 <div style="float:left">
                                     <label id="lbl">Additional remark</label>
@@ -94,4 +97,4 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
