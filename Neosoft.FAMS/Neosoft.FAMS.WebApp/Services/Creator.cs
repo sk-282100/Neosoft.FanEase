@@ -121,7 +121,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:02/11/2021
+        /// Reason:Will fetch record by Email ID
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public ContentCreatorDto GetCreatorByEmail(string username)
         {
             var result = new ContentCreatorDto();
@@ -135,7 +141,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-        [HttpDelete]
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:03/11/2021
+        /// Reason:Will delete record of content creator by ID 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         public async Task<bool> DeleteCreator(DeleteCreatorByIdCommand command)
         {
             var uri = API.Creator.DeleteCreator(_baseUrl, _path, command.CreatorId);

@@ -11,6 +11,12 @@
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <link href="~/css/Admin/CreatorList.css" rel="stylesheet" />
+    <style>
+        #deleteTag:hover {
+            color: #56baed;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <div class="container-fluid">
@@ -55,7 +61,7 @@
                         {
                             <tr>
                                 <td>@i</td>
-                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height:50px;width:50px;"  class="rounded-circle" /></td>
+                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
                                 <td>@record.CreatorName.ToString()</td>
                                 <td>@record.EmailId</td>
                                 <td>@record.MobileNumber</td>
@@ -70,7 +76,7 @@
                                 }
                                 <td>
                                     <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    <a class="delete" href="DeleteCreator/@record.ContentCreatorId.ToString()" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                    <a  id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i  class="material-icons"></i></a>
                                 </td>
                             </tr>
                             i++;
@@ -78,8 +84,31 @@
                     }
                     </tbody>
                 </table>
+                @* Popup Modal *@
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body" style="height: 60px;">
+                                    Are you sure you want to Delete this record?
+                            </div>
+                            <div class="modal-footer">
+                                <a href="CreatorsList" class="btn btn-secondary" >No</a>
+                                <a id="hrefElement" class="btn btn-primary">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
     </div>
 </div>
+<script>
+    function deleteCreator(hrefLink) {
+        console.log(hrefLink);
+        var element = document.getElementById("hrefElement");
+        console.log(element);
+        element.href = hrefLink.toLocaleString();
+    }
+</script>
+@*href="EditCreator/@record.ContentCreatorId.ToString()"*@
