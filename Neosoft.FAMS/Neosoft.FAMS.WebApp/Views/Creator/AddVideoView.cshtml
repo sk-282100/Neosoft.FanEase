@@ -44,7 +44,7 @@
                     </div>
                 }
                 <h6>Video Thumbnail Image :  </h6>
-                <img id="blah" class="img-thumbnail" src="#" alt="Thumbnail image">
+                <img id="thumbnail" class="img-thumbnail" src="#" alt="Thumbnail image">
                 <input  class="form-control"  type="file" name="VideoImage" value="img.jpeg" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;"/>
                 @*<input type='file' name="" VideoImage" onchange="readURL(this);" />*@
                 <br /><br /><br />
@@ -56,16 +56,17 @@
             </div>
             <div class="col pt-2">
                 <br /><br /><br />
-                <div class="row">
-                    <div>
-                        <h6>Go Live Date & Time : @Html.ValidationMessage("StartDate", "", new {@class = "text-danger"})</h6>
-                        <input type="date"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="StartDate" type="time" id="appt" name="StartDate" min="00:00" max="23:00">
-                    </div>
-                    <div>
-                        <h6>Go End Date & Time : @Html.ValidationMessage("EndDate", "", new {@class = "text-danger"})</h6>
-                        <input type="date"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="EndDate" type="time" id="appt" name="EndDate" min="00:00" max="23:00">
-                    </div>
-                </div>
+                <label id="lbl">
+                    Start Time<sup style="color:red">*</sup>
+                    @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
+                </label>
+                <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM" >
+                <br /><br />
+                <label id="lbl">
+                    End Time<sup style="color:red">*</sup>
+                    @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
+                </label>
+                <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM" >
                 <br /><br /><br />
                 <h6>Video Type</h6>
                 <label class="btn btn-secondary">

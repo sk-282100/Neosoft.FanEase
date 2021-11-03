@@ -9,7 +9,8 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
 {
     public class AddVideo
     {
-        
+
+        public long VideoId { get; set; }
         public IFormFile VideoImage { get; set; }
         [Required(ErrorMessage = "Date And Time is required")]
         public DateTime? StartDate { get; set; }
