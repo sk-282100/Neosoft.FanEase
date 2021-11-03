@@ -12,8 +12,16 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
 
         public long VideoId { get; set; }
         public IFormFile VideoImage { get; set; }
-        [Required(ErrorMessage = "Date And Time is required")]
+        
+
+        [Required(ErrorMessage = "Start Time is required")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime? StartDate { get; set; }
+
+        [Required(ErrorMessage = "End Time is required")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime? EndDate { get; set; }
 
         [Required(ErrorMessage = "Title is required")]
@@ -30,6 +38,7 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         public short? VideoCategoryId { get; set; }
         public short? VideoStatus { get; set; }
         public bool? PublishStatus { get; set; }
+        public long CreatedBy { get; set; }
 
 
     }

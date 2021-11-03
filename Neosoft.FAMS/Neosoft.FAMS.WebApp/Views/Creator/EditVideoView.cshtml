@@ -23,7 +23,12 @@
                     <!-- Tabs Titles -->
                     <h2 class="active"> EDIT Creator </h2>
                     @using (Html.BeginForm("EditVideoView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {   <input id="VideoId" name="VideoId" value="@records.VideoId" type="hidden"  readonly/>
+                    {
+                        DateTime StartDate = (DateTime)records.StartDate;
+                        DateTime EndDate = (DateTime)records.EndDate;
+
+
+                        <input id="VideoId" name="VideoId" value="@records.VideoId" type="hidden"  readonly/>
 
                         <input id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
                         <input id="CreatedBy" name="CreatedBy" value="@records.CreatedBy" type="hidden" />
@@ -55,13 +60,14 @@
                                 Start Time<sup style="color:red">*</sup>
                                 @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
                             </label>
-                            <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM" value="@records.StartDate">
-                            <br/><br />
+                            @Html.EditorFor(model => StartDate, new { htmlAttributes = new { @class = "form-control" } })
+
+                            <br /><br />
                             <label id="lbl">
                                 End Time<sup style="color:red">*</sup>
                                 @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
                             </label>
-                            <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM" value="@records.EndDate">
+                            @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control" } })
 
                             <br /><br /><br />
                             <h6>Video Type</h6>
@@ -96,16 +102,13 @@
                             <div id="temp">
                                 <label id="lbl_mp4videoFile">
                                     MP4 Video File
-                                    <video width="320" height="240" id="VideoFiles" controls autoplay>
-                                        <source src="~/Uploads/Creators/Videos/@records.UploadVideoPath" type="video/mp4">
 
-                                        Your browser does not support the video tag.
-                                    </video>
-                                    <input type='file' name="UploadVideoPath" id="mp4videoFile" onchange="videoURL(this);" />
+                                    <input type='file' name="UploadVideoPath" id="mp4videoFile" />
                                 </label>
                                 <br />
                             </div>
                             <button type="button" class="btn btn-secondary" id="btnCancel">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                             <input type="submit" class="btn btn-primary" id="btnProceed" value="Proceed" />
                         </div>
                     }

@@ -180,7 +180,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     updateVideo.VideoImage = thumbnail;
 
                     string video = VideoFile(editVideo);
-                    updateVideo.VideoImage = video;
+                    updateVideo.UploadVideoPath = video;
                 }
 
                 var isupdated = _video.UpdateVideoDetail(updateVideo);
