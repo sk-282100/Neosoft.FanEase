@@ -71,9 +71,10 @@
                             <div class="form-group col-md-6">
                                 <label id="lbl">
                                     Email<sup style="color:red">*</sup>
+                                    <span id="emailSpan" class="text-danger"></span>
                                     @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
                                 </label>
-                                <input asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
+                                <input id="creatorEmailId"  asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
 
                                 <label id="lbl">Address2</label>
                                 <input type="text" class="fadeIn second" name="Address2" placeholder="Address2"><br />
@@ -98,3 +99,8 @@
         </div>
     </div>
 </div>
+@section Scripts{
+<script src="~/js/creatorEmailCheck.js"></script>
+
+}
+
