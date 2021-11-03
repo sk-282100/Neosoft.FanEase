@@ -93,18 +93,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                string CampaignName = model.CampaignName;
-                DateTime StartDate = (DateTime) model.StartDate;
-                DateTime EndDate = (DateTime) model.EndDate;
-                var serviceresult = _campaign.SaveCampaignDetail(new CampaignCreateCommand
-                {
-                    CampaignName = CampaignName,
-                    StartDate = StartDate,
-                    EndDate = EndDate,
-                    CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId")),
-                    CreatedOn = DateTime.Now
-                });
-                if (serviceresult != null)
+                var createCampaign = _mapper.Map<CampaignCreateCommand>(model);
+
+                createCampaign.CreatedOn = DateTime.Now;
+                createCampaign.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+                var result = _campaign.SaveCampaignDetail(createCampaign);
+                if (result != null)
                 {
                     ViewData["isInsert"] = true;
                 }
@@ -133,7 +127,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             string uniquePath = UniqueName(addAsset.ProfilePhotoPath);
             createAdvertisement.ImagePath = uniquePath;
             createAdvertisement.VideoPath = uniquePath;
-            createAdvertisement.CreatedBy = 5;
+            createAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
 
             var result = _asset.SaveAssetDetail(createAdvertisement);
             do

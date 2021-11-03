@@ -3,21 +3,25 @@ using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.WebApp.Models.ViewerModel;
+using Neosoft.FAMS.WebApp.Profiles;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class ViewerController : Controller
     {
+        private IMapper _mapper;
         IViewer _viewer;
 
-        public ViewerController(IViewer viewer)
+        public ViewerController(IMapper mapper,IViewer viewer)
         {
+            _mapper = mapper;
             _viewer = viewer;
         }
 
@@ -36,28 +40,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                string FirstName = viewerRegisteration.FirstName;
-                string MiddleName = viewerRegisteration.MiddleName;
-                string LastName = viewerRegisteration.LastName;
-                string Address1 = viewerRegisteration.Address1;
-                string Address2 = viewerRegisteration.Address2;
-                string EmailId = viewerRegisteration.EmailId;
-                string MobileNumber = viewerRegisteration.MobileNumber;
-                string password = viewerRegisteration.Password;
-                long id = await _viewer.SaveViewer(new ViewerCreateCommand
-                {
-                    FirstName = FirstName,
-                    MiddleName = MiddleName,
-                    LastName = LastName,
-                    Address1 = Address1,
-                    Address2 = Address2,
-                    EmailId = EmailId,
-                    MobileNumber = MobileNumber,
-                    Password = password,
-                    CityId = 1,
-                    CountryId = 2
-                });
-                if (id > 0)
+                viewerRegisteration.CityId = 1;
+                viewerRegisteration.CountryId = 2;
+                var createViewer = _mapper.Map<ViewerCreateCommand>(viewerRegisteration);
+                var result = await _viewer.SaveViewer(createViewer);
+                if (result > 0)
                     ViewData["isInsert"] = true;
 
                 return View();
