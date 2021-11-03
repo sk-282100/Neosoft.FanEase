@@ -11,7 +11,7 @@ namespace Neosoft.FAMS.Application.Features.Campaign.Commands.Create
         public string CampaignName { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public int CreatedBy { get; set; }
+        public long CreatedBy { get; set; }
         public string IsDeleted { get; set; }
         public DateTime? CreatedOn { get; set; }
 

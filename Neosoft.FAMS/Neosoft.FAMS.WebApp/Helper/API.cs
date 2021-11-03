@@ -32,7 +32,7 @@ namespace Neosoft.FAMS.WebApp.Helper
             public static string SaveCreator(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetCreatorById(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
 
-
+            public static string GetCreatorByEmail(string baseUri, string path, string username) => $"{baseUri}{path}/getCreatorByEmail?username={username}?api-version=1";
         }
         public static class Common
         {
@@ -65,7 +65,7 @@ namespace Neosoft.FAMS.WebApp.Helper
         {
             public static string GetAllAsset(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string SaveAsset(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
-
+            public static string SaveCampaignAdvertisementMappedData(string baseUri, string path) => $"{baseUri}{path}/AddCampaignAdvertiseData?api-version=1";
 
         }
     }

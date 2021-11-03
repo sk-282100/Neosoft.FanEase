@@ -26,6 +26,12 @@ namespace Neosoft.FAMS.Persistence.Repositories
             result.Entity.Id = await _dbContext.Logins.MaxAsync(u => u.Id);
             return result.Entity;
         }
+
+        public async Task<ContentCreatorDetail> GetByEmailAsync(string username)
+        {
+            return await _dbContext.ContentCreatorDetails.FirstOrDefaultAsync(p => p.EmailId == username);
+        }
+
         public async Task<ContentCreatorDetail> GetByIdAsync(long id)
         {
             return await _dbContext.ContentCreatorDetails.FirstOrDefaultAsync(p => p.ContentCreatorId == id);

@@ -5,6 +5,7 @@ using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetByEmail;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetById;
 using System;
 using System.Collections.Generic;
@@ -74,7 +75,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:long}")]
         public async Task<IActionResult> DeleteById([FromRoute] long id)
         {
             var delete = new DeleteCreatorByIdCommand { CreatorId = id };
@@ -95,5 +96,24 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
 
         }
+        /// <summary>
+        ///Author:Aman Sharma <br></br>
+        /// Date:02/11/2021 <br></br>
+        /// Reason:It Will Return Record of a specific content creator by Email 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("getCreatorByEmail")]
+        public async Task<IActionResult> GetByEmail([FromQuery]string username)
+        {
+            var Email = username.Split('?');
+            var creatorQuery = new GetCreatorByEmailQuery { Username = Email[0] };
+            var data = await _mediator.Send(creatorQuery);
+            if (data != null)
+                return Ok(data);
+            return BadRequest();
+        }
+
     }
 }

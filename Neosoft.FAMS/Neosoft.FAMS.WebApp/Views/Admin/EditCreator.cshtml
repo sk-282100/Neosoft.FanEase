@@ -30,7 +30,7 @@
                     @using (Html.BeginForm("EditCreator", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <input id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
-                        <input id="LoginId" name="LoginId" value="@records.LoginId" type="hidden" />
+                        <input id="LoginId" name="LoginId" value="@records.CreatedBy" type="hidden" />
                         <input id="ContentCreatorId" name="ContentCreatorId" value="@records.ContentCreatorId" type="hidden" />
 
                         <div class="form-row">

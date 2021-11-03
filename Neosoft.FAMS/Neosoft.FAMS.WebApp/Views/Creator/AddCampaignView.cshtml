@@ -31,15 +31,15 @@
             </ul>
         </div>
         <div class="col pt-2">
-            <h3>Add New Video</h3><br /><br />
+            <h3>Add New Campaign</h3><br /><br />
             <div id="try" style="display:flex">
                 <div>
-                    <a><label style="text-decoration:underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
-                    <a href="~/Creator/ExistingCampaign"><label>Select Existing Campaign</label></a>
+                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "AddCampaignView", "Creator")'">Create New Campaign</button>
+                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "ExistingCampaign", "Creator")'">Select Existing Campaign</button>
                 </div>
-                <div style="margin-left:auto;margin-right:0;">
-                    <a href="~/Creator/SelectAsset"><label>View Existing Assets</label></a>&emsp;&emsp;
-                    <a href="~/Creator/AddAsset"><label>Add More Asset</label></a>
+                <div style="margin-left: auto; margin-right: 0;">
+                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>&emsp;&emsp;
+                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
                 </div>
             </div>
             @if (@isInserted)

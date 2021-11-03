@@ -17,8 +17,10 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll
         public string MobileNumber { get; set; }
         public bool? Status { get; set; }
         public string AdditionalRemark { get; set; }
-        public long LoginId { get; set; }
+        public long CreatedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public bool isPassowrdUpdated { get; set; }
+        public bool isDeleted { get; set; }
 
     }
 }

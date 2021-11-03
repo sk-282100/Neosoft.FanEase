@@ -15,6 +15,8 @@ using AutoMapper;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.WebApp.Models.CampaignModel;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 
@@ -22,12 +24,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class CreatorController : Controller
     {
-        IMapper  _mapper;
-        IVideo _video;
+        private IMapper  _mapper;
+        private IVideo _video;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        ICampaign _campaign;
-        IAsset _asset;
-       
+        private ICampaign _campaign;
+        private IAsset _asset;
 
         public CreatorController(IMapper mapper,IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
         {
@@ -61,33 +62,32 @@ namespace Neosoft.FAMS.WebApp.Controllers
         
         public IActionResult AddVideoView()
         {
+            ViewData["isInsert"] = false;
             return View();
         }
         [HttpPost]
         public IActionResult AddVideoView(AddVideo model)
         {
-            DateTime StartDate = (DateTime)model.appt;
-            DateTime EndDate = (DateTime)model.endappt;
-            _video.CreateVideo(new VideoCreateCommand
+            DateTime StartDate = (DateTime)model.StartDate;
+            DateTime EndDate = (DateTime)model.EndDate;
+            if (ModelState.IsValid)
             {
-                VideoImage = VideoImageFile(model),
-                StartDate = StartDate,
-                EndDate=EndDate,
-                Title= model.Title,
-                VideoTypeId= (short)model.VideoTypeId,
-                VideoUrl = model.VideoUrl,
-                PlayerTypeId = 1,
-                VideoStatus = 1,
-                PublishStatus = false,
-                VideoCategoryId = model.VideoCategoryId,
-                UploadVideoPath = VideoFile(model)
+                var createCommand = _mapper.Map<VideoCreateCommand>(model);
+                createCommand.VideoImage = UniqueName(model.VideoImage);
+                createCommand.UploadVideoPath = UniqueName(model.UploadVideoPath);
 
-            }) ;
-
+                var VideoId = _video.CreateVideo(createCommand);
+                if (VideoId != null)
+                {
+                    ViewData["isInsert"] = true;
+                }
+                return View();
+            }
             return View();
         }
         public IActionResult AddCampaignView()
         {
+            ViewData["isInsert"] = false;
             return View();
         }
         [HttpPost]
@@ -95,26 +95,22 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                string CampaignName = model.CampaignName;
-                DateTime StartDate = (DateTime) model.StartDate;
-                DateTime EndDate = (DateTime) model.EndDate;
-                var serviceresult = _campaign.SaveCampaignDetail(new CampaignCreateCommand
+                var createCampaign = _mapper.Map<CampaignCreateCommand>(model);
+
+                createCampaign.CreatedOn = DateTime.Now;
+                createCampaign.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+                var result = _campaign.SaveCampaignDetail(createCampaign);
+                if (result != null)
                 {
-                    CampaignName = CampaignName,
-                    StartDate = StartDate,
-                    EndDate = EndDate,
-                    CreatedBy = 2,
-                    CreatedOn = DateTime.Now
-                });
-                if (serviceresult!= null)
                     ViewData["isInsert"] = true;
+                }
                 return View();
             }
             ViewData["isInsert"] = false;
             return View();
         }
 
-        public ActionResult ExistingCampaign()
+        public IActionResult ExistingCampaign()
         {
             var data = _campaign.GetAllCampaign();
             ViewData["data"] = data;
@@ -127,28 +123,24 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult AddAsset(AddAsset addAsset)
         {
-            string Title = addAsset.Title;
-            DateTime StartDate = (DateTime)addAsset.StartTime;
-            DateTime EndDate = (DateTime)addAsset.EndTime;
-            short ContentTypeId = (short)addAsset.ContentTypeId;
-            string Description = addAsset.Description;
-            string Url = addAsset.Url;
-            string uniqueFileName = UploadedFile(addAsset);
-            long PlacementId = (long)addAsset.PlacementId;
-            var serviceresult = _asset.SaveAssetDetail(new CreateAdvertisementCommand
+            addAsset.CreatedOn = DateTime.Now;
+            var createAdvertisement = _mapper.Map<CreateAdvertisementCommand>(addAsset);
+
+            string uniquePath = UniqueName(addAsset.ProfilePhotoPath);
+            createAdvertisement.ImagePath = uniquePath;
+            createAdvertisement.VideoPath = uniquePath;
+            createAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+
+            var result = _asset.SaveAssetDetail(createAdvertisement);
+            do
             {
-                Title = Title,
-                StartDate = StartDate,
-                EndDate = EndDate,
-                ContentTypeId = ContentTypeId,
-                Description = Description,
-                Url = Url,
-                ImagePath = uniqueFileName,
-                PlacementId = PlacementId,
-                CreatedBy = 2,
-                CreatedOn = DateTime.Now,
-                VideoPath = "abc.mp4"
-            });
+
+            } while (!result.IsCompletedSuccessfully);
+            TempData["VideoId"] =  TempData["VideoId"];
+            TempData["CampaignId"] = TempData["CampaignId"];
+            TempData["AdvertisementId"] = result.Result;
+
+            AddMappedData();
             return View();
         }
 
@@ -186,7 +178,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 }
                 else
                 {
-                    string thumbnail = VideoImageFile(editVideo);
+                    string thumbnail = UniqueName(editVideo.VideoImage);
                     updateVideo.VideoImage = thumbnail;
 
                     string video = VideoFile(editVideo);
@@ -201,39 +193,23 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = record;
             return View();
         }
-
-        private string VideoImageFile(AddVideo model)
+        private string UniqueName(IFormFile nameFile)
         {
             string thumbnail = null;
 
-            if (model.VideoImage != null)
+            if (nameFile != null)
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Creators/Videos");
-                thumbnail = Guid.NewGuid().ToString() + "_" + model.VideoImage.FileName;
+                thumbnail = Guid.NewGuid().ToString() + "_" + nameFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, thumbnail);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.VideoImage.CopyTo(fileStream);
+                    nameFile.CopyTo(fileStream);
                 }
             }
             return thumbnail;
         }
-        private string UploadedFile(AddAsset model)
-        {
-            string uniqueFileName = null;
-
-            if (model.ProfilePhotoPath != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Asset/Images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfilePhotoPath.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    model.ProfilePhotoPath.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
-        }
+       
 
         public string VideoFile(AddVideo model)
         {
@@ -251,5 +227,19 @@ namespace Neosoft.FAMS.WebApp.Controllers
             }
             return video;
         }
+
+        private void AddMappedData()
+        {
+            var addCampaignAdvertisement = new AddCampaignAdvertisementCommand();
+            addCampaignAdvertisement.AdvertisementId = MappingViewModel.AdvertisementId;
+            addCampaignAdvertisement.CampaignId =MappingViewModel.CampaignId;
+            addCampaignAdvertisement.VideoId = MappingViewModel.VideoId;
+            addCampaignAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+            addCampaignAdvertisement.CreatedOn=DateTime.Now;
+           
+            var id =_asset.AddCampaignAdvertiseMappedData(addCampaignAdvertisement);
+
+        }
+
     }
 }
