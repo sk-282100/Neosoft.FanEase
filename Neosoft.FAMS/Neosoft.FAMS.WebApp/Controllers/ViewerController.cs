@@ -18,16 +18,37 @@ namespace Neosoft.FAMS.WebApp.Controllers
     {
         private IMapper _mapper;
         IViewer _viewer;
+        ICommon _common;
 
-        public ViewerController(IMapper mapper,IViewer viewer)
+        public ViewerController(IMapper mapper,IViewer viewer, ICommon common)
         {
             _mapper = mapper;
             _viewer = viewer;
+            _common = common;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+        [HttpGet]
+        public IActionResult GetCountry()
+        {
+            return Json(_common.GetCountryList());
+        }
+        [HttpGet]
+        [Route("Viewer/GetStates/{id:int}")]
+        public IActionResult GetState([FromRoute] int id)
+        {
+            return Json(_common.GetStateList(id));
+        }
+
+        [HttpGet]
+        [Route("Viewer/GetCity/{id:int}")]
+        public IActionResult GetCity([FromRoute] int id)
+        {
+            return Json(_common.GetCityList(id));
+
         }
 
         public ActionResult ViewerRegisteration()

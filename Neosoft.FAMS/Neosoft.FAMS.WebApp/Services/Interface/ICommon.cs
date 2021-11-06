@@ -10,5 +10,8 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
     public interface ICommon
     {
         List<ListViewModel> GetCountryList();
+        List<ListViewModel> GetStateList(int CountryId);
+        List<ListViewModel> GetCityList(int StateId);
+
     }
 }

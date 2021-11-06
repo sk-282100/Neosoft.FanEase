@@ -7,6 +7,8 @@
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/AddAsset.css" />
+    <link rel="stylesheet" href="~/css/StepBar.css" />
+    <script src="~/js/StepBar.js"></script>
     <style>
         label span {
             font-size: 12px;
@@ -33,6 +35,16 @@
             </ul>
         </div>
         <div class="col pt-2">
+            <body onload="myFunction1('bar1','bar2')">
+                <div id="wrapper">
+                    <br>
+                    <span class='baricon'>1</span>
+                    <span id="bar1" class='progress_bar'></span>
+                    <span class='baricon'>2</span>
+                    <span id="bar2" class='progress_bar'></span>
+                    <span class='baricon'>3</span>
+                </div>
+            </body>
             <div class="wrapper">
                 <div id="formContent">
                     <!-- Tabs Titles -->
@@ -53,13 +65,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label id="lbl" class="form-group required">
-                                    Advertisement Title<sup style="color:red">*</sup>
+                                    Advertisement Title<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="Title" type="text" class="fadeIn second" name="Title" placeholder="Enter Video Title">
 
                                 <label id="lbl">
-                                    Content Type<sup style="color:red">*</sup>
+                                    Content Type<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
                                 </label>
                                 <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType">
@@ -68,7 +80,7 @@
                                 </select>
 
                                 <label id="lbl">
-                                    Advertisement Description<sup style="color:red">*</sup>
+                                    Advertisement Description<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
                                 </label>
                                 <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
@@ -76,19 +88,19 @@
 
                             <div class="form-group col-md-6">
                                 <label id="lbl">
-                                    Start Time<sup style="color:red">*</sup>
+                                    Start Time<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM">
 
                                 <label id="lbl">
-                                    End Time<sup style="color:red">*</sup>
+                                    End Time<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM">
 
                                 <label id="lbl">
-                                    Advertisement Placement<sup style="color:red">*</sup>
+                                    Advertisement Placement<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
                                 </label>
                                 <select asp-for="PlacementId" name="PlacementId" id="AdvertisementPlacement">
@@ -99,7 +111,7 @@
                                 </select>
 
                                 <label id="lbl">
-                                    Video or Image URL<sup style="color:red">*</sup>
+                                    Video or Image URL<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
@@ -108,7 +120,7 @@
                                 <input class="form-control" type="file" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" multiple />
                             </div>
                         </div>
-                        <input type="submit" id="btnCancel" class="fadeIn fourth" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'" value="Cancel">
+                        <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddCampaignView", "Creator")'" value="Cancel">
                         <input type="submit" class="fadeIn fourth" value="Save">
                     }
                 </div>

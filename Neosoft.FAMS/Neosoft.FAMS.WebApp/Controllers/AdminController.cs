@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Routing;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.Domain.Entities;
 using Neosoft.FAMS.WebApp.Models.VideoModel;
 
 namespace Neosoft.FAMS.WebApp.Controllers
@@ -47,6 +48,19 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult GetCountry()
         {
             return Json(_common.GetCountryList());
+        }
+        [HttpGet]
+        [Route("Admin/GetStates/{id:int}")]
+        public IActionResult GetState([FromRoute]int id)
+        {
+            return Json(_common.GetStateList(id));
+        }
+
+        [HttpGet]
+        [Route("Admin/GetCity/{id:int}")]
+        public IActionResult GetCity([FromRoute]int id)
+        {
+            return Json(_common.GetCityList(id));
 
         }
         public IActionResult CreatorRegisteration()
@@ -63,6 +77,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
             registeration.CreatedBy = long.Parse(HttpContext.Session.GetString("LoginId"));
             if (ModelState.IsValid)
             {
+                var isEmailPresent = _creator.GetCreatorByEmail(registeration.EmailId);
+                if (isEmailPresent!=null)
+                {
+                    ViewData["isInsert"] = false;
+                    ModelState.AddModelError(" ","Email Id already Present");
+                    return View();
+                }
                 var updateCreator = _mapper.Map<UpdateCreatorByIdCommand>(registeration);
                 string uniqueFileName = UploadedFile(registeration);
                 updateCreator.ProfilePhotoPath = uniqueFileName;

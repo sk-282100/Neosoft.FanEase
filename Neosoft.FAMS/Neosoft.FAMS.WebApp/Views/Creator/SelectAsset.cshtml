@@ -54,15 +54,18 @@
                     </thead>
                     <tbody>
                         @foreach (var record in records)
-                        { 
-                            <tr>
-                                <td>@record.AdvertisementId</td>
-                                <td><img src="/Uploads/Asset/Images/@record.ImagePath" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
-                                <td>@record.Title</td>
-                                <td>@record.StartDate</td>
-                                <td>@record.EndDate</td>
-                            </tr>
+                        {
+                            if (!(bool)@record.IsDeleted)
+                            {
+                                <tr>
+                                    <td>@record.AdvertisementId</td>
+                                    <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                    <td>@record.Title</td>
+                                    <td>@record.StartDate</td>
+                                    <td>@record.EndDate</td>
+                                </tr>
                             }
+                        }
                     </tbody>
                 </table>
             </div>

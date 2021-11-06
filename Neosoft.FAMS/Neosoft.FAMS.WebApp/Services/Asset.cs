@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -116,6 +117,19 @@ namespace Neosoft.FAMS.WebApp.Services
                 return result;
             }
             return result;
+        }
+
+        public async Task<bool> DeleteAsset(DeleteAdvertisementCommand command)
+        {
+            var uri = API.Asset.DeleteAsset(_baseUrl, _path, command.AdvertisementId);
+            HttpResponseMessage response = await _client.DeleteAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<Response<bool>>(jsonDataStatus);
+                return data.Data;
+            }
+            return false;
         }
     }
 }
