@@ -15,8 +15,8 @@
         @Html.Partial("_SideBar")
         <div class="col pt-2">
            
-            <div style="margin-top:20px; width: 60%;">
-                <table id="myTable" class="table table-bordered table-sm table-hover">
+            <div style="margin-top:20px; width: 100%;">
+                <table id="myTable" class="table table-bordered table-sm table-hover" style="width:100%">
                     <thead style="background-color: #56baed;color:white;">
                     <tr>
                         <th>Video ID</th>
@@ -24,11 +24,7 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Video Title</th>
-                        <th class="no-sort">Video Type</th>
-                        <th>Player Type</th>
-                        <th>Video URL</th>
                         <th>Upload Video Path</th>
-                        <th>Video Category</th>
                         <th class="no-sort">Created By</th>
                         <th class="no-sort">Created On</th>
                         <th>Action</th>
@@ -43,11 +39,10 @@
                             <td>@record.StartDate.ToString()</td>
                             <td>@record.EndDate.ToString()</td>
                             <td>@record.Title</td>
-                            <td>@record.VideoTypeId</td>
-                            <td>@record.PlayerTypeId</td>
-                            <td>@record.VideoUrl</td>
+
+
                             <td>@record.UploadVideoPath</td>
-                            <td>@record.VideoCategoryId</td>
+ 
                             <td>@record.CreatedBy</td>
                             <td>@record.CreatedOn</td>
                             <td>

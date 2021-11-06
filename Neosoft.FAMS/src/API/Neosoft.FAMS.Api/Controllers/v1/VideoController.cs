@@ -94,6 +94,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(videoQuery);
             return Ok(data);
         }
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date:27/10/2021
+        /// Reason: To Get All Videos of specific Creators
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
         [HttpGet]
         [Route(("Videos/{id}"))]
