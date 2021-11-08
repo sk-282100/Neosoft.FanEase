@@ -10,10 +10,12 @@ $(document).ready(function () {
                 console.log(data);
                 if (data != null) {
                     $('#emailSpan').text("Email already Exist");
+                } else {
+                    $('#emailSpan').text("");
                 }
             },
             error: function (error) {
-                alert("error" + error);
+                alert("Some Error occurred! Please reload the Page");
             }
         });
     });

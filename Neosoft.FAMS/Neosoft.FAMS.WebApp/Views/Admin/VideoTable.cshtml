@@ -14,54 +14,54 @@
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_SideBar")
         <div class="col pt-2">
-           
+
             <div style="margin-top:20px; width: 100%;">
                 <table id="myTable" class="table table-bordered table-sm table-hover" style="width:100%">
                     <thead style="background-color: #56baed;color:white;">
-                    <tr>
-                        <th>Video ID</th>
-                        <th class="no-sort">Thumbnail Image</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Video Title</th>
-                        <th>Upload Video Path</th>
-                        <th class="no-sort">Created By</th>
-                        <th class="no-sort">Created On</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th>Video ID</th>
+                            <th class="no-sort">Thumbnail Image</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Video Title</th>
+                            <th>Upload Video Path</th>
+                            <th class="no-sort">Created By</th>
+                           @* <th class="no-sort">Created On</th>
+                            <th>Action</th>*@
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach (var record in records)
                         {
-                        <tr>
-                            <td>@record.VideoId</td>
-                            <td>@record.VideoImage.ToString()</td>
-                            <td>@record.StartDate.ToString()</td>
-                            <td>@record.EndDate.ToString()</td>
-                            <td>@record.Title</td>
+                            <tr>
+                                <td>@record.VideoId</td>
+                                <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
+                                <td>@record.StartDate.ToString()</td>
+                                <td>@record.EndDate.ToString()</td>
+                                <td>@record.Title</td>
 
 
-                            <td>@record.UploadVideoPath</td>
- 
-                            <td>@record.CreatedBy</td>
-                            <td>@record.CreatedOn</td>
-                            <td>
-                                <a class="edit" href="EditCreator/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            </td>
-                        </tr>
+                                <td>@record.UploadVideoPath</td>
+
+                                <td>@record.CreatedBy</td>
+                                @*                            <td>@record.CreatedOn</td>
+                                *@                          @*  <td>
+                                        <a class="edit" href="EditCreator/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                    </td>*@
+                            </tr>
                         }
                     </tbody>
                 </table>
             </div>
             @*<script>
-                $(document).ready(function () {
-                    $('#myTable').dataTable({
-                        "columnDefs": [{ targets: 'no-sort', orderable: false }]
+                    $(document).ready(function () {
+                        $('#myTable').dataTable({
+                            "columnDefs": [{ targets: 'no-sort', orderable: false }]
+                        });
+                        console.log(1);
                     });
-                    console.log(1);
-                });
-            </script>*@
+                </script>*@
         </div>
     </div>
 </div>
