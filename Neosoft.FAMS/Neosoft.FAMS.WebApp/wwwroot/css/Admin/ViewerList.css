@@ -1,21 +1,4 @@
-﻿.btnAddNewCreator {
-    margin-left: auto;
-    margin-bottom: 5px;
-    width: 280px;
-    height: 50px;
-    background-color: #56baed;
-    color: white;
-}
-.btnAddNewVideo {
-    margin-left: 5px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    width: 200px;
-    height: 50px;
-    background-color: #56baed;
-    color: white;
-}
-.dataTables_filter input {
+﻿.dataTables_filter input {
     width: 80%;
     height: 30px;
     box-sizing: border-box;
@@ -28,14 +11,12 @@
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
 }
-.dataTables_wrapper .dataTables_paginate{
+
+.dataTables_wrapper .dataTables_paginate {
     margin-top: 5px;
     border-radius: 8px;
     background: #56baed;
     color: white;
-}
-th {
-    white-space: nowrap;
 }
 
 h3 {
@@ -45,6 +26,7 @@ h3 {
     font-family: Rockwell;
     text-shadow: black 0.05em 0.05em 0.02em;
 }
+
 table,
 thead,
 tbody,
@@ -53,6 +35,9 @@ td {
     border-collapse: collapse;
     border: 1px solid lightgrey;
     text-align: center;
+}
+th {
+    white-space: nowrap;
 }
 
 .table td {

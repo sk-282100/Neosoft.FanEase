@@ -7,22 +7,9 @@
 <head>
 
     <link rel="stylesheet" href="~/css/temp.css" />
+    <link href="~/css/Creator/VideoTable.css" rel="stylesheet" />
     <script src="~/js/AddVideo.js"></script>
 
-    <style>
-        table,
-        thead,
-        tr,
-        tbody,
-        th,
-        td {
-            text-align: center;
-        }
-
-        .table td {
-            text-align: center;
-        }
-    </style>
 </head>
 <div class="container-fluid">
 
@@ -42,17 +29,14 @@
         </div>
 
         <div class="col pt-2">
-            <br /><br />
+            <h3>Video List</h3>
             <div class="row header">
-                <div class="col-md-6">
-                    <p style="text-align: left; margin-left: 15px; color: #56baed;font-size:28px;">Video List</p>
-                </div>
-                <div class="col-md-6">
-                    <button style="margin-left: auto; margin-right: 5px; margin-bottom: 5px; width: 260px; height: 50px; background-color: #56baed; color: white; float: right;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
+                <div style="float: right;">
+                    <button style="float: right;margin-right: 5px; margin-bottom: 5px; width: 220px; height: 50px; background-color: #56baed; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
                 </div>
             </div>
             <div style="margin-top:20px;">
-                <table id="myTable" class="table table-bordered table-sm table-hover">
+                <table id="myTable" class="table table-sm table-hover">
                     <thead style="background-color: #56baed;color:white;">
                         <tr>
                             <th>Video ID</th>
