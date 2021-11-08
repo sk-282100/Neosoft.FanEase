@@ -21,6 +21,16 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             _logger = logger;
         }
 
+        [HttpGet]
+        [Route("GetCountryPhoneCode/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetPhoneCode([FromRoute]int id)
+        {
+            var phoneQuery = new GetPhoneCodeQuery(){countryId = id};
+            var dtos = await _mediator.Send(phoneQuery);
+            return Ok(dtos);
+
+        }
         [HttpGet()]
         [Route("GetCountryList")]
         [ProducesResponseType(StatusCodes.Status200OK)]

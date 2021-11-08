@@ -3,6 +3,7 @@ var Statedata = [];
 var Citydata = [];
 
 $(document).ready(function () {
+
     $.ajax({
         type: 'GET',
         url: '/Admin/GetCountry',

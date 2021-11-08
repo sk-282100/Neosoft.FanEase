@@ -45,6 +45,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
         [HttpGet]
+        public long GetPhoneCode(int id)
+        {
+            var phoneCode = _common.GetPhoneCode(id);
+            return phoneCode;
+        }
+        [HttpGet]
         public IActionResult GetCountry()
         {
             return Json(_common.GetCountryList());
