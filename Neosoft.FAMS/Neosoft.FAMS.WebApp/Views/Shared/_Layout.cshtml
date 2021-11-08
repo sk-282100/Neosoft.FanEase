@@ -39,7 +39,7 @@
                     </ul>
                     <div style="margin-left:auto;margin-right:5px;">
                         <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
-                        <a asp-controller="Login" asp-action="Logout" style="background-color:red;color:white;padding:3px;">Logout</a>
+                        <a asp-controller="Login" asp-action="Logout" style="background-color: whitesmoke; color: black; padding: 5px; border-radius: 5px; ">Log out</a>
                     </div>
                 }
                 else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "2")
@@ -47,7 +47,7 @@
                     
                     <div style="margin-left:auto;margin-right:5px;">
                         <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
-                        <a asp-controller="Login" asp-action="Logout" style="background-color:red;color:white;padding:3px;">Logout</a>
+                        <a asp-controller="Login" asp-action="Logout" style="background-color: whitesmoke; color: black; padding: 5px; border-radius: 5px; ">Log out</a>
                     </div>
                 }
                 else
