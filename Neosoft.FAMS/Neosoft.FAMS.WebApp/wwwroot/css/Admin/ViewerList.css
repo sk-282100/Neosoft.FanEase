@@ -36,9 +36,6 @@ td {
     border: 1px solid lightgrey;
     text-align: center;
 }
-th {
-    white-space: nowrap;
-}
 
 .table td {
     text-align: center;
