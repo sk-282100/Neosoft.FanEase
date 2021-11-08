@@ -39,15 +39,10 @@
                 <table id="myTable" class="table table-sm table-hover">
                     <thead style="background-color: #0F2557; color: white;">
                         <tr>
-                            <th>Video ID</th>
                             <th class="no-sort">Thumbnail Image</th>
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Video Title</th>
-
-                            <th>Upload Video Path</th>
-
-
                             <th class="no-sort">Created On</th>
                             <th>Action</th>
 
@@ -56,22 +51,24 @@
                     <tbody>
                         @foreach (var record in records)
                         {
-                            <tr>
-                                <td>@record.VideoId</td>
+                        <tr>
+                            @if (@record.VideoImage != null)
+                            {
                                 <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height:50px;width:50px;" /></td>
-                                <td>@record.StartDate.ToString()</td>
-                                <td>@record.EndDate.ToString()</td>
-                                <td>@record.Title</td>
-
-                                <td>@record.UploadVideoPath</td>
-
-
-                                <td>@record.CreatedOn</td>
-                                <td>
-                                    <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                </td>
-                            </tr>
+                            }
+                            else
+                            {
+                                <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" /></td>
+                            }
+                            <td>@record.StartDate.ToString()</td>
+                            <td>@record.EndDate.ToString()</td>
+                            <td>@record.Title</td>
+                            <td>@record.CreatedOn</td>
+                            <td>
+                                <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

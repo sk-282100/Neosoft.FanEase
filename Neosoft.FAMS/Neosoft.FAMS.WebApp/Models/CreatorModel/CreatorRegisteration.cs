@@ -29,9 +29,13 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         [Required(ErrorMessage ="City is requires")]
         public int CityId { get; set; }
 
-        [Required(ErrorMessage = "Country is requires")]
+        [Required(ErrorMessage = "Country is required")]
         [DisplayName("Country")]
         public int CountryId { get; set; }
+
+        [Required(ErrorMessage = "State is required")]
+        [DisplayName("State")]
+        public int StateId { get; set; }
 
         [DisplayName("Email")]
         [Required(ErrorMessage ="Email is required")]

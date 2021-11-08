@@ -4,6 +4,7 @@ using Neosoft.FAMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,11 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             _dbContext = dbContext;
             _logger = logger;
+        }
+
+        public async Task<List<ContentCreatorDetail>> GetAllCreator()
+        {
+            return await _dbContext.ContentCreatorDetails.Where(p => p.isDeleted == false).OrderByDescending(p=>p.ContentCreatorId).ToListAsync();
         }
         public async Task<Login> AddLoginDetailAsync(string email,string password)
         {

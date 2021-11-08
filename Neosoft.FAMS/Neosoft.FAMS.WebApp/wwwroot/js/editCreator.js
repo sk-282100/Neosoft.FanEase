@@ -42,9 +42,11 @@ $(document).ready(function () {
             });
         }
     });
+    $(`#formState option[value='${stateId}']`).attr("selected", "selected");
+
     $.ajax({
         type: 'GET',
-        url: "/Admin/GetCity/5",
+        url: "/Admin/GetCity/"+stateId,
         async: false,
         contentType: 'application/json',
         success: function (data) {

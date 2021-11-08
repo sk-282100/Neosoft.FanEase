@@ -22,7 +22,7 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll
 
         public async Task<List<ContentCreatorDto>> Handle(ContentCreatorQuery request, CancellationToken cancellationToken)
         {
-            var data = await _creatorRepo.ListAllAsync();
+            var data = await _creatorRepo.GetAllCreator();
             var response = _mapper.Map<List<ContentCreatorDto>>(data);
             return response;
         }

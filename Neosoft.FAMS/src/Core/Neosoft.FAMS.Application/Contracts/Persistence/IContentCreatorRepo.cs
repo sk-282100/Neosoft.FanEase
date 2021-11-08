@@ -11,5 +11,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         Task<ContentCreatorDetail> GetByIdAsync(long id);
         Task<Login> AddLoginDetailAsync(string emailId, string password);
         Task<ContentCreatorDetail> GetByEmailAsync(string username);
+        Task<List<ContentCreatorDetail>> GetAllCreator();
     }
 }
