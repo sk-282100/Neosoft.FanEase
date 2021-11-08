@@ -52,9 +52,10 @@
                             </div>
                         </div>
 
-                        <br /><br /><br />
+                        <br />
                         DateTime StartDate = (DateTime)records.StartDate;
                         DateTime EndDate = (DateTime)records.EndDate;
+                        //DateTime CreatedOn = (DateTime)records.CreatedOn;
                         <div class="form-row">
                             <div class="form-group col-md-6">
 
@@ -68,23 +69,24 @@
                                 <input id="PlayerTypeId" name="PlayerTypeId" value="@records.PlayerTypeId" type="hidden" />
                                 <input id="VideoCategoryId" name="VideoCategoryId" value="@records.VideoCategoryId" type="hidden" />
                                 <input id="VideoStatus" name="VideoStatus" value="@records.VideoStatus" type="hidden" />
-                                <input id="PublishStatus" name="PublishStatus" value="@records.PublishStatus" type="hidden" />
+                                <input id="PublishStatus" name="PublishStatus" value="@records.PublishStatus" type="checkbox" hidden />
                                 <input id="IsDeleted" name="IsDeleted" value="@records.IsDeleted" type="hidden" />
 
 
                                 <label>Video Title :  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</label>
                                 <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title" value="@records.Title">
                                 <br /><br />
-                                <label>Video Description</label>
-                                <textarea class="form-control mb-2 mr-sm-2" id="txt_desc" placeholder="Description"></textarea>
+                                      <label>Video Description :  @Html.ValidationMessage("Decription", "", new { @class = "text-danger" })</label>
+                                <textarea class="form-control mb-2 mr-sm-2" id="txt_desc" placeholder="Description" name="Decription">@records.Decription</textarea>
+                                <div id="temp">
+                                    <label id="lbl_mp4videoFile">
+                                        MP4 Video File
+                                    </label>
 
-                                <label id="lbl_mp4videoFile">
-                                    MP4 Video File
-                                </label>
-                                <input class="form-control" type='file' name="UploadVideoPath" id="mp4videoFile" />
+                                    <input class="form-control" type='file' name="UploadVideoPath" id="mp4videoFile" />
 
-                                <br />
-
+                                    <br />
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label id="lbl">
@@ -105,26 +107,41 @@
                                 @if (records.VideoTypeId == 1)
                                 {
                                     <label class="btn btn-secondary">
-                                        <input type="radio" name="options" id="option1" autocomplete="off" onclick="check(this.id)" value=true checked> Live
+                                        <input type="radio" name="VideoTypeId" id="option1" autocomplete="off" onclick="check(this.id)" value=true checked> Live
                                     </label>
                                     <label class="btn btn-secondary">
-                                        <input type="radio" name="options" id="option2" autocomplete="off" onclick="check(this.id)" value=false> Pre-Recorded
+                                        <input type="radio" name="VideoTypeId" id="option2" autocomplete="off" onclick="check(this.id)" value=false> Pre-Recorded
                                     </label><br /><br /><br />
                                 }
                                 else
                                 {
                                     <label class="btn btn-secondary">
-                                        <input type="radio" name="options" id="option1" autocomplete="off" onclick="check(this.id)" value=false> Live
+                                        <input type="radio" name="VideoTypeId" id="option1" autocomplete="off" onclick="check(this.id)" value=false> Live
                                     </label>
                                     <label class="btn btn-secondary">
-                                        <input type="radio" name="options" id="option2" autocomplete="off" onclick="check(this.id)" value=true checked> Pre-Recorded
+                                        <input type="radio" name="VideoTypeId" id="option2" autocomplete="off" onclick="check(this.id)" value=true checked> Pre-Recorded
                                     </label><br /><br /><br />
                                 }
-                                <label>Select Video Player:  @Html.ValidationMessage("videoTypeId", "", new { @class = "text-danger" })</label>
-                                <select class="form-select" aria-label="Default select example" name="videoTypeId" id="selectVideo" required>
-                                    <option value="1" selected>One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <label>Select Video Player:  @Html.ValidationMessage("PlayerTypeId", "", new { @class = "text-danger" })</label>
+                                <select class="form-select" aria-label="Default select example" name="PlayerTypeId" id="selectVideo" required>
+                                    @if (records.PlayerTypeId == 1)
+                                    {
+                                        <option value="1" selected>One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    }
+                                    else if (records.PlayerTypeId == 2)
+                                    {
+                                        <option value="1">One</option>
+                                        <option value="2" selected>Two</option>
+                                        <option value="3">Three</option>
+                                    }
+                                    else if (records.PlayerTypeId == 3)
+                                    {
+                                        <option value="1" >One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3" selected>Three</option>
+                                    }
                                 </select><br />
 
                                 <label>MP4 Video URL :  @Html.ValidationMessage("VideoUrl", "", new { @class = "text-danger" })</label>

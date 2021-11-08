@@ -40,6 +40,7 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         public bool? PublishStatus { get; set; }
         public long CreatedBy { get; set; }
 
+        public DateTime CreatedOn { get; set; }
         [Required(ErrorMessage = "Description is required")]
         [MinLength(10, ErrorMessage = "Description Length Cannot be Less than 10 characters")]
         public string Decription { get; set; }

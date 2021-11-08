@@ -72,7 +72,10 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult AddVideoView(AddVideo model)
         {
             model.CreatedBy= long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-            
+            model.PublishStatus = false;
+            model.VideoCategoryId = 0;
+            model.VideoStatus = 0;
+            model.CreatedOn = DateTime.Now;
             if (ModelState.IsValid)
             {
                 var createCommand = _mapper.Map<VideoCreateCommand>(model);
@@ -213,6 +216,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult EditVideoView([FromRoute] long id, AddVideo editVideo)
         {
+            editVideo.PublishStatus = false;
             //editCreator.CountryId = 1;
             if (ModelState.IsValid)
             {
@@ -235,6 +239,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     string video = VideoFile(editVideo);
                     updateVideo.UploadVideoPath = video;
                 }
+                
 
                 var isupdated = _video.UpdateVideoDetail(updateVideo);
                 return RedirectToAction("VideoTable");

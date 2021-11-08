@@ -108,10 +108,10 @@
 
                                         <label>Video Type</label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="options" id="option1" autocomplete="off" onclick="check('option1')" value="1"> Live
-                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input type="radio" name="VideoTypeId" id="option1" autocomplete="off" onclick="check('option1')" value="1"> Live
+                                        </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="options" id="option2" autocomplete="off" onclick="check('option2')" value="2" checked> Pre-Recorded
+                                            <input type="radio" name="VideoTypeId" id="option2" autocomplete="off" onclick="check('option2')" value="2" checked> Pre-Recorded
                                         </label><br /><br /><br />
 
                                         <label>Select Video Player:  @Html.ValidationMessage("PlayerTypeId", "", new { @class = "text-danger" })</label>
