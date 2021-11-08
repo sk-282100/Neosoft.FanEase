@@ -27,12 +27,29 @@
 <div class="container-fluid">
 
     <div class="row" style="background-color: #F5F5F5;">
-        
+        <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
+            <ul class="nav flex-column flex-nowrap overflow-hidden">
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" href="~/Creator/Index" id="sidetext" style="color:white"><i class="fa fa-home" style="color:white"></i>  Dashboard</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" id="sidetext" style="background-color: #F5F5F5;width:400px;color:black;"><i class="bi-camera-video-fill" style="color:black"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:black"> Video</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" id="sidetext" style="color:white"><i class="fas fa-rocket" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Campaigns</span></a></li>
+                <li class="nav-item" >
+                    <a class="nav-link text-truncate" id="sidetext" href="~/Creator/AddAsset" style="color:white"> <i class="bi bi-youtube" style="color:white"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: white;"> Media</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Template</span></a></li>
+            </ul>
+        </div>
+
         <div class="col pt-2">
             <br /><br />
             <div class="row header">
-                <h3 style="text-align: left; margin-left: 15px; color: #56baed;">Videos</h3>
-                <button style="margin-left: auto; margin-right: 5px; margin-bottom: 5px; width: 260px; height: 50px; background-color: #56baed; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
+                <div class="col-md-6">
+                    <p style="text-align: left; margin-left: 15px; color: #56baed;font-size:28px;">Video List</p>
+                </div>
+                <div class="col-md-6">
+                    <button style="margin-left: auto; margin-right: 5px; margin-bottom: 5px; width: 260px; height: 50px; background-color: #56baed; color: white; float: right;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
+                </div>
             </div>
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
@@ -43,50 +60,47 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Video Title</th>
-                            <th class="no-sort">Video Type</th>
-                            <th>Player Type</th>
-                            <th>Video URL</th>
+
                             <th>Upload Video Path</th>
-                            <th>Video Category</th>
-                            <th class="no-sort">Created By</th>
+
+
                             <th class="no-sort">Created On</th>
                             <th>Action</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var record in records)
                         {
-                        <tr>
-                            <td>@record.VideoId</td>
-                            <td>@record.VideoImage.ToString()</td>
-                            <td>@record.StartDate.ToString()</td>
-                            <td>@record.EndDate.ToString()</td>
-                            <td>@record.Title</td>
-                            <td>@record.VideoTypeId</td>
-                            <td>@record.PlayerTypeId</td>
-                            <td>@record.VideoUrl</td>
-                            <td>@record.UploadVideoPath</td>
-                            <td>@record.VideoCategoryId</td>
-                            <td>@record.CreatedBy</td>
-                            <td>@record.CreatedOn</td>
-                            <td>
-                                <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>@record.VideoId</td>
+                                <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height:50px;width:50px;" /></td>
+                                <td>@record.StartDate.ToString()</td>
+                                <td>@record.EndDate.ToString()</td>
+                                <td>@record.Title</td>
+
+                                <td>@record.UploadVideoPath</td>
+
+
+                                <td>@record.CreatedOn</td>
+                                <td>
+                                    <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
             </div>
-            <script>
-                $(document).ready(function () {
-                    $('#myTable').dataTable({
-                        "columnDefs": [{ targets: 'no-sort', orderable: false }]
-                    });
-                    console.log(1);
-                });
-            </script>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').dataTable({
+                "columnDefs": [{ targets: 'no-sort', orderable: false }]
+            });
+            console.log(1);
+        });
+    </script>
 </div>
+  

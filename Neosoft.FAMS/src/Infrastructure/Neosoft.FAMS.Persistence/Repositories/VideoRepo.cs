@@ -25,8 +25,8 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public async Task<List<VideoDetail>> GetCreatedByIdAsync(long id)
         {
-            return await _dbContext.VideoDetails.Where(p => p.CreatedBy == id).ToListAsync();
-
+            var listofVideos = await _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted==false).ToListAsync();
+            return listofVideos;
         }
     }
 }
