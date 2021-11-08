@@ -63,6 +63,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return Json(_common.GetCityList(id));
 
         }
+       
         public IActionResult CreatorRegisteration()
         {
             ViewData["isInsert"] = false;
@@ -72,8 +73,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public async  Task<IActionResult> CreatorRegisteration(CreatorRegisteration registeration)
         {
             registeration.CreatedOn = DateTime.Now;
-            registeration.CityId = 1;
-            registeration.CountryId = 1;
             registeration.CreatedBy = long.Parse(HttpContext.Session.GetString("LoginId"));
             if (ModelState.IsValid)
             {
@@ -91,6 +90,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 long id = await _creator.SaveCreatorDetail(updateCreator);
                 if (id > 0)
                     ViewData["isInsert"] = true;
+                ModelState.Clear();
                 return View();
             }
             ViewData["isInsert"] = false;

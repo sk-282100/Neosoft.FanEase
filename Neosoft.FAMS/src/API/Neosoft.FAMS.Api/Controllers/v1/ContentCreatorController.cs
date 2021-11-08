@@ -63,9 +63,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             var creatorQuery = new GetContentCreatorByIdQuery { creatorId = id };
             var data = await _mediator.Send(creatorQuery);
-            if(data!=null)
-                return Ok(data);
-            return BadRequest();
+            return Ok(data);
         }
         /// <summary>
         /// Author:Aman Sharma, Sana Haju <br></br>
@@ -109,10 +107,8 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             var Email = username.Split('?');
             var creatorQuery = new GetCreatorByEmailQuery { Username = Email[0] };
-            var data = await _mediator.Send(creatorQuery);
-            if (data != null)
-                return Ok(data);
-            return BadRequest();
+            var data = await _mediator.Send(creatorQuery); 
+            return Ok(data);
         }
 
     }

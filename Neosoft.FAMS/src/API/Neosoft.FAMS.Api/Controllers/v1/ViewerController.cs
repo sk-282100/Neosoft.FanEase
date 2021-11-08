@@ -101,9 +101,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var Email = username.Split('?');
             var viewerQuery = new GetViewerByEmailQuery { Username = Email[0] };
             var data = await _mediator.Send(viewerQuery);
-            if (data != null)
-                return Ok(data);
-            return BadRequest();
+            return Ok(data);
         }
     }
 }

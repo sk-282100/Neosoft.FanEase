@@ -5,7 +5,7 @@
         reader.onload = function (e) {
             $('#thumbnail').attr('src', e.target.result)
                 .width(150)
-                .height(200);
+                .height(100);
         };
         reader.readAsDataURL(input.files[0]);
     }

@@ -66,17 +66,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult AddVideoView()
         {
             ViewData["isInsert"] = false;
-            ViewData["CreatorId"] = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
             return View();
         }
         [HttpPost]
         public IActionResult AddVideoView(AddVideo model)
         {
+            model.CreatedBy= long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
             
-            DateTime StartDate = (DateTime)model.StartDate;
-            DateTime EndDate = (DateTime)model.EndDate;
-            long CreatedBy = (long)model.CreatedBy;
-            string Decription = (string)model.Decription;
             if (ModelState.IsValid)
             {
                 var createCommand = _mapper.Map<VideoCreateCommand>(model);
