@@ -63,6 +63,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
             {
                 viewerRegisteration.CityId = 1;
                 viewerRegisteration.CountryId = 2;
+                var isEmailPresent = _viewer.GetViewerByEmail(viewerRegisteration.EmailId);
+                if (isEmailPresent != null)
+                {
+                    ViewData["isInsert"] = false;
+                    ModelState.AddModelError(" ", "Email Id already Present");
+                    return View();
+                }
+
                 var createViewer = _mapper.Map<ViewerCreateCommand>(viewerRegisteration);
                 var result = await _viewer.SaveViewer(createViewer);
                 if (result > 0)

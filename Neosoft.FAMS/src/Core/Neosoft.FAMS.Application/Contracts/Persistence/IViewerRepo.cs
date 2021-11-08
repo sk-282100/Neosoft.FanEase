@@ -10,5 +10,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     {
         Task<ViewerDetail> GetByIdAsync(long id);
         Task<Login> AddLoginDetailAsync(string emailId, string password);
+        Task<ViewerDetail> GetByEmailAsync(string username);
     }
 }
