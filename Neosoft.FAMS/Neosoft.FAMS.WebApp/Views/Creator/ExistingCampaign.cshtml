@@ -8,23 +8,8 @@
 
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
+    <link href="~/css/Creator/ExistingCampaign.css" rel="stylesheet" />
     <script src="~/js/AddVideo.js"></script>
-
-
-    <style>
-        table,
-        thead,
-        tr,
-        tbody,
-        th,
-        td {
-            text-align: center;
-        }
-
-        .table td {
-            text-align: center;
-        }
-    </style>
 </head>
 
 <div class="container-fluid">
@@ -40,28 +25,18 @@
             </ul>
         </div>
         <div class="col pt-2">
-            <br /><br />
-            <div id="try" style="display:flex">
-                <div>
-                    <a href="~/Creator/AddCampaignView"><label onclick="newCampaign()">Create New Campaign</label></a>&emsp;&emsp;
-                    <a><label style="text-decoration:underline; color: dodgerblue ">Select Existing Campaign</label></a>
-                </div>
-
+            <h3>Select Existing Campaign</h3>
+            <div class="row header" style="float: right;">
+                <button type="button" class="btn add-new btnAddNewVideo" onclick="window.location = '@Url.Action("AddCampaignView", "Creator")'"><i class="fa fa-plus"></i> Create New Campaign</button>
             </div>
-            <div id="existingCampaign">
-                <div class="col pt-2" id="existingCamp" style="display:none">
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="txt_campaignName" placeholder="Search">
-                    <input type="button" value="Create New Campaign">
-                </div>
-            </div>
-            <div style="margin-top: 20px;">
+            <div style="margin-top: 80px;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
-                    <thead style="background-color: #56baed;color:white;">
+                    <thead style="background-color: #56baed; color: white;">
                     <tr>
-                        <th>Campaign ID</th>
-                        <th>Campaign Name</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
+                    <th>Campaign ID</th>
+                    <th>Campaign Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                     </thead>
                     <tbody>
                     @foreach (var record in records)

@@ -16,11 +16,13 @@
     <link rel="stylesheet" href="~/css/temp.css" />
     <script src="~/js/AddVideo.js"></script>
     <link rel="stylesheet" href="~/css/StepBar.css" />
+    <link href="~/css/Creator/AddCampaignView.css" rel="stylesheet" />
     <script src="~/js/StepBar.js"></script>
     <style>
         label span {
             font-size: 12px;
         }
+
         #deleteTag:hover {
             color: #56baed;
             cursor: pointer;
@@ -48,7 +50,7 @@
                     <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "ExistingCampaign", "Creator")'">Select Existing Campaign</button>
                 </div>
                 <div style="margin-left: auto; margin-right: 0;">
-                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>&emsp;&emsp;
+                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>
                     <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
                 </div>
             </div>
@@ -111,8 +113,8 @@
                         </button>
                     </div>
                 }
-                <div style="margin-top:20px;">
-                    <table id="myTable" class="table table-bordered table-sm table-hover">
+                <div style="margin-top:40px;">
+                    <table id="myTable" class="table table-sm table-hover">
                         <thead style="background-color: #56baed;color:white;">
                         <tr>
                             <th class="no-sort">Thumbnail Image</th>

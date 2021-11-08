@@ -7,21 +7,8 @@
 
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
+    <link href="~/css/Creator/SelectAsset.css" rel="stylesheet" />
     <script src="~/js/AddVideo.js"></script>
-    <style>
-        table,
-        thead,
-        tr,
-        tbody,
-        th,
-        td {
-            text-align: center;
-        }
-
-        .table td {
-            text-align: center;
-        }
-    </style>
 </head>
 
 <div class="container-fluid">
@@ -37,12 +24,11 @@
             </ul>
         </div>
         <div class="col pt-2">
-            <br /><br />
-            <div class="row header" style="text-align: left; color: #56baed">
+            <div class="row header">
                 <h3>Select Existing Assets</h3>
             </div>
             <div style="margin-top:20px;">
-                <table id="myTable" class="table table-bordered table-sm table-hover">
+                <table id="myTable" class="table table-sm table-hover">
                     <thead style="background-color: #56baed;color:white;">
                         <tr>
                             <th>Asset ID</th>
@@ -69,7 +55,7 @@
                     </tbody>
                 </table>
             </div>
-            <div style="float:right;">
+            <div style="float:right; margin-top: 10px;">
                 <button class="btn btn-secondary">Previous</button>
                 <button class="btn btn-primary">Proceed</button>
             </div>
