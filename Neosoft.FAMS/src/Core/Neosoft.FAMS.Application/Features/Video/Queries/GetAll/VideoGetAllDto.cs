@@ -21,5 +21,6 @@ namespace Neosoft.FAMS.Application.Features.Video.Queries.GetAll
         public bool? IsDeleted { get; set; }
         public short? VideoStatus { get; set; }
         public bool? PublishStatus { get; set; }
+        public string Decription { get; set; }
     }
 }

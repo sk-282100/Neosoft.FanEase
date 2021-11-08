@@ -56,7 +56,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public ActionResult VideoTable()
         {
-            var data = _video.VideosCreatedByContentCreator(2);
+            var id = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+            var data = _video.VideosCreatedByContentCreator(id);
             ViewData["data"] = data;
             return View();
         }
@@ -65,23 +66,28 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult AddVideoView()
         {
             ViewData["isInsert"] = false;
+            ViewData["CreatorId"] = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
             return View();
         }
         [HttpPost]
         public IActionResult AddVideoView(AddVideo model)
         {
+            
             DateTime StartDate = (DateTime)model.StartDate;
             DateTime EndDate = (DateTime)model.EndDate;
+            long CreatedBy = (long)model.CreatedBy;
+            string Decription = (string)model.Decription;
             if (ModelState.IsValid)
             {
                 var createCommand = _mapper.Map<VideoCreateCommand>(model);
                 createCommand.VideoImage = UniqueName(model.VideoImage);
                 createCommand.UploadVideoPath = UniqueName(model.UploadVideoPath);
-
+                var id = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
                 var VideoId = _video.CreateVideo(createCommand);
                 if (VideoId != null)
                 {
                     ViewData["isInsert"] = true;
+                    ViewData["data"] = id;
                 }
                 return RedirectToAction("AddCampaignView", "Creator");
             }

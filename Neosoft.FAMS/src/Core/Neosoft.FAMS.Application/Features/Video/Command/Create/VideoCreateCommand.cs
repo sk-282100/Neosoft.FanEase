@@ -17,9 +17,8 @@ namespace Neosoft.FAMS.Application.Features.Video.Command.Create
         public string VideoUrl { get; set; }
         public string UploadVideoPath { get; set; }
         public short? VideoCategoryId { get; set; }
-        
-       
-        
+        public long CreatedBy { get; set; }
+        public string Decription { get; set; }
         public short? VideoStatus { get; set; }
         public bool? PublishStatus { get; set; }
     }
