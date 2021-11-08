@@ -10,6 +10,7 @@ using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetById;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Update;
+using Neosoft.FAMS.Application.Features.Viewer.Queries.GetByEmail;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -91,6 +92,18 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             var data = await _mediator.Send(updateViewer);
             return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("getViewerByEmail")]
+        public async Task<IActionResult> GetByEmail([FromQuery] string username)
+        {
+            var Email = username.Split('?');
+            var viewerQuery = new GetViewerByEmailQuery { Username = Email[0] };
+            var data = await _mediator.Send(viewerQuery);
+            if (data != null)
+                return Ok(data);
+            return BadRequest();
         }
     }
 }

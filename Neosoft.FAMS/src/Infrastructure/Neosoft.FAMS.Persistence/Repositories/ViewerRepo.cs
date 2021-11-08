@@ -33,5 +33,10 @@ namespace Neosoft.FAMS.Persistence.Repositories
             return await _dbContext.ViewerDetails.FirstOrDefaultAsync(p => p.ViewerId == id);
 
         }
+
+        public async Task<ViewerDetail> GetByEmailAsync(string username)
+        {
+            return await _dbContext.ViewerDetails.FirstOrDefaultAsync(p => p.EmailId == username);
+        }
     }
 }

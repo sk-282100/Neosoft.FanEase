@@ -11,5 +11,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
     {
         public List<ViewerDto> GetAllViewer();
         Task<long> SaveViewer(ViewerCreateCommand viewerCreateCommand);
+        public ViewerDto GetViewerByEmail(string username);
     }
 }

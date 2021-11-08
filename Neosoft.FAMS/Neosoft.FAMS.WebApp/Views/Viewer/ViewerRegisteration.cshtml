@@ -12,12 +12,16 @@
         label span {
             font-size: 12px;
         }
+        .help-block ul {
+            list-style-type: none;
+        }
     </style>
 </head>
 <div class="wrapper">
     <div id="formContent">
         <!-- Tabs Titles -->
         <h2 class="active"> Sign In </h2>
+        <div asp-validation-summary="All" class="text text-danger help-block"></div>
         @if (@isInserted)
         {
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -90,9 +94,10 @@
 
                     <label id="lbl">
                         Email<sup style="color:red">*</sup>
+                        <span id="emailSpan" class="text-danger"></span>
                         @Html.ValidationMessage("EmailId", "", new { @class = "text-danger " })
                     </label>
-                    <input  asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
+                    <input id="viewerEmailId" asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
 
                 </div>
             </div>
@@ -103,4 +108,7 @@
 
     </div>
 </div>
+@section Scripts{
+    <script src="~/js/ViewerEmailCheck.js"></script>
 
+}

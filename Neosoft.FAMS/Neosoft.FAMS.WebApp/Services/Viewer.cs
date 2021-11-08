@@ -75,5 +75,19 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return _id;
         }
+
+        public ViewerDto GetViewerByEmail(string username)
+        {
+            var result = new ViewerDto();
+            var uri = API.Viewer.GetViewerByEmail(_baseUrl, _path, username);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<ViewerDto>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
     }
 }
