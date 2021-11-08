@@ -26,5 +26,10 @@ namespace Neosoft.FAMS.Persistence.Repositories
         public async Task<List<City>> GetCityListByStateId(int stateId) {
             return await _dbContext.Cities.Where(x => x.StateId== stateId).ToListAsync();
         }
+
+        public async Task<Country> GetCountryById(long countryId)
+        {
+            return await _dbContext.Countries.Where(p => p.CountryId == countryId).FirstOrDefaultAsync();
+        }
     }
 }

@@ -31,6 +31,20 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+
+        public long GetPhoneCode(int countryId)
+        {
+            long result = 0;
+            var uri = API.Common.GetPhoneCodeUrl(_baseUrl,_path,countryId);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var deserializedata = JsonConvert.DeserializeObject<long>(jsonDataStatus);
+                return deserializedata;
+            }
+            return result;
+        }
         public List<ListViewModel> GetCountryList()
         {
             IEnumerable<ListViewModel> result=null;

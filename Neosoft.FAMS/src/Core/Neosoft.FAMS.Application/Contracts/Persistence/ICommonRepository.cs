@@ -10,5 +10,7 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     {
         Task<List<States>> GetStateListByCountryId(int countryId);
         Task<List<City>> GetCityListByStateId(int stateId);
+        Task<Country> GetCountryById(long countryId);
+
     }
 }

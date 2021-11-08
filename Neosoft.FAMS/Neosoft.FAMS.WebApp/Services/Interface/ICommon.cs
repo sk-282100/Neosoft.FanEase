@@ -12,6 +12,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         List<ListViewModel> GetCountryList();
         List<ListViewModel> GetStateList(int CountryId);
         List<ListViewModel> GetCityList(int StateId);
+        long GetPhoneCode(int countryId);
 
     }
 }

@@ -44,7 +44,6 @@
                 <table id="myTable" class="table table-sm table-hover">
                     <thead style="background-color: #56baed;color:white;">
                         <tr>
-                            <th>Viewer ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email ID</th>
@@ -56,7 +55,6 @@
                         @foreach (var record in records)
                         {
                             <tr>
-                                <td>@record.ViewerId</td>
                                 <td>@record.FirstName.ToString()</td>
                                 <td>@record.LastName.ToString()</td>
                                 <td>@record.EmailId</td>

@@ -1,11 +1,12 @@
 ﻿@using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+@using Neosoft.FAMS.WebApp.Services;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    ViewData["Title"] = "ExistingCampaign";
-    var records = (List<ContentCreatorDto>)ViewData["data"];
-    bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
-
+ ViewData["Title"] = "ExistingCampaign";
+ var records = (List<ContentCreatorDto>)ViewData["data"];
+ bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
+    Common _common=new Common();
 }
 
 <head>
@@ -24,7 +25,7 @@
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_SideBar")
         <div class="col pt-2">
-            
+
             <h3>Content Creators</h3>
             <div class="row header" style="float: right;">
                 <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location = '@Url.Action("CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
@@ -43,46 +44,55 @@
             <div style="margin-top: 20px;">
                 <table id="myTable" class="table table-sm table-hover table-responsive">
                     <thead style="background-color: #56baed; color: white; border: 1px solid gray;">
-                    <tr class="heading">
-                        <th>Sr No.</th>
-                        <th>Profile</th>
-                        <th>Name</th>
-                        <th>Email ID</th>
-                        <th>Contact</th>
-                        <th>Created On</th>
-                        <th class="no-sort">Status</th>
-                        <th class="no-sort">Action</th>
-                    </tr>
+                        <tr class="heading">
+                            <th>Profile</th>
+                            <th>Name</th>
+                            <th>Email ID</th>
+                            <th>Phone Code</th>
+                            <th>Mobile Number</th>
+                            <th>Created On</th>
+                            <th class="no-sort">Status</th>
+                            <th class="no-sort">Action</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @{ var i = 1;}
-                    @foreach (var record in records)
-                    {
-                        if (!@record.isDeleted)
+                        @foreach (var record in records)
                         {
-                            <tr>
-                                <td>@i</td>
-                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
-                                <td>@record.CreatorName.ToString()</td>
-                                <td>@record.EmailId</td>
-                                <td>@record.MobileNumber</td>
-                                <td>@record.CreatedOn</td>
-                                @if (record.Status == true)
-                                {
-                                    <td style="color: limegreen">Active</td>
-                                }
-                                else
-                                {
-                                    <td style="color: red">Deactive</td>
-                                }
-                                <td>
-                                    <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                </td>
-                            </tr>
-                            i++;
+                            if (!@record.isDeleted)
+                            {
+                        <tr>
+                            @if (record.ProfilePhotoPath != null)
+                            {
+                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
+                            }
+                            else
+                            {
+                                <td><img src="/DefaultPhotos/default_profile.png" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
+                            }
+                            <td>@record.CreatorName.ToString()</td>
+                            <td>@record.EmailId</td>
+                            @{
+                                int id = (int)@record.CountryId;
+                                var phoneCode = _common.GetPhoneCode(id);
+                            }
+                            <td>+(@phoneCode)</td>
+                            <td>@record.MobileNumber</td>
+                            <td>@record.CreatedOn</td>
+                            @if (record.Status == true)
+                            {
+                                <td style="color: limegreen">Active</td>
+                            }
+                            else
+                            {
+                                <td style="color: red">Deactive</td>
+                            }
+                            <td>
+                                <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                            </td>
+                        </tr>
+                            }
                         }
-                    }
                     </tbody>
                 </table>
                 @* Popup Modal *@
