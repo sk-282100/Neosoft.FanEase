@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="~/css/temp.css" />
     <link href="~/css/datatablestyle.css" rel="stylesheet" />
     <script src="~/js/AddVideo.js"></script>
-
+    <style>
+        #deleteTag:hover {
+            color: #56baed;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <div class="container-fluid">
 
@@ -51,27 +56,41 @@
                     <tbody>
                         @foreach (var record in records)
                         {
-                        <tr>
-                            @if (@record.VideoImage != null)
-                            {
-                                <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height:50px;width:50px;" /></td>
-                            }
-                            else
-                            {
-                                <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" /></td>
-                            }
-                            <td>@record.StartDate.ToString()</td>
-                            <td>@record.EndDate.ToString()</td>
-                            <td>@record.Title</td>
-                            <td>@record.CreatedOn</td>
-                            <td>
-                                <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            </td>
-                        </tr>
+                            <tr>
+                                @if (@record.VideoImage != null)
+                                {
+                                    <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height:50px;width:50px;" /></td>
+                                }
+                                else
+                                {
+                                    <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" /></td>
+                                }
+                                <td>@record.StartDate.ToString()</td>
+                                <td>@record.EndDate.ToString()</td>
+                                <td>@record.Title</td>
+                                <td>@record.CreatedOn</td>
+                                <td>
+                                    <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                    <a class="delete" title="Delete" onClick="deleteCreator('DeleteVideo/@record.VideoId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
+
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body" style="height: 60px;">
+                                Are you sure you want to Delete this record?
+                            </div>
+                            <div class="modal-footer">
+                                <a href="VideoTable" class="btn btn-secondary">No</a>
+                                <a id="hrefElement" class="btn btn-primary">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -82,6 +101,14 @@
             });
             console.log(1);
         });
+    </script>
+    <script>
+        function deleteCreator(hrefLink) {
+            console.log(hrefLink);
+            var element = document.getElementById("hrefElement");
+            console.log(element);
+            element.href = hrefLink.toLocaleString();
+        }
     </script>
 </div>
   
