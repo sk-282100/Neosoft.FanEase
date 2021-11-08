@@ -7,7 +7,7 @@
 <head>
 
     <link rel="stylesheet" href="~/css/temp.css" />
-    <link href="~/css/Creator/VideoTable.css" rel="stylesheet" />
+    <link href="~/css/datatablestyle.css" rel="stylesheet" />
     <script src="~/js/AddVideo.js"></script>
 
 </head>
@@ -32,12 +32,12 @@
             <h3>Video List</h3>
             <div class="row header">
                 <div style="float: right;">
-                    <button style="float: right;margin-right: 5px; margin-bottom: 5px; width: 220px; height: 50px; background-color: #56baed; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
+                    <button style="float: right; margin-right: 5px; margin-bottom: 5px; width: 220px; height: 50px; background-color: #0F2557; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
                 </div>
             </div>
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-sm table-hover">
-                    <thead style="background-color: #56baed;color:white;">
+                    <thead style="background-color: #0F2557; color: white;">
                         <tr>
                             <th>Video ID</th>
                             <th class="no-sort">Thumbnail Image</th>

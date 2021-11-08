@@ -1,9 +1,25 @@
-﻿.dataTables_filter input {
+﻿#tbl {
+    margin-top: 100px;
+}
+
+.paging_simple_numbers {
+    color: white;
+}
+
+#myTable_previous {
+    color: white;
+}
+
+#myTable_next {
+    color: white;
+}
+
+.dataTables_filter input {
     width: 80%;
     height: 30px;
     box-sizing: border-box;
     box-shadow: gray 0.2em 0.2em 0.2em;
-    border: 2px solid #56baed;
+    border: 2px solid #0F2557;
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
@@ -16,15 +32,16 @@
     margin-top: 5px;
     border-radius: 8px;
     background: #56baed;
+    text-decoration-color: white;
     color: white;
 }
 
 h3 {
     text-align: left;
     margin-left: 10px;
-    color: #56baed;
+    color: #0F2557;
     font-family: Rockwell;
-    text-shadow: black 0.05em 0.05em 0.02em;
+    text-shadow: #56baed 0.05em 0.05em 0.02em;
 }
 
 table,
@@ -39,4 +56,8 @@ td {
 
 .table td {
     text-align: center;
+}
+
+table.table-hover tbody tr:hover {
+    background-color: #DEF2F9;
 }

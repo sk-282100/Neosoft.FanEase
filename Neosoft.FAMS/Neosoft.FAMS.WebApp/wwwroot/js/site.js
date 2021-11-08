@@ -5,6 +5,6 @@
 console.log(1);
 
 $(document).ready(function () {
-    $('#myTable').DataTable();
+    $('#myTable').dataTable();
 });
    

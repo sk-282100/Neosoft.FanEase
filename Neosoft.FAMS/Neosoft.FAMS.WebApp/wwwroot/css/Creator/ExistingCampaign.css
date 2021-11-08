@@ -1,52 +1,9 @@
-﻿.dataTables_filter input {
-    width: 80%;
-    height: 30px;
-    box-sizing: border-box;
-    box-shadow: gray 0.2em 0.2em 0.2em;
-    border: 2px solid #56baed;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-}
-
-.dataTables_wrapper .dataTables_paginate {
-    margin-top: 5px;
-    border-radius: 8px;
-    background: #56baed;
-    color: white;
-}
-
-h3 {
-    text-align: left;
-    margin-left: 5px;
-    color: #56baed;
-    font-family: Rockwell;
-    text-shadow: black 0.05em 0.05em 0.02em;
-}
-.btnAddNewVideo {
+﻿.btnAddNewVideo {
     margin-left: 5px;
     margin-right: 10px;
     margin-bottom: 5px;
     width: 280px;
     height: 50px;
-    background-color: #56baed;
+    background-color: #0F2557;
     color: white;
-}
-
-table,
-thead,
-tbody,
-th,
-td {
-    border-collapse: collapse;
-    border: 1px solid lightgrey;
-    text-align: center;
-}
-
-
-.table td {
-    text-align: center;
 }

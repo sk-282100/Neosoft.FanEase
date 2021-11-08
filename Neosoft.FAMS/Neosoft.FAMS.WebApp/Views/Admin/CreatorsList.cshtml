@@ -11,6 +11,8 @@
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <link href="~/css/Admin/CreatorList.css" rel="stylesheet" />
+    <link href="~/css/datatablestyle.css" rel="stylesheet" />
+
     <style>
         #deleteTag:hover {
             color: #56baed;
@@ -24,12 +26,10 @@
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_SideBar")
         <div class="col pt-2">
-            
             <h3>Content Creators</h3>
             <div class="row header" style="float: right;">
                 <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location = '@Url.Action("CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
                 <button type="button" class="btn add-new btnAddNewVideo" onclick="window.location = '@Url.Action("VideoTable", "Admin")'"><i class="fa fa-plus"></i> View Video List</button>
-
             </div>
             @if (@isDeleted)
             {
@@ -40,15 +40,15 @@
                     </button>
                 </div>
             }
-            <div style="margin-top: 20px;">
-                <table id="myTable" class="table table-sm table-hover table-responsive">
-                    <thead style="background-color: #56baed; color: white; border: 1px solid gray;">
-                    <tr class="heading">
+            <div id="tbl">
+                <table id="myTable" class="table table-sm table-hover">
+                    <thead style="background-color: #0F2557; color: white; ">
+                    <tr>
                         <th>Sr No.</th>
                         <th>Profile</th>
                         <th>Name</th>
                         <th>Email ID</th>
-                        <th>Contact</th>
+                        <th>Phone Number</th>
                         <th>Created On</th>
                         <th class="no-sort">Status</th>
                         <th class="no-sort">Action</th>
@@ -76,8 +76,8 @@
                                     <td style="color: red">Deactive</td>
                                 }
                                 <td>
-                                    <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                    <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                    <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i style="color: red" class="material-icons"></i></a>
                                 </td>
                             </tr>
                             i++;

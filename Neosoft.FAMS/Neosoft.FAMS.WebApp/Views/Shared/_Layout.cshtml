@@ -32,11 +32,6 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 @if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "1")
                 {
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-controller="Admin" asp-action="Index" style="color:white;">Dashboard</a>
-                        </li>
-                    </ul>
                     <div style="margin-left:auto;margin-right:5px;">
                         <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
                         <a asp-controller="Login" asp-action="Logout" style="background-color: whitesmoke; color: black; padding: 5px; border-radius: 5px; ">Log out</a>

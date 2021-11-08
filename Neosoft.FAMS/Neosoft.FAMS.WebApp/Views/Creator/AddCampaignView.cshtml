@@ -17,6 +17,7 @@
     <script src="~/js/AddVideo.js"></script>
     <link rel="stylesheet" href="~/css/StepBar.css" />
     <link href="~/css/Creator/AddCampaignView.css" rel="stylesheet" />
+    <link href="~/css/datatablestyle.css" rel="stylesheet" />
     <script src="~/js/StepBar.js"></script>
     <style>
         label span {
@@ -46,12 +47,12 @@
             <h3>Add New Campaign</h3><br /><br />
             <div id="try" style="display:flex">
                 <div>
-                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "AddCampaignView", "Creator")'">Create New Campaign</button>
-                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "ExistingCampaign", "Creator")'">Select Existing Campaign</button>
+                    <button type="button" class="btn" style="background-color: #0F2557; color: white;" onclick="window.location= '@Url.Action( "AddCampaignView", "Creator")'">Create New Campaign</button>
+                    <button type="button" class="btn" style="background-color: #0F2557; color: white;" onclick="window.location= '@Url.Action( "ExistingCampaign", "Creator")'">Select Existing Campaign</button>
                 </div>
                 <div style="margin-left: auto; margin-right: 0;">
-                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>
-                    <button type="button" class="btn" style="background-color: #56baed; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
+                    <button type="button" class="btn" style="background-color: #0F2557; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>
+                    <button type="button" class="btn" style="background-color: #0F2557; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
                 </div>
             </div>
             @if (@isInserted)
@@ -115,7 +116,7 @@
                 }
                 <div style="margin-top:40px;">
                     <table id="myTable" class="table table-sm table-hover">
-                        <thead style="background-color: #56baed;color:white;">
+                        <thead style="background-color: #0F2557; color: white; ">
                         <tr>
                             <th class="no-sort">Thumbnail Image</th>
                             <th>Content Type</th>
