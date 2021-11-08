@@ -42,9 +42,9 @@
                     </button>
                 </div>
             }
-            <div style="margin-top: 20px;">
-                <table id="myTable" class="table table-sm table-hover table-responsive">
-                    <thead style="background-color: #56baed; color: white; border: 1px solid gray;">
+            <div id="tbl">
+                <table id="myTable" class="table table-sm table-hover">
+                    <thead style="background-color: #0F2557; color: white">
                         <tr class="heading">
                             <th>Profile</th>
                             <th>Name</th>
@@ -88,8 +88,8 @@
                                 <td style="color: red">Deactive</td>
                             }
                             <td>
-                                <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
                             </td>
                         </tr>
                             }
