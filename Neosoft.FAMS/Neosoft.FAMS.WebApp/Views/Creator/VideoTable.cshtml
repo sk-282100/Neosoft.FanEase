@@ -22,14 +22,14 @@
         <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
             <ul class="nav flex-column flex-nowrap overflow-hidden">
                 <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Creator/Index" id="sidetext" style="color:white"><i class="fa fa-home" style="color:white"></i>  Dashboard</a>
+                    <a class="nav-link text-truncate" href="~/Creator/Index" style="color:black"><i class="fa fa-home" style="color: #52BAF1"></i>  Dashboard</a>
                 </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" id="sidetext" style="background-color: #F5F5F5;width:400px;color:black;"><i class="bi-camera-video-fill" style="color:black"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:black"> Video</span></a></li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" id="sidetext" style="color:white"><i class="fas fa-rocket" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Campaigns</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" style="background-color: #F5F5F5; width: 400px; color: #52BAF1;"><i class="bi-camera-video-fill" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black"> Video</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" id="sidetext" style="color:black"><i class="fas fa-rocket" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Campaigns</span></a></li>
                 <li class="nav-item" >
-                    <a class="nav-link text-truncate" id="sidetext" href="~/Creator/AddAsset" style="color:white"> <i class="bi bi-youtube" style="color:white"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: white;"> Media</span></a>
+                    <a class="nav-link text-truncate" href="~/Creator/AddAsset" style="color:black"> <i class="bi bi-youtube" style="color: #52BAF1"></i>   <span class="d-none d-sm-inline" style="color: black;"> Media</span></a>
                 </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Template</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="#" style="color:black"><i class="bi bi-ui-checks-grid" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Template</span></a></li>
             </ul>
         </div>
 
@@ -37,12 +37,12 @@
             <h3>Video List</h3>
             <div class="row header">
                 <div style="float: right;">
-                    <button style="float: right; margin-right: 5px; margin-bottom: 5px; width: 220px; height: 50px; background-color: #0F2557; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
+                    <button style="float: right; margin-right: 5px; margin-bottom: 5px; width: 220px; height: 50px; background-color: #C1C0C0; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
                 </div>
             </div>
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-sm table-hover">
-                    <thead style="background-color: #0F2557; color: white;">
+                    <thead>
                         <tr>
                             <th class="nosort">Thumbnail Image</th>
                             <th>Start Date</th>
@@ -94,17 +94,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#myTable').dataTable({
-                'aoColumnDefs': [{
-                        'bSortable': false,
-                        'aTargets': ['nosort']
-                    }]
-            });
-            console.log(1);
-        });
-    </script>
     <script>
         function deleteCreator(hrefLink) {
             console.log(hrefLink);
