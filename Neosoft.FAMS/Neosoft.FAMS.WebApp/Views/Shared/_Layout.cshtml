@@ -27,14 +27,14 @@
 
     <div id="head">
         <nav class="navbar navbar-expand-lg navbar-light " id="nav">
-            <a class="navbar-brand" style="background-color: #56baed;">FanEase</a>
+            <a id="logoText" class="navbar-brand">Fan<span id="logonext">Ease</span></a>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 @if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "1")
                 {
                     <div style="margin-left:auto;margin-right:5px;">
                         <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
-                        <a asp-controller="Login" asp-action="Logout" style="background-color: whitesmoke; color: black; padding: 5px; border-radius: 5px; ">Log out</a>
+                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 5px; "><i class="fa fa-sign-out" style="color: #83B6D1 "></i>Log out</a>
                     </div>
                 }
                 else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "2")
@@ -42,17 +42,17 @@
                     
                     <div style="margin-left:auto;margin-right:5px;">
                         <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
-                        <a asp-controller="Login" asp-action="Logout" style="background-color: whitesmoke; color: black; padding: 5px; border-radius: 5px; ">Log out</a>
+                        <a asp-controller="Login" asp-action="Logout" style="background-color: whitesmoke; color: dodgerblue; padding: 5px; border-radius: 5px; ">Log out</a>
                     </div>
                 }
                 else
                 {
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" asp-controller="Login" asp-action="Home" style="color:white;">Home</a>
+                            <a class="nav-link" asp-controller="Login" asp-action="Home">Home</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" asp-controller="Login" asp-action="Home" style="color:white;">About Us</a>
+                            <a class="nav-link" asp-controller="Login" asp-action="Home">About Us</a>
                         </li>
                     </ul>
                 }

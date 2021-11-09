@@ -12,7 +12,18 @@ body {
 }
 
 #nav {
-    background-color: #56baed;
+    background-color: white;
+    color: black;
+    border: 1px solid grey;
+    border-top: none;
+    box-shadow: 6px 5px 5px gray;
+}
+
+#logoText {
+    color: #52BAF1;
+}
+#logonext {
+    color: gray;
 }
 
 a {
@@ -179,13 +190,15 @@ input[type=text] {
 }
 
 #sidebar {
-    background-color: #56baed;
+    background-color: white;
     color: white;
-    border: 1px solid white;
+    border: 1px solid grey;
+    border-top: none;
+    box-shadow: 6px 5px 5px gray;
 }
 
 #navbarTogglerDemo03 {
-    color: white;
+    color: black;
 }
 
 
