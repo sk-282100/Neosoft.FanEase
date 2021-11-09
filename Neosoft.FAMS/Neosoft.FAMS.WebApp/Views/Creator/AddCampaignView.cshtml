@@ -36,11 +36,11 @@
     <div class="row" style="background-color: #F5F5F5;">
         <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
             <ul class="nav flex-column flex-nowrap overflow-hidden">
-                <li class="nav-item" width: 400px;"><a class="nav-link text-truncate" href="#" style="color:white"><i class="fa fa-home" style="color:white;"></i><span class="d-none d-sm-inline" id="sidetext" style="color: white;">  DashBoard</span></a> </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" id="sidetext" style="color:white"><i class="bi bi-camera-video-fill" style="color:white"></i>  Videos</a></li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" id="sidetext" style="background-color: #F5F5F5;width:400px;color:black;"><i class="fas fa-rocket" style="color:black"></i> <span class="d-none d-sm-inline" id="sidetext" style="color: black;">Campaigns</span></a></li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddAsset" id="sidetext" style="color:white"><i class="bi bi-youtube" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Media</span></a></li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Template</span></a></li>
+                <li class="nav-item" width: 400px;"><a class="nav-link text-truncate" href="#" style="color:black"><i class="fa fa-home" style="color: #52BAF1;"></i><span class="d-none d-sm-inline"  style="color: black;">  DashBoard</span></a> </li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable"  style="color:black"><i class="bi bi-camera-video-fill" style="color: #52BAF1"></i>  Videos</a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" style="background-color: #F5F5F5; width: 400px; color: #52BAF1;"><i class="fas fa-rocket" style="color: #52BAF1"></i> <span class="d-none d-sm-inline"  style="color: black;">Campaigns</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddAsset"  style="color:black"><i class="bi bi-youtube" style="color: #52BAF1"></i> <span class="d-none d-sm-inline"  style="color:black">Media</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="#"  style="color:black"><i class="bi bi-ui-checks-grid" style="color: #52BAF1"></i> <span class="d-none d-sm-inline"  style="color:black">Template</span></a></li>
             </ul>
         </div>
         <div class="col pt-2">
@@ -57,7 +57,7 @@
             </body>
             <div id="try" style="display:flex">
                 <div style="margin-left: 50px; color: red;">
-                    <a><label>Create New Campaign</label></a>&emsp;&emsp;
+                    <a><label style="text-decoration:underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
                     <a href="~/Creator/ExistingCampaign"><label>Select Existing Campaign</label></a>
 
                 </div>
@@ -88,8 +88,8 @@
                     </div>
                     <div class="form-group col-6">
                         <div style="float: right;">
-                            <button type="button" class="btn" style="background-color: #0F2557; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>
-                            <button type="button" class="btn" style="background-color: #0F2557; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
+                            <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>
+                            <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                 }
                 <div style="margin-top:40px;">
                     <table id="myTable" class="table table-sm table-hover">
-                        <thead style="background-color: #0F2557; color: white; ">
+                        <thead>
                             <tr>
                                 <th class="no-sort">Thumbnail Image</th>
                                 <th>Content Type</th>
