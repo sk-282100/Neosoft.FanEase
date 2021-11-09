@@ -1,10 +1,12 @@
 ﻿
 @using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
+@using Neosoft.FAMS.WebApp.Services
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     ViewData["Title"] = "ViewerList";
     var records = (List<ViewerDto>)ViewData["data"];
+    Common _common = new Common();
 }
 
 <head>
@@ -46,6 +48,7 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email ID</th>
+                            <th>Phone Code</th>
                             <th>Contact Number</th>
                             <th>Account Created Date</th>
                         </tr>
@@ -57,6 +60,11 @@
                                 <td>@record.FirstName.ToString()</td>
                                 <td>@record.LastName.ToString()</td>
                                 <td>@record.EmailId</td>
+                                @{
+                                    int id = (int)@record.CountryId;
+                                    var phoneCode = _common.GetPhoneCode(id);
+                                }
+                                <td>+(@phoneCode)</td>
                                 <td>@record.MobileNumber</td>
                                 <td>@record.CreatedOn</td>
                             </tr>

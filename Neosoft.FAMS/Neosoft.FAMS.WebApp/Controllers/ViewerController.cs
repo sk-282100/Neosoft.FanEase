@@ -61,8 +61,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                viewerRegisteration.CityId = 1;
-                viewerRegisteration.CountryId = 2;
                 var isEmailPresent = _viewer.GetViewerByEmail(viewerRegisteration.EmailId);
                 if (isEmailPresent != null)
                 {
