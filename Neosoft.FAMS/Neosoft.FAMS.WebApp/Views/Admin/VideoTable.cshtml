@@ -19,13 +19,11 @@
                 <table id="myTable" class="table table-bordered table-sm table-hover" style="width:100%">
                     <thead style="background-color: #56baed;color:white;">
                         <tr>
-                            <th>Video ID</th>
-                            <th class="no-sort">Thumbnail Image</th>
+                            <th class="nosort">Thumbnail Image</th>
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Video Title</th>
-                            <th>Upload Video Path</th>
-                            <th class="no-sort">Created By</th>
+                            <th class="nosort">Created By</th>
                            @* <th class="no-sort">Created On</th>
                             <th>Action</th>*@
                         </tr>
@@ -34,14 +32,10 @@
                         @foreach (var record in records)
                         {
                             <tr>
-                                <td>@record.VideoId</td>
                                 <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
                                 <td>@record.StartDate.ToString()</td>
                                 <td>@record.EndDate.ToString()</td>
                                 <td>@record.Title</td>
-
-
-                                <td>@record.UploadVideoPath</td>
 
                                 <td>@record.CreatedBy</td>
                                 @*                            <td>@record.CreatedOn</td>
