@@ -24,14 +24,14 @@
         <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
             <ul class="nav flex-column flex-nowrap overflow-hidden">
                 <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Creator/Index" id="sidetext" style="color:white"><i class="fa fa-home" style="color:white"></i>  Dashboard</a>
+                    <a class="nav-link text-truncate" href="~/Creator/Index" style="color:black"><i class="fa fa-home" style="color: #52BAF1"></i>  Dashboard</a>
                 </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" id="sidetext" style="background-color: #F5F5F5;width:400px;color:black;"><i class="bi-camera-video-fill" style="color:black"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:black"> Video</span></a></li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" id="sidetext" style="color:white"><i class="fas fa-rocket" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Campaigns</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" style="background-color: #F5F5F5; width: 400px; color: #52BAF1;"><i class="bi-camera-video-fill" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black"> Video</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" style="color:white"><i class="fas fa-rocket" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color: black">Campaigns</span></a></li>
                 <li class="nav-item">
-                    <a class="nav-link text-truncate" id="sidetext" href="~/Creator/AddAsset" style="color:white"> <i class="bi bi-youtube" style="color:white"></i>   <span class="d-none d-sm-inline" id="sidetext" style="color: white;"> Media</span></a>
+                    <a class="nav-link text-truncate" id="sidetext" href="~/Creator/AddAsset" style="color:white"> <i class="bi bi-youtube" style="color: #52BAF1"></i>   <span class="d-none d-sm-inline" style="color: black;"> Media</span></a>
                 </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color:white"></i> <span class="d-none d-sm-inline" id="sidetext" style="color:white">Template</span></a></li>
+                <li class="nav-item"><a class="nav-link text-truncate" href="#" id="sidetext" style="color:white"><i class="bi bi-ui-checks-grid" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color: black">Template</span></a></li>
             </ul>
         </div>
         <div class="col align-content-end">
@@ -128,7 +128,7 @@
                                 </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="button" class="btn btn-secondary" id="btnCancel">Cancel</button>
+                                    <button type="button" class="btn btn-secondary" id="btnCancel" onclick="window.location= '@Url.Action( "VideoTable", "Creator")'">Cancel</button>
                                 </div>
                                 <div class="col-md-6">
                                     <input type="submit" class="btn btn-primary" id="btnProceed" value="Proceed" />

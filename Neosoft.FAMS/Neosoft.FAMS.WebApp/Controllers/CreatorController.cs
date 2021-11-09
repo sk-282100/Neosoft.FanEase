@@ -21,6 +21,7 @@ using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -92,6 +93,16 @@ namespace Neosoft.FAMS.WebApp.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult DeleteVideo([FromRoute] long id)
+        {
+            var delete = new DeleteVideoByIdCommand { VideoId = id };
+            var isDeleted = _video.DeleteVideo(delete);
+            TempData["isDeleted"] = true;
+            return RedirectToAction("VideoTable");
+        }
+
         public IActionResult AddCampaignView()
         {
             var data = _asset.GetAllAsset();
