@@ -95,17 +95,6 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            $('#myTable').dataTable({
-                'aoColumnDefs': [{
-                        'bSortable': false,
-                        'aTargets': ['nosort']
-                    }]
-            });
-            console.log(1);
-        });
-    </script>
-    <script>
         function deleteCreator(hrefLink) {
             console.log(hrefLink);
             var element = document.getElementById("hrefElement");
