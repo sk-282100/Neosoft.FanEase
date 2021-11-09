@@ -5,6 +5,11 @@
 console.log(1);
 
 $(document).ready(function () {
-    $('#myTable').dataTable();
+    $('#myTable').dataTable({
+        'aoColumnDefs': [{
+            'bSortable': false,
+            'aTargets': ['nosort']
+        }]
+    });
 });
    

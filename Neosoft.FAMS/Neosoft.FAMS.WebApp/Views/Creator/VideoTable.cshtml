@@ -44,11 +44,11 @@
                 <table id="myTable" class="table table-sm table-hover">
                     <thead style="background-color: #0F2557; color: white;">
                         <tr>
-                            <th class="no-sort">Thumbnail Image</th>
+                            <th class="nosort">Thumbnail Image</th>
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Video Title</th>
-                            <th class="no-sort">Created On</th>
+                            <th class="nosort">Created On</th>
                             <th>Action</th>
 
                         </tr>
@@ -97,7 +97,10 @@
     <script>
         $(document).ready(function () {
             $('#myTable').dataTable({
-                "columnDefs": [{ targets: 'no-sort', orderable: false }]
+                'aoColumnDefs': [{
+                        'bSortable': false,
+                        'aTargets': ['nosort']
+                    }]
             });
             console.log(1);
         });
