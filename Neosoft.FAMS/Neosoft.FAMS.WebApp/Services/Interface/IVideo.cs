@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
 
 namespace Neosoft.FAMS.WebApp.Services.Interface
 {
@@ -17,5 +18,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
 
         Task<long> CreateVideo(VideoCreateCommand videocreateCommand);
         public Task<bool> UpdateVideoDetail(UpdateVideoByIdCommand update);
+        public Task<bool> DeleteVideo(DeleteVideoByIdCommand delete);
     }
 }
