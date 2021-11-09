@@ -56,7 +56,7 @@ namespace Neosoft.FAMS.WebApp.Helper
                 $"{baseUrl}{path}/{id}?api-version=1";
             public static string VideosByContentCreator(string baseUrl, string path, long id) =>
                 $"{baseUrl}{path}/{id}?api-version=1";
-
+            public static string DeleteVideo(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
         }
 
         public static class Campaign
