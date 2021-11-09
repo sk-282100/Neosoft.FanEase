@@ -3,15 +3,15 @@
 }
 
 .paging_simple_numbers {
-    color: white;
+    color: white !important;
 }
 
 #myTable_previous {
-    color: white;
+    color: white !important;
 }
 
 #myTable_next {
-    color: white;
+    color: white !important;
 }
 
 .dataTables_filter input {
