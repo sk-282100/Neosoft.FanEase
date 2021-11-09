@@ -150,7 +150,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
             TempData["AdvertisementId"] = result.Result;
 
             AddMappedData();
-            return View();
+
+            return View("AddAsset");
         }
 
 
