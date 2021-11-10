@@ -21,8 +21,7 @@ namespace Neosoft.FAMS.Application.Features.Video.Command.Create
             RuleFor(p => p.VideoImage)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
 
-            RuleFor(p => p.VideoUrl)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
+            
 
             RuleFor(p => p.UploadVideoPath)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
