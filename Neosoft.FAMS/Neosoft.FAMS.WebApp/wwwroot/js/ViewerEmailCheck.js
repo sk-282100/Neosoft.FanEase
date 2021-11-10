@@ -4,11 +4,11 @@ $(document).ready(function () {
         var emailId = $('#viewerEmailId').val();
 
         $.ajax({
-            url: "https://localhost:44330/api/Viewer/getViewerByEmail?username=" + emailId + "&api-version=1",
+            url: "/Viewer/checkForEmailExist?email=" + emailId,
             type: 'GET',
             success: function (data) {
                 console.log(data);
-                if (data != null) {
+                if (data) {
                     $('#emailSpan').text("Email already Exist");
                 } else {
                     $('#emailSpan').text("");

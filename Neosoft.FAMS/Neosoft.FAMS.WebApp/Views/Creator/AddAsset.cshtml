@@ -50,6 +50,7 @@
                 <div id="formContent">
                     <!-- Tabs Titles -->
                     <h1 class="active">ADD ASSET </h1>
+                    <div asp-validation-summary="All" class="text text-danger help-block"></div>
                     @if (@isInserted)
                     {
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -118,7 +119,7 @@
                                 <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
 
                                 <label id="lbl" for="formFileMultiple" class="form-label">Add Images <span id="errorFileSize" class="text-danger"></span></label>
-                                <input class="form-control" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                <input class="form-control" asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
                             </div>
                         </div>
                         <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddCampaignView", "Creator")'" value="Cancel">

@@ -24,6 +24,7 @@ namespace Neosoft.FAMS.WebApp.Helper
         public static class Viewer
         {
             public static string GetAllViewer(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+            public static string GetEmailUrl(string baseUri, string path,string email) => $"{baseUri}{path}/getViewerByEmail?username={email}?api-version=1";
             public static string SaveViewer(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetViewerByEmail(string baseUri, string path, string username) => $"{baseUri}{path}/getViewerByEmail?username={username}?api-version=1";
 

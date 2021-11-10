@@ -32,6 +32,22 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
 
+        public bool checkEmail(string email)
+        {
+            bool isPresent = false;
+            var uri = API.Viewer.GetEmailUrl(_baseUrl, _path, email);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<ViewerDto>(jsonDataStatus);
+                if (data != null)
+                    return true;
+            }
+            return false;
+
+        }
+
         /// <summary>
         /// Author: Kajal Padhiyar
         /// Date: 27-10-2021
