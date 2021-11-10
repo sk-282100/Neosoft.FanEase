@@ -21,4 +21,21 @@ $(document).ready(function () {
         });
     });
 
+   
 });
+
+function CheckFileSize(input) {
+    if (input.files && input.files[0]) {
+        var fileSize = $(input)[0].files[0].size;
+        if (fileSize <= 1000000) {
+            $('#errorFileSize').text("");
+        } else {
+            var $el = $('#formFileMultiple');
+            $el.wrap('<form>').closest('form').get(0).reset();
+            $el.unwrap();
+            $('#boldTag').text("");
+            $('#errorFileSize').text("Max File Size is 1 MB");
+
+        }
+    }
+}
