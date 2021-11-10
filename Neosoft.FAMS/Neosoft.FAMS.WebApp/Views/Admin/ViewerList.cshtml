@@ -66,7 +66,7 @@
                                 }
                                 <td>+(@phoneCode)</td>
                                 <td>@record.MobileNumber</td>
-                                <td>@record.CreatedOn</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.CreatedOn)</td>
                             </tr>
                         }
                     </tbody>

@@ -49,16 +49,6 @@
                     <div id="formContent">
                         <!-- Tabs Titles -->
                         <h1 class="active">ADD Video </h1>
-
-                       @* @if (@isInserted)
-                        {
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>Data Inserted!</strong> Added Successfully
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        }*@
                         <!-- Login Form -->
                         @using (Html.BeginForm("AddVideoView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
