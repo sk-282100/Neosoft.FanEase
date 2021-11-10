@@ -40,7 +40,11 @@ namespace Neosoft.FAMS.WebApp.Models.ViewerModel
         [Required(ErrorMessage = "Country is requires")]
         public int CountryId { get; set; }
 
-        
+        [Required(ErrorMessage = "State is required")]
+        [DisplayName("State")]
+        public int StateId { get; set; }
+
+
         [DisplayName("Email")]
         [Required(ErrorMessage = "Email is required")]
         [RegularExpression("^[A-Za-z0-9._%+-]*@[A-Za-z0-9.-]*\\.[A-Za-z0-9-]{2,}$",
