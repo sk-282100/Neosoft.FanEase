@@ -55,10 +55,12 @@
                             <div class="row">
                                 <div class="col">
                                     <label>Video Thumbnail Image :  </label>
+                                    <span id="errorFileSize" class="text-danger"></span>
                                 </div>
                                 <div class="col" style="padding-right:57px">
                                     <br />
                                     <input class="form-control" type="file" name="VideoImage" value="img.jpeg" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;" />
+                                    
                                 </div>
                                 <div class="col">
                                     <br />
@@ -76,8 +78,9 @@
                                     <div id="VideoFile">
                                         <label>
                                             MP4 Video File
+                                        </label>
                                             <input type='file' name="UploadVideoPath" id="mp4videoFile" />
-                                        </label> <br />
+                                         <br />
                                     </div>
                                     <div id="Url" style="display:none">
                                         <label >MP4 Video URL :</label>
