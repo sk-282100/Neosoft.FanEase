@@ -39,6 +39,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             loginQuery.Password = password;
             loginQuery.UserName = username;
             var data = await _mediator.Send(loginQuery);
+
             return Ok(data);
         }
 

@@ -73,7 +73,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 var result = await _viewer.SaveViewer(createViewer);
                 if (result > 0)
                     ViewData["isInsert"] = true;
-
+                ModelState.Clear();
                 return View();
             }
             ViewData["isInsert"] = false;

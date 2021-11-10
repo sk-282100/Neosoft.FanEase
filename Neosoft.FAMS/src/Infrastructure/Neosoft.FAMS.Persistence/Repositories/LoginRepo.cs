@@ -22,6 +22,13 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public async Task<Login> GetLoginDetail(string userName, string Password)
         {
+            var data = await _dbContext.ContentCreatorDetails.Where(e => e.EmailId == userName).FirstOrDefaultAsync();
+            if (data != null)
+            {
+                if (data.isDeleted == true)
+                    return null;
+            }
+        
             return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
         }
         public async Task<Login> CheckUsername(string userName)

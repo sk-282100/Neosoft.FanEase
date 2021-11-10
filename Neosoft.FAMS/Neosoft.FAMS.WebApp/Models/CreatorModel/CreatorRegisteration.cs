@@ -40,11 +40,11 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         [DisplayName("Email")]
         [Required(ErrorMessage ="Email is required")]
         [RegularExpression("^[A-Za-z0-9._%+-]*@[A-Za-z0-9.-]*\\.[A-Za-z0-9-]{2,}$",
-        ErrorMessage = "**Please Enter Valid Email.")]
+        ErrorMessage = "Please Enter Valid Email.")]
         public string EmailId { get; set; }
 
         [DisplayName("Mobile Number")]
-        [Required(ErrorMessage = "Mobile Number cannot be blank")]
+        [Required]
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Can contain only digits and length must be 10")]
         public string MobileNumber { get; set; }
 
