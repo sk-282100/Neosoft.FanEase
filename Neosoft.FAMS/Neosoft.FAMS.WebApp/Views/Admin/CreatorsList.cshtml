@@ -7,6 +7,7 @@
  var records = (List<ContentCreatorDto>)ViewData["data"];
  bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
     Common _common=new Common();
+
 }
 
 <head>
@@ -78,7 +79,7 @@
                             }
                             <td>+(@phoneCode)</td>
                             <td>@record.MobileNumber</td>
-                            <td>@record.CreatedOn</td>
+                        <td>@string.Format("{0:MMM dd, yyyy}", @record.CreatedOn)</td>
                             @if (record.Status == true)
                             {
                                 <td style="color: limegreen">Active</td>

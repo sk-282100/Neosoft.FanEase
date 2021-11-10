@@ -26,14 +26,14 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         public string Address2 { get; set; }
 
         [DisplayName("City")]
-        [Required(ErrorMessage ="City is requires")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Please select City")]
         public int CityId { get; set; }
 
-        [Required(ErrorMessage = "Country is required")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Please select Country")]
         [DisplayName("Country")]
         public int CountryId { get; set; }
 
-        [Required(ErrorMessage = "State is required")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Please select State")]
         [DisplayName("State")]
         public int StateId { get; set; }
 
@@ -43,8 +43,8 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         ErrorMessage = "Please Enter Valid Email.")]
         public string EmailId { get; set; }
 
-        [DisplayName("Mobile Number")]
-        [Required]
+        [DisplayName("Contact")]
+        [Required(ErrorMessage = "Contact is required")]
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Can contain only digits and length must be 10")]
         public string MobileNumber { get; set; }
 

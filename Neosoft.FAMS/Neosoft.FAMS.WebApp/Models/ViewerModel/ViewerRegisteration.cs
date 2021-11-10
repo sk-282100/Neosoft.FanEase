@@ -32,15 +32,15 @@ namespace Neosoft.FAMS.WebApp.Models.ViewerModel
 
 
         [DisplayName("City")]
-        [Required(ErrorMessage = "City is required")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Please select City")]
         public int CityId { get; set; }
 
         
         [DisplayName("Country")]
-        [Required(ErrorMessage = "Country is required")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Please select Country")]
         public int CountryId { get; set; }
 
-        [Required(ErrorMessage = "State is required")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Please select State")]
         [DisplayName("State")]
         public int StateId { get; set; }
 
@@ -52,14 +52,14 @@ namespace Neosoft.FAMS.WebApp.Models.ViewerModel
         public string EmailId { get; set; }
 
         
-        [DisplayName("Mobile Number")]
-        [Required]
+        [DisplayName("Contact")]
+        [Required(ErrorMessage = "Contact is required")]
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Can contain only digits and length must be 10")]
         public string MobileNumber { get; set; }
 
         
         [DisplayName("Password")]
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
         public DateTime? CreatedOn { get; set; }

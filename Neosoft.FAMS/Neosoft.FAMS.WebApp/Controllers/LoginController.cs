@@ -29,6 +29,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public IActionResult Index()
         {
+            ViewData["isTrueCredentials"] = false;
             return View(new Login());
         }
         [HttpPost]
@@ -79,7 +80,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("","Invalid credentials");
+                    ViewData["isTrueCredentials"] = true;
                     return View();
                 }
             }

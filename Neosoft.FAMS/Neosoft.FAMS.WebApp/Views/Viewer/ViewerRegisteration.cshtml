@@ -20,7 +20,7 @@
 <div class="wrapper">
     <div id="formContent">
         <!-- Tabs Titles -->
-        <h2 class="active"> Sign In </h2>
+        <h2 class="active"> Sign Up </h2>
         <div asp-validation-summary="All" class="text text-danger help-block"></div>
         @if (@isInserted)
         {
@@ -49,17 +49,26 @@
                     <input asp-for="LastName" type="text" class="fadeIn third" name="LastName" placeholder="Last Name">
 
                     <label id="lbl">
-                        Address2<sup style="color:red">*</sup>
-                        @Html.ValidationMessage("Address2", "", new { @class = "text-danger" })
+                        Address1<sup style="color:red">*</sup>
+                        @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
                     </label>
-                    <input asp-for="Address2" type="text" class="fadeIn second" name="Address2" placeholder="Address2">
+                    <textarea asp-for="Address1" type="text" class="fadeIn second" name="Address1" placeholder="Address1"></textarea>
 
-                    <label id="lbl">Country<sup style="color:red">*</sup></label>
-                    <select id="formCountry" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="CountryId">
-                                   
+                    <label id="lbl">
+                        Country<sup style="color: red">*</sup>
+                        @Html.ValidationMessage("CountryId", "", new { @class = "text-danger" })
+                    </label>
+                    <select id="formCountry" asp-for="CountryId" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="CountryId">
+                        <option value="0">Please Select Country</option>    
                     </select>
-                    <label id="lbl">City<sup style="color:red">*</sup></label>
-                    <select id="formCity" style="margin: 10px 10px 0px 35px" name="CityId"></select>
+
+                    <label id="lbl">
+                        City<sup style="color: red">*</sup>
+                        @Html.ValidationMessage("CityId", "", new { @class = "text-danger" })
+                    </label>
+                    <select id="formCity" asp-for="CityId" style="margin: 10px 10px 0px 35px" name="CityId">
+                        <option value="0">Please Select City</option>
+                    </select>
                     
                     <label id="lbl">
                         Password<sup style="color:red">*</sup>
@@ -77,19 +86,24 @@
                     <input asp-for="MiddleName" type="text" class="fadeIn first" name="MiddleName" placeholder="Middle Name">
 
                     <label id="lbl">
-                        Address1<sup style="color:red">*</sup>
-                        @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
-                    </label>
-                    <input asp-for="Address1" type="text" class="fadeIn second" name="Address1" placeholder="Address1">
-
-                    <label id="lbl">
                         Contact<sup style="color:red">*</sup>
                         @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
                     </label>
                     <input asp-for="MobileNumber" type="text" class="fadeIn second" name="MobileNumber" placeholder="Enter mobile number"><br />
 
-                    <label id="lbl">State<sup style="color:red">*</sup></label>
-                    <select id="formState" style="margin: 10px 10px 0px 35px" name="StateId">
+                    <label id="lbl">
+                        Address2<sup style="color:red">*</sup>
+                        @Html.ValidationMessage("Address2", "", new { @class = "text-danger" })
+                    </label>
+                    <textarea asp-for="Address2" type="text" class="fadeIn second" name="Address2" placeholder="Address2"></textarea>
+
+
+                    <label id="lbl">
+                        State<sup style="color: red">*</sup>
+                        @Html.ValidationMessage("StateId", "", new { @class = "text-danger" })
+                    </label>
+                    <select id="formState" asp-for="StateId" style="margin: 10px 10px 0px 35px" name="StateId">
+                        <option value="0">Please Select State</option>
                     </select>
 
                     <label id="lbl">

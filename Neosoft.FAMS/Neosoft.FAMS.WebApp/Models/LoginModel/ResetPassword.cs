@@ -9,10 +9,10 @@ namespace Neosoft.FAMS.WebApp.Models.LoginModel
     {
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Password cannot be blank")]
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Password cannot be blank")]
+        [Required(ErrorMessage = "Password is required")]
         public string newPassword { get; set; }
     }
 }

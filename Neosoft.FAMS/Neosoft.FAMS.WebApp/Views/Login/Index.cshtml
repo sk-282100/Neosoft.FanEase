@@ -1,6 +1,7 @@
 ﻿@model Login;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var isTrue = Convert.ToBoolean(ViewData["isTrueCredentials"]);
 }
 
 <head>
@@ -12,6 +13,7 @@
         }
         .help-block ul {
             list-style-type: none;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -19,13 +21,21 @@
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Tabs Titles -->
-        <h2 class="active"> Sign In </h2>
+        <h2 class="active"> Sign Up </h2>
 
 
         <!-- Login Form -->
         @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <div asp-validation-summary="All" class="text text-danger help-block"></div>
+            if (isTrue)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Username and/or Password is Invalid</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
             <label id="lbl" class="form-group required">
                 Username<sup style="color:red">*</sup>
                 @Html.ValidationMessage("Username", "", new { @class = "text-danger" })
