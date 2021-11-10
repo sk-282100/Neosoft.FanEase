@@ -32,8 +32,8 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         public short? PlayerTypeId { get; set; }
 
 
-        [Required(ErrorMessage = "Video Url is required")]
-        public string VideoUrl { get; set; }
+        
+        public string? VideoUrl { get; set; }
         public IFormFile UploadVideoPath { get; set; }
         public short? VideoCategoryId { get; set; }
         public short? VideoStatus { get; set; }
