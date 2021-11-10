@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -32,6 +33,19 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
 
+        public bool checkForEmail(string email)
+        {
+            var uri = API.Common.GetEmailUrl(_baseUrl,email);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var deserializedata = JsonConvert.DeserializeObject<ContentCreatorDto>(jsonDataStatus);
+                if (deserializedata != null)
+                    return true;
+            }
+            return false;
+        }
         public long GetPhoneCode(int countryId)
         {
             long result = 0;

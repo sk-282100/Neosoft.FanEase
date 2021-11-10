@@ -44,6 +44,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public bool checkForEmailExist([FromQuery] string email)
+        {
+            bool isPresent = _common.checkForEmail(email);
+            return isPresent;
+        }
         [HttpGet]
         public long GetPhoneCode(int id)
         {
