@@ -5,14 +5,19 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Neosoft.FAMS.WebApp.Models.Validations;
 
 namespace Neosoft.FAMS.WebApp.Models.CreatorModel
 {
+
     public class CreatorRegisteration
     {
         public long ContentCreatorId { get; set; }
 
+        [DataType(DataType.Upload)]
         [DisplayName("Profile Photo")]
+        [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile ProfilePhotoPath { get; set; }
 
         [DisplayName("Creator Name")]
