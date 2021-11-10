@@ -48,7 +48,6 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Video Title</th>
-                            <th class="nosort">Created On</th>
                             <th>Action</th>
 
                         </tr>
@@ -65,10 +64,9 @@
                                 {
                                     <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" /></td>
                                 }
-                                <td>@record.StartDate.ToString()</td>
-                                <td>@record.EndDate.ToString()</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
                                 <td>@record.Title</td>
-                                <td>@record.CreatedOn</td>
                                 <td>
                                     <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
                                     <a class="delete" title="Delete" onClick="deleteCreator('DeleteVideo/@record.VideoId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"><i class="material-icons"></i></a>
