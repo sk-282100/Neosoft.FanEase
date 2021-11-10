@@ -25,7 +25,6 @@ $(document).ready(function () {
         async: false,
         contentType: 'application/json',
         success: function (data) {
-            console.log(data);
             Statedata = data;
             $.each(data, function (id, text) {
                 if (text != null) {
@@ -42,7 +41,6 @@ $(document).ready(function () {
         async: false,
         contentType: 'application/json',
         success: function (data) {
-            console.log(data);
             Citydata = data;
             $.each(data, function (id, text) {
                 if (text != null) {

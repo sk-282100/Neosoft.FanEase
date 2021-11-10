@@ -5,11 +5,11 @@ $(document).ready(function () {
         var emailId = $('#creatorEmailId').val();
 
         $.ajax({
-            url: "https://localhost:44330/api/ContentCreator/getCreatorByEmail?username=" + emailId + "&api-version=1",
+            url: "/Admin/checkForEmailExist?email="+emailId,
             type: 'GET',
             success: function (data) {
                 console.log(data);
-                if (data != null) {
+                if (data) {
                     $('#emailSpan').text("Email already Exist");
                 } else {
                     $('#emailSpan').text("");
@@ -34,7 +34,7 @@ function CheckFileSize(input) {
             $el.wrap('<form>').closest('form').get(0).reset();
             $el.unwrap();
             $('#boldTag').text("");
-            $('#errorFileSize').text("Max File Size is 1 MB");
+            $('#errorFileSize').text("Max allowed File Size is 1 MB");
 
         }
     }
