@@ -45,8 +45,8 @@
                         <tr>
                             <td>@record.CampaignId</td>
                             <td>@record.CampaignName</td>
-                            <td>@record.StartDate</td>
-                            <td>@record.EndDate</td>
+                            <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                            <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
                         </tr>
                     }
                     </tbody>

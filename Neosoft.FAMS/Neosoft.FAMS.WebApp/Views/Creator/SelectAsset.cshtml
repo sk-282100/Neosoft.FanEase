@@ -47,8 +47,8 @@
                                     <td>@record.AdvertisementId</td>
                                     <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
                                     <td>@record.Title</td>
-                                    <td>@record.StartDate</td>
-                                    <td>@record.EndDate</td>
+                                    <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                    <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
                                 </tr>
                             }
                         }

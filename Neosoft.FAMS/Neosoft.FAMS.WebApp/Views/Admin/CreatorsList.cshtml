@@ -34,67 +34,67 @@
                 <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location = '@Url.Action("CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
                 <button type="button" class="btn add-new btnAddNewVideo" onclick="window.location = '@Url.Action("VideoTable", "Admin")'"><i class="fa fa-plus"></i> View Video List</button>
             </div>
-            @if (@isDeleted)
-            {
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Data Deleted Successfully !</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            }
             <div id="tbl">
+                @if (@isDeleted)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Content Creator Deleted Successfully</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
                 <table id="myTable" class="table table-sm table-hover">
                     <thead>
-                        <tr class="heading">
-                            <th class="nosort">Profile</th>
-                            <th>Name</th>
-                            <th>Email ID</th>
-                            <th>Phone Code</th>
-                            <th>Mobile Number</th>
-                            <th>Created On</th>
-                            <th>Status</th>
-                            <th class="nosort">Action</th>
-                        </tr>
+                    <tr class="heading">
+                        <th class="nosort">Profile</th>
+                        <th>Name</th>
+                        <th>Email ID</th>
+                        <th>Phone Code</th>
+                        <th>Mobile Number</th>
+                        <th>Created On</th>
+                        <th>Status</th>
+                        <th class="nosort">Action</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach (var record in records)
+                    @foreach (var record in records)
+                    {
+                        if (!@record.isDeleted)
                         {
-                            if (!@record.isDeleted)
-                            {
-                        <tr>
-                            @if (record.ProfilePhotoPath != null)
-                            {
-                                <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
-                            }
-                            else
-                            {
-                                <td><img src="/DefaultPhotos/default_profile.png" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
-                            }
-                            <td>@record.CreatorName.ToString()</td>
-                            <td>@record.EmailId</td>
-                            @{
-                                int id = (int)@record.CountryId;
-                                var phoneCode = _common.GetPhoneCode(id);
-                            }
-                            <td>+(@phoneCode)</td>
-                            <td>@record.MobileNumber</td>
-                        <td>@string.Format("{0:MMM dd, yyyy}", @record.CreatedOn)</td>
-                            @if (record.Status == true)
-                            {
-                                <td style="color: limegreen">Active</td>
-                            }
-                            else
-                            {
-                                <td style="color: red">Deactive</td>
-                            }
-                            <td>
-                                <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
-                                <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
-                            </td>
-                        </tr>
-                            }
+                            <tr>
+                                @if (record.ProfilePhotoPath != null)
+                                {
+                                    <td><img src="/Uploads/Creators/Images/@record.ProfilePhotoPath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                }
+                                else
+                                {
+                                    <td><img src="/DefaultPhotos/default_profile.png" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                }
+                                <td>@record.CreatorName.ToString()</td>
+                                <td>@record.EmailId</td>
+                                @{
+                                    int id = (int) @record.CountryId;
+                                    var phoneCode = _common.GetPhoneCode(id);
+                                }
+                                <td>+(@phoneCode)</td>
+                                <td>@record.MobileNumber</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.CreatedOn)</td>
+                                @if (record.Status == true)
+                                {
+                                    <td style="color: limegreen">Active</td>
+                                }
+                                else
+                                {
+                                    <td style="color: red">Deactive</td>
+                                }
+                                <td>
+                                    <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                    <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
+                                </td>
+                            </tr>
                         }
+                    }
                     </tbody>
                 </table>
                 @* Popup Modal *@

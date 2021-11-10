@@ -118,11 +118,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SendOtp(Login login)
+        public IActionResult SendOtp(ForgotPassword model)
         {
            if (ModelState.IsValid)
             {
-                string Username = login.Username;
+                string Username = model.Username;
                 var serviceresult = _login.SaveOTP(new CheckUsernameCommand
                 {
                     UserName = Username,

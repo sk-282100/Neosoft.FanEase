@@ -36,13 +36,13 @@ namespace Neosoft.FAMS.Application.Features.Login.Commands
                 mm.To.Add(to);
                 mm.Subject = subject;
                 mm.Body = body;
-                mm.From = new MailAddress("sanahaju123@gmail.com");
+                mm.From = new MailAddress("sanahaju777@gmail.com");
                 mm.IsBodyHtml = false;
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");
                 smtp.Port = 587;
                 smtp.UseDefaultCredentials = false;
                 smtp.EnableSsl = true;
-                smtp.Credentials = new System.Net.NetworkCredential("sanahaju123@gmail.com", "SA@hj#77");
+                smtp.Credentials = new System.Net.NetworkCredential("sanahaju777@gmail.com", "SA@hj#77");
                 smtp.Send(mm);
 
                     PasswordResetRequest passwordResetRequest = new PasswordResetRequest();

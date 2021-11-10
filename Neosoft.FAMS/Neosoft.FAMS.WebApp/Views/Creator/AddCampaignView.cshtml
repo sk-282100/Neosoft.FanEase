@@ -68,7 +68,7 @@
             @if (@isInserted)
             {
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Data Inserted!</strong> Added Successfully
+                    <strong>New Campaign Added Successfully</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -144,8 +144,8 @@
                                         <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
                                         <td>Image</td>
                                         <td>@record.Title</td>
-                                        <td>@record.StartDate</td>
-                                        <td>@record.EndDate</td>
+                                        <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                        <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
                                         <td>
                                             <a class="edit" href="EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
                                             <a id="deleteTag" class="delete" onClick="deleteAsset('DeleteAsset/@record.AdvertisementId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
