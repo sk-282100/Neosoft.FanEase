@@ -21,11 +21,11 @@ namespace Neosoft.FAMS.Application.Features.Login.Queries
 
         public async Task<int> Handle(CheckOtpQuery request, CancellationToken cancellationToken)
         {
-           /* var data = await _loginRepository.GetLoginDetail(request.UserName);
-            //data.Password = EncryptionDecryption.DecryptString(data.Password);
-            if (data.Username == request.UserName)
-            {*/
-                int LoginId = 37;
+            string Username = request.Username;
+            var data = await _loginRepository.CheckUsername(Username);
+            //if (data.Username == request.UserName)
+            //{
+                long LoginId = data.Id;
                 var result = await _loginRepository.CheckOtp(LoginId,request.Otp);
                 DateTime expiredDate=(DateTime)result.ExpiredOn;
                 int check = DateTime.Compare(expiredDate,DateTime.Now);
