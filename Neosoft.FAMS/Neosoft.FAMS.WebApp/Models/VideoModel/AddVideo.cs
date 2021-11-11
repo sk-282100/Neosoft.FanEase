@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Neosoft.FAMS.WebApp.Models.Validations;
 
 namespace Neosoft.FAMS.WebApp.Models.VideoModel
 {
@@ -11,6 +12,8 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
     {
 
         public long VideoId { get; set; }
+
+        [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile VideoImage { get; set; }
         
 

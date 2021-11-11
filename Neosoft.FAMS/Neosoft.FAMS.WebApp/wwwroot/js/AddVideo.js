@@ -1,5 +1,6 @@
 ﻿function readURL(input) {
-    if (input.files && input.files[0]) {
+    var ext = $(input).val().split('.').pop().toLowerCase();
+    if (input.files && input.files[0] && $.inArray(ext, ['png', 'jpg', 'jpeg']) == 1) {
         var fileSize = $(input)[0].files[0].size;
         if (fileSize <= 1000000) {
             $('#errorFileSize').text("");
@@ -17,9 +18,15 @@
             $el.wrap('<form>').closest('form').get(0).reset();
             $el.unwrap();
             $('#thumbnail').attr('src', null);
-            $('#errorFileSize').text("Max File is 1 MB");
-            
+            $('#errorFileSize').text("Max File Size is 1 MB");
+
         }
+    }
+    else {
+        var $el = $('#videoThumbnail');
+        $el.wrap('<form>').closest('form').get(0).reset();
+        $el.unwrap();
+        $('#errorFileSize').text("Select Images Only");
     }
 }
 

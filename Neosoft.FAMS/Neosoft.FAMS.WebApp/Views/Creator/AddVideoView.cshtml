@@ -49,6 +49,7 @@
                     <div id="formContent">
                         <!-- Tabs Titles -->
                         <h1 class="active">ADD Video </h1>
+                        <div asp-validation-summary="All" class="text text-danger help-block"></div>
                         <!-- Login Form -->
                         @using (Html.BeginForm("AddVideoView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
@@ -59,8 +60,8 @@
                                 </div>
                                 <div class="col" style="padding-right:57px">
                                     <br />
-                                    <input class="form-control" type="file" name="VideoImage" value="img.jpeg" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;" />
-                                    
+                                    <input asp-for="VideoImage" class="form-control" type="file" name="VideoImage" accept="image/*" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;" />
+
                                 </div>
                                 <div class="col">
                                     <br />
@@ -79,11 +80,11 @@
                                         <label>
                                             MP4 Video File
                                         </label>
-                                            <input type='file' name="UploadVideoPath" id="mp4videoFile" />
-                                         <br />
+                                        <input type='file' name="UploadVideoPath" id="mp4videoFile" />
+                                        <br />
                                     </div>
                                     <div id="Url" style="display:none">
-                                        <label >MP4 Video URL :</label>
+                                        <label>MP4 Video URL :</label>
                                         <input type="text" class="form-control mb-2 mr-sm-2" id="txt_VideoURL" name="VideoUrl" placeholder="Video URL">
                                     </div>
 
@@ -117,7 +118,7 @@
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
                                     </select><br />
-                                   
+
                                     <br />
                                 </div>
                             </div>
