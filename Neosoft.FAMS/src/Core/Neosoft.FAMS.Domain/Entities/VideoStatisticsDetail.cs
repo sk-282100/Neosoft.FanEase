@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -6,6 +8,7 @@ namespace Neosoft.FAMS.Domain.Entities
 {
     public partial class VideoStatisticsDetail
     {
+        [Key]
         public long VideoStatisticsId { get; set; }
         public long? VideoId { get; set; }
         public bool? IsClicked { get; set; }

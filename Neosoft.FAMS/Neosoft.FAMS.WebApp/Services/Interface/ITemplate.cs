@@ -9,5 +9,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
     public interface Itemplate
     {
         public List<TemplateListDto> GetAllTemplate();
+        public TemplateListDto GetTemplate(long id);
     }
 }

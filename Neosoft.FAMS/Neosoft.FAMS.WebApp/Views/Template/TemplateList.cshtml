@@ -56,7 +56,7 @@
                         {
                             <tr>
                                     <td>@record.TemplateId</td>
-                                    <td><a href="~/Template/TemplateDetail">@record.TemplateName</a></td>
+                                    <td><a href="~/Template/TemplateDetail/@record.TemplateId">@record.TemplateName</a></td>
                                 @if (record.PublishStatus == true)
                                     {
                                         <td style="color: limegreen">Live</td>
