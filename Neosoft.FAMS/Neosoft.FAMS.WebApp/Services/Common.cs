@@ -1,4 +1,5 @@
-﻿using Neosoft.FAMS.Application.Responses;
+﻿using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.Domain.Entities;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Models.CommonViewModel;
@@ -9,8 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -35,7 +34,7 @@ namespace Neosoft.FAMS.WebApp.Services
 
         public bool checkForEmail(string email)
         {
-            var uri = API.Common.GetEmailUrl(_baseUrl,email);
+            var uri = API.Common.GetEmailUrl(_baseUrl, email);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -49,7 +48,7 @@ namespace Neosoft.FAMS.WebApp.Services
         public long GetPhoneCode(int countryId)
         {
             long result = 0;
-            var uri = API.Common.GetPhoneCodeUrl(_baseUrl,_path,countryId);
+            var uri = API.Common.GetPhoneCodeUrl(_baseUrl, _path, countryId);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -61,23 +60,23 @@ namespace Neosoft.FAMS.WebApp.Services
         }
         public List<ListViewModel> GetCountryList()
         {
-            IEnumerable<ListViewModel> result=null;
-            var uri = API.Common.GetCountryList( _path);
+            IEnumerable<ListViewModel> result = null;
+            var uri = API.Common.GetCountryList(_path);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var deserializedata = JsonConvert.DeserializeObject<Response<IEnumerable<Country>>>(jsonDataStatus);
-                 result =
-                 from data in deserializedata.Data.ToList()
-                 select new ListViewModel { id = data.CountryId,text= data.CountryName };
+                result =
+                from data in deserializedata.Data.ToList()
+                select new ListViewModel { id = data.CountryId, text = data.CountryName };
             }
             return result.ToList();
         }
         public List<ListViewModel> GetStateList(int CountryId)
         {
             IEnumerable<ListViewModel> result = null;
-            var uri = API.Common.GetStateList(_path,CountryId);
+            var uri = API.Common.GetStateList(_path, CountryId);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {

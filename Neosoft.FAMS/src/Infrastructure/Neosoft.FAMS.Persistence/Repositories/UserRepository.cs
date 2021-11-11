@@ -2,14 +2,12 @@
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
-  public  class UserRepository : BaseRepository<UserDemo>, IUserRepository
+    public class UserRepository : BaseRepository<UserDemo>, IUserRepository
     {
         private readonly ILogger _logger;
         public UserRepository(ApplicationDbContext dbContext, ILogger<UserDemo> logger) : base(dbContext, logger)

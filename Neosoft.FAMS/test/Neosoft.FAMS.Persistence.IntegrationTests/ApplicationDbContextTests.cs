@@ -4,7 +4,6 @@ using Neosoft.FAMS.Application.Contracts;
 using Neosoft.FAMS.Domain.Entities;
 using Shouldly;
 using System;
-using Xunit;
 
 namespace Neosoft.FAMS.Persistence.IntegrationTests
 {

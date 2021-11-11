@@ -41,7 +41,7 @@ namespace Neosoft.FAMS.WebApp.Services
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var result = JsonConvert.DeserializeObject<Response<IEnumerable<UserListVm>>>(jsonDataStatus);
                 _userDemo = result.Data.ToList();
-                
+
             }
             return _userDemo;
         }

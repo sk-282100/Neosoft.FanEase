@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Responses;
-using Neosoft.FAMS.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

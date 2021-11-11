@@ -1,11 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Persistence.Repositories
@@ -22,12 +20,12 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         public async Task<List<ContentCreatorDetail>> GetAllCreator()
         {
-            return await _dbContext.ContentCreatorDetails.Where(p => p.isDeleted == false).OrderByDescending(p=>p.ContentCreatorId).ToListAsync();
+            return await _dbContext.ContentCreatorDetails.Where(p => p.isDeleted == false).OrderByDescending(p => p.ContentCreatorId).ToListAsync();
         }
-        public async Task<Login> AddLoginDetailAsync(string email,string password)
+        public async Task<Login> AddLoginDetailAsync(string email, string password)
         {
-            var user = new Login {Username=email,Password=password,RoleId=2 };
-            var result= await _dbContext.AddAsync(user);
+            var user = new Login { Username = email, Password = password, RoleId = 2 };
+            var result = await _dbContext.AddAsync(user);
             await _dbContext.SaveChangesAsync();
             result.Entity.Id = await _dbContext.Logins.MaxAsync(u => u.Id);
             return result.Entity;

@@ -1,14 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
 using MediatR;
-
-using System.Collections.Generic;
-using System.Text;
-using Neosoft.FAMS.Application.Responses;
-using System.Threading.Tasks;
-using System.Threading;
-using AutoMapper;
 using Neosoft.FAMS.Application.Contracts.Persistence;
-using Neosoft.FAMS.Domain.Entities;
+using Neosoft.FAMS.Application.Responses;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete
 {
@@ -36,7 +31,7 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete
             }
             else
             {
-                var response = new Response<bool> {  Message = "No Data Found", Succeeded = true };
+                var response = new Response<bool> { Message = "No Data Found", Succeeded = true };
                 return response;
             }
         }

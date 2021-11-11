@@ -1,11 +1,9 @@
 ﻿using Neosoft.FAMS.Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Domain.Entities
 {
-   public class UserDemo : AuditableEntity
+    public class UserDemo : AuditableEntity
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

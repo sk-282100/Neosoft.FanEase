@@ -1,8 +1,4 @@
-﻿using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
-using Neosoft.FAMS.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Neosoft.FAMS.Domain.Entities;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Contracts.Persistence

@@ -1,12 +1,9 @@
 ﻿using FluentValidation;
 using Neosoft.FAMS.Application.Contracts.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Create
 {
-    public class ViewerCommandValidator: AbstractValidator<ViewerCreateCommand>
+    public class ViewerCommandValidator : AbstractValidator<ViewerCreateCommand>
     {
         private readonly IViewerRepo _viewerRepo;
         public ViewerCommandValidator(IViewerRepo viewerRepo)

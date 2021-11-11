@@ -2,10 +2,8 @@ using CsvHelper;
 using Moq;
 using Neosoft.FAMS.Application.Contracts.Infrastructure;
 using Neosoft.FAMS.Application.Features.Events.Queries.GetEventsExport;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.UnitTests.Mocks
 {

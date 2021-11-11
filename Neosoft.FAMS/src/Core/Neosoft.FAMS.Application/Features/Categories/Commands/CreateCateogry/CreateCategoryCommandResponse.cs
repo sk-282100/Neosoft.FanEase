@@ -1,5 +1,3 @@
-using Neosoft.FAMS.Application.Responses;
-
 namespace Neosoft.FAMS.Application.Features.Categories.Commands.CreateCateogry
 {
     public class CreateCategoryCommandResponse

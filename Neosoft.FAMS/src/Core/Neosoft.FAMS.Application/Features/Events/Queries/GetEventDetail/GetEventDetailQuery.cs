@@ -1,6 +1,5 @@
 using MediatR;
 using Neosoft.FAMS.Application.Responses;
-using System;
 
 namespace Neosoft.FAMS.Application.Features.Events.Queries.GetEventDetail
 {

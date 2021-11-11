@@ -2,7 +2,6 @@ using Neosoft.FAMS.API.IntegrationTests.Base;
 using Neosoft.FAMS.Application.Features.Events.Commands.CreateEvent;
 using Neosoft.FAMS.Application.Features.Events.Commands.UpdateEvent;
 using Neosoft.FAMS.Application.Features.Events.Queries.GetEventDetail;
-using Neosoft.FAMS.Application.Features.Events.Queries.GetEventsExport;
 using Neosoft.FAMS.Application.Features.Events.Queries.GetEventsList;
 using Neosoft.FAMS.Application.Responses;
 using Newtonsoft.Json;

@@ -1,16 +1,12 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetById;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -31,7 +27,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <param name="createAdvertisement"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> AddAdvertisement([FromBody]CreateAdvertisementCommand createAdvertisement)
+        public async Task<IActionResult> AddAdvertisement([FromBody] CreateAdvertisementCommand createAdvertisement)
         {
             var result = await _mediator.Send(createAdvertisement);
             return Ok(result);
@@ -58,9 +54,9 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetById([FromRoute]long id)
+        public async Task<IActionResult> GetById([FromRoute] long id)
         {
-            var getAdvertisement = new GetAvertisementByIdQuery() {AdvertisementId=id };
+            var getAdvertisement = new GetAvertisementByIdQuery() { AdvertisementId = id };
             var result = await _mediator.Send(getAdvertisement);
             return Ok(result);
         }

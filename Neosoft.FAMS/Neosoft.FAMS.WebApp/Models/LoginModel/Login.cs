@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Neosoft.FAMS.WebApp.Models.LoginModel
 {
-  public  class Login
+    public class Login
     {
         [Required(ErrorMessage = "Username is required")]
-        [RegularExpression("^[A-Za-z0-9._%+-]*@[A-Za-z0-9.-]*\\.[A-Za-z0-9-]{2,}$",ErrorMessage = "Please Enter Valid Email.")]
+        [RegularExpression("^[A-Za-z0-9._%+-]*@[A-Za-z0-9.-]*\\.[A-Za-z0-9-]{2,}$", ErrorMessage = "Please Enter Valid Email.")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Password is required")]

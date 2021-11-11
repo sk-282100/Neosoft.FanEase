@@ -1,13 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using static Neosoft.FAMS.Application.Contracts.Persistence.ILoginRepo;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
@@ -28,7 +24,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
                 if (data.isDeleted == true)
                     return null;
             }
-        
+
             return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
         }
         public async Task<Login> CheckUsername(string userName)

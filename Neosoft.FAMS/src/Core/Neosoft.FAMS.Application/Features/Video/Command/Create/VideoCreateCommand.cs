@@ -1,12 +1,10 @@
 ﻿using MediatR;
 using Neosoft.FAMS.Application.Responses;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.Video.Command.Create
 {
-    public class VideoCreateCommand:IRequest<Response<long>>
+    public class VideoCreateCommand : IRequest<Response<long>>
     {
         public string VideoImage { get; set; }
         public DateTime? StartDate { get; set; }

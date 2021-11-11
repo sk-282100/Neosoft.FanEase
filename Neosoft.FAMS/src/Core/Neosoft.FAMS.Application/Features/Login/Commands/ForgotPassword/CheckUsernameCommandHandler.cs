@@ -1,18 +1,15 @@
 ﻿using AutoMapper;
 using MediatR;
-using Neosoft.FAMS.Application.Contracts;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Net.Mail;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Features.Login.Commands
 {
-    public class CheckUsernameCommandHandler:IRequestHandler<CheckUsernameCommand,bool>
+    public class CheckUsernameCommandHandler : IRequestHandler<CheckUsernameCommand, bool>
     {
         private readonly ILoginRepo _loginRepository;
         private readonly IMapper _mapper;
@@ -45,21 +42,21 @@ namespace Neosoft.FAMS.Application.Features.Login.Commands
                 smtp.Credentials = new System.Net.NetworkCredential("sanahaju777@gmail.com", "SA@hj#77");
                 smtp.Send(mm);
 
-                    PasswordResetRequest passwordResetRequest = new PasswordResetRequest();
-                    passwordResetRequest.LoginId=id;
-                    passwordResetRequest.RequestedOn=DateTime.Now;
-                    passwordResetRequest.ValidCode=code.ToString();
-                    passwordResetRequest.ExpiredOn= DateTime.Now.AddMinutes(10);
-                   var datatwo = await _loginRepository.AddCode(passwordResetRequest);
-                   if(datatwo!=null)
-                   {
-                        return true;
-                   }
-                   else
-                   {
-                        return false;
-                   }
-                   
+                PasswordResetRequest passwordResetRequest = new PasswordResetRequest();
+                passwordResetRequest.LoginId = id;
+                passwordResetRequest.RequestedOn = DateTime.Now;
+                passwordResetRequest.ValidCode = code.ToString();
+                passwordResetRequest.ExpiredOn = DateTime.Now.AddMinutes(10);
+                var datatwo = await _loginRepository.AddCode(passwordResetRequest);
+                if (datatwo != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
             return false;
         }

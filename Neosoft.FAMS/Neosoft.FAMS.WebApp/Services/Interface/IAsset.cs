@@ -1,12 +1,10 @@
-﻿using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
-using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
+﻿using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
+using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Services.Interface
 {

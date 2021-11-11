@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MediatR;
+﻿using MediatR;
 
 namespace Neosoft.FAMS.Application.Features.Common.Queries.GetAllList
 {

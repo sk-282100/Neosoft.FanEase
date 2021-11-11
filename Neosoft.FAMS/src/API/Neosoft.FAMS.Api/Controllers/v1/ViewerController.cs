@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
-using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
-using Neosoft.FAMS.Application.Features.Viewer.Queries.GetById;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Update;
+using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetByEmail;
+using Neosoft.FAMS.Application.Features.Viewer.Queries.GetById;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -61,7 +58,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [Route("{id}")]
         public async Task<IActionResult> GetAll([FromRoute] long id)
         {
-            var viewerQuery = new GetViewerByIdQuery { ViewerId=id};
+            var viewerQuery = new GetViewerByIdQuery { ViewerId = id };
             var data = await _mediator.Send(viewerQuery);
             return Ok(data);
         }
@@ -88,7 +85,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <param name="updateViewer"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<IActionResult> UpdateById([FromBody]UpdateViewerCommand updateViewer)
+        public async Task<IActionResult> UpdateById([FromBody] UpdateViewerCommand updateViewer)
         {
             var data = await _mediator.Send(updateViewer);
             return Ok(data);

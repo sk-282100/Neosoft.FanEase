@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
-using System.Linq;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
@@ -23,8 +22,9 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             return await _dbContext.State.Where(x => x.CountryId == countryId).ToListAsync();
         }
-        public async Task<List<City>> GetCityListByStateId(int stateId) {
-            return await _dbContext.Cities.Where(x => x.StateId== stateId).ToListAsync();
+        public async Task<List<City>> GetCityListByStateId(int stateId)
+        {
+            return await _dbContext.Cities.Where(x => x.StateId == stateId).ToListAsync();
         }
 
         public async Task<Country> GetCountryById(long countryId)

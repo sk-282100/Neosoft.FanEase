@@ -1,11 +1,8 @@
-﻿using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
+﻿using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
+using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
-using Neosoft.FAMS.WebApp.Models.CreatorModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
 
 namespace Neosoft.FAMS.WebApp.Services.Interface
 {

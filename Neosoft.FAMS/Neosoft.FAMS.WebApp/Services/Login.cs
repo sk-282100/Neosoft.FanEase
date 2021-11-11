@@ -1,18 +1,13 @@
 ﻿using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Queries;
-using Neosoft.FAMS.Application.Features.Users.Queries;
-using Neosoft.FAMS.Application.Responses;
-using Neosoft.FAMS.Domain.Entities;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Services
@@ -42,7 +37,8 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public List<object> CheckUsernameAndPassword(string userName, string password) {
+        public List<object> CheckUsernameAndPassword(string userName, string password)
+        {
             var uri = API.Login.CheckUsernameAndPassword(_path, userName, password);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)

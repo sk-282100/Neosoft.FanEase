@@ -1,12 +1,10 @@
 ﻿using MediatR;
 using Neosoft.FAMS.Application.Responses;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
 {
-   public class ContentCreaterCommand : IRequest<Response<long>>
+    public class ContentCreaterCommand : IRequest<Response<long>>
     {
         public string ProfilePhotoPath { get; set; }
         public string CreatorName { get; set; }

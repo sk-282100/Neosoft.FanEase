@@ -1,6 +1,5 @@
 using Neosoft.FAMS.API.IntegrationTests.Base;
 using Neosoft.FAMS.Application.Features.Categories.Commands.CreateCateogry;
-using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesList;
 using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using Neosoft.FAMS.Application.Models.Authentication;
 using Neosoft.FAMS.Application.Responses;

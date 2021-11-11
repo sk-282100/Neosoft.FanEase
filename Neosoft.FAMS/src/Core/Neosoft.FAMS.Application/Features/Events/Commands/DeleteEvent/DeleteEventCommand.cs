@@ -1,5 +1,4 @@
 using MediatR;
-using System;
 
 namespace Neosoft.FAMS.Application.Features.Events.Commands.DeleteEvent
 {

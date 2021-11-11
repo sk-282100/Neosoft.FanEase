@@ -1,12 +1,9 @@
 ﻿using FluentValidation;
 using Neosoft.FAMS.Application.Contracts.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Update
 {
-    public class UpdateViewerByIdValidator:AbstractValidator<UpdateViewerCommand>
+    public class UpdateViewerByIdValidator : AbstractValidator<UpdateViewerCommand>
     {
         private readonly IViewerRepo _viewerRepo;
         public UpdateViewerByIdValidator(IViewerRepo viewerRepo)

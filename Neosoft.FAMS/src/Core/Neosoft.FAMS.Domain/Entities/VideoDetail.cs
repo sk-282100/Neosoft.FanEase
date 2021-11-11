@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 #nullable disable
@@ -22,7 +21,7 @@ namespace Neosoft.FAMS.Domain.Entities
         public long? CreatedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public bool? IsDeleted { get; set; }
-        public string  Decription { get; set; }
+        public string Decription { get; set; }
         public short? VideoStatus { get; set; }
         public bool? PublishStatus { get; set; }
     }

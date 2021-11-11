@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Models.Validations
 {
@@ -28,7 +25,7 @@ namespace Neosoft.FAMS.WebApp.Models.Validations
 
         public override string FormatErrorMessage(string name)
         {
-            return base.FormatErrorMessage(((_maxFileSize/1024)/1024).ToString());
+            return base.FormatErrorMessage(((_maxFileSize / 1024) / 1024).ToString());
         }
     }
 

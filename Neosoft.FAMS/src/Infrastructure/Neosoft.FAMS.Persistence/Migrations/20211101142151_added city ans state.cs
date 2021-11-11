@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Neosoft.FAMS.Persistence.Migrations
 {
@@ -77,7 +77,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                 table: "Cities",
                 column: "Id");
 
-          
+
 
             migrationBuilder.CreateTable(
                 name: "State",

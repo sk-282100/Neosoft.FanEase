@@ -1,12 +1,9 @@
 ﻿using MediatR;
 using Neosoft.FAMS.Application.Responses;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Create
 {
-    public class ViewerCreateCommand:IRequest<Response<long>>
+    public class ViewerCreateCommand : IRequest<Response<long>>
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

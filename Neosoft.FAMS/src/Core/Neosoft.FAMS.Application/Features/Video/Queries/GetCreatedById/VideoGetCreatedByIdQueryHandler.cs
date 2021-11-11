@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Features.Video.Queries.GetCreatedById
 {

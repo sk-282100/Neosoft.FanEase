@@ -1,5 +1,4 @@
 using AutoMapper;
-using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Neosoft.FAMS.Application.Contracts.Persistence;
@@ -7,7 +6,6 @@ using Neosoft.FAMS.Application.Features.Categories.Queries.GetCategoriesList;
 using Neosoft.FAMS.Application.Profiles;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.Application.UnitTests.Mocks;
-using Neosoft.FAMS.Domain.Entities;
 using Shouldly;
 using System.Collections.Generic;
 using System.Threading;

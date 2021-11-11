@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using Neosoft.FAMS.Application.Contracts.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.Campaign.Commands.Create
 {

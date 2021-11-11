@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using Neosoft.FAMS.Application.Contracts.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
 {
@@ -21,7 +18,7 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
             RuleFor(p => p.EmailId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
-            
+
             RuleFor(p => p.CountryId)
                 .GreaterThan(0).WithMessage("{PropertyName} must be greator than zero.");
 
@@ -32,7 +29,7 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .MinimumLength(10).WithMessage("{PropertyName} must contain 10 digits.")
                .MaximumLength(10).WithMessage("{PropertyName} must contain 10 digits.");
-           
+
             RuleFor(p => p.Address1)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
         }

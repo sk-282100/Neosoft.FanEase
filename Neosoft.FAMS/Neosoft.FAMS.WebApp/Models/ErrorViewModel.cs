@@ -1,5 +1,3 @@
-using System;
-
 namespace Neosoft.FAMS.WebApp.Models
 {
     public class ErrorViewModel
