@@ -47,6 +47,7 @@ namespace Neosoft.FAMS.Persistence
         public DbSet<TemplateDetail> TemplateDetails { get; set; }
         public DbSet<TemplateFieldDetail> TemplateFieldDetails { get; set; }
         public DbSet<TemplateVideoMapping> TemplateVideoMappings { get; set; }
+        public DbSet<VideoStatisticsDetail> VideoStatisticsDetails { get; set; }
 
         public DbSet<VideoStatisticsDetail> VideoStatisticsDetails { get; set; }
 

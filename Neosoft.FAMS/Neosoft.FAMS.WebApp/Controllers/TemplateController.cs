@@ -19,19 +19,17 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _mapper = mapper;
             _template = template;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+       
         public ActionResult TemplateList()
         {
             var data = _template.GetAllTemplate();
             ViewData["data"] = data;
             return View();
         }
-        public ActionResult TemplateDetail()
+        [HttpGet]
+        public ActionResult TemplateDetail([FromRoute]long id)
         {
-            var data = _template.GetAllTemplate();
+            var data = _template.GetTemplate(id);
             ViewData["data"] = data;
             return View();
         }

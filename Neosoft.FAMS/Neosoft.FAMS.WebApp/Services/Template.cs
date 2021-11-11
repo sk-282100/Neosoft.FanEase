@@ -43,5 +43,17 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        public TemplateListDto GetTemplate(long id)
+        {
+            var uri = API.Template.GetTemplate(_baseUrl, _path,id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<TemplateListDto>(jsonDataStatus);
+                return data;
+            }
+            return null;
+        }
     }
 }
