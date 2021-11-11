@@ -7,7 +7,7 @@
             public static string CheckUsernameAndPassword(string baseUri, string userName, string password) => $"{baseUri}/CheckUsernameAndPassword?username={userName}&password={password}&api-version=1";
             public static string SavePassword(string baseUri, string path, string username, string password, string newPassword) => $"{baseUri}{path}/ResetPassword?EmailAddress={username}&Password={password}&NewPassword={newPassword}&api-version=1";
             public static string SaveOTP(string baseUri, string path, string username) => $"{baseUri}{path}/checkUsername?EmailAddress={username}&api-version=1";
-            public static string CheckOTP(string baseUri, string path, string otp) => $"{baseUri}{path}/CheckOtp?Otp={otp}&api-version=1";
+            public static string CheckOTP(string baseUri, string path, string username, string otp) => $"{baseUri}{path}/CheckOtp?Username={username}&Otp={otp}&api-version=1";
 
         }
         public static class User
@@ -72,6 +72,11 @@
             public static string SaveCampaignAdvertisementMappedData(string baseUri, string path) => $"{baseUri}{path}/AddCampaignAdvertiseData?api-version=1";
 
             public static string DeleteAsset(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
+        }
+        public static class Template
+        {
+            public static string GetAllTemplate(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+
         }
     }
 }

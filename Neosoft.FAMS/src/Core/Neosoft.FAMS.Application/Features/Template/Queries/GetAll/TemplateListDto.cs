@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-#nullable disable
-
-namespace Neosoft.FAMS.Domain.Entities
+namespace Neosoft.FAMS.Application.Features.Template.Queries
 {
-    public partial class TemplateDetail
+    public class TemplateListDto
     {
-        [Key]
         public long TemplateId { get; set; }
         public string TemplateName { get; set; }
         public bool? IsDeleted { get; set; }

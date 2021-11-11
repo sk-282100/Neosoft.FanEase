@@ -117,6 +117,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 string Username = model.Username;
+                HttpContext.Session.SetString("UserName", model.Username);
                 var serviceresult = _login.SaveOTP(new CheckUsernameCommand
                 {
                     UserName = Username,
@@ -136,9 +137,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public ActionResult CheckOtp(PasswordResetRequest passwordResetRequest)
         {
+            string id = HttpContext.Session.GetString("UserName");
             string code = passwordResetRequest.Otp;
             var serviceresult = _login.CheckOTP(new CheckOtpQuery
             {
+                Username=id,
                 Otp = code,
 
             });
