@@ -3,7 +3,7 @@
 }
 
 .btn-primary {
-    width: 100px;
+    width: 150px;
 }
 
 .switch {
@@ -68,8 +68,12 @@ input:checked + .slider:before {
 
 #VideoSection, #ButtonSection, #DetailSection, #DescSection {
     margin-left: 300px;
+    margin-top: 10px;
 }
 
-h6 {
+#DetailSection > h6 {
     margin-left: 10px;
+}
+#DetailSection > h4 {
+    font-weight: bold;
 }
