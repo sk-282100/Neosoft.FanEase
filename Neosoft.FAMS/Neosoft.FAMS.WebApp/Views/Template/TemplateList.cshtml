@@ -1,10 +1,10 @@
-﻿@using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+﻿@using Neosoft.FAMS.Application.Features.Template.Queries
 @using Neosoft.FAMS.WebApp.Services;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     ViewData["Title"] = "Template List";
-    var records = (List<ContentCreatorDto>)ViewData["data"];
+    var records = (List<TemplateListDto>)ViewData["data"];
     bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
 
 }
@@ -28,7 +28,7 @@
         @Html.Partial("_SideBar")
         <div class="col pt-2">
 
-            <h3>Content Creators</h3>
+            <h3>Template List</h3>
             <div class="row header" style="float: right;">
                 <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location = '@Url.Action("CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Template </button>
             </div>
@@ -54,29 +54,22 @@
                     <tbody>
                         @foreach (var record in records)
                         {
-                            if (!@record.isDeleted)
-                            {
-                                <tr>
-                                    <td>@record.CreatorName.ToString()</td>
-                                    <td>@record.EmailId</td>
-                                   
-                                    <td></td>
-                                    <td>@record.MobileNumber</td>
-                                    <td>@string.Format("{0:MMM dd, yyyy}", @record.CreatedOn)</td>
-                                    @if (record.Status == true)
+                            <tr>
+                                    <td>@record.TemplateId</td>
+                                    <td><a href="~/Template/TemplateDetail">@record.TemplateName</a></td>
+                                @if (record.PublishStatus == true)
                                     {
-                                        <td style="color: limegreen">Active</td>
+                                        <td style="color: limegreen">Live</td>
                                     }
                                     else
                                     {
-                                        <td style="color: red">Deactive</td>
+                                        <td style="color: red">Draft</td>
                                     }
                                     <td>
-                                        <a class="edit" href="EditCreator/@record.ContentCreatorId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
-                                        <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.ContentCreatorId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
+                                        <a class="edit" href="EditCreator/@record.TemplateId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                        <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.TemplateId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
                                     </td>
                                 </tr>
-                            }
                         }
                     </tbody>
                 </table>

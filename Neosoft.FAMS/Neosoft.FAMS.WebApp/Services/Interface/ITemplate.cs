@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Template.Queries;
+
+namespace Neosoft.FAMS.WebApp.Services.Interface
+{
+    public interface Itemplate
+    {
+        public List<TemplateListDto> GetAllTemplate();
+    }
+}

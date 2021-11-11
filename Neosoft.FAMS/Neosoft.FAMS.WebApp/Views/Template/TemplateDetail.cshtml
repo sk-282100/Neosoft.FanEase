@@ -1,0 +1,33 @@
+﻿@using Neosoft.FAMS.Application.Features.Template.Queries
+@using Neosoft.FAMS.WebApp.Services;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewData["Title"] = "Template List";
+    var records = (List<TemplateListDto>)ViewData["data"];
+    bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
+
+}
+<head>
+    <link rel="stylesheet" href="~/css/temp.css" />
+    <link href="~/css/Admin/CreatorList.css" rel="stylesheet" />
+    <link href="~/css/datatablestyle.css" rel="stylesheet" />
+
+    <style>
+        #deleteTag:hover {
+            color: #56baed;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<div class="container-fluid">
+
+<div class="row" style="background-color: #F5F5F5;">
+    @Html.Partial("_SideBar")
+    <div class="col pt-2">
+
+        <h3>Template Detail</h3>
+    </div>
+</div>
+</div>
