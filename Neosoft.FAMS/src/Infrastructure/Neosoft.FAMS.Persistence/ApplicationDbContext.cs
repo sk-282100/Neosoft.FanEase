@@ -44,7 +44,9 @@ namespace Neosoft.FAMS.Persistence
         public DbSet<PasswordResetRequest> PasswordResetRequests { get; set; }
         public DbSet<CampaignDetail> CampaignDetails { get; set; }
         public DbSet<CampaignAdvertiseMapping> CampaignAdvertiseMappings { get; set; }
-
+        public DbSet<TemplateDetail> TemplateDetails { get; set; }
+        public DbSet<TemplateFieldDetail> TemplateFieldDetails { get; set; }
+        public DbSet<TemplateVideoMapping> TemplateVideoMappings { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
