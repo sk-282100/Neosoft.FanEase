@@ -33,5 +33,10 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = data;
             return View();
         }
+        [HttpGet]
+        public ActionResult AddTemplate()
+        {
+            return View();
+        }
     }
 }

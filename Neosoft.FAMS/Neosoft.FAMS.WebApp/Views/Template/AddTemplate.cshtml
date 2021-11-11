@@ -1,0 +1,133 @@
+﻿@using Neosoft.FAMS.Application.Features.Template.Queries
+@using Neosoft.FAMS.WebApp.Services;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewData["Title"] = "Add New Template";
+    bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
+
+}
+<head>
+    <link rel="stylesheet" href="~/css/temp.css" />
+    <link href="~/css/Admin/CreatorList.css" rel="stylesheet" />
+    <link href="~/css/datatablestyle.css" rel="stylesheet" />
+
+    <style>
+        #deleteTag:hover {
+            color: #56baed;
+            cursor: pointer;
+        }
+
+        .border-dark {
+            border: 3px solid grey !important;
+            box-shadow: grey 0.4em 0.5em 0.5em;
+        }
+
+        .templateImg:hover {
+            border: 3px solid grey;
+        }
+        .ml-5{
+            margin-left:120px !important;
+        }
+        .bord{
+            border:3px solid grey;
+        }
+    </style>
+</head>
+
+<div class="container-fluid">
+
+    <div class="row" style="background-color: #F5F5F5;">
+        @Html.Partial("_SideBar")
+        <div class="col pt-2">
+            <h3>Add New Template</h3>
+            <div class="mt-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col ml-4">
+                            <img id="img1" class="templateImg" src="~/DefaultPhotos/Template-1.png" style="height:200px;width:300px;"/><br />
+                            <button id="btn1" onclick="changeTxt(this)" data-t class="font-weight-bold ml-5 mt-2 btn btn-outline-primary">Select</button>
+                        </div>
+                        <div class="col ml-4">
+                            <img id="img2" class="templateImg" src="~/DefaultPhotos/Template-2.png" style="height:200px;width:300px;" /><br />
+                            <button id="btn2" onclick="changeTxt(this)" class="font-weight-bold ml-5 mt-2 btn btn-outline-primary">Select</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="sectionDiv" class="container mt-4">
+                   
+                </div>
+                <div class="row float-right">
+                    <div class="col">
+                        <button class=" btn btn-dark ">Cancel</button>
+                    </div>
+                    <div class="col">
+                        <button class=" mr-5 btn btn-primary ">Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div><br />
+
+    </div>
+</div>
+<script>
+    function changeTxt(elem)
+    {
+        var id = $(elem).attr("id");
+        if (id == "btn1")
+        {
+            $('#btn2').text("Select").removeClass('btn-primary').addClass('btn-outline-primary');
+            $(elem).text("Selected").removeClass('btn-outline-primary').addClass('btn-primary');
+            $('#img1').css("border", "3px solid skyblue");
+            $('#img2').css("border", "1px solid grey");
+            $('#sectionDiv').empty();
+            for (var i = 0; i < 5; i++)
+            {
+                $('#sectionDiv').append
+                (`
+                    <h3 class="text-center">Section ${i+1}</h3>
+                        <div class="row m-4 border border-dark">
+                            <div class="col"><img class=" mt-4 ml-4 rounded-3" src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg" style="height: 150px; width: 220px;" /></div>
+                            <div class="col mr-5 ">
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Title</label>
+                                    <input class="form-control" type="text" value="" placeholder=" Title"  />
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Description</label>
+                                    <textarea class="form-control" type="text" placeholder="This is my video description" ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                `);
+            }
+        }
+        else if (id == "btn2")
+        {
+            $('#btn1').text("Select").removeClass('btn-primary').addClass('btn-outline-primary');
+            $(elem).text("Selected").removeClass('btn-outline-primary').addClass('btn-primary');
+            $('#img2').css("border", "3px solid skyblue");
+            $('#img1').css("border", "1px solid grey");
+            $('#sectionDiv').empty();
+            for (var i = 0; i < 3; i++) {
+                $('#sectionDiv').append
+                    (`
+                    <h3 class="text-center">Section ${i + 1}</h3>
+                        <div class="row m-4 border border-dark">
+                            <div class="col"><img class=" mt-4 ml-4 rounded-3" src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg" style="height: 150px; width: 220px;" /></div>
+                            <div class="col mr-5 ">
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Title</label>
+                                    <input class="form-control" type="text" value="" placeholder="Diwali Ads"  />
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Description</label>
+                                    <textarea class="form-control" type="text" placeholder="This is my video description" ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                `);
+            }
+        }
+    }
+</script>
