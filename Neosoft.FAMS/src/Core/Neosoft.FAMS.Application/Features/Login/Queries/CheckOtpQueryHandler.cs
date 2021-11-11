@@ -25,7 +25,7 @@ namespace Neosoft.FAMS.Application.Features.Login.Queries
             var data = await _loginRepository.CheckUsername(Username);
             //if (data.Username == request.UserName)
             //{
-                long LoginId = data.Id;
+            long LoginId = data.Id;
                 var result = await _loginRepository.CheckOtp(LoginId,request.Otp);
                 DateTime expiredDate=(DateTime)result.ExpiredOn;
                 int check = DateTime.Compare(expiredDate,DateTime.Now);
