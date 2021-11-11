@@ -108,7 +108,7 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<int> CheckOTP(CheckOtpQuery checkOtpQuery)
         {
             int result = 0;
-            var uri = API.Login.CheckOTP(_baseUrl, _path, checkOtpQuery.Otp);
+            var uri = API.Login.CheckOTP(_baseUrl, _path, checkOtpQuery.Username, checkOtpQuery.Otp);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
 
             if (response.IsSuccessStatusCode)
