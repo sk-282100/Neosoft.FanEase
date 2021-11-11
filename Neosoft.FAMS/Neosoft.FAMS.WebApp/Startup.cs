@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +49,11 @@ namespace Neosoft.FAMS.WebApp
             services.AddScoped<Services.Interface.ICampaign, Campaign>();
             services.AddScoped<Services.Interface.IAsset, Asset>();
             services.AddScoped<Services.Interface.ICommon, Common>();
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.MaxRequestBodySize = int.MaxValue;
+            });
+
             //services.AddDbContext<SuperHeroContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DemoCustDb")));
         }
@@ -57,7 +63,9 @@ namespace Neosoft.FAMS.WebApp
         {
             if (env.IsDevelopment())
             {
+              
                 app.UseDeveloperExceptionPage();
+
             }
             else
             {
@@ -72,8 +80,9 @@ namespace Neosoft.FAMS.WebApp
             app.UseSession();
 
             app.UseAuthorization();
+            
 
-            app.UseEndpoints(endpoints =>
+                app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
