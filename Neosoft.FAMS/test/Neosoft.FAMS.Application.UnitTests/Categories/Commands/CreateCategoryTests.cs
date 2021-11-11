@@ -4,7 +4,6 @@ using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Features.Categories.Commands.CreateCateogry;
 using Neosoft.FAMS.Application.Profiles;
 using Neosoft.FAMS.Application.UnitTests.Mocks;
-using Neosoft.FAMS.Domain.Entities;
 using Shouldly;
 using System.Threading;
 using System.Threading.Tasks;

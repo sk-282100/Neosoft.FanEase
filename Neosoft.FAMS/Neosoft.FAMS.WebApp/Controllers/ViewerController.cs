@@ -1,16 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
-using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.WebApp.Models.ViewerModel;
-using Neosoft.FAMS.WebApp.Profiles;
 using Neosoft.FAMS.WebApp.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -20,7 +13,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         IViewer _viewer;
         ICommon _common;
 
-        public ViewerController(IMapper mapper,IViewer viewer, ICommon common)
+        public ViewerController(IMapper mapper, IViewer viewer, ICommon common)
         {
             _mapper = mapper;
             _viewer = viewer;

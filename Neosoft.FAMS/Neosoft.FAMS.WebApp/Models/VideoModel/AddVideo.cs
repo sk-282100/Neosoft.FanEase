@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.WebApp.Models.Validations;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Neosoft.FAMS.WebApp.Models.VideoModel
 {
@@ -15,7 +12,7 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
 
         [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile VideoImage { get; set; }
-        
+
 
         [Required(ErrorMessage = "Start Time is required")]
         [DataType(DataType.DateTime)]
@@ -28,14 +25,14 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         public DateTime? EndDate { get; set; }
 
         [Required(ErrorMessage = "Title is required")]
-        [MaxLength(30,ErrorMessage="Title Length Cannot Exceed 30 characters")]
+        [MaxLength(30, ErrorMessage = "Title Length Cannot Exceed 30 characters")]
         public string Title { get; set; }
-        
+
         public short? VideoTypeId { get; set; }
         public short? PlayerTypeId { get; set; }
 
 
-        
+
         public string? VideoUrl { get; set; }
         public IFormFile UploadVideoPath { get; set; }
         public short? VideoCategoryId { get; set; }

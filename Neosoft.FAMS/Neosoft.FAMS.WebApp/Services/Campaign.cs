@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
+﻿using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
-    public class Campaign:ICampaign
+    public class Campaign : ICampaign
     {
         #region private variables
         private static HttpClient _client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });

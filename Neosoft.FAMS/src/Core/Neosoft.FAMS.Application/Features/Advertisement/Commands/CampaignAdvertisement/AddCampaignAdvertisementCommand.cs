@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MediatR;
+﻿using MediatR;
+using System;
 
 namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement
 {
-   public class AddCampaignAdvertisementCommand : IRequest<long>
+    public class AddCampaignAdvertisementCommand : IRequest<long>
     {
         public long? CampaignId { get; set; }
         public long? AdvertisementId { get; set; }

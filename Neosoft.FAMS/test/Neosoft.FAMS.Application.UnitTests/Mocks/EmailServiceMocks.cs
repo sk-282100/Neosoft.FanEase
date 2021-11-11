@@ -1,9 +1,6 @@
 using Moq;
 using Neosoft.FAMS.Application.Contracts.Infrastructure;
 using Neosoft.FAMS.Application.Models.Mail;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.UnitTests.Mocks
 {

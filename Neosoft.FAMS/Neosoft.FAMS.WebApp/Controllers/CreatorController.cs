@@ -1,46 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Neosoft.FAMS.Application.Features.Video.Command.Create;
-using Neosoft.FAMS.WebApp.Models;
-using Neosoft.FAMS.WebApp.Models.VideoModel;
-using Neosoft.FAMS.WebApp.Models.AdvertisementModel;
-using Neosoft.FAMS.WebApp.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
-using Neosoft.FAMS.WebApp.Models.CampaignModel;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
-using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
+using Neosoft.FAMS.Application.Features.Video.Command.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
+using Neosoft.FAMS.WebApp.Models;
+using Neosoft.FAMS.WebApp.Models.AdvertisementModel;
+using Neosoft.FAMS.WebApp.Models.CampaignModel;
+using Neosoft.FAMS.WebApp.Models.VideoModel;
+using Neosoft.FAMS.WebApp.Services.Interface;
+using System;
+using System.IO;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class CreatorController : Controller
     {
-        private IMapper  _mapper;
+        private IMapper _mapper;
         private IVideo _video;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private ICampaign _campaign;
         private IAsset _asset;
 
-        public CreatorController(IMapper mapper,IVideo video,ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
+        public CreatorController(IMapper mapper, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
         {
             _mapper = mapper;
             _video = video;
             _webHostEnvironment = webHostEnvironment;
             _campaign = campaign;
             _asset = asset;
-           
+
         }
         public IActionResult Index()
         {
@@ -63,7 +58,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
 
-        
+
         public IActionResult AddVideoView()
         {
             ViewData["isInsert"] = false;
@@ -72,7 +67,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult AddVideoView(AddVideo model)
         {
-            model.CreatedBy= long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+            model.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
             model.PublishStatus = false;
             model.VideoCategoryId = 0;
             model.VideoStatus = 0;
@@ -156,7 +151,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             {
 
             } while (!result.IsCompletedSuccessfully);
-            TempData["VideoId"] =  TempData["VideoId"];
+            TempData["VideoId"] = TempData["VideoId"];
             TempData["CampaignId"] = TempData["CampaignId"];
             TempData["AdvertisementId"] = result.Result;
 
@@ -251,7 +246,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     string video = VideoFile(editVideo);
                     updateVideo.UploadVideoPath = video;
                 }
-                
+
 
                 var isupdated = _video.UpdateVideoDetail(updateVideo);
                 return RedirectToAction("VideoTable");
@@ -277,7 +272,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             }
             return thumbnail;
         }
-       
+
 
         public string VideoFile(AddVideo model)
         {
@@ -300,12 +295,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             var addCampaignAdvertisement = new AddCampaignAdvertisementCommand();
             addCampaignAdvertisement.AdvertisementId = MappingViewModel.AdvertisementId;
-            addCampaignAdvertisement.CampaignId =MappingViewModel.CampaignId;
+            addCampaignAdvertisement.CampaignId = MappingViewModel.CampaignId;
             addCampaignAdvertisement.VideoId = MappingViewModel.VideoId;
             addCampaignAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-            addCampaignAdvertisement.CreatedOn=DateTime.Now;
-           
-            var id =_asset.AddCampaignAdvertiseMappedData(addCampaignAdvertisement);
+            addCampaignAdvertisement.CreatedOn = DateTime.Now;
+
+            var id = _asset.AddCampaignAdvertiseMappedData(addCampaignAdvertisement);
 
         }
 

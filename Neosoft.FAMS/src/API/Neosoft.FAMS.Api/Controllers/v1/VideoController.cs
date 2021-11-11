@@ -1,16 +1,12 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetById;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetCreatedById;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -62,7 +58,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [HttpPut]
         [Route("")]
         public async Task<IActionResult> Update([FromBody] UpdateVideoByIdCommand updateVideoByIdCommand)
-        {           
+        {
             var data = await _mediator.Send(updateVideoByIdCommand);
             return Ok(data);
         }

@@ -37,13 +37,15 @@ namespace Neosoft.FAMS.Persistence
         public DbSet<AdvertisementDetail> AdvertisementDetails { get; set; }
         public DbSet<AdvertisementPlacementDetail> AdvertisementPlacementDetails { get; set; }
         public DbSet<ContentCreatorDetail> ContentCreatorDetails { get; set; }
-        
+
         public DbSet<VideoDetail> VideoDetails { get; set; }
 
 
         public DbSet<PasswordResetRequest> PasswordResetRequests { get; set; }
         public DbSet<CampaignDetail> CampaignDetails { get; set; }
         public DbSet<CampaignAdvertiseMapping> CampaignAdvertiseMappings { get; set; }
+
+        public DbSet<VideoStatisticsDetail> VideoStatisticsDetails { get; set; }
 
 
 
@@ -96,9 +98,9 @@ namespace Neosoft.FAMS.Persistence
                 MiddleName = "Egbert",
                 LastName = "John Egbert",
                 DateOfJoining = DateTime.Now.AddMonths(6),
-                IsAdmin=false,
-                CreatedBy="1",
-                CreatedDate=DateTime.Now,
+                IsAdmin = false,
+                CreatedBy = "1",
+                CreatedDate = DateTime.Now,
 
             });
             modelBuilder.Entity<Event>().HasData(new Event

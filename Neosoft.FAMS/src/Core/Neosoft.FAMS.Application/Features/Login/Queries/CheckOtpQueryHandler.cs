@@ -2,8 +2,6 @@
 using MediatR;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,14 +23,14 @@ namespace Neosoft.FAMS.Application.Features.Login.Queries
             var data = await _loginRepository.CheckUsername(Username);
             //if (data.Username == request.UserName)
             //{
-                long LoginId = data.Id;
-                var result = await _loginRepository.CheckOtp(LoginId,request.Otp);
-                DateTime expiredDate=(DateTime)result.ExpiredOn;
-                int check = DateTime.Compare(expiredDate,DateTime.Now);
-                if(check>=0 && result.ValidCode==request.Otp)
-                {
-                     return (int)result.LoginId;
-                }
+            long LoginId = data.Id;
+            var result = await _loginRepository.CheckOtp(LoginId, request.Otp);
+            DateTime expiredDate = (DateTime)result.ExpiredOn;
+            int check = DateTime.Compare(expiredDate, DateTime.Now);
+            if (check >= 0 && result.ValidCode == request.Otp)
+            {
+                return (int)result.LoginId;
+            }
             //}
             return 0;
         }

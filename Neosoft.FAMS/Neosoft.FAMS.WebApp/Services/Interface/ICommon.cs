@@ -1,9 +1,5 @@
-﻿using Neosoft.FAMS.Domain.Entities;
-using Neosoft.FAMS.WebApp.Models.CommonViewModel;
-using System;
+﻿using Neosoft.FAMS.WebApp.Models.CommonViewModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Services.Interface
 {

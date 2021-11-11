@@ -4,9 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Queries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
@@ -74,7 +71,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [Route("CheckOtp")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CheckOtp(string Username,string Otp)
+        public async Task<IActionResult> CheckOtp(string Username, string Otp)
         {
             CheckOtpQuery checkOtpQuery = new CheckOtpQuery();
             checkOtpQuery.Otp = Otp;
@@ -99,7 +96,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [ProducesDefaultResponseType]
         public async Task<IActionResult> ResetPassword(string EmailAddress, string Password, string NewPassword)
         {
-            ResetPasswordCommand resetPasswordCommand=new ResetPasswordCommand();
+            ResetPasswordCommand resetPasswordCommand = new ResetPasswordCommand();
             resetPasswordCommand.Username = EmailAddress;
             resetPasswordCommand.Password = Password;
             resetPasswordCommand.newPassword = NewPassword;

@@ -2,7 +2,6 @@ using AutoMapper;
 using MediatR;
 using Neosoft.FAMS.Application.Contracts.Infrastructure;
 using Neosoft.FAMS.Application.Contracts.Persistence;
-using Neosoft.FAMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

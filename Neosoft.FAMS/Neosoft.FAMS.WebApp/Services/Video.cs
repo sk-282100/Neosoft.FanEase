@@ -1,20 +1,19 @@
 ﻿using Neosoft.FAMS.Application.Features.Video.Command.Create;
+using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
+using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
+using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Neosoft.FAMS.Application.Features.Video.Commands.Update;
-using Neosoft.FAMS.WebApp.Models;
-using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -66,7 +65,7 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <returns></returns>
         public async Task<long> CreateVideo(VideoCreateCommand videocreateCommand)
         {
-            var uri = API.Video.CreateVideo(_baseUrl,_path);
+            var uri = API.Video.CreateVideo(_baseUrl, _path);
             long result = 0;
             var content = JsonConvert.SerializeObject(videocreateCommand);
             HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
@@ -75,7 +74,7 @@ namespace Neosoft.FAMS.WebApp.Services
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var data = JsonConvert.DeserializeObject<Response<long>>(jsonDataStatus);
-                result = (long) data.Data;
+                result = (long)data.Data;
                 MappingViewModel.VideoId = result;
             }
             return result;
@@ -84,7 +83,7 @@ namespace Neosoft.FAMS.WebApp.Services
         public List<VideoGetAllDto> VideosCreatedByContentCreator(long id)
         {
             var result = new List<VideoGetAllDto>();
-            var uri = API.Video.VideosByContentCreator(_baseUrl, _pathofCC,id);
+            var uri = API.Video.VideosByContentCreator(_baseUrl, _pathofCC, id);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {

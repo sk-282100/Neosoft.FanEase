@@ -4,8 +4,6 @@ using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,7 +27,7 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
                 throw new Exceptions.ValidationException(validationResult);
 
             string password = "Pass123";
-            var createrData = await _creatorRepo.AddLoginDetailAsync(request.EmailId,password);
+            var createrData = await _creatorRepo.AddLoginDetailAsync(request.EmailId, password);
 
             var record = _mapper.Map<ContentCreatorDetail>(request);
             record.CreatedOn = DateTime.Now;

@@ -3,7 +3,6 @@ using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
-using Neosoft.FAMS.WebApp.Models.CreatorModel;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
 using System;
@@ -13,7 +12,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -42,8 +40,8 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <returns></returns>
         public List<ContentCreatorDto> GetAllCreator()
         {
-            var result= new List<ContentCreatorDto>();
-            var uri = API.Creator.GetAllCreator(_baseUrl,_path);
+            var result = new List<ContentCreatorDto>();
+            var uri = API.Creator.GetAllCreator(_baseUrl, _path);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -61,7 +59,7 @@ namespace Neosoft.FAMS.WebApp.Services
         /// </summary>
         /// <param name="registeration"></param>
         /// <returns></returns>
-        
+
         public async Task<long> SaveCreatorDetail(UpdateCreatorByIdCommand registeration)
         {
             long result = 0;
@@ -88,7 +86,7 @@ namespace Neosoft.FAMS.WebApp.Services
         public ContentCreatorDto GetCreatorById(long id)
         {
             var result = new ContentCreatorDto();
-            var uri = API.Creator.GetCreatorById(_baseUrl, _path,id);
+            var uri = API.Creator.GetCreatorById(_baseUrl, _path, id);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {

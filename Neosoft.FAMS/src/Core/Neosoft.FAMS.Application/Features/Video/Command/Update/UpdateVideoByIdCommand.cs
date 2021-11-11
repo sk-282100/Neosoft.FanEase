@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Neosoft.FAMS.Application.Responses;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.Video.Commands.Update
 {

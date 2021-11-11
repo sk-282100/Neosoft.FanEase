@@ -20,7 +20,7 @@ namespace Neosoft.FAMS.Application.Features.Users.Commands.CreateUser
         private readonly IEmailService _emailService;
         private readonly ILogger<CreateUserCommandHandler> _logger;
 
-  
+
         public CreateUserCommandHandler(IMapper mapper, IUserRepository userRepository, IEmailService emailService, ILogger<CreateUserCommandHandler> logger)
         {
             _mapper = mapper;
@@ -32,7 +32,7 @@ namespace Neosoft.FAMS.Application.Features.Users.Commands.CreateUser
         public async Task<Response<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Handle Initiated");
-           // var validator = new CreateUserCommandValidator(_userRepository);
+            // var validator = new CreateUserCommandValidator(_userRepository);
             //var validationResult = await validator.ValidateAsync(request);
 
             //if (validationResult.Errors.Count > 0)
@@ -62,6 +62,6 @@ namespace Neosoft.FAMS.Application.Features.Users.Commands.CreateUser
             return response;
         }
 
-       
+
     }
 }

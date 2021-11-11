@@ -2,9 +2,6 @@
 using MediatR;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,10 +19,10 @@ namespace Neosoft.FAMS.Application.Features.Video.Queries.GetById
         }
         public async Task<VideoGetAllDto> Handle(VideoGetByIdCommand request, CancellationToken cancellationToken)
         {
-                var data = await _videoRepo.GetByIdAsync(request.VideoId);
-                var response = _mapper.Map<VideoGetAllDto>(data);
-                return response;
-            
+            var data = await _videoRepo.GetByIdAsync(request.VideoId);
+            var response = _mapper.Map<VideoGetAllDto>(data);
+            return response;
+
         }
     }
 }

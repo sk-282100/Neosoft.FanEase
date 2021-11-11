@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Models.ViewerModel
 {
@@ -35,7 +32,7 @@ namespace Neosoft.FAMS.WebApp.Models.ViewerModel
         [Required, Range(1, int.MaxValue, ErrorMessage = "Please select City")]
         public int CityId { get; set; }
 
-        
+
         [DisplayName("Country")]
         [Required, Range(1, int.MaxValue, ErrorMessage = "Please select Country")]
         public int CountryId { get; set; }
@@ -51,13 +48,13 @@ namespace Neosoft.FAMS.WebApp.Models.ViewerModel
         ErrorMessage = "Please Enter Valid Email.")]
         public string EmailId { get; set; }
 
-        
+
         [DisplayName("Contact")]
         [Required(ErrorMessage = "Contact is required")]
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Can contain only digits and length must be 10")]
         public string MobileNumber { get; set; }
 
-        
+
         [DisplayName("Password")]
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }

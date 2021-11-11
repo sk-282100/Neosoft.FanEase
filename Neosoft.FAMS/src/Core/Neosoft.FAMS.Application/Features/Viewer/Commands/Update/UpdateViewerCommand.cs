@@ -1,13 +1,10 @@
 ﻿using MediatR;
 using Neosoft.FAMS.Application.Responses;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Update
 {
-    public class UpdateViewerCommand: IRequest<Response<bool>>
+    public class UpdateViewerCommand : IRequest<Response<bool>>
     {
         public long ViewerId { get; set; }
         public string FirstName { get; set; }

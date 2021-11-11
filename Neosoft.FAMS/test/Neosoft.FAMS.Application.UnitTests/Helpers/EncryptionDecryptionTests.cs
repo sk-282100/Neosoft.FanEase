@@ -1,6 +1,5 @@
 using Neosoft.FAMS.Infrastructure.EncryptDecrypt;
 using Shouldly;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Neosoft.FAMS.Application.UnitTests.Helpers

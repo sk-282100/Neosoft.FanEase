@@ -1,17 +1,12 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Neosoft.FAMS.WebApp.Profiles;
 using Neosoft.FAMS.WebApp.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp
 {
@@ -63,7 +58,7 @@ namespace Neosoft.FAMS.WebApp
         {
             if (env.IsDevelopment())
             {
-              
+
                 app.UseDeveloperExceptionPage();
 
             }
@@ -80,14 +75,14 @@ namespace Neosoft.FAMS.WebApp
             app.UseSession();
 
             app.UseAuthorization();
-            
 
-                app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
-            });
+
+            app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Login}/{action=Index}/{id?}");
+        });
         }
     }
 }

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Neosoft.FAMS.Api.Utility;
-using System;
 using System.Collections.Generic;
 
 namespace Neosoft.FAMS.Api.Extensions

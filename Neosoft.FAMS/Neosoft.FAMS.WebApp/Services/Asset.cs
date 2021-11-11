@@ -1,8 +1,12 @@
-﻿using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
+﻿using Microsoft.AspNetCore.Http;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete;
+using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
+using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
 using System;
@@ -12,14 +16,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Neosoft.FAMS.WebApp.Models;
-using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
-using Neosoft.FAMS.Application.Features.Advertisement.Commands.Delete;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
-    public class Asset: IAsset
+    public class Asset : IAsset
     {
         #region private variables
         private static HttpClient _client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });

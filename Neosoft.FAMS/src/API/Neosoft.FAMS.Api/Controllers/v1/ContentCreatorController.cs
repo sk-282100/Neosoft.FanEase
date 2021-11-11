@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Delete;
@@ -7,9 +6,6 @@ using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetByEmail;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetById;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
@@ -31,7 +27,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <param name="createCommand"></param>
         /// <returns>name="ContentCreatorId</returns>
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]ContentCreaterCommand createCommand)
+        public async Task<IActionResult> Create([FromBody] ContentCreaterCommand createCommand)
         {
             var data = await _mediator.Send(createCommand);
             return Ok(data);
@@ -77,7 +73,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         public async Task<IActionResult> DeleteById([FromRoute] long id)
         {
             var delete = new DeleteCreatorByIdCommand { CreatorId = id };
-            var data =  await _mediator.Send(delete);
+            var data = await _mediator.Send(delete);
             return Ok(data);
         }
         /// <summary> 
@@ -103,11 +99,11 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <returns></returns>
         [HttpGet]
         [Route("getCreatorByEmail")]
-        public async Task<IActionResult> GetByEmail([FromQuery]string username)
+        public async Task<IActionResult> GetByEmail([FromQuery] string username)
         {
             var Email = username.Split('?');
             var creatorQuery = new GetCreatorByEmailQuery { Username = Email[0] };
-            var data = await _mediator.Send(creatorQuery); 
+            var data = await _mediator.Send(creatorQuery);
             return Ok(data);
         }
 

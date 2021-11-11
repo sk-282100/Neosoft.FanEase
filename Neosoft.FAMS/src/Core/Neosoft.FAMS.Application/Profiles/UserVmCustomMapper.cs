@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Neosoft.FAMS.Application.Profiles 
+namespace Neosoft.FAMS.Application.Profiles
 {
     public class UserVmCustomMapper : ITypeConverter<UserDemo, UserListVm>
     {
@@ -19,7 +16,7 @@ namespace Neosoft.FAMS.Application.Profiles
             {
 
                 FirstName = source.FirstName,
-                MiddleName= source.MiddleName,
+                MiddleName = source.MiddleName,
                 LastName = source.LastName
             };
 

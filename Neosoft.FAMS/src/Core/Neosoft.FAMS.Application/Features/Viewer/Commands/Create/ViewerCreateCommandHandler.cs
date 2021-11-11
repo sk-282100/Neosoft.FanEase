@@ -4,8 +4,6 @@ using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -37,7 +35,7 @@ namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Create
             record.LoginId = viewerLoginData.Id;
             record.CreatedOn = DateTime.Now;
             var data = await _viewerRepo.AddAsync(record);
-            var response = new Response<long>(data.ViewerId,"Inserted Successfully"); 
+            var response = new Response<long>(data.ViewerId, "Inserted Successfully");
             return response;
         }
     }

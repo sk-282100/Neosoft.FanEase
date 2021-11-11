@@ -3,9 +3,7 @@ using MediatR;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

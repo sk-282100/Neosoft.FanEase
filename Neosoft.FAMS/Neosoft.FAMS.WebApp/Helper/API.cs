@@ -1,10 +1,4 @@
-﻿using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Neosoft.FAMS.WebApp.Helper
+﻿namespace Neosoft.FAMS.WebApp.Helper
 {
     public static class API
     {
@@ -24,7 +18,7 @@ namespace Neosoft.FAMS.WebApp.Helper
         public static class Viewer
         {
             public static string GetAllViewer(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
-            public static string GetEmailUrl(string baseUri, string path,string email) => $"{baseUri}{path}/getViewerByEmail?username={email}?api-version=1";
+            public static string GetEmailUrl(string baseUri, string path, string email) => $"{baseUri}{path}/getViewerByEmail?username={email}?api-version=1";
             public static string SaveViewer(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetViewerByEmail(string baseUri, string path, string username) => $"{baseUri}{path}/getViewerByEmail?username={username}?api-version=1";
 
@@ -40,11 +34,11 @@ namespace Neosoft.FAMS.WebApp.Helper
         }
         public static class Common
         {
-            public static string GetEmailUrl(string baseUri, string email)=> $"{baseUri}api/ContentCreator/getCreatorByEmail?username={email}?api-version=1";
-            public static string GetPhoneCodeUrl(string baseUri,string path,int id)=> $"{baseUri}{path}/GetCountryPhoneCode/{id}?api-version=1";
+            public static string GetEmailUrl(string baseUri, string email) => $"{baseUri}api/ContentCreator/getCreatorByEmail?username={email}?api-version=1";
+            public static string GetPhoneCodeUrl(string baseUri, string path, int id) => $"{baseUri}{path}/GetCountryPhoneCode/{id}?api-version=1";
             public static string GetCountryList(string path) => $"{path}/GetCountryList?api-version=1";
-            public static string GetStateList(string path,int id) => $"{path}/GetStateList?countryId={id}&api-version=1";
-            public static string GetCityList(string path,int id) => $"{path}/GetCityList?stateId={id}&api-version=1";
+            public static string GetStateList(string path, int id) => $"{path}/GetStateList?countryId={id}&api-version=1";
+            public static string GetCityList(string path, int id) => $"{path}/GetCityList?stateId={id}&api-version=1";
 
         }
         public static class Video

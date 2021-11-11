@@ -1,18 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Neosoft.FAMS.WebApp.Models.LoginModel;
-
-using System.Net.Mail;
-using System.Security.Cryptography;
-using Neosoft.FAMS.WebApp.Services.Interface;
-using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Queries;
+using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
+using Neosoft.FAMS.WebApp.Models.LoginModel;
+using Neosoft.FAMS.WebApp.Services.Interface;
+using System;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -21,7 +15,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private ILogin _login;
         private ICreator _creator;
         private IUser _user;
-        public LoginController(ILogin login, IUser user,ICreator creator)
+        public LoginController(ILogin login, IUser user, ICreator creator)
         {
             _login = login;
             _creator = creator;
@@ -120,7 +114,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult SendOtp(ForgotPassword model)
         {
-           if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 string Username = model.Username;
                 var serviceresult = _login.SaveOTP(new CheckUsernameCommand

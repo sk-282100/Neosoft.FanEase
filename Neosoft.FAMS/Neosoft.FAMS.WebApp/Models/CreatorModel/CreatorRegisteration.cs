@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Neosoft.FAMS.WebApp.Models.Validations;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Neosoft.FAMS.WebApp.Models.Validations;
 
 namespace Neosoft.FAMS.WebApp.Models.CreatorModel
 {
@@ -21,11 +17,11 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         public IFormFile ProfilePhotoPath { get; set; }
 
         [DisplayName("Creator Name")]
-        [Required(ErrorMessage ="Name is required")]
+        [Required(ErrorMessage = "Name is required")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string CreatorName { get; set; }
 
-        [Required(ErrorMessage ="Address-1 is required")]
+        [Required(ErrorMessage = "Address-1 is required")]
         public string Address1 { get; set; }
 
         public string Address2 { get; set; }
@@ -43,7 +39,7 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         public int StateId { get; set; }
 
         [DisplayName("Email")]
-        [Required(ErrorMessage ="Email is required")]
+        [Required(ErrorMessage = "Email is required")]
         [RegularExpression("^[A-Za-z0-9._%+-]*@[A-Za-z0-9.-]*\\.[A-Za-z0-9-]{2,}$",
         ErrorMessage = "Please Enter Valid Email.")]
         public string EmailId { get; set; }

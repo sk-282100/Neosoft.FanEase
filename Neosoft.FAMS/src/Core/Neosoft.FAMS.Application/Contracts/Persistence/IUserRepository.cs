@@ -1,7 +1,5 @@
 ﻿using Neosoft.FAMS.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Contracts.Persistence
@@ -10,6 +8,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     {
         Task<List<UserDemo>> GetAllUserList();
 
-       // Task<UserDemo> SaveUserDetail(UserDemo user);
+        // Task<UserDemo> SaveUserDetail(UserDemo user);
     }
 }

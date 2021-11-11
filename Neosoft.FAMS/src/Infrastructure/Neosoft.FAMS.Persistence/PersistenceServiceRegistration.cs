@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Neosoft.FAMS.Application.Contracts.Persistence;
-using Neosoft.FAMS.Infrastructure.EncryptDecrypt;
 using Neosoft.FAMS.Persistence.Repositories;
 
 namespace Neosoft.FAMS.Persistence
@@ -20,7 +19,7 @@ namespace Neosoft.FAMS.Persistence
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILoginRepo, LoginRepo>();
-            services.AddScoped<IContentCreatorRepo,ContentCreatorRepo>();
+            services.AddScoped<IContentCreatorRepo, ContentCreatorRepo>();
             services.AddScoped<IViewerRepo, ViewerRepo>();
             services.AddScoped<IVideoRepository, VideoRepo>();
             services.AddScoped<ICampaignDetailRepo, CampaignDetailRepo>();

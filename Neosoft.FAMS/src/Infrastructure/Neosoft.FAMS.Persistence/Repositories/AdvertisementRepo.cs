@@ -2,15 +2,11 @@
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Neosoft.FAMS.Application.Features.Advertisement.Commands.CampaignAdvertisement;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
-    public class AdvertisementRepo : BaseRepository<AdvertisementDetail>,IAdvertisementRepo
+    public class AdvertisementRepo : BaseRepository<AdvertisementDetail>, IAdvertisementRepo
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly ILogger _logger;

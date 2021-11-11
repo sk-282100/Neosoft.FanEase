@@ -1,9 +1,7 @@
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.DataProtection;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Exceptions;
-using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.Domain.Entities;
 using System;
 using System.Threading;

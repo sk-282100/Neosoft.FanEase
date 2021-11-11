@@ -1,9 +1,6 @@
 ﻿using FluentValidation;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.Video.Command.Update
 {
@@ -28,5 +25,5 @@ namespace Neosoft.FAMS.Application.Features.Video.Command.Update
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .GreaterThan(0);
         }
-}
+    }
 }
