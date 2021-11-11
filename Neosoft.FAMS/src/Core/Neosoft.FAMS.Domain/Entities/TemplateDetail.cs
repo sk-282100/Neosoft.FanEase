@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace Neosoft.FAMS.Domain.Entities
 {
     public partial class TemplateDetail
     {
+        [Key]
         public long TemplateId { get; set; }
         public string TemplateName { get; set; }
         public bool? IsDeleted { get; set; }

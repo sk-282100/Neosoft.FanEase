@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace Neosoft.FAMS.Domain.Entities
 {
     public partial class TemplateVideoMapping
     {
+        [Key]
         public long TemplateVideoMappingId { get; set; }
         public long TemplateFieldId { get; set; }
         public long? VideoId { get; set; }
