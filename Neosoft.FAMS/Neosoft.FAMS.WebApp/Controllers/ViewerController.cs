@@ -79,5 +79,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["isInsert"] = false;
             return View();
         }
+
+        [HttpGet]
+        public bool checkForEmailExist([FromQuery] string email)
+        {
+            bool isPresent = _viewer.checkEmail(email);
+            return isPresent;
+        }
     }
 }

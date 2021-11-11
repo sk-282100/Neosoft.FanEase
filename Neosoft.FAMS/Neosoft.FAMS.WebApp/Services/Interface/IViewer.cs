@@ -9,6 +9,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
 {
     public interface IViewer
     {
+        public bool checkEmail(string email);
         public List<ViewerDto> GetAllViewer();
         Task<long> SaveViewer(ViewerCreateCommand viewerCreateCommand);
         public ViewerDto GetViewerByEmail(string username);

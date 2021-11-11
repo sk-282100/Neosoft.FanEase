@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Neosoft.FAMS.WebApp.Models.Validations;
 
 namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
 {
@@ -43,6 +44,7 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [DisplayName("Url")]
         public string Url { get; set; }
 
+        [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile ProfilePhotoPath { get; set; }
 
         [Required(ErrorMessage = "Placement is required")]

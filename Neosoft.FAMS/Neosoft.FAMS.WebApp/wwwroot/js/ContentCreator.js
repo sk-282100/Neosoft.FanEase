@@ -25,7 +25,6 @@ $(document).ready(function () {
         async: false,
         contentType: 'application/json',
         success: function (data) {
-            console.log(data);
             Statedata = data;
             $.each(data, function (id, text) {
                 if (text != null) {
@@ -42,7 +41,6 @@ $(document).ready(function () {
         async: false,
         contentType: 'application/json',
         success: function (data) {
-            console.log(data);
             Citydata = data;
             $.each(data, function (id, text) {
                 if (text != null) {
@@ -64,7 +62,7 @@ $(document).ready(function () {
             async: false,
             contentType: 'application/json',
             success: function (data) {
-            console.log(data);
+            
             Statedata = data;
             $.each(data,function(id, text) {
                     if (text != null) {
@@ -80,14 +78,14 @@ $(document).ready(function () {
     $('#formState').change(function() {
         $('#formCity').empty();
         var stateId = $('#formState').val();
-        console.log(stateId);
+        
         $.ajax({
             type: 'GET',
             url: "GetCity/" + stateId.toString(),
             async: false,
             contentType: 'application/json',
             success: function (data) {
-                console.log(data);
+               
                 Citydata = data;
                 $.each(data, function(id, text) {
                         if (text != null) {

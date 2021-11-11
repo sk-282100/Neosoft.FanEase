@@ -74,10 +74,11 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [Route("CheckOtp")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CheckOtp(string Otp)
+        public async Task<IActionResult> CheckOtp(string Username,string Otp)
         {
             CheckOtpQuery checkOtpQuery = new CheckOtpQuery();
             checkOtpQuery.Otp = Otp;
+            checkOtpQuery.Username = Username;
             var data = await _mediator.Send(checkOtpQuery);
             return Ok(data);
         }
