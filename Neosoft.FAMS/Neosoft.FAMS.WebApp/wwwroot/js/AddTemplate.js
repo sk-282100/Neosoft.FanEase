@@ -31,7 +31,7 @@ function changeTxt(elem)
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold">Description</label>
-                                    <textarea  id="textAreadId${i}" class="form-control" type="text" placeholder="This is my video description" ></textarea>
+                                    <textarea  id="textAreadId${i}" readonly class="form-control" type="text" placeholder="This is my video description" ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ function changeTxt(elem)
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold">Description</label>
-                                    <textarea  id="textAreadId${i}" class="form-control" type="text" placeholder="This is my video description" ></textarea>
+                                    <textarea  id="textAreadId${i}" readonly class="form-control" type="text" placeholder="This is my video description" ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -81,17 +81,17 @@ function loadAllValues(elem, i) {
     var title = e.options[e.selectedIndex].text;
     for (var j = 0; j < advertisementArray.length; j++)
     {
-        if (advertisementArray[i].title === title) {
-            $(`#textAreadId${i}`).text(advertisementArray[i].description);
-            if (advertisementArray[i].imagePath != null) {
+        if (advertisementArray[j].title === title) {
+            $(`#textAreadId${i}`).text(advertisementArray[j].description);
+            if (advertisementArray[j].imagePath != null) {
                 document.getElementById(`addImg${i}`).style.display = "inline";
-                $(`#addImg${i}`).attr("src", "/Uploads/Creators/Videos/" + advertisementArray[i].imagePath);
+                $(`#addImg${i}`).attr("src", "/Uploads/Creators/Videos/" + advertisementArray[j].imagePath);
                 document.getElementById(`videoTag${i}`).style.display = "none";
             }
             else {
                 document.getElementById(`addImg${i}`).style.display = "none";
                 document.getElementById(`videoTag${i}`).style.display = "inline";
-                $(`#videoTag${i}`).attr("src", "/Uploads/Creators/Videos/" + advertisementArray[i].videoPath);
+                $(`#videoTag${i}`).attr("src", "/Uploads/Creators/Videos/" + advertisementArray[j].videoPath);
             }
             break;
         }
