@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
@@ -26,6 +28,11 @@ namespace Neosoft.FAMS.Persistence.Repositories
             await _dbContext.SaveChangesAsync();
             result.Entity.CampaignAdvertiseMappingId = await _dbContext.CampaignAdvertiseMappings.MaxAsync(u => u.CampaignAdvertiseMappingId);
             return result.Entity;
+        }
+
+        public async Task<List<AdvertisementDetail>> GetAllById(long id)
+        {
+            return await _dbContext.AdvertisementDetails.Where(p => p.AdvertisementId == id).ToListAsync();
         }
     }
 }

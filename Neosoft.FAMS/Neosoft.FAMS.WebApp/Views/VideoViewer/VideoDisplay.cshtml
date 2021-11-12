@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="~/css/Viewer/VideoPlayer.css" />
     <link rel="stylesheet" href="~/css/temp.css" />
     <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
-
 </head>
 <div id="VideoSection">
     <video id="my-video"
@@ -26,18 +25,14 @@
            data-setup="{}">
         <source src="/Uploads/Creators/Videos/@videoRecords.UploadVideoPath" />
 
-
         <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a web browser that
             <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
         </p>
     </video>
-
-
-
     <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
-
 </div>
+
 <div id="DetailSection">
     <h4>@videoRecords.Title</h4>
     <h6>23456788 Views</h6>
@@ -48,7 +43,7 @@
     <div class="col-6">
         <button type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-up"></span>Like</button>&emsp;&emsp;
         <button type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-down"></span> Dislike</button>&emsp;&emsp;
-        <button type="button" class="btn btn-primary"><span class="fa fa-share share"></span> Share</button>
+        <button type="button" class="btn btn-primary view-modal"><span class="fa fa-share share"></span> Share</button>
     </div>
 
     <div class="col-3">
@@ -61,6 +56,7 @@
 
 </div>
 <br />
+
 <div class="row border" id="DescSection">
     <div class="col-1">
         @{ if (creatorRecords.ProfilePhotoPath == null)
@@ -83,3 +79,53 @@
         </p>
     </div>
 </div>
+
+
+<div class="popup">
+    <header>
+        <span>Share a link</span>
+        <div class="close"><i class="uil uil-times"></i></div>
+    </header>
+    <div class="content">
+        <p>Share this link via</p>
+        <ul class="icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+        </ul>
+        <p>Or copy link</p>
+        <div class="field">
+            <i class="url-icon uil uil-link"></i>
+            <input type="text" readonly value="example.com/share-link">
+            <button>Copy</button>
+        </div>
+    </div>
+</div>
+<script>
+    var viewBtn = document.querySelector(".view-modal"),
+        popup = document.querySelector(".popup"),
+        close = popup.querySelector(".close"),
+        field = popup.querySelector(".field"),
+        input = field.querySelector("input"),
+        copy = field.querySelector("button");
+    viewBtn.onclick = ()=>{
+        popup.classList.toggle("show");
+    }
+    close.onclick = ()=>{
+        viewBtn.click();
+    }
+    copy.onclick = ()=>{
+        input.select(); //select input value
+        if(document.execCommand("copy")){ //if the selected text copy
+            field.classList.add("active");
+            copy.innerText = "Copied";
+            setTimeout(()=>{
+                window.getSelection().removeAllRanges(); //remove selection from document
+                field.classList.remove("active");
+                copy.innerText = "Copy";
+            }, 3000);
+        }
+    }
+</script>
