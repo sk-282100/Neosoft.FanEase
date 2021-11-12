@@ -9,5 +9,6 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
     public class GetAndUpdateLikeQuery:IRequest<long>
     {
         public long videoId { get; set; }
+        public long viewerId { get; set; }
     }
 }

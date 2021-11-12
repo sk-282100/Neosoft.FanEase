@@ -84,10 +84,11 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [HttpGet]
         [Route("/Likes/{id}")]
 
-        public async Task<IActionResult> GetLikes([FromRoute] long id)
+        public async Task<IActionResult> GetLikes([FromRoute] long id, long viewerId)
         {
             GetAndUpdateLikeQuery GetLikes = new GetAndUpdateLikeQuery();
             GetLikes.videoId = id;
+            GetLikes.viewerId = viewerId;
             var data = await _mediator.Send(GetLikes);
             return Ok(data);
         }

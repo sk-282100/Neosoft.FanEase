@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.WebApp.Services.Interface;
+using System;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -17,9 +18,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpGet]
         public IActionResult VideoDisplay([FromRoute]long id)
         {
-            var ContentCreatorId = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-            var creatorData = _creator.GetCreatorById(ContentCreatorId);
             var videoData = _video.VideoGetById(id);
+            ViewData["videoData"] = videoData;
+            long createdBy = Convert.ToInt64( videoData.CreatedBy);
+            var ContentCreatorId = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+            var creatorData = _creator.GetCreatorById(createdBy);
+           
             ViewData["videoData"] = videoData;
             ViewData["creatorData"] = creatorData;
             return View();

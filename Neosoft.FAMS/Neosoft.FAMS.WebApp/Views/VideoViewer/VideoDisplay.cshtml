@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var videoRecords = (VideoGetAllDto)ViewData["videoData"];
     var creatorRecords = (ContentCreatorDto)ViewData["creatorData"];
-    var profilePicture = "";
+   
 }
 
 <head>
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/css/Viewer/VideoPlayer.css" />
     <link rel="stylesheet" href="~/css/temp.css" />
     <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+    <script src="~/js/VideoStats.js"></script>
 </head>
 <div id="VideoSection">
     <video id="my-video"
@@ -38,13 +39,15 @@
     <h6>23456788 Views</h6>
 </div>
 <br />
-
+<input type="text" id="videoId" value="@videoRecords.VideoId" hidden />
 <div id="ButtonSection" class="row">
     <div class="col-6">
         <button type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-up"></span>Like</button>&emsp;&emsp;
         <button type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-down"></span> Dislike</button>&emsp;&emsp;
         <button type="button" class="btn btn-primary view-modal"><span class="fa fa-share share"></span> Share</button>
     </div>
+    <label id="like"></label>
+    <label id="dislike"></label>
 
     <div class="col-3">
         <span id="Auto"><b>Auto Next</b></span>
@@ -59,18 +62,20 @@
 
 <div class="row border" id="DescSection">
     <div class="col-1">
-        @{ if (creatorRecords.ProfilePhotoPath == null)
-                profilePicture = "~/DefaultPhotos/default_profile.png";
-            else
-                profilePicture = "~/Uploads/Creators/Images/" + creatorRecords.ProfilePhotoPath;
-
+        @if (creatorRecords.ProfilePhotoPath == null)
+        {
+            <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px;" class="rounded-circle"/>
         }
-        <img src=@creatorRecords.ProfilePhotoPath alt="Avatar" style="width: 80px;">
+        else
+        {
+            <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px;" class="rounded-circle"/>
+        }
+
     </div>
     <div class="col-3">
         <h4><b>@creatorRecords.CreatorName</b></h4>
         <h6> Videos</h6>
-        <h6  style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
+        <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
     </div>
 
     <div class="col-4 border">
@@ -112,18 +117,18 @@
         field = popup.querySelector(".field"),
         input = field.querySelector("input"),
         copy = field.querySelector("button");
-    viewBtn.onclick = ()=>{
+    viewBtn.onclick = () => {
         popup.classList.toggle("show");
     }
-    close.onclick = ()=>{
+    close.onclick = () => {
         viewBtn.click();
     }
-    copy.onclick = ()=>{
+    copy.onclick = () => {
         input.select(); //select input value
-        if(document.execCommand("copy")){ //if the selected text copy
+        if (document.execCommand("copy")) { //if the selected text copy
             field.classList.add("active");
             copy.innerText = "Copied";
-            setTimeout(()=>{
+            setTimeout(() => {
                 window.getSelection().removeAllRanges(); //remove selection from document
                 field.classList.remove("active");
                 copy.innerText = "Copy";
