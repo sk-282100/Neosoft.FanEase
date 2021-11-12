@@ -5,6 +5,7 @@ using Neosoft.FAMS.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetMappedData;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
@@ -22,6 +23,18 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             return await _dbContext.ContentCreatorDetails.Where(p => p.isDeleted == false).OrderByDescending(p => p.ContentCreatorId).ToListAsync();
         }
+
+        public Task<MappedDto> GetMappedData()
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        public async Task <List<CampaignAdvertiseMapping>> GetMappedDataByIdAsync(long id)
+        {
+            return await _dbContext.CampaignAdvertiseMappings.Where(p => p.VideoId==id).ToListAsync();
+        }
+
         public async Task<Login> AddLoginDetailAsync(string email, string password)
         {
             var user = new Login { Username = email, Password = password, RoleId = 2 };

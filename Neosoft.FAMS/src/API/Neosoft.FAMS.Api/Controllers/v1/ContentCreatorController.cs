@@ -7,6 +7,7 @@ using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetByEmail;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetById;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetMappedData;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -19,6 +20,25 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             _mediator = mediator;
         }
+
+
+        /// <summary>
+        /// Author:Aman Sharma,Sana Haju <br></br>
+        /// Date:25/10/2021 <br></br>
+        /// Reason:It will return Content Creators of specific Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetAllById/{id}")]
+        public async Task<IActionResult> GetAllById([FromRoute] long id)
+        {
+            var mappedQuery = new MappedQuery { VideoId = id };
+            var data = await _mediator.Send(mappedQuery);
+            return Ok(data);
+        }
+
+
         /// <summary>
         /// Author :Aman Sharma,Sana Haju <br></br>
         /// Date : 25/10/2021 <br></br>
