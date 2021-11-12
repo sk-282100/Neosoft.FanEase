@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Commands;
+using Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword;
 using Neosoft.FAMS.Application.Features.Login.Queries;
 using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.WebApp.Models.LoginModel;
@@ -154,46 +155,21 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult ForgotPassword(Login model)
         {
-            if (ModelState.IsValid)
+            string id = HttpContext.Session.GetString("UserName");
+            string newPassword = model.Password;
+            var serviceresult = _login.ForgotPassword(new ForgotPasswordCommand
             {
-                string Password = model.Password;
+                Username = id,
+                newPassword = newPassword,
+                
+            });
 
-
-                /*
-                bool status = repo.ResetPassword(user, Password);
-                if (status)
-                {
-                    return RedirectToAction("Index", "Login");
-                }
-                else
-                {
-
-                }
-
-                //method
-               public bool ResetPassword(string user,string Password)
-               {
-
-                Login lUser = (from c in db.Logins
-                                   where c.UserName == user
-                                   select c).FirstOrDefault();
-                int id = lUser.Id; 
-
-
-                Login updatedCust = (from c in db.Logins
-                                  where c.Id == id
-                                  select c).FirstOrDefault();
-                updatedCust.Password = Password; 
-                Save();
-
-                */
-
-                return RedirectToAction("Index", "Login");
-            }
-            return View();
+            return RedirectToAction("Index", "Login");
+                
         }
         public IActionResult Logout()
         {

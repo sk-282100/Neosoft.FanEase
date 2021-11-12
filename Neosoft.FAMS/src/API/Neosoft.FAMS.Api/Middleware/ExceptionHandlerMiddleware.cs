@@ -20,7 +20,7 @@ namespace Neosoft.FAMS.Api.Middleware
             _next = next; _logger = logger;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context) 
         {
             try
             {
