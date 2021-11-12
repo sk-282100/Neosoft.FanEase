@@ -18,7 +18,7 @@ namespace Neosoft.FAMS.WebApp.Models.Validations
             var file = value as IFormFile;
             if (file == null)
             {
-                return false;
+                return true;
             }
             return file.Length <= _maxFileSize;
         }

@@ -146,25 +146,28 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult AddAsset(AddAsset addAsset)
         {
             addAsset.CreatedOn = DateTime.Now;
-            var createAdvertisement = _mapper.Map<CreateAdvertisementCommand>(addAsset);
-
-            string uniquePath = UniqueName(addAsset.ProfilePhotoPath);
-            createAdvertisement.ImagePath = uniquePath;
-            createAdvertisement.VideoPath = uniquePath;
-            createAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-
-            var result = _asset.SaveAssetDetail(createAdvertisement);
-            do
+            if (ModelState.IsValid)
             {
+                var createAdvertisement = _mapper.Map<CreateAdvertisementCommand>(addAsset);
+                if (addAsset.ProfilePhotoPath != null)
+                {
+                    string uniquePath = UniqueName(addAsset.ProfilePhotoPath);
+                    createAdvertisement.ImagePath = uniquePath;
+                }
+                else
+                {
+                    string uniquePath = UniqueName(addAsset.VideoPath);
+                    createAdvertisement.VideoPath = uniquePath;
+                }
+                createAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
 
-            } while (!result.IsCompletedSuccessfully);
-            TempData["VideoId"] = TempData["VideoId"];
-            TempData["CampaignId"] = TempData["CampaignId"];
-            TempData["AdvertisementId"] = result.Result;
+                var result = _asset.SaveAssetDetail(createAdvertisement);
+                AddMappedData();
+                ModelState.Clear();
+                return View();
 
-            AddMappedData();
-
-            return View("AddAsset");
+            }
+            return View();
         }
 
 

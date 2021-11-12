@@ -61,16 +61,24 @@
                                     Content Type<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
                                 </label>
-                                <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType">
+                                <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType" onchange="onContentType()">
                                     <option value="1">Images</option>
                                     <option value="2">Videos</option>
                                 </select>
-
+                                <div id="hideMe">
+                                    <label id="lbl" for="formFileMultiple" class="form-label ">Select Image <span id="errorFileSize" class="text-danger"></span></label>
+                                    <input class="form-control " asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                </div>
+                                <div id="hideMe1" style="display: none">
+                                    <label id="lbl" for="formFileMultiple"  class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
+                                    <input class="form-control "  asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                </div>
                                 <label id="lbl">
                                     Advertisement Description<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
                                 </label>
                                 <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
+
                             </div>
 
                             <div class="form-group col-md-6">
@@ -102,12 +110,9 @@
                                     @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
-
-                                <label id="lbl" for="formFileMultiple" class="form-label">Add Images <span id="errorFileSize" class="text-danger"></span></label>
-                                <input class="form-control" asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
-                            </div>
+                                </div>
                         </div>
-                        <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddCampaignView", "Creator")'" value="Cancel">
+                        <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
                         <input type="submit" class="fadeIn fourth" value="Save">
                     }
                 </div>

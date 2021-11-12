@@ -17,7 +17,7 @@ function changeTxt(elem)
                     <h3 class="text-center ">Section ${i + 1}</h3>
                         <div class="row m-4 border border-dark">
                             <div class="col">
-                                <img id="addImg${i}" class=" mt-4 ml-4 rounded-3"  src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg"  style="height: 150px; width: 220px;" />
+                                <img id="addImg${i}" class=" mt-4 ml-4 rounded-3"  src="/DefaultPhotos/default_template.png"  style="height: 150px; width: 220px;" />
                                  <video id="videoTag${i}" class=" mt-4 ml-4 rounded-3"  style="height: 150px; width: 220px;display: none;" controls>
                                         <source type="video/mp4"/>
                                 </video>
@@ -52,7 +52,7 @@ function changeTxt(elem)
                     <h3 class="text-center ">Section ${i + 1}</h3>
                         <div class="row m-4 border border-dark">
                             <div class="col">
-                                <img id="addImg${i}" class=" mt-4 ml-4 rounded-3"  src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg"  style="height: 150px; width: 220px;" />
+                                <img id="addImg${i}" class=" mt-4 ml-4 rounded-3"  src="/DefaultPhotos/default_template.png"  style="height: 150px; width: 220px;" />
                                  <video id="videoTag${i}" class=" mt-4 ml-4 rounded-3"  style="height: 150px; width: 220px;display: none;" controls>
                                         <source type="video/mp4"/>
                                 </video>
