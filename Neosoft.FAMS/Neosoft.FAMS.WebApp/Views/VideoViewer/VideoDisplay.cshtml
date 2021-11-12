@@ -67,14 +67,14 @@
         }
         <img src=@creatorRecords.ProfilePhotoPath alt="Avatar" style="width: 80px;">
     </div>
-    <div class="col-2">
+    <div class="col-3">
         <h4><b>@creatorRecords.CreatorName</b></h4>
         <h6> Videos</h6>
-        <h6>Published On : @videoRecords.CreatedOn</h6>
+        <h6  style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
     </div>
 
     <div class="col-4 border">
-        <p>
+        <p id="ContentDescription">
             @videoRecords.Decription
         </p>
     </div>
@@ -84,18 +84,20 @@
 <div class="popup">
     <header>
         <span>Share a link</span>
-        <div class="close"><i class="uil uil-times"></i></div>
+        <div class="close"><i class="fa fa-close"></i></div>
     </header>
     <div class="content">
         <p>Share this link via</p>
         <ul class="icons">
+            <a href="#"><i class="fa fa-code"></i></a>
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            @*<a href="#"><i class="fab fa-telegram-plane"></i></a>*@
         </ul>
         <p>Or copy link</p>
+
         <div class="field">
             <i class="url-icon uil uil-link"></i>
             <input type="text" readonly value="example.com/share-link">
