@@ -92,6 +92,17 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        [HttpGet]
+        [Route("/Disikes/{id}")]
+
+        public async Task<IActionResult> GetDislikes([FromRoute] long id)
+        {
+            GetAndUpdateDislikeQuery GetDislikes = new GetAndUpdateDislikeQuery();
+            GetDislikes.videoId = id;
+            var data = await _mediator.Send(GetDislikes);
+            return Ok(data);
+        }
+
     }
 }
 
