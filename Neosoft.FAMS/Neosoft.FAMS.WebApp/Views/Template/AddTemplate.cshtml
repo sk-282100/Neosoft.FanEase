@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div><br />
-
+       
     </div>
 </div>
 <script>
@@ -112,13 +112,15 @@
             for (var i = 0; i < 3; i++) {
                 $('#sectionDiv').append
                     (`
-                    <h3 class="text-center">Section ${i + 1}</h3>
+                    <h3 class="text-center ">Section ${i + 1}</h3>
                         <div class="row m-4 border border-dark">
                             <div class="col"><img class=" mt-4 ml-4 rounded-3" src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg" style="height: 150px; width: 220px;" /></div>
                             <div class="col mr-5 ">
                                 <div class="form-group">
                                     <label class="font-weight-bold">Title</label>
-                                    <input class="form-control" type="text" value="" placeholder="Diwali Ads"  />
+                                     <select class="titleDropDown">
+                                        <option value="0">Please Select Title</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold">Description</label>
