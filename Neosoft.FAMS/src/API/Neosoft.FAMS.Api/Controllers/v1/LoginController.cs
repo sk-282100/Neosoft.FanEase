@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Events.Login.Commands;
+using Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword;
 using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Queries;
 using System.Threading.Tasks;
@@ -101,6 +102,19 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             resetPasswordCommand.Password = Password;
             resetPasswordCommand.newPassword = NewPassword;
             var data = await _mediator.Send(resetPasswordCommand);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("ForgotPassword")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> NewPassword(string EmailAddress, string NewPassword)
+        {
+            ForgotPasswordCommand forgotPasswordCommand = new ForgotPasswordCommand();
+            forgotPasswordCommand.Username = EmailAddress;
+            forgotPasswordCommand.newPassword = NewPassword;
+            var data = await _mediator.Send(forgotPasswordCommand);
             return Ok(data);
         }
     }

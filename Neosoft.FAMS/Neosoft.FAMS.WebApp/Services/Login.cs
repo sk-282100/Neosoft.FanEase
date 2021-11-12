@@ -1,5 +1,6 @@
 ﻿using Neosoft.FAMS.Application.Features.Events.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Commands;
+using Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword;
 using Neosoft.FAMS.Application.Features.Login.Queries;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Services.Interface;
@@ -115,6 +116,17 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        public async Task<bool> ForgotPassword(ForgotPasswordCommand forgotPasswordCommand)
+        {
+            bool result = false;
+            var uri = API.Login.ForgotPassword(_baseUrl, _path, forgotPasswordCommand.Username,forgotPasswordCommand.newPassword);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
 
+            if (response.IsSuccessStatusCode)
+            {
+                result = bool.Parse(response.Content.ReadAsStringAsync().Result);
+            }
+            return result;
+        }
     }
 }
