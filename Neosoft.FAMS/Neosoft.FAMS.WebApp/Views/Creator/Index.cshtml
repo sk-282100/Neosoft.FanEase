@@ -39,22 +39,7 @@
     </script>
 </head>
 <div class="row" style="background-color: #F5F5F5;">
-    <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
-        <ul class="nav flex-column flex-nowrap overflow-hidden">
-            <li class="nav-item" style="background-color: #F5F5F5; width: 400px;">
-
-                <a class="nav-link text-truncate" href="~/Creator/Index" style="background-color: #F5F5F5; width: 400px; color: #52BAF1;"> <i class="fa fa-home"></i>   <span class="d-none d-sm-inline" style="color: black;"> Dashboard</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-truncate" href="~/Creator/VideoTable" style="color:black"><i class="bi bi-camera-video-fill" style="color: #52BAF1"></i>  Videos</a>
-            </li>
-            <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" style="color:black"><i class="fas fa-rocket" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Campaigns</span></a></li>
-            <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddAsset" style="color:black"><i class="bi bi-youtube" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Media</span></a></li>
-            <li class="nav-item"><a class="nav-link text-truncate" href="#" style="color:black"><i class="bi bi-ui-checks-grid" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Template</span></a></li>
-
-
-        </ul>
-    </div>
+    @Html.Partial("_CreatorSideBar")
     <div class="col pt-2">
         <div class="jumbotron" style="margin: 5px 5px 30px 30px; height: 450px;">
             <h2 class="h6 font-weight-bold text-left mb-4" style="color: black;">Account Analysis</h2>
@@ -237,6 +222,10 @@
         </div>
     </div>
 </div>
+@section Scripts{
+
+    <script src="~/js/sideBar.js"></script>
+}
 
 
 
