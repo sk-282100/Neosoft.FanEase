@@ -23,19 +23,26 @@ namespace Neosoft.FAMS.WebApp.Controllers
     public class CreatorController : Controller
     {
         private IMapper _mapper;
+        private ICommon _common;
         private IVideo _video;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private ICampaign _campaign;
         private IAsset _asset;
 
-        public CreatorController(IMapper mapper, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
+        public CreatorController(IMapper mapper,ICommon common, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
         {
             _mapper = mapper;
+            _common = common;
             _video = video;
             _webHostEnvironment = webHostEnvironment;
             _campaign = campaign;
             _asset = asset;
 
+        }
+
+        public IActionResult GetAdvertisement()
+        {
+            return Json(_common.GetAdvertisement());
         }
         public IActionResult Index()
         {

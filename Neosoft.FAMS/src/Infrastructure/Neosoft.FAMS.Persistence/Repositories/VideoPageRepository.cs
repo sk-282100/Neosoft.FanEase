@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
+using Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllVideoStatistics;
 using Neosoft.FAMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,11 +20,20 @@ namespace Neosoft.FAMS.Persistence.Repositories
             _dbContext = dbContext;
             _logger = logger;
         }
-       
-        
         public async Task<VideoStatisticsDetail> CheckClickId(long id)
         {
             return await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(p => p.ClickedBy == id);
+        }
+
+        public async Task<List<VideoStatisticsDetail>> GetAllVideoStatisticsById(long id)
+        {
+            var listofVideos = await _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id).ToListAsync();
+            return listofVideos;
+        }
+        public async Task<long> GetLikesById(long id)
+        {
+            long likes = _dbContext.VideoStatisticsDetails.Where(p => p.IsLiked == true).Count();
+            return likes;
         }
     }
 }

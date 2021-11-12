@@ -43,10 +43,10 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetMappedData
             var videoData = await _videoRepository.GetByIdAsync(Convert.ToInt64(mappedData[0].VideoId));
 
             var advertisementMapped = _mapper.Map<List<AdvertisementDetail>>(advertisementData);
-            var campaignMapeed = _mapper.Map<CampaignDetail>(campaignData);
+            var campaignMapped = _mapper.Map<CampaignDetail>(campaignData);
             var videoMapped = _mapper.Map<VideoDetail>(videoData);
             var response = new MappedDto()
-                {AdvertisementDetail = advertisementMapped, CampaignDetail = campaignMapeed, VideoDetail = videoMapped};
+                {AdvertisementDetail = advertisementMapped, CampaignDetail = campaignMapped, VideoDetail = videoMapped};
 
             return response;
         }
