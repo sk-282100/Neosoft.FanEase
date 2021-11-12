@@ -11,5 +11,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     {
         Task<VideoStatisticsDetail> CheckClickId(long id);
         Task<List<VideoStatisticsDetail>> GetAllVideoStatisticsById(long id);
+        Task<long> GetLikesById(long id);
     }
 }

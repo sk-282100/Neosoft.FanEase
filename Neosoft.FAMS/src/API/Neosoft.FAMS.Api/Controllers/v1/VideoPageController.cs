@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.VideoPage.Commands.CheckClickId;
 using Neosoft.FAMS.Application.Features.VideoPage.Commands.Update;
+using Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList;
 using Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllVideoStatistics;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,18 @@ namespace Neosoft.FAMS.Api.Controllers.v1
               
                 //return Ok(LikeCounter,DisLikeCounter,ShareCounter,ViewCounter);
             }
-            return Ok(data)
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("/Likes/{id}")]
+
+        public async Task<IActionResult> GetLikes([FromRoute] long id)
+        {
+            GetAndUpdateLikeQuery GetLikes = new GetAndUpdateLikeQuery();
+            GetLikes.videoId = id;
+            var data = await _mediator.Send(GetLikes);
+            return Ok(data);
         }
 
     }
