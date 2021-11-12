@@ -44,6 +44,9 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile ProfilePhotoPath { get; set; }
 
+        [MaxFileSize(20 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
+        public IFormFile VideoPath { get; set; }
+
         [Required(ErrorMessage = "Placement is required")]
         [DisplayName("Placement")]
         public long? PlacementId { get; set; }

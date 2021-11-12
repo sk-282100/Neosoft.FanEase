@@ -38,7 +38,7 @@ namespace Neosoft.FAMS.WebApp.Services
         {
             long VideoId = MappingViewModel.VideoId;
             IEnumerable<AdvertisementViewModel> result = null;
-            var uri = API.Common.GetAdvertisementUrl(_baseUrl,50);
+            var uri = API.Common.GetAdvertisementUrl(_baseUrl,VideoId);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {

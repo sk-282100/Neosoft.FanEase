@@ -15,3 +15,16 @@
         }
     }
 }
+
+function onContentType() {
+    var val = document.getElementById('ContentType').value;
+    console.log(val);
+    if (val == "1") {
+        console.log("if");
+        document.getElementById('hideMe1').style.display = "none";
+        document.getElementById('hideMe').style.display = "inline";
+    } else {
+        document.getElementById('hideMe').style.display = "none";
+        document.getElementById('hideMe1').style.display = "inline";
+    }
+}
