@@ -25,12 +25,12 @@
 <div class="container-fluid">
 
     <div class="row" style="background-color: #F5F5F5;">
-        @Html.Partial("_SideBar")
+        @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
 
             <h3>Template List</h3>
             <div class="row header" style="float: right;">
-                <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location = '@Url.Action("CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Template </button>
+                <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location = '@Url.Action("AddTemplate", "Template")'"><i class="fa fa-plus"></i> Add New Template </button>
             </div>
             <div id="tbl">
                 @if (@isDeleted)
@@ -55,21 +55,21 @@
                         @foreach (var record in records)
                         {
                             <tr>
-                                    <td>@record.TemplateId</td>
-                                    <td><a href="~/Template/TemplateDetail/@record.TemplateId">@record.TemplateName</a></td>
+                                <td>@record.TemplateId</td>
+                                <td><a href="~/Template/TemplateDetail/@record.TemplateId">@record.TemplateName</a></td>
                                 @if (record.PublishStatus == true)
-                                    {
-                                        <td style="color: limegreen">Live</td>
-                                    }
-                                    else
-                                    {
-                                        <td style="color: red">Draft</td>
-                                    }
-                                    <td>
-                                        <a class="edit" href="EditCreator/@record.TemplateId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
-                                        <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.TemplateId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
-                                    </td>
-                                </tr>
+                                {
+                                    <td style="color: limegreen">Live</td>
+                                }
+                                else
+                                {
+                                    <td style="color: red">Draft</td>
+                                }
+                                <td>
+                                    <a class="edit" href="EditCreator/@record.TemplateId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                    <a id="deleteTag" class="delete" onClick="deleteCreator('DeleteCreator/@record.TemplateId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -92,11 +92,15 @@
         </div>
     </div>
 </div>
-<script>
-    function deleteCreator(hrefLink) {
-        console.log(hrefLink);
-        var element = document.getElementById("hrefElement");
-        console.log(element);
-        element.href = hrefLink.toLocaleString();
-    }
-</script>
+@section Scripts{
+
+    <script src="~/js/sideBar.js"></script>
+    <script>
+        function deleteCreator(hrefLink) {
+            console.log(hrefLink);
+            var element = document.getElementById("hrefElement");
+            console.log(element);
+            element.href = hrefLink.toLocaleString();
+        }
+    </script>
+}

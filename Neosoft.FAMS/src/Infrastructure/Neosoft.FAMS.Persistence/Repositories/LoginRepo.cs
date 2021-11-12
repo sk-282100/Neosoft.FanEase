@@ -52,5 +52,6 @@ namespace Neosoft.FAMS.Persistence.Repositories
             var result = _dbContext.PasswordResetRequests.OrderByDescending(i => i.RequestId).FirstOrDefaultAsync(u=>u.LoginId==LoginId);
             return result;
         }
+
     }
 }
