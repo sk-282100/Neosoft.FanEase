@@ -25,6 +25,8 @@ using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.VideoPage.Commands.Update;
+
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Update;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
@@ -81,6 +83,8 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<ResetPasswordCommand, Login>().ReverseMap();
 
             CreateMap<TemplateListDto,TemplateDetail>().ReverseMap();
+            CreateMap<UpdateVideoPageByIdCommand, VideoStatisticsDetail>().ReverseMap();
+            
 
 
         }

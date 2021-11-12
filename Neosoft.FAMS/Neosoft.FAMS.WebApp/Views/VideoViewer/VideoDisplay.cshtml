@@ -1,10 +1,15 @@
-﻿@{
+﻿@using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+@using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var videoRecords = (VideoGetAllDto)ViewData["videoData"];
+    var creatorRecords = (ContentCreatorDto)ViewData["creatorData"];
+    var profilePicture = "";
 }
 
 <head>
-    
+
     <link rel="stylesheet" href="~/css/Viewer/VideoPlayer.css" />
     <link rel="stylesheet" href="~/css/temp.css" />
     <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
@@ -17,9 +22,9 @@
            preload="auto"
            width="1024"
            height="464"
-           poster="/Uploads/Creators/Videos/009d0183-b484-4fbb-aa50-b66f84e15ede_img2.jpg"
+           poster="/Uploads/Creators/Videos/@videoRecords.VideoImage"
            data-setup="{}">
-        <source src="/Uploads/ab.mp4" />
+        <source src="/Uploads/Creators/Videos/@videoRecords.UploadVideoPath" />
 
 
         <p class="vjs-no-js">
@@ -34,7 +39,7 @@
 
 </div>
 <div id="DetailSection">
-    <h4>VideoTitle</h4>
+    <h4>@videoRecords.Title</h4>
     <h6>23456788 Views</h6>
 </div>
 <br />
@@ -45,7 +50,7 @@
         <button type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-down"></span> Dislike</button>&emsp;&emsp;
         <button type="button" class="btn btn-primary"><span class="fa fa-share share"></span> Share</button>
     </div>
-    
+
     <div class="col-3">
         <span id="Auto"><b>Auto Next</b></span>
         <label class="switch">
@@ -58,17 +63,23 @@
 <br />
 <div class="row border" id="DescSection">
     <div class="col-1">
-        <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px;">
+        @{ if (creatorRecords.ProfilePhotoPath == null)
+                profilePicture = "~/DefaultPhotos/default_profile.png";
+            else
+                profilePicture = "~/Uploads/Creators/Images/" + creatorRecords.ProfilePhotoPath;
+
+        }
+        <img src=@creatorRecords.ProfilePhotoPath alt="Avatar" style="width: 80px;">
     </div>
     <div class="col-2">
-        <h4><b>CreatorName</b></h4>
+        <h4><b>@creatorRecords.CreatorName</b></h4>
         <h6> Videos</h6>
-        <h6>Published 06.24.2019</h6>
+        <h6>Published On : @videoRecords.CreatedOn</h6>
     </div>
 
     <div class="col-4 border">
         <p>
-            Video Description
+            @videoRecords.Decription
         </p>
     </div>
 </div>
