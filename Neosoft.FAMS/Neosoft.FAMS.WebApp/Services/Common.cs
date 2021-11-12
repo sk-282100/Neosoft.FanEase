@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Neosoft.FAMS.WebApp.Models;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetMappedData;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -33,20 +34,25 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
 
-        public MappedDto GetAdvertisement()
+        public List<AdvertisementViewModel> GetAdvertisement()
         {
             long VideoId = MappingViewModel.VideoId;
-            var mappedData = new MappedDto();
-            var uri = API.Common.GetAdvertisementUrl(_baseUrl,VideoId);
+            IEnumerable<AdvertisementViewModel> result = null;
+            var uri = API.Common.GetAdvertisementUrl(_baseUrl,50);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var deserializedata = JsonConvert.DeserializeObject<MappedDto>(jsonDataStatus);
-                if (deserializedata != null)
-                    return mappedData;
+                result =
+                    from data in deserializedata.AdvertisementDetail.ToList()
+                    select new AdvertisementViewModel
+                    {
+                        AdvertisementId = data.AdvertisementId,Title = data.Title,
+                        Description = data.Description,ImagePath = data.ImagePath,VideoPath = data.VideoPath
+                    };
             }
-            return mappedData;
+            return result.ToList();
         }
         public bool checkForEmail(string email)
         {

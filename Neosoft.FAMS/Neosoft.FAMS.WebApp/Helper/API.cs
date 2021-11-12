@@ -36,7 +36,7 @@
         public static class Common
         {
             
-            public static string GetAdvertisementUrl(string baseUri,long id) => $"{baseUri}api/ContentCreator/?api-version=1";
+            public static string GetAdvertisementUrl(string baseUri,long id) => $"{baseUri}api/ContentCreator/GetAllById/{id}?api-version=1";
             public static string GetEmailUrl(string baseUri, string email) => $"{baseUri}api/ContentCreator/getCreatorByEmail?username={email}?api-version=1";
             public static string GetPhoneCodeUrl(string baseUri, string path, int id) => $"{baseUri}{path}/GetCountryPhoneCode/{id}?api-version=1";
             public static string GetCountryList(string path) => $"{path}/GetCountryList?api-version=1";
