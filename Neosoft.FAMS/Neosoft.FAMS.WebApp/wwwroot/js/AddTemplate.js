@@ -108,7 +108,6 @@ function loadValues()
         contentType: 'application/json',
         success: function (data) {
             advertisementArray = data;
-            console.log(data);
             $.each(data,
                 function (id, text) {
                     $('.titleDropDown').append(
@@ -122,5 +121,56 @@ function loadValues()
 }
 
 $(document).ready(function () {
+    $('#templateProceed').click(function () {
+        console.log("hhh");
+        var count = $('#sectionDiv h3').length;
+        if (count == 0)
+            alert("First Please Select a Template");
+        else
+        {
+            if (count == 3)
+            {
+                if ($('#selectId0').val() == 0 || $('#selectId1').val() == 0 || $('#selectId2').val() == 0)
+                {
+                    alert("Please select all sections value");
+                }
 
+                else
+                {
+                    var section1 = $('#selectId0').val() + "-";
+                    var section2 = $('#selectId1').val() + "-";
+                    var section3 = $('#selectId2').val();
+
+                   $.ajax({
+                       url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3,
+                       type: 'POST',
+                       success: function (result) {
+                       },
+                       error: function (result) {
+                       }
+                   });
+                }
+            }
+            else {
+                var section1 = $('#selectId0').val() + "-";
+                var section2 = $('#selectId1').val() + "-";
+                var section3 = $('#selectId2').val() + "-";
+                var section4 = $('#selectId3').val() + "-";
+                var section5 = $('#selectId4').val();
+
+                $.ajax({
+                    url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3+section4+section5,
+                    type: 'POST',
+                    success: function (result) {
+                        alert("successfull");
+                    },
+                    error: function (result) {
+                        alert("not ");
+                    }
+                });
+            }
+        }
+
+
+    });
 });

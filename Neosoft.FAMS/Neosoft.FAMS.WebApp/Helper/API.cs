@@ -83,6 +83,7 @@
         }
         public static class Template
         {
+            public static string TemplateVideoMap(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetAllTemplate(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetTemplate(string baseUri, string path,long id) => $"{baseUri}{path}/{id}?api-version=1";
 
