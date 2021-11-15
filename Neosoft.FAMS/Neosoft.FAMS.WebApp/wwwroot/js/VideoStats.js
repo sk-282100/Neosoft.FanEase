@@ -17,14 +17,30 @@ $(document).ready(function () {
             }
         });
     });
-    $('#dislike').click(function () {
+    $('#like').change(function () {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44330/Disikes/' + videoId + ' viewerId=' + viewerId + ' &api-version=1',
+            url: 'https://localhost:44330/Likes/' + videoId + '?viewerId=' + viewerId + '&api-version=1',
             async: false,
             contentType: 'application/json',
             success: function (data) {
                 likes = data;
+                $('#like').text(likes);
+            }
+        });
+    });
+
+
+
+    $('#dislike').click(function () {
+        $.ajax({
+            type: 'GET',
+            //https://localhost:44330/Disikes/6?viewerId=2&api-version=1
+            url: 'https://localhost:44330/Disikes/' + videoId + '?viewerId=' + viewerId + '&api-version=1',
+            async: false,
+            contentType: 'application/json',
+            success: function (data) {
+                dislikes = data;
                 $('#dislike').text(dislikes);
             }
         });
