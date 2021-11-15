@@ -8,6 +8,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
 {
     public interface IVideoStatistics
     {
-        public GetAllVideoStatisticsDto StatsGetById(long videoId);
+        public List<long> StatsGetById(long videoId);
     }
 }
