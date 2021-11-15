@@ -24,7 +24,7 @@ function changeTxt(elem)
                             </div>
                             <div class="col mr-5 ">
                                 <div class="form-group">
-                                    <label class="font-weight-bold">Title</label>
+                                    <label class="font-weight-bold">Title<sup style="color: red">*</sup><span id="error${i}" style="font-size:12px;" class="text-danger"></span></label>
                                      <select id="selectId${i}" onchange="loadAllValues(this,${i})" class="form-control titleDropDown">
                                         <option value="0">Please Select Title</option>
                                     </select>
@@ -59,7 +59,7 @@ function changeTxt(elem)
                             </div>
                             <div class="col mr-5 ">
                                 <div class="form-group">
-                                    <label class="font-weight-bold">Title</label>
+                                    <label class="font-weight-bold">Title<sup style="color: red">*</sup><span id="error${i}" style="font-size:12px;" class="text-danger"></span></label>
                                      <select id="selectId${i}" onchange="loadAllValues(this,${i})" class="form-control titleDropDown">
                                         <option value="0">Please Select Title</option>
                                     </select>
@@ -130,13 +130,28 @@ $(document).ready(function () {
         {
             if (count == 3)
             {
-                if ($('#selectId0').val() == 0 || $('#selectId1').val() == 0 || $('#selectId2').val() == 0)
-                {
-                    alert("Please select all sections value");
+                if ($('#selectId0').val() == 0) {
+                    $('#error0').text("Please select Title");
+                    $(window).scrollTop(0);
                 }
-
+                else if ($('#selectId1').val() == 0)
+                {
+                    $('#error0').text("");
+                    $('#error1').text("Please select Title");
+                    $(window).scrollTop(300);
+                }
+                else if ($('#selectId2').val() == 0)
+                {
+                    $('#error1').text("");
+                    $('#error2').text("Please select Title");
+                    $(window).scrollTop(600);
+                }
                 else
                 {
+                    $('#error0').text("");
+                    $('#error1').text("");
+                    $('#error2').text("");
+
                     var section1 = $('#selectId0').val() + "-";
                     var section2 = $('#selectId1').val() + "-";
                     var section3 = $('#selectId2').val();
@@ -151,26 +166,51 @@ $(document).ready(function () {
                    });
                 }
             }
-            else {
-                var section1 = $('#selectId0').val() + "-";
-                var section2 = $('#selectId1').val() + "-";
-                var section3 = $('#selectId2').val() + "-";
-                var section4 = $('#selectId3').val() + "-";
-                var section5 = $('#selectId4').val();
+            else
+            {
+                if ($('#selectId0').val() == 0) {
+                    $('#error0').text("Please select Title");
+                    $(window).scrollTop(0);
+                }
+                else if ($('#selectId1').val() == 0) {
+                    $('#error0').text("");
+                    $('#error1').text("Please select Title");
+                    $(window).scrollTop(300);
+                }
+                else if ($('#selectId2').val() == 0) {
+                    $('#error1').text("");
+                    $('#error2').text("Please select Title");
+                    $(window).scrollTop(600);
+                }
+                else if ($('#selectId3').val() == 0) {
+                    $('#error2').text("");
+                    $('#error3').text("Please select Title");
+                    $(window).scrollTop(900);
+                }
+                else if ($('#selectId4').val() == 0) {
+                    $('#error3').text("");
+                    $('#error4').text("Please select Title");
+                    $(window).scrollTop(1200);
+                }
+                else
+                {
+                    var section1 = $('#selectId0').val() + "-";
+                    var section2 = $('#selectId1').val() + "-";
+                    var section3 = $('#selectId2').val() + "-";
+                    var section4 = $('#selectId3').val() + "-";
+                    var section5 = $('#selectId4').val();
 
-                $.ajax({
-                    url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3+section4+section5,
-                    type: 'POST',
-                    success: function (result) {
-                        alert("successfull");
-                    },
-                    error: function (result) {
-                        alert("not ");
-                    }
-                });
+                    $.ajax({
+                        url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3 + section4 + section5,
+                        type: 'POST',
+                        success: function (result) {
+                        },
+                        error: function (result) {
+                        }
+                    });
+                }
+
             }
         }
-
-
     });
 });
