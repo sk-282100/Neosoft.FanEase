@@ -17,22 +17,7 @@
 <div class="container-fluid">
 
     <div class="row" style="background-color: #F5F5F5;">
-        <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
-            <ul class="nav flex-column flex-nowrap overflow-hidden">
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Creator/Index" style="color: black"><i class="fa fa-home" style="color: #52BAF1"></i>  Dashboard</a>
-
-                </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" style="color: #52BAF1"><i class="bi-camera-video-fill" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black"> Video</span></a></li>
-
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" style="color: #52BAF1"><i class="fas fa-rocket" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Campaigns</span></a></li>
-                <li class="nav-item" style="background-color: #F5F5F5; width: 400px;">
-
-                    <a class="nav-link text-truncate" id="sidetext" href="~/Creator/AddAsset" style="background-color: #F5F5F5; width: 400px; color: #52BAF1;"> <i class="bi bi-youtube"></i>   <span class="d-none d-sm-inline" style="color: black;"> Media</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="#" style="color:white"><i class="bi bi-ui-checks-grid" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Template</span></a></li>
-            </ul>
-        </div>
+        @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
             <div class="wrapper">
                 <div id="formContent">
@@ -68,7 +53,7 @@
                                     Advertisement Description<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
                                 </label>
-                                <input style="height: 200px;" asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" value="@records.Description"/>
+                                <input style="height: 200px;" asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" value="@records.Description" />
                             </div>
 
                             <div class="form-group col-md-6">
@@ -81,7 +66,7 @@
                                     End Time<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" })
                                 </label>
-                                @Html.EditorFor(model =>EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control" } })
 
                                 <label id="lbl">
                                     Advertisement Placement<sup style="color:red">*</sup>
@@ -114,3 +99,6 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script src="~/js/creatorSideBar.js"></script>
+}
