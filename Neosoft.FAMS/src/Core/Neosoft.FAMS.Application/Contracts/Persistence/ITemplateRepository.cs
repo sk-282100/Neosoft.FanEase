@@ -9,5 +9,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     public interface ITemplateRepository : IAsyncRepository<TemplateDetail>
     {
          Task<TemplateDetail> GetByIdAsync(long id);
+         Task<TemplateVideoMapping> AddTemplateVideoAsync(TemplateVideoMapping entity);
     }
 }

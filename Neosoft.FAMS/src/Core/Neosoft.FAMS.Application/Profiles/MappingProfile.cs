@@ -19,6 +19,7 @@ using Neosoft.FAMS.Application.Features.Events.Queries.GetEventDetail;
 using Neosoft.FAMS.Application.Features.Events.Queries.GetEventsExport;
 using Neosoft.FAMS.Application.Features.Events.Queries.GetEventsList;
 using Neosoft.FAMS.Application.Features.Orders.Queries.GetOrdersForMonth;
+using Neosoft.FAMS.Application.Features.Template.Commands.TemplateVideo;
 using Neosoft.FAMS.Application.Features.Template.Queries;
 using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.Application.Features.Users.Queries;
@@ -85,7 +86,8 @@ namespace Neosoft.FAMS.Application.Profiles
             CreateMap<TemplateListDto,TemplateDetail>().ReverseMap();
             CreateMap<UpdateVideoPageByIdCommand, VideoStatisticsDetail>().ReverseMap();
             CreateMap<GetAllVideoStatisticsDto, VideoStatisticsDetail>().ReverseMap();
-            
+
+            CreateMap<TemplateVideoMappedCommand, TemplateVideoMapping>().ReverseMap();
 
 
         }

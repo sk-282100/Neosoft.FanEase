@@ -20,6 +20,13 @@ namespace Neosoft.FAMS.Persistence.Repositories
             _logger = logger;
         }
 
+        public async Task<TemplateVideoMapping> AddTemplateVideoAsync(TemplateVideoMapping entity)
+        {
+             await _dbContext.TemplateVideoMappings.AddAsync(entity);
+             await _dbContext.SaveChangesAsync();
+             return entity;
+        }
+
         public async Task<TemplateDetail> GetByIdAsync(long id)
         {
             return await _dbContext.Set<TemplateDetail>().Where(i => i.TemplateId == id).FirstOrDefaultAsync();
