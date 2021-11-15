@@ -5,8 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var videoRecords = (VideoGetAllDto)ViewData["videoData"];
     var creatorRecords = (ContentCreatorDto)ViewData["creatorData"];
+    var likes = TempData["Likes"]; 
+    var dislikes = TempData["Dislikes"];
+    var views = TempData["Views"] ;
+    var shares = TempData["Share"];
+
     var session = TempData["Session"];
-   
+
 }
 
 <head>
@@ -37,7 +42,7 @@
 
 <div id="DetailSection">
     <h4>@videoRecords.Title</h4>
-    <h6>23456788 Views</h6>
+    <h6>@views Views</h6>
 </div>
 <br />
 <input type="text" id="videoId" value="@videoRecords.VideoId" hidden />

@@ -27,6 +27,11 @@ namespace Neosoft.FAMS.Persistence.Repositories
              return entity;
         }
 
+        public async Task<List<TemplateVideoMapping>> GetAllTemplateById()
+        {
+            return await _dbContext.Set<TemplateVideoMapping>().ToListAsync();
+        }
+
         public async Task<TemplateDetail> GetByIdAsync(long id)
         {
             return await _dbContext.Set<TemplateDetail>().Where(i => i.TemplateId == id).FirstOrDefaultAsync();

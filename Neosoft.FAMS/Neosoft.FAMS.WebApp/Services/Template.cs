@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Template.Commands.TemplateVideo;
 using Neosoft.FAMS.Application.Features.Template.Queries;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
+using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
@@ -29,6 +32,23 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+
+        public async Task<long> AddTemplateVideo(TemplateVideoMappedCommand mappedCommand)
+        {
+            var Uri = API.Template.TemplateVideoMap(_baseUrl,_path);
+            var content = JsonConvert.SerializeObject(mappedCommand);
+            HttpResponseMessage response = await _client.PostAsync(Uri, new StringContent(content, Encoding.Default,
+                "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<long>(jsonDataStatus);
+                return data;
+            }
+            return 0;
+
+        }
+
         public List<TemplateListDto> GetAllTemplate()
         {
             var result = new List<TemplateListDto>();
