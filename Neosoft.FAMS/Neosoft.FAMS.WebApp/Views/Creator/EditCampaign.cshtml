@@ -12,6 +12,7 @@
         label span {
             font-size: 12px;
         }
+
         #deleteTag:hover {
             color: #56baed;
             cursor: pointer;
@@ -21,22 +22,7 @@
 <div class="container-fluid">
 
     <div class="row" style="background-color: #F5F5F5;">
-        <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
-            <ul class="nav flex-column flex-nowrap overflow-hidden">
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Creator/Index" style="color: black"><i class="fa fa-home" style="color: #52BAF1"></i>  Dashboard</a>
-
-                </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" style="color: #52BAF1"><i class="bi-camera-video-fill" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black"> Video</span></a></li>
-
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" style="color: #52BAF1"><i class="fas fa-rocket" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Campaigns</span></a></li>
-                <li class="nav-item" style="background-color: #F5F5F5; width: 400px;">
-
-                    <a class="nav-link text-truncate" id="sidetext" href="~/Creator/AddAsset" style="background-color: #F5F5F5; width: 400px; color: #52BAF1;"> <i class="bi bi-youtube"></i>   <span class="d-none d-sm-inline" style="color: black;"> Media</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="#" style="color:white"><i class="bi bi-ui-checks-grid" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Template</span></a></li>
-            </ul>
-        </div>
+        @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
             <div class="wrapper">
                 <div id="formContent">
@@ -45,7 +31,7 @@
 
                     <!-- Login Form -->
 
-                    @using (Html.BeginForm("EditCampaign", "Creator", FormMethod.Post, new {enctype = "multipart/form-data", @class = "m-5"}))
+                    @using (Html.BeginForm("EditCampaign", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
                     {
                         DateTime EndDate = (DateTime)records.EndDate;
                         DateTime StartDate = (DateTime)records.StartDate;
@@ -57,7 +43,7 @@
                             <div class="form-group col-6">
                                 <label for="txt_campaignName">
                                     Campaign Name :<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("CampaignName", "", new {@class = "text-danger"})
+                                    @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="CampaignName" type="text" name="CampaignName" class="form-control" value="@records.CampaignName">
                             </div>
@@ -74,18 +60,21 @@
                                     End Date of Campaign :<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
                                 </label>
-                                @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control" ,@id="end_campaign"} })
+                                @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control", @id = "end_campaign" } })
                             </div>
 
 
                             <div style="float: right;">
                                 <button type="button" onclick="window.location = '@Url.Action("CampaignTable", "Creator")'" class="btn btn-secondary">Cancel</button>
-                                <input type="submit" class="btn btn-primary" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Proceed"/>
+                                <input type="submit" class="btn btn-primary" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Proceed" />
                             </div>
                         </div>
                     }
-                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+@section Scripts{
+    <script src="~/js/creatorSideBar.js"></script>
+}

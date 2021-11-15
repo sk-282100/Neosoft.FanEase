@@ -8,6 +8,7 @@ using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.WebApp.Models.LoginModel;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
+using Neosoft.FAMS.WebApp.Models;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -63,7 +64,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                         HttpContext.Session.SetString("RoleId", RoleId.ToString());
                         var creatorData = _creator.GetCreatorByEmail(HttpContext.Session.GetString("Username"));
                         HttpContext.Session.SetString("ContentCreatorId", creatorData.ContentCreatorId.ToString());
-
+                        MappingViewModel.CreatedBy = creatorData.ContentCreatorId;
                         if (creatorData.isPassowrdUpdated)
                             return RedirectToAction("Index", "Creator");
                         return RedirectToAction("ResetPassword", "Login");

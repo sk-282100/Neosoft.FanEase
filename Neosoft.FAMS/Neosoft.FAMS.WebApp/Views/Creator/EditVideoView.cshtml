@@ -16,19 +16,7 @@
 <div class="container-fluid">
 
     <div class="row" style="background-color: #F5F5F5;">
-        <div class="col-2 collapse show d-md-flex pt-2 pl-0 min-vh-100" id="sidebar">
-            <ul class="nav flex-column flex-nowrap overflow-hidden">
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Creator/Index" style="color:black"><i class="fa fa-home" style="color: #52BAF1"></i>  Dashboard</a>
-                </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/VideoTable" style="background-color: #F5F5F5; width: 400px; color: #52BAF1;"><i class="bi-camera-video-fill" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black"> Video</span></a></li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="~/Creator/AddCampaignView" style="color:white"><i class="fas fa-rocket" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Campaigns</span></a></li>
-                <li class="nav-item">
-                    <a class="nav-link text-truncate" href="~/Creator/AddAsset"> <i class="bi bi-youtube" style="color: #52BAF1"></i>   <span class="d-none d-sm-inline" style="color: black;"> Media</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link text-truncate" href="#"><i class="bi bi-ui-checks-grid" style="color: #52BAF1"></i> <span class="d-none d-sm-inline" style="color:black">Template</span></a></li>
-            </ul>
-        </div>
+        @Html.Partial("_CreatorSideBar")
 
         <div class="col pt-2">
             <div class="wrapper">
@@ -168,16 +156,17 @@
     </div>
 </div>
 
-<script>
+@section Scripts{
+    <script src="~/js/creatorSideBar.js"></script>
     function check(options) {
-        if (document.getElementById(options) === document.getElementById("option1")) {
-            document.getElementById("temp").style.display = "none";
-            console.log(1);
-        }
-        else if (document.getElementById(options) === document.getElementById("option2")) {
-            document.getElementById("temp").style.display = "block";
-            console.log(1);
-        }
+    if (document.getElementById(options) === document.getElementById("option1")) {
+    document.getElementById("temp").style.display = "none";
+    console.log(1);
     }
-</script>
+    else if (document.getElementById(options) === document.getElementById("option2")) {
+    document.getElementById("temp").style.display = "block";
+    console.log(1);
+    }
+    }
+}
 
