@@ -13,7 +13,10 @@ $(document).ready(function () {
             contentType: 'application/json',
             success: function (data) {
                 likes = data;
-                $('#like').text(likes);
+                $('#likeSpan').text(likes);
+                var element = $('#likeIcon');
+                element.addClass("fas fa-thumbs-up");
+
             }
         });
     });
@@ -41,7 +44,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             success: function (data) {
                 dislikes = data;
-                $('#dislike').text(dislikes);
+                $('#dislikeSpan').text(dislikes);
             }
         });
     });
