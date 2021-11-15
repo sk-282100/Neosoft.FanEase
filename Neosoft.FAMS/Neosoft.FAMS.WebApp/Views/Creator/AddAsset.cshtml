@@ -7,9 +7,8 @@
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/AddAsset.css" />
-    <link rel="stylesheet" href="~/css/StepBar.css" />
     <script src="~/js/AddAsset.js"></script>
-    <script src="~/js/StepBar.js"></script>
+
     <style>
         label span {
             font-size: 12px;
@@ -20,17 +19,8 @@
 
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_CreatorSideBar")
+
         <div class="col pt-2">
-            <body onload="myFunction1('bar1','bar2')">
-                <div id="wrapper">
-                    <br>
-                    <span class='baricon'>1</span>
-                    <span id="bar1" class='progress_bar'></span>
-                    <span class='baricon'>2</span>
-                    <span id="bar2" class='progress_bar'></span>
-                    <span class='baricon'>3</span>
-                </div>
-            </body>
             <div class="wrapper">
                 <div id="formContent">
                     <!-- Tabs Titles -->
@@ -45,7 +35,7 @@
                             </button>
                         </div>
                     }
-
+                    @Html.Partial("_StepBar")
                     <!-- Login Form -->
                     @using (Html.BeginForm("AddAsset", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
@@ -70,8 +60,8 @@
                                     <input class="form-control " asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
                                 </div>
                                 <div id="hideMe1" style="display: none">
-                                    <label id="lbl" for="formFileMultiple"  class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
-                                    <input class="form-control "  asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                    <label id="lbl" for="formFileMultiple" class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
+                                    <input class="form-control " asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
                                 </div>
                                 <label id="lbl">
                                     Advertisement Description<sup style="color: red">*</sup>
@@ -110,7 +100,7 @@
                                     @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
-                                </div>
+                            </div>
                         </div>
                         <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
                         <input type="submit" class="fadeIn fourth" value="Save">
@@ -120,7 +110,9 @@
         </div>
     </div>
 </div>
+
 @section Scripts{
 
     <script src="~/js/sideBar.js"></script>
+    <script src="~/js/StepBar.js"></script>
 }

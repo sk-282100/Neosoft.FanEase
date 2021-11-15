@@ -15,10 +15,8 @@
 
     <link rel="stylesheet" href="~/css/temp.css" />
     <script src="~/js/AddVideo.js"></script>
-    <link rel="stylesheet" href="~/css/StepBar.css" />
     <link href="~/css/Creator/AddCampaignView.css" rel="stylesheet" />
     <link href="~/css/datatablestyle.css" rel="stylesheet" />
-    <script src="~/js/StepBar.js"></script>
     <style>
         label span {
             font-size: 12px;
@@ -37,16 +35,7 @@
         @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
             <h3>Add New Campaign</h3>
-            <body onload="myFunction('bar1')">
-                <div id="wrapper" style="float:top; margin: 1px;">
-                    <br>
-                    <span class='baricon'>1</span>
-                    <span id="bar1" class='progress_bar'></span>
-                    <span class='baricon'>2</span>
-                    <span id="bar2" class='progress_bar'></span>
-                    <span class='baricon'>3</span>
-                </div><br /><br />
-            </body>
+            @Html.Partial("_StepBar")
             <div id="try" style="display:flex">
                 <div style="margin-left: 50px; color: red;">
                     <a><label style="text-decoration:underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
@@ -168,7 +157,8 @@
     </div>
 </div>
 @section Scripts{
-
+    <script src="~/js/StepBar.js"></script>
+}
     <script src="~/js/sideBar.js"></script>
     <script>
         function deleteAsset(hrefLink) {
