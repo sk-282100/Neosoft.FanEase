@@ -13,7 +13,10 @@ $(document).ready(function () {
             contentType: 'application/json',
             success: function (data) {
                 likes = data;
-                $('#like').text(likes);
+                $('#likeSpan').text(likes);
+                var element = $('#likeIcon');
+                element.addClass("fas fa-thumbs-up");
+
             }
         });
     });
@@ -24,8 +27,8 @@ $(document).ready(function () {
             async: false,
             contentType: 'application/json',
             success: function (data) {
-                likes = data;
-                $('#dislike').text(dislikes);
+                dislikes = data;
+                $('#dislikeSpan').text(dislikes);
             }
         });
     });
