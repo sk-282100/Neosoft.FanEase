@@ -34,10 +34,11 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [Route("id")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CheckClickId(long id)
+        public async Task<IActionResult> CheckClickId(long viewerId,long videoId)
         {
             CheckClickIdCommand checkClickId = new CheckClickIdCommand();
-            checkClickId.id = id;
+            checkClickId.viewerId = viewerId;
+            checkClickId.videoId = videoId;
             var data = await _mediator.Send(checkClickId);
             if(data)
             {

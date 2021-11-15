@@ -12,23 +12,13 @@ $(document).ready(function () {
             async: false,
             contentType: 'application/json',
             success: function (data) {
-                likes = data;
+                likes = data[1];
+                dislikes = data[0];
                 $('#likeSpan').text(likes);
+                $('#dislikeSpan').text(dislikes);
                 var element = $('#likeIcon');
                 element.addClass("fas fa-thumbs-up");
 
-            }
-        });
-    });
-    $('#like').change(function () {
-        $.ajax({
-            type: 'GET',
-            url: 'https://localhost:44330/Likes/' + videoId + '?viewerId=' + viewerId + '&api-version=1',
-            async: false,
-            contentType: 'application/json',
-            success: function (data) {
-                likes = data;
-                $('#like').text(likes);
             }
         });
     });
@@ -43,9 +33,12 @@ $(document).ready(function () {
             async: false,
             contentType: 'application/json',
             success: function (data) {
-                dislikes = data;
+                dislikes = data[0];
+                likes = data[1];
+                $('#likeSpan').text(likes);
                 $('#dislikeSpan').text(dislikes);
             }
         });
     });
+
 });

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
 {
-    public class GetAndUpdateDislikeQueryHandler : IRequestHandler<GetAndUpdateDislikeQuery, long>
+    public class GetAndUpdateDislikeQueryHandler : IRequestHandler<GetAndUpdateDislikeQuery, List<long>>
     {
         private readonly IVideoPageRepository _videoPageRepository;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
             _videoPageRepository = videoPageRepository;
         }
 
-        public async Task<long> Handle(GetAndUpdateDislikeQuery request, CancellationToken cancellationToken)
+        public async Task<List<long>> Handle(GetAndUpdateDislikeQuery request, CancellationToken cancellationToken)
         {
             var modify = await _videoPageRepository.UpdateDislike(request.videoId, request.viewerId);
             if (modify.IsLiked == true || modify.IsLiked == null)
@@ -34,7 +34,9 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
             var update = _mapper.Map<VideoStatisticsDetail>(modify);
             await _videoPageRepository.UpdateAsync(update);
 
-            var result = await _videoPageRepository.GetDislikesById(request.videoId);
+            var dislikes = await _videoPageRepository.GetDislikesById(request.videoId);
+            var likes = await _videoPageRepository.GetLikesById(request.videoId);
+            List<long> result = new List<long>() { dislikes, likes};
             return result;
         }
     }

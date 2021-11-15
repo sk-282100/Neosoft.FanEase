@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
 {
-    public class GetAndUpdateLikeQuery:IRequest<long>
+    public class GetAndUpdateLikeQuery:IRequest<List<long>>
     {
         public long videoId { get; set; }
         public long viewerId { get; set; }
