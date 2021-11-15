@@ -17,6 +17,8 @@ using Neosoft.FAMS.WebApp.Models.VideoModel;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
 using System.IO;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Delete;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -49,10 +51,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
 
-        public ActionResult CampaignTable()
-        {
-            return View();
-        }
         public ActionResult ViewCampaign()
         {
             return View();
@@ -138,6 +136,49 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = data;
             return View();
         }
+        public IActionResult CampaignTable()
+        {
+            var data = _campaign.GetAllCampaign();
+            ViewData["data"] = data;
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult EditCampaign([FromRoute] long id)
+        {
+            var data = _campaign.GetCampaignById(id);
+            ViewData["data"] = data;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditCampaign([FromRoute] long id, CreateCampaign campaign)
+        {
+            campaign.CampaignId = id;
+            if (ModelState.IsValid)
+            {
+                var updateCampaign = _mapper.Map<UpdateCampaignCommand>(campaign);
+
+                var isupdated = _campaign.UpdateCampaignDetail(updateCampaign);
+                return RedirectToAction("CampaignTable");
+
+            }
+            var record = _campaign.GetCampaignById(id);
+            ViewData["data"] = record;
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeleteCampaign([FromRoute] long id)
+        {
+            var delete = new DeleteCampaignByIdCommand { CampaignId = id };
+            var isDeleted = _campaign.DeleteCampaign(delete);
+            TempData["isDeleted"] = true;
+            return RedirectToAction("CampaignTable");
+        }
+
+
         public IActionResult AddAsset()
         {
             return View();

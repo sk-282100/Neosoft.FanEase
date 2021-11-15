@@ -63,6 +63,8 @@
 
             public static string GetAllCampaign(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string SaveCampaign(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
+            public static string GetCampaignById(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
+            public static string DeleteCampaign(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
 
 
         }

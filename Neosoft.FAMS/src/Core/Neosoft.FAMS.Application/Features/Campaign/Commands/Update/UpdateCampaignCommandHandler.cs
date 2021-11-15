@@ -26,6 +26,7 @@ namespace Neosoft.FAMS.Application.Features.Campaign.Commands.Update
 
             if (validationResult.Errors.Count > 0)
                 throw new Exceptions.ValidationException(validationResult);
+            request.IsDeleted = false;
 
             var update = _mapper.Map<CampaignDetail>(request);
             await _campaignDetailRepo.UpdateAsync(update);

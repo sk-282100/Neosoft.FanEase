@@ -12,6 +12,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Delete;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -64,6 +66,48 @@ namespace Neosoft.FAMS.WebApp.Services
                 return result;
             }
             return result;
+        }
+
+        public CampaignGetAllDto GetCampaignById(long id)
+        {
+            var result = new CampaignGetAllDto();
+            var uri = API.Asset.GetAssetById(_baseUrl, _path, id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<CampaignGetAllDto>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+        public async Task<bool> UpdateCampaignDetail(UpdateCampaignCommand update)
+        {
+            bool result = false;
+            var uri = API.Campaign.SaveCampaign(_baseUrl, _path);
+            var content = JsonConvert.SerializeObject(update);
+            HttpResponseMessage response = await _client.PutAsync(uri, new StringContent(content, Encoding.Default,
+                "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<Response<bool>>(jsonDataStatus);
+                result = data.Data;
+                return result;
+            }
+            return result;
+        }
+        public async Task<bool> DeleteCampaign(DeleteCampaignByIdCommand command)
+        {
+            var uri = API.Campaign.DeleteCampaign(_baseUrl, _path, command.CampaignId);
+            HttpResponseMessage response = await _client.DeleteAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<Response<bool>>(jsonDataStatus);
+                return data.Data;
+            }
+            return false;
         }
     }
 }

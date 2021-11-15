@@ -1,0 +1,88 @@
+﻿@using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll
+@using Microsoft.AspNetCore.Http
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewData["Title"] = "ExistingCampaign";
+    var records = (List<CampaignGetAllDto>)ViewData["data"];
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/temp.css" />
+    <link href="~/css/Creator/ExistingCampaign.css" rel="stylesheet" />
+    <link href="~/css/datatablestyle.css" rel="stylesheet" />
+    <script src="~/js/AddVideo.js"></script>
+    <style>
+        label span {
+            font-size: 12px;
+        }
+
+        #deleteTag:hover {
+            color: #56baed;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<div class="container-fluid">
+
+    <div class="row" style="background-color: #F5F5F5;">
+        @Html.Partial("_CreatorSideBar")
+        <div class="col pt-2">
+            <h3>Campaign Table</h3>
+            <div style="margin-top: 80px;">
+                <table id="myTable" class="table table-bordered table-sm table-hover">
+                    <thead>
+                    <tr>
+                    <th>Campaign ID</th>
+                    <th>Campaign Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th class="no-sort">Action</th>
+                    </thead>
+                    <tbody>
+                    @foreach (var record in records)
+                    {
+                        if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted == false)
+                        {
+                            <tr>
+                                <td>@record.CampaignId</td>
+                                <td>@record.CampaignName</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                                <td>
+                                    <a class="edit" href="EditCampaign/@record.CampaignId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                    <a id="deleteTag" class="delete" onClick="deleteCampaign('DeleteCampaign/@record.CampaignId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+                @* Popup Modal *@
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body" style="height: 60px;">
+                                Are you sure you want to Delete this record?
+                            </div>
+                            <div class="modal-footer">
+                                <a href="~/Creator/CampaignTable" class="btn btn-secondary">No</a>
+                                <a id="hrefElement" class="btn btn-primary">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function deleteCampaign(hrefLink) {
+        console.log(hrefLink);
+        var element = document.getElementById("hrefElement");
+        console.log(element);
+        element.href = hrefLink.toLocaleString();
+    }
+</script>

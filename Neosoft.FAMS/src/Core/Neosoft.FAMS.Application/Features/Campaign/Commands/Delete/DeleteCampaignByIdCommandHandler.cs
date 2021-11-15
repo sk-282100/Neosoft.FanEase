@@ -20,9 +20,10 @@ namespace Neosoft.FAMS.Application.Features.Campaign.Commands.Delete
         public async Task<Response<bool>> Handle(DeleteCampaignByIdCommand request, CancellationToken cancellationToken)
         {
             var data = await _campaignDetailRepo.GetByIdAsync(request.CampaignId);
+            data.IsDeleted = true;
             if (data != null)
             {
-                await _campaignDetailRepo.DeleteAsync(data);
+                await _campaignDetailRepo.UpdateAsync(data);
                 var response = new Response<bool> { Data = true, Message = "Deleted Successfully", Succeeded = true };
                 return response;
             }
