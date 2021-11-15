@@ -130,69 +130,49 @@ $(document).ready(function () {
         {
             if (count == 3)
             {
-                if ($('#selectId0').val() == 0) {
-                    $('#error0').text("Please select Title");
-                    $(window).scrollTop(0);
-                }
-                else if ($('#selectId1').val() == 0)
+                var errors = 0;
+                for (var i = 0; i < 3; i++)
                 {
-                    $('#error0').text("");
-                    $('#error1').text("Please select Title");
-                    $(window).scrollTop(300);
+                    if ($(`#selectId${i}`).val() == 0) {
+                        $(`#error${i}`).text("Please select Title");
+                        $(window).scrollTop(300 * i);
+                        errors++;
+                        break;
+                    }
+                    else
+                        $(`#error${i}`).text("");
                 }
-                else if ($('#selectId2').val() == 0)
+                if (errors == 0)
                 {
-                    $('#error1').text("");
-                    $('#error2').text("Please select Title");
-                    $(window).scrollTop(600);
-                }
-                else
-                {
-                    $('#error0').text("");
-                    $('#error1').text("");
-                    $('#error2').text("");
-
                     var section1 = $('#selectId0').val() + "-";
                     var section2 = $('#selectId1').val() + "-";
                     var section3 = $('#selectId2').val();
 
-                   $.ajax({
-                       url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3,
-                       type: 'POST',
-                       success: function (result) {
-                       },
-                       error: function (result) {
-                       }
-                   });
+                    $.ajax({
+                        url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3,
+                        type: 'POST',
+                        success: function(result) {
+                        },
+                        error: function(result) {
+                        }
+                    });
                 }
+
             }
             else
             {
-                if ($('#selectId0').val() == 0) {
-                    $('#error0').text("Please select Title");
-                    $(window).scrollTop(0);
+                var errors = 0;
+                for (var i = 0; i < 5; i++) {
+                    if ($(`#selectId${i}`).val() == 0) {
+                        $(`#error${i}`).text("Please select Title");
+                        $(window).scrollTop(300 * i);
+                        errors++;
+                        break;
+                    }
+                    else
+                        $(`#error${i}`).text("");
                 }
-                else if ($('#selectId1').val() == 0) {
-                    $('#error0').text("");
-                    $('#error1').text("Please select Title");
-                    $(window).scrollTop(300);
-                }
-                else if ($('#selectId2').val() == 0) {
-                    $('#error1').text("");
-                    $('#error2').text("Please select Title");
-                    $(window).scrollTop(600);
-                }
-                else if ($('#selectId3').val() == 0) {
-                    $('#error2').text("");
-                    $('#error3').text("Please select Title");
-                    $(window).scrollTop(900);
-                }
-                else if ($('#selectId4').val() == 0) {
-                    $('#error3').text("");
-                    $('#error4').text("Please select Title");
-                    $(window).scrollTop(1200);
-                }
-                else
+                if(errors==0)
                 {
                     var section1 = $('#selectId0').val() + "-";
                     var section2 = $('#selectId1').val() + "-";
@@ -209,7 +189,6 @@ $(document).ready(function () {
                         }
                     });
                 }
-
             }
         }
     });
