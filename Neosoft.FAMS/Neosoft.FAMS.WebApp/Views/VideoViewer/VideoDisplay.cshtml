@@ -42,13 +42,10 @@
 <input type="text" id="videoId" value="@videoRecords.VideoId" hidden />
 <div id="ButtonSection" class="row">
     <div class="col-6">
-        <button type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-up"></span>Like</button>&emsp;&emsp;
-        <button type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-down"></span> Dislike</button>&emsp;&emsp;
+        <button id="like" type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
+        <button id="dislike" type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
         <button type="button" class="btn btn-primary view-modal"><span class="fa fa-share share"></span> Share</button>
     </div>
-    <label id="like"></label>
-    <label id="dislike"></label>
-
     <div class="col-3">
         <span id="Auto"><b>Auto Next</b></span>
         <label class="switch">
