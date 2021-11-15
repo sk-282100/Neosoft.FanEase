@@ -203,7 +203,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 createAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
 
                 var result = _asset.SaveAssetDetail(createAdvertisement);
-                AddMappedData();
                 ModelState.Clear();
                 return View();
 
@@ -342,18 +341,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return video;
         }
 
-        private void AddMappedData()
-        {
-            var addCampaignAdvertisement = new AddCampaignAdvertisementCommand();
-            addCampaignAdvertisement.AdvertisementId = MappingViewModel.AdvertisementId;
-            addCampaignAdvertisement.CampaignId = MappingViewModel.CampaignId;
-            addCampaignAdvertisement.VideoId = MappingViewModel.VideoId;
-            addCampaignAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-            addCampaignAdvertisement.CreatedOn = DateTime.Now;
-
-            var id = _asset.AddCampaignAdvertiseMappedData(addCampaignAdvertisement);
-
-        }
+       
 
     }
 }

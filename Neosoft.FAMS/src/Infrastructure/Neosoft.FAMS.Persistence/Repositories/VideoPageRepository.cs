@@ -35,15 +35,32 @@ namespace Neosoft.FAMS.Persistence.Repositories
             long likes =  _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsLiked == true).Count();
             return likes;
         }
-        public async Task<long> GetDisikesById(long id)
+        public async Task<long> GetDislikesById(long id)
         {
-            long likes = _dbContext.VideoStatisticsDetails.Where(p => p.IsLiked == false).Count();
+            long likes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsLiked == false).Count();
             return likes;
         }
 
         public async Task<VideoStatisticsDetail> UpdateLike(long id, long viewerId)
         {
             var modify = await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(m => m.VideoId == id && m.LikeBy == viewerId);
+            return modify;
+        }
+        public async Task<VideoStatisticsDetail> UpdateDislike(long id, long viewerId)
+        {
+            var modify = await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(m => m.VideoId == id && m.LikeBy == viewerId);
+            return modify;
+        }
+
+        public async Task<long> GetViewsById(long id)
+        {
+            long views = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsViewed == true).Count();
+            return views;
+        }
+
+        public async Task<VideoStatisticsDetail> UpdateViews(long id, long viewerId)
+        {
+            var modify = await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(m => m.VideoId == id && m.ViewBy == viewerId);
             return modify;
         }
     }

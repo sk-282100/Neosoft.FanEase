@@ -22,37 +22,37 @@
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-sm table-hover">
                     <thead>
-                        <tr>
-                            <th class="no-sort">Select</th>
-                            <th>Asset ID</th>
-                            <th class="no-sort">Thumbnail Image</th>
-                            <th>Asset Title</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                        </tr>
+                    <tr>
+                        <th class="nosort">Select</th>
+                        <th>Asset ID</th>
+                        <th class="nosort">Thumbnail Image</th>
+                        <th>Asset Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach (var record in records)
+                    @foreach (var record in records)
+                    {
+                        if (!(bool)@record.IsDeleted)
                         {
-                            if (!(bool)@record.IsDeleted)
-                            {
-                                <tr>
-                                    <td><input type="checkbox" />    &nbsp;   </td>
-                                    <td>@record.AdvertisementId</td>
-                                    @if (@record.ImagePath != null)
-                                    {
-                                        <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
-                                    }
-                                    else
-                                    {
-                                        <td><img src="~/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
-                                    }
-                                    <td>@record.Title</td>
-                                    <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
-                                    <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                                </tr>
-                            }
+                            <tr>
+                                <td><input id='id ' type="checkbox"  onchange="insertValue(this)" />    &nbsp;   </td>
+                                <td>@record.AdvertisementId</td>
+                                @if (@record.ImagePath != null)
+                                {
+                                    <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                }
+                                else
+                                {
+                                    <td><img src="~/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" class="rounded-circle"/></td>
+                                }
+                                <td>@record.Title</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                            </tr>
                         }
+                    }
                     </tbody>
                 </table>
             </div>
@@ -63,6 +63,27 @@
         </div>
     </div>
 </div>
-@section Scripts{
-    <script src="~/js/creatorSideBar.js"></script>
+@{
+    List<long> myList = new List<long>();
+
 }
+<script>
+    function insertValue(elem) {
+        var Id = $(elem).attr("id");
+        console.log(Id);
+        alert(Id.checked);
+        if (Id.checked)
+        {
+            var val = $(this).value;
+            alert(val);
+        }
+        else
+        {
+            var val = $(this).value;
+            alert('removed'+val );
+        }
+
+        
+    }
+
+</script>

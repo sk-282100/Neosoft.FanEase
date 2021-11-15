@@ -51,6 +51,8 @@ namespace Neosoft.FAMS.WebApp.Services
                 var data = JsonConvert.DeserializeObject<Response<long>>(jsonDataStatus);
                 result = data.Data;
                 MappingViewModel.AdvertisementId = result;
+                
+                AddMappedData();
                 return result;
             }
             return result;
@@ -70,7 +72,19 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        private void AddMappedData()
+        {
 
+            var addCampaignAdvertisement = new AddCampaignAdvertisementCommand();
+            addCampaignAdvertisement.AdvertisementId = MappingViewModel.AdvertisementId;
+            addCampaignAdvertisement.CampaignId = MappingViewModel.CampaignId;
+            addCampaignAdvertisement.VideoId = MappingViewModel.VideoId;
+            addCampaignAdvertisement.CreatedBy = MappingViewModel.CreatedBy;/*long.Parse(HttpContext.Session.GetString("ContentCreatorId"));*/
+            addCampaignAdvertisement.CreatedOn = DateTime.Now;
+
+            var id = AddCampaignAdvertiseMappedData(addCampaignAdvertisement);
+
+        }
         public async Task<long> AddCampaignAdvertiseMappedData(AddCampaignAdvertisementCommand command)
         {
             long result = 0;

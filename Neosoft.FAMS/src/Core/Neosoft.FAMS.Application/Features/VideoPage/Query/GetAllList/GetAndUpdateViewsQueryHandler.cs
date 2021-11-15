@@ -10,31 +10,29 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
 {
-    public class GetAndUpdateDislikeQueryHandler : IRequestHandler<GetAndUpdateDislikeQuery, long>
+    public class GetAndUpdateViewsQueryHandler : IRequestHandler<GetAndUpdateViewsQuery, long>
     {
         private readonly IVideoPageRepository _videoPageRepository;
         private readonly IMapper _mapper;
-        public GetAndUpdateDislikeQueryHandler(IMapper mapper, IVideoPageRepository videoPageRepository)
+        public GetAndUpdateViewsQueryHandler(IMapper mapper, IVideoPageRepository videoPageRepository)
         {
             _mapper = mapper;
             _videoPageRepository = videoPageRepository;
         }
 
-        public async Task<long> Handle(GetAndUpdateDislikeQuery request, CancellationToken cancellationToken)
+        public async Task<long> Handle(GetAndUpdateViewsQuery request, CancellationToken cancellationToken)
         {
-            var modify = await _videoPageRepository.UpdateDislike(request.videoId, request.viewerId);
-            if (modify.IsLiked == false || modify.IsLiked == null)
+            var modify = await _videoPageRepository.UpdateViews(request.videoId, request.viewerId);
+            if (modify.IsClicked == false || modify.IsClicked == null)
             {
-                modify.IsLiked = true;
+                modify.IsClicked = true;
+                modify.IsViewed = true;
             }
-            else if (modify.IsLiked == true)
-            {
-                modify.IsLiked = null;
-            }
+            
             var update = _mapper.Map<VideoStatisticsDetail>(modify);
             await _videoPageRepository.UpdateAsync(update);
 
-            var result = await _videoPageRepository.GetDislikesById(request.videoId);
+            var result = await _videoPageRepository.GetViewsById(request.videoId);
             return result;
         }
     }

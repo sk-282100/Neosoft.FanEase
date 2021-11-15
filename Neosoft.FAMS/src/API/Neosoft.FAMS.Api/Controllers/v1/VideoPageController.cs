@@ -96,11 +96,24 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [HttpGet]
         [Route("/Disikes/{id}")]
 
-        public async Task<IActionResult> GetDislikes([FromRoute] long id)
+        public async Task<IActionResult> GetDislikes([FromRoute] long id, long viewerId)
         {
             GetAndUpdateDislikeQuery GetDislikes = new GetAndUpdateDislikeQuery();
             GetDislikes.videoId = id;
+            GetDislikes.viewerId = viewerId;
             var data = await _mediator.Send(GetDislikes);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("/Views/{id}")]
+
+        public async Task<IActionResult> GetViews([FromRoute] long id, long viewerId)
+        {
+            GetAndUpdateViewsQuery GetViews = new GetAndUpdateViewsQuery();
+            GetViews.videoId = id;
+            GetViews.viewerId = viewerId;
+            var data = await _mediator.Send(GetViews);
             return Ok(data);
         }
 
