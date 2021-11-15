@@ -10,5 +10,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     {
          Task<TemplateDetail> GetByIdAsync(long id);
          Task<TemplateVideoMapping> AddTemplateVideoAsync(TemplateVideoMapping entity);
+         Task<List<TemplateVideoMapping>> GetAllTemplateById();
     }
 }

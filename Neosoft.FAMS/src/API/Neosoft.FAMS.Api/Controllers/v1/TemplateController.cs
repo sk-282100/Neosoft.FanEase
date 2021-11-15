@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Template.Commands.TemplateVideo;
+using Neosoft.FAMS.Application.Features.Template.Queries.GetAllById;
 using Neosoft.FAMS.Application.Features.Template.Queries.GetById;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
@@ -61,6 +62,21 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             long id = await _mediator.Send(mappedCommand);
             return Ok(id);
+        }
+
+        /// <summary>
+        /// Author:Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date:15/11/2021<br></br>
+        /// Reason:It Will Get All Template List
+        /// </summary>
+        /// <returns>List of All Templates</returns>
+        [HttpGet]
+        [Route("GetAllTemplate")]
+        public async Task<IActionResult> GetAllTemplate()
+        {
+            var templateQuery = new GetAllTemplateListByIdQuery();
+            var data = await _mediator.Send(templateQuery);
+            return Ok(data);
         }
     }
 }
