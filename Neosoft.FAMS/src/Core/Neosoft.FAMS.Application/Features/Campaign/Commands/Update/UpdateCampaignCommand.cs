@@ -11,6 +11,7 @@ namespace Neosoft.FAMS.Application.Features.Campaign.Commands.Update
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public long? CreatedBy { get; set; }
+        public DateTime? CreatedOn { get; set; }
         public bool? IsDeleted { get; set; }
     }
 }

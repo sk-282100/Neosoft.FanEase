@@ -31,6 +31,7 @@
                 <table id="myTable" class="table table-sm table-hover">
                     <thead>
                         <tr>
+                            <th class="no-sort">Select</th>
                             <th>Asset ID</th>
                             <th class="no-sort">Thumbnail Image</th>
                             <th>Asset Title</th>
@@ -44,8 +45,16 @@
                             if (!(bool)@record.IsDeleted)
                             {
                                 <tr>
+                                    <td><input type="checkbox" />    &nbsp;   </td>
                                     <td>@record.AdvertisementId</td>
-                                    <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                    @if (@record.ImagePath != null)
+                                    {
+                                        <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                    }
+                                    else
+                                    {
+                                        <td><img src="~/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" class="rounded-circle"/></td>
+                                    }
                                     <td>@record.Title</td>
                                     <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
                                     <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>

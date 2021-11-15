@@ -2,6 +2,7 @@
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
+using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
@@ -26,6 +27,8 @@ namespace Neosoft.FAMS.WebApp.Profiles
             CreateMap<CampaignCreateCommand, CreateCampaign>().ReverseMap();
             CreateMap<ViewerCreateCommand, ViewerRegisteration>().ReverseMap();
             CreateMap<UpdateAdvertisementCommand, AddAsset>().ReverseMap();
+            CreateMap<UpdateCampaignCommand, CreateCampaign>().ReverseMap();
+
         }
     }
 }

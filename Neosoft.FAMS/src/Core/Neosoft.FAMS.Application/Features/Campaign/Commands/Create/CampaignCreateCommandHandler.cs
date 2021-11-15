@@ -29,7 +29,6 @@ namespace Neosoft.FAMS.Application.Features.Campaign.Commands.Create
                 throw new Exceptions.ValidationException(validationResult);
 
             var record = _mapper.Map<CampaignDetail>(request);
-            record.CreatedOn = DateTime.Now;
             record.IsDeleted = false;
             var data = await _campaignDetailRepo.AddAsync(record);
             var response = new Response<long>(data.CampaignId, "Inserted successfully ");
