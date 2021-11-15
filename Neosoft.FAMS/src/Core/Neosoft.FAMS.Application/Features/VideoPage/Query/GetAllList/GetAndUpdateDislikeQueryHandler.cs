@@ -23,11 +23,11 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
         public async Task<long> Handle(GetAndUpdateDislikeQuery request, CancellationToken cancellationToken)
         {
             var modify = await _videoPageRepository.UpdateDislike(request.videoId, request.viewerId);
-            if (modify.IsLiked == false || modify.IsLiked == null)
+            if (modify.IsLiked == true || modify.IsLiked == null)
             {
-                modify.IsLiked = true;
+                modify.IsLiked = false;
             }
-            else if (modify.IsLiked == true)
+            else if (modify.IsLiked == false)
             {
                 modify.IsLiked = null;
             }

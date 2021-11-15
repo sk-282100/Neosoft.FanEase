@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var videoRecords = (VideoGetAllDto)ViewData["videoData"];
     var creatorRecords = (ContentCreatorDto)ViewData["creatorData"];
+    var session = TempData["Session"];
    
 }
 
@@ -40,9 +41,10 @@
 </div>
 <br />
 <input type="text" id="videoId" value="@videoRecords.VideoId" hidden />
+<input type="text" id="viewerId" value="@session" hidden />
 <div id="ButtonSection" class="row">
     <div class="col-6">
-        <button id="like" type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
+        <button id="like" type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-up">1234</span></button>&emsp;&emsp;
         <button id="dislike" type="button" class="btn btn-primary"><span class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
         <button type="button" class="btn btn-primary view-modal"><span class="fa fa-share share"></span> Share</button>
     </div>

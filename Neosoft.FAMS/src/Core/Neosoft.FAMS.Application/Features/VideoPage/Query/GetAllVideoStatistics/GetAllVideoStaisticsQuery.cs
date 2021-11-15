@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllVideoStatistics
 {
-    public class GetAllVideoStaisticsQuery: IRequest<List<GetAllVideoStatisticsDto>>
+    public class GetAllVideoStaisticsQuery: IRequest<List<long>>
     {
         public long id { get; set; }
     }

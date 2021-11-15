@@ -57,7 +57,10 @@
                 $"{baseUrl}{path}/{id}?api-version=1";
             public static string DeleteVideo(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
         }
-
+        public static class VideoStatistics
+        {
+            public static string  GetStatsById(string baseUri,string path,long videoId) => $"{baseUri}{path}/{videoId}?api-version=1";
+        } 
         public static class Campaign
         {
 

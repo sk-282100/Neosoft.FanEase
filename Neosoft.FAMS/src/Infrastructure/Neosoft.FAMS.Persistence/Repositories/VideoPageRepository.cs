@@ -25,10 +25,16 @@ namespace Neosoft.FAMS.Persistence.Repositories
             return await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(p => p.ClickedBy == id);
         }
 
-        public async Task<List<VideoStatisticsDetail>> GetAllVideoStatisticsById(long id)
+        public  List<long> GetAllVideoStatisticsById(long id)
         {
-            var listofVideos = await _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id).ToListAsync();
-            return listofVideos;
+            
+            //var listofVideos = await _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id).ToListAsync();
+            long likes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsLiked == true).Count();
+            long dislikes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsLiked == false).Count();
+            long views  = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsViewed == true).Count();
+            long shared = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsShared == true).Count();
+            List<long> stats = new List<long>() {likes,dislikes,views,shared};
+            return stats;
         }
         public async Task<long> GetLikesById(long id)
         {

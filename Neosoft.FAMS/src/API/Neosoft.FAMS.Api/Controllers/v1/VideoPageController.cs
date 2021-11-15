@@ -54,30 +54,10 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [Route("{id}")]
         public async Task<IActionResult> GetCounters([FromRoute] long id)
         {
-            var LikeCounter = 0;
-            var DisLikeCounter = 0;
-            var ShareCounter = 0;
-            var ViewCounter = 0;
+           
             GetAllVideoStaisticsQuery VideoQuery = new GetAllVideoStaisticsQuery();
             VideoQuery.id = id;
             var data = await _mediator.Send(VideoQuery);
-            
-            if (data != null)
-            {
-                foreach(var i in data)
-                {
-                    if (i.IsLiked == true)
-                        LikeCounter += 1;
-                    else if (i.IsLiked == false)
-                        DisLikeCounter = 0;
-                    if (i.IsShared == true)
-                        ShareCounter += 1;
-                    if (i.IsViewed == true)
-                        ViewCounter += 1;
-                }
-              
-                //return Ok(LikeCounter,DisLikeCounter,ShareCounter,ViewCounter);
-            }
             return Ok(data);
         }
 

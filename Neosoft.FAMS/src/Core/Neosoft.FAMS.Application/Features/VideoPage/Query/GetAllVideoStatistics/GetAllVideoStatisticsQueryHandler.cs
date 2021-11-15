@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllVideoStatistics
 {
-    public class GetAllVideoStatisticsQueryHandler : IRequestHandler<GetAllVideoStaisticsQuery,List<GetAllVideoStatisticsDto>>
+    public class GetAllVideoStatisticsQueryHandler : IRequestHandler<GetAllVideoStaisticsQuery,List<long>>
     {
         private readonly IVideoPageRepository _videoPageRepository;
         private readonly IMapper _mapper;
@@ -23,12 +23,11 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllVideoStatistic
             _contentCreatorRepo = contentCreatorRepo;
             _videoRepository = videoRepository;
         }
-        public async Task<List<GetAllVideoStatisticsDto>> Handle(GetAllVideoStaisticsQuery request, CancellationToken cancellationToken)
+        public async Task<List<long>> Handle(GetAllVideoStaisticsQuery request, CancellationToken cancellationToken)
         {
-            var stats = await _videoPageRepository.GetAllVideoStatisticsById(request.id);
-            var response = _mapper.Map<List<GetAllVideoStatisticsDto>>(stats);
-            return response;
-
+            var stats =  _videoPageRepository.GetAllVideoStatisticsById(request.id);
+            //var response = _mapper.Map<List<GetAllVideoStatisticsDto>>(stats);
+            return stats;
         }
     }
 }
