@@ -34,15 +34,16 @@ namespace Neosoft.FAMS.WebApp.Services
         /// </summary>
         /// <param name="videoId"></param>
         /// <returns></returns>
-        public GetAllVideoStatisticsDto StatsGetById(long videoId)
+        public List<long> StatsGetById(long videoId)
         {
-            var result = new GetAllVideoStatisticsDto();
+            //https://localhost:44330/api/VideoPage/6?api-version=1
+            var result = new List<long>();
             var uri = API.VideoStatistics.GetStatsById(_baseUrl, _path,videoId);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
-                var data = JsonConvert.DeserializeObject<GetAllVideoStatisticsDto>(jsonDataStatus);
+                var data = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
                 return data;
             }
             return result;
