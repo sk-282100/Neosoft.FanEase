@@ -117,15 +117,16 @@
     </div>
 </div>
 @section Scripts{
-    <script src="~/js/StepBar.js"></script>}
+    <script src="~/js/creatorSideBar.js"></script>
+    <script src="~/js/StepBar.js"></script>
+
     <script>
         function check(id) {
             if (document.getElementById(id) === document.getElementById("option1")) {
                 document.getElementById("VideoFile").style.display = "none";
                 document.getElementById("Url").style.display = "";
                 console.log(1);
-            }
-            else if (document.getElementById(id) === document.getElementById("option2")) {
+            } else if (document.getElementById(id) === document.getElementById("option2")) {
                 document.getElementById("VideoFile").style.display = "block";
                 document.getElementById("Url").style.display = "none";
                 console.log(2);
@@ -137,5 +138,5 @@
             console.log("hideUrl");
         }
     </script>
-
+}
 

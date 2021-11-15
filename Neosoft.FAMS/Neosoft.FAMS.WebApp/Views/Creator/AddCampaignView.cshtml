@@ -157,15 +157,16 @@
     </div>
 </div>
 @section Scripts{
+    <script src="~/js/creatorSideBar.js"></script>
     <script src="~/js/StepBar.js"></script>
-}
-    <script src="~/js/sideBar.js"></script>
-    <script>
-        function deleteAsset(hrefLink) {
-            console.log(hrefLink);
-            var element = document.getElementById("hrefElement");
-            console.log(element);
-            element.href = hrefLink.toLocaleString();
-        }
-    </script>
+
+
+<script>
+    function deleteAsset(hrefLink) {
+        console.log(hrefLink);
+        var element = document.getElementById("hrefElement");
+        console.log(element);
+        element.href = hrefLink.toLocaleString();
+    }
+</script>
 }
