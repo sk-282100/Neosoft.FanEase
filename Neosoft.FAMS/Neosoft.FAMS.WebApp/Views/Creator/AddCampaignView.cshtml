@@ -4,10 +4,10 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "AddCampaignView";
-    bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
     var records = (List<AdvertisementListQueryDto>)ViewData["data"];
     bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
     ViewData["step"] = 2;
+    bool isAddedVideo = Convert.ToBoolean(Context.Session.GetString("isVideoAdded"));
 }
 
 
@@ -57,16 +57,6 @@
                 </div>
                 <hr />
 
-                @if (@isInserted)
-                {
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>New Campaign Added Successfully</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                }
-
                 @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
                 {
 
@@ -101,10 +91,20 @@
                         </div>
 
 
-                        <div style="float: right;">
-                            <button type="button" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
-                            <input type="submit" class="btn btn-primary" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Proceed" />
-                        </div>
+                       @if (@isAddedVideo==true)
+                       {
+                           <div style="float: right;">
+                               <button type="button" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
+                               <input type="submit" class="btn btn-primary" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Proceed" />
+                           </div>
+                       }
+                       else
+                       {
+                            <div style="float: right;">
+                                <button type="button" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
+                                <input type="submit" disabled class="btn btn-warning" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Please Add Video First" />
+                            </div>
+                       }
                     </div>
                     @if (@isDeleted)
                     {
@@ -119,12 +119,12 @@
                         <table id="myTable" class="table table-sm table-hover">
                             <thead>
                                 <tr>
-                                    <th class="no-sort">Thumbnail Image</th>
+                                    <th class="nosort">Thumbnail Image</th>
                                     <th>Content Type</th>
                                     <th>Asset Title</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
-                                    <th class="no-sort">Action</th>
+                                    <th class="nosort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
