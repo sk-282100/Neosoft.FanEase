@@ -45,6 +45,7 @@ namespace Neosoft.FAMS.WebApp
             services.AddScoped<Services.Interface.IAsset, Asset>();
             services.AddScoped<Services.Interface.ICommon, Common>();
             services.AddScoped<Services.Interface.Itemplate, Template>();
+            services.AddScoped<Services.Interface.IVideoStatistics, VideoStatistics>();
             services.Configure<IISServerOptions>(options =>
             {
                 options.MaxRequestBodySize = int.MaxValue;

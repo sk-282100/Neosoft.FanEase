@@ -14,7 +14,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public VideoGetAllDto VideoGetById(long id);
         public List<VideoGetAllDto> VideosCreatedByContentCreator(long id);
 
-        Task<long> CreateVideo(VideoCreateCommand videocreateCommand);
+        public Task<long> CreateVideo(VideoCreateCommand videocreateCommand);
         public Task<bool> UpdateVideoDetail(UpdateVideoByIdCommand update);
         public Task<bool> DeleteVideo(DeleteVideoByIdCommand delete);
     }

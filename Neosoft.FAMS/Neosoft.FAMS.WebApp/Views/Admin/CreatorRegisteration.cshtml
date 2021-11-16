@@ -7,11 +7,12 @@
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/CreatorRegisteration.css" />
-    <script  src="~/js/ContentCreator.js" ></script>
+    <script src="~/js/ContentCreator.js"></script>
     <style>
         label span {
             font-size: 12px;
         }
+
         .help-block ul {
             list-style-type: none;
         }
@@ -49,7 +50,7 @@
 
                             <div class="form-group col-md-6">
                                 <label id="lbl" class="form-group required">
-                                   Full Name<sup style="color:red">*</sup>
+                                    Full Name<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("CreatorName", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="CreatorName" type="text" class="fadeIn second" name="CreatorName" placeholder="Enter Name">
@@ -59,7 +60,7 @@
                                     @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
                                 </label>
                                 <textarea asp-for="Address1" type="text" class="fadeIn third" name="Address1" placeholder="Address1"></textarea>
-                                
+
                                 <label id="lbl">
                                     Country<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("CountryId", "", new { @class = "text-danger" })
@@ -67,7 +68,7 @@
                                 <select id="formCountry" asp-for="CountryId" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="CountryId">
                                     <option value="0">Please Select Country</option>
                                 </select>
-       
+
 
                                 <label id="lbl">
                                     Contact<sup style="color:red">*</sup>
@@ -87,11 +88,11 @@
                                     <span id="emailSpan" class="text-danger"></span>
                                     @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
                                 </label>
-                                <input id="creatorEmailId"  asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
+                                <input id="creatorEmailId" asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
 
                                 <label id="lbl">Address2</label>
                                 <textarea type="text" class="fadeIn second" name="Address2" placeholder="Address2"></textarea><br />
-                                
+
                                 <label id="lbl">
                                     State<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("StateId", "", new { @class = "text-danger" })
@@ -99,7 +100,7 @@
                                 <select id="formState" asp-for="StateId" style="margin: 10px 10px 0px 35px" name="StateId">
                                     <option value="0">Please Select State</option>
                                 </select>
-                               
+
                                 <label id="lbl">
                                     City<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("CityId", "", new { @class = "text-danger" })
@@ -124,7 +125,8 @@
     </div>
 </div>
 @section Scripts{
-<script src="~/js/creatorEmailCheck.js"></script>
+    <script src="~/js/sideBar.js"></script>
+    <script src="~/js/creatorEmailCheck.js"></script>
 
 }
 

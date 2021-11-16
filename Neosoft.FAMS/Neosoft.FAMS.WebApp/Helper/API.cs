@@ -57,7 +57,12 @@
                 $"{baseUrl}{path}/{id}?api-version=1";
             public static string DeleteVideo(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
         }
-
+        public static class VideoStatistics
+        {
+            public static string  GetStatsById(string baseUri,string path,long videoId) => $"{baseUri}{path}/{videoId}?api-version=1";
+            //https://localhost:44330/api/VideoPage/id?viewerId=10&videoId=6&api-version=1
+            public static string CheckClickBy(string baseUri, string path, long videoId,long viewerId) => $"{baseUri}{path}/id?viewerId={viewerId}&videoId={videoId}&api-version=1";
+        } 
         public static class Campaign
         {
 
@@ -80,6 +85,7 @@
         }
         public static class Template
         {
+            public static string TemplateVideoMap(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetAllTemplate(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetTemplate(string baseUri, string path,long id) => $"{baseUri}{path}/{id}?api-version=1";
 

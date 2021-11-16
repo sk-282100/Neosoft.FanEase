@@ -8,9 +8,8 @@
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/AddAsset.css" />
-    <link rel="stylesheet" href="~/css/StepBar.css" />
     <script src="~/js/AddAsset.js"></script>
-    <script src="~/js/StepBar.js"></script>
+
     <style>
         label span {
             font-size: 12px;
@@ -21,6 +20,7 @@
 
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_CreatorSideBar")
+
         <div class="col pt-2">
             @*<body onload="myFunction1('bar1','bar2')">
             <div id="wrapper">
@@ -59,27 +59,27 @@
                                     </label>
                                     <input asp-for="Title" type="text" class="fadeIn second" name="Title" placeholder="Enter Video Title">
 
-                                    <label id="lbl">
-                                        Content Type<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
-                                    </label>
-                                    <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType" onchange="onContentType()">
-                                        <option value="1">Images</option>
-                                        <option value="2">Videos</option>
-                                    </select>
-                                    <div id="hideMe">
-                                        <label id="lbl" for="formFileMultiple" class="form-label ">Select Image <span id="errorFileSize" class="text-danger"></span></label>
-                                        <input class="form-control " asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
-                                    </div>
-                                    <div id="hideMe1" style="display: none">
-                                        <label id="lbl" for="formFileMultiple" class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
-                                        <input class="form-control " asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
-                                    </div>
-                                    <label id="lbl">
-                                        Advertisement Description<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
-                                    </label>
-                                    <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
+                                <label id="lbl">
+                                    Content Type<sup style="color: red">*</sup>
+                                    @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
+                                </label>
+                                <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType" onchange="onContentType()">
+                                    <option value="1">Images</option>
+                                    <option value="2">Videos</option>
+                                </select>
+                                <div id="hideMe">
+                                    <label id="lbl" for="formFileMultiple" class="form-label ">Select Image <span id="errorFileSize" class="text-danger"></span></label>
+                                    <input class="form-control " asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                </div>
+                                <div id="hideMe1" style="display: none">
+                                    <label id="lbl" for="formFileMultiple" class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
+                                    <input class="form-control " asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                </div>
+                                <label id="lbl">
+                                    Advertisement Description<sup style="color: red">*</sup>
+                                    @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
+                                </label>
+                                <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
 
                                 </div>
 
@@ -107,22 +107,24 @@
                                         <option value="4">Bottom-Right</option>
                                     </select>
 
-                                    <label id="lbl">
-                                        Video or Image URL<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
-                                    </label>
-                                    <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
-                                </div>
+                                <label id="lbl">
+                                    Video or Image URL<sup style="color: red">*</sup>
+                                    @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
+                                </label>
+                                <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
                             </div>
-                            <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
-                            <input type="submit" class="fadeIn fourth" value="Save">
-                        }
-                    </div>
+                        </div>
+                        <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
+                        <input type="submit" class="fadeIn fourth" value="Save">
+                    }
                 </div>
+            </div>
         </div>
     </div>
 </div>
+
 @section Scripts{
 
-    <script src="~/js/sideBar.js"></script>
+    <script src="~/js/creatorSideBar.js"></script>
+    <script src="~/js/StepBar.js"></script>
 }

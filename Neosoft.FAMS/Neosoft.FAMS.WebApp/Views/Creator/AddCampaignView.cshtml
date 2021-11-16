@@ -16,10 +16,8 @@
 
     <link rel="stylesheet" href="~/css/temp.css" />
     <script src="~/js/AddVideo.js"></script>
-    <link rel="stylesheet" href="~/css/StepBar.css" />
     <link href="~/css/Creator/AddCampaignView.css" rel="stylesheet" />
     <link href="~/css/datatablestyle.css" rel="stylesheet" />
-    <script src="~/js/StepBar.js"></script>
     <style>
         label span {
             font-size: 12px;
@@ -170,14 +168,16 @@
     </div>
 </div>
 @section Scripts{
+    <script src="~/js/creatorSideBar.js"></script>
+    <script src="~/js/StepBar.js"></script>
 
-    <script src="~/js/sideBar.js"></script>
-    <script>
-        function deleteAsset(hrefLink) {
-            console.log(hrefLink);
-            var element = document.getElementById("hrefElement");
-            console.log(element);
-            element.href = hrefLink.toLocaleString();
-        }
-    </script>
+
+<script>
+    function deleteAsset(hrefLink) {
+        console.log(hrefLink);
+        var element = document.getElementById("hrefElement");
+        console.log(element);
+        element.href = hrefLink.toLocaleString();
+    }
+</script>
 }

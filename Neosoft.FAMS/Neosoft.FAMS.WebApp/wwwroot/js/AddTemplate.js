@@ -24,7 +24,7 @@ function changeTxt(elem)
                             </div>
                             <div class="col mr-5 ">
                                 <div class="form-group">
-                                    <label class="font-weight-bold">Title</label>
+                                    <label class="font-weight-bold">Title<sup style="color: red">*</sup><span id="error${i}" style="font-size:12px;" class="text-danger"></span></label>
                                      <select id="selectId${i}" onchange="loadAllValues(this,${i})" class="form-control titleDropDown">
                                         <option value="0">Please Select Title</option>
                                     </select>
@@ -59,7 +59,7 @@ function changeTxt(elem)
                             </div>
                             <div class="col mr-5 ">
                                 <div class="form-group">
-                                    <label class="font-weight-bold">Title</label>
+                                    <label class="font-weight-bold">Title<sup style="color: red">*</sup><span id="error${i}" style="font-size:12px;" class="text-danger"></span></label>
                                      <select id="selectId${i}" onchange="loadAllValues(this,${i})" class="form-control titleDropDown">
                                         <option value="0">Please Select Title</option>
                                     </select>
@@ -108,7 +108,6 @@ function loadValues()
         contentType: 'application/json',
         success: function (data) {
             advertisementArray = data;
-            console.log(data);
             $.each(data,
                 function (id, text) {
                     $('.titleDropDown').append(
@@ -122,5 +121,75 @@ function loadValues()
 }
 
 $(document).ready(function () {
+    $('#templateProceed').click(function () {
+        console.log("hhh");
+        var count = $('#sectionDiv h3').length;
+        if (count == 0)
+            alert("First Please Select a Template");
+        else
+        {
+            if (count == 3)
+            {
+                var errors = 0;
+                for (var i = 0; i < 3; i++)
+                {
+                    if ($(`#selectId${i}`).val() == 0) {
+                        $(`#error${i}`).text("Please select Title");
+                        $(window).scrollTop(300 * i);
+                        errors++;
+                        break;
+                    }
+                    else
+                        $(`#error${i}`).text("");
+                }
+                if (errors == 0)
+                {
+                    var section1 = $('#selectId0').val() + "-";
+                    var section2 = $('#selectId1').val() + "-";
+                    var section3 = $('#selectId2').val();
 
+                    $.ajax({
+                        url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3,
+                        type: 'POST',
+                        success: function(result) {
+                        },
+                        error: function(result) {
+                        }
+                    });
+                }
+
+            }
+            else
+            {
+                var errors = 0;
+                for (var i = 0; i < 5; i++) {
+                    if ($(`#selectId${i}`).val() == 0) {
+                        $(`#error${i}`).text("Please select Title");
+                        $(window).scrollTop(300 * i);
+                        errors++;
+                        break;
+                    }
+                    else
+                        $(`#error${i}`).text("");
+                }
+                if(errors==0)
+                {
+                    var section1 = $('#selectId0').val() + "-";
+                    var section2 = $('#selectId1').val() + "-";
+                    var section3 = $('#selectId2').val() + "-";
+                    var section4 = $('#selectId3').val() + "-";
+                    var section5 = $('#selectId4').val();
+
+                    $.ajax({
+                        url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3 + section4 + section5,
+                        type: 'POST',
+                        success: function (result) {
+                        },
+                        error: function (result) {
+                        }
+                    });
+                }
+            }
+        }
+    });
 });
