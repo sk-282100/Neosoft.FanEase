@@ -21,6 +21,27 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _videoStatistics = videoStatistics;
             _webHostEnvironment = webHostEnvironment;
         }
+
+        [HttpGet]
+        public long GetLikes(long id,long viewerId)
+        {
+            long likes = _videoStatistics.GetLikes(id,viewerId);
+            return likes;
+        }
+
+        [HttpGet]
+        public long GetDislikes(long id, long viewerId)
+        {
+            long likes = _videoStatistics.GetDislikes(id, viewerId);
+            return likes;
+        }
+
+        [HttpGet]
+        public long GetViews(long id,long viewerId)
+        {
+            long likes = _videoStatistics.GetViews(id,viewerId);
+            return likes;
+        }
         [HttpGet]
         public IActionResult VideoDisplay([FromRoute]long id)
         {
@@ -40,5 +61,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["creatorData"] = creatorData;
             return View();
         }
+
+
     }
 }

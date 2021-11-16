@@ -74,7 +74,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         }
 
         [HttpGet]
-        [Route("/Disikes/{id}")]
+        [Route("/Dislikes/{id}")]
 
         public async Task<IActionResult> GetDislikes([FromRoute] long id, long viewerId)
         {

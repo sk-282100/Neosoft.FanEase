@@ -1,16 +1,22 @@
 ﻿@using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 @using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+@using Neosoft.FAMS.WebApp.Services
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var videoRecords = (VideoGetAllDto)ViewData["videoData"];
     var creatorRecords = (ContentCreatorDto)ViewData["creatorData"];
-    var likes = TempData["Likes"]; 
-    var dislikes = TempData["Dislikes"];
-    var views = TempData["Views"] ;
-    var shares = TempData["Share"];
+    //var likes = TempData["Likes"];
+    //var dislikes = TempData["Dislikes"];
+    //var views = TempData["Views"] ;
+    //var shares = TempData["Share"];
 
-    var session = TempData["Session"];
+    var session = Convert.ToInt64(TempData["Session"]);
+    VideoStatistics _videoStatistics = new VideoStatistics();
+    long likes = _videoStatistics.GetLikes(@videoRecords.VideoId,session);
+    long dislikes = _videoStatistics.GetDislikes(@videoRecords.VideoId, session);
+    long views = _videoStatistics.GetViews(@videoRecords.VideoId, session);
+   
 
 }
 
@@ -49,8 +55,8 @@
 <input type="text" id="viewerId" value="@session" hidden />
 <div id="ButtonSection" class="row">
     <div class="col-6">
-        <button id="like" type="button" class="btn btn-primary"><span id="likeSpan"></span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
-        <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan"></span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
+        <button id="like" type="button" class="btn btn-primary"><span id="likeSpan">@likes</span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
+        <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan">@dislikes</span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
         <button type="button" class="btn btn-primary view-modal"><span class="fa fa-share share"></span> Share</button>
     </div>
     <div class="col-3">

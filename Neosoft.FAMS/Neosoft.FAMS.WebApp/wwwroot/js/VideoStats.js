@@ -8,7 +8,7 @@ $(document).ready(function () {
     $('#like').click(function () {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44330/Likes/' + videoId + '?viewerId=' + viewerId + '&api-version=1',
+            url: '/VideoViewer/GetLikes' + videoId + '?viewerId=' + viewerId + '&api-version=1',
             async: false,
             contentType: 'application/json',
             success: function (data) {
@@ -23,7 +23,7 @@ $(document).ready(function () {
     $('#dislike').click(function () {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44330/Disikes/' + videoId + ' viewerId=' + viewerId + ' &api-version=1',
+            url: '/VideoViewer/GetDislikes' + videoId + ' viewerId=' + viewerId + ' &api-version=1',
             async: false,
             contentType: 'application/json',
             success: function (data) {
