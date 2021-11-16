@@ -33,6 +33,9 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
             var countOfAdvertisements = Advertisements.Count;
             var Videos = await _videoRepository.ListAllAsync();
             var countOfVideos = Videos.Count;
+            var viewCount = _videoPageRepository.GetViewCount();
+            List<long> result = new List<long>() { countOfCreators,countOfAdvertisements,countOfVideos,viewCount };
+            return result;
 
         }
     }
