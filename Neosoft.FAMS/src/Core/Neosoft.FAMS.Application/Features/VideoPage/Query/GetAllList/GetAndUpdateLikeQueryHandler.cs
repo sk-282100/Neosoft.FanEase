@@ -27,10 +27,12 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
             if(modify.IsLiked == false || modify.IsLiked == null)
             {
                 modify.IsLiked = true;
+                modify.LikeOn = DateTime.Now;
             }
             else if(modify.IsLiked == true)
             {
                 modify.IsLiked = null;
+                modify.LikeOn = null;
             }
             var update = _mapper.Map<VideoStatisticsDetail>(modify);
             await _videoPageRepository.UpdateAsync(update);

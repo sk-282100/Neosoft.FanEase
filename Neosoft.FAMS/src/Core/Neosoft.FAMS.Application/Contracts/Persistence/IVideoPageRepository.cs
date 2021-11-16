@@ -9,7 +9,7 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
 {
     public interface IVideoPageRepository:IAsyncRepository<VideoStatisticsDetail>
     {
-        Task<VideoStatisticsDetail> CheckClickId(long id);
+        Task<VideoStatisticsDetail> CheckClickId(long viewerId,long videoId);
         List<long> GetAllVideoStatisticsById(long id);
         Task<long> GetLikesById(long id);
         Task<long> GetDislikesById(long id);

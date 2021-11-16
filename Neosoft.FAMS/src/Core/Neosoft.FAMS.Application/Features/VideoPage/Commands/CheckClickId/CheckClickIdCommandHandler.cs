@@ -22,7 +22,7 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Commands.CheckClickId
         }
         public async Task<bool> Handle(CheckClickIdCommand request, CancellationToken cancellationToken)
         {
-            var data = await _videoPageRepository.CheckClickId(request.viewerId);
+            var data = await _videoPageRepository.CheckClickId(request.viewerId,request.videoId);
             if(data != null)
             {
                 return true;
@@ -32,6 +32,7 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Commands.CheckClickId
             var record = _mapper.Map<VideoStatisticsDetail>(obj);
             record.VideoId = request.videoId;
             record.ClickedBy = request.viewerId;
+            record.ClickedOn = DateTime.Now;
             record.ViewBy = request.viewerId;
             record.LikeBy = request.viewerId;
             record.SharedBy = request.viewerId;

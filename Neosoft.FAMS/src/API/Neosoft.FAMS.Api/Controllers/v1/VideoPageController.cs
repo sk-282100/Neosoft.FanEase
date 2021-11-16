@@ -40,15 +40,6 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             checkClickId.viewerId = viewerId;
             checkClickId.videoId = videoId;
             var data = await _mediator.Send(checkClickId);
-            if(data)
-            {
-
-            }
-            else
-            {
-
-            }
-
             return Ok(data);
         }
         [HttpGet]

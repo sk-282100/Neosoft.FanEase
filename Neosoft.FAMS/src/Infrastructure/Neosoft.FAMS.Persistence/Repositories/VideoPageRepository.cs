@@ -20,9 +20,9 @@ namespace Neosoft.FAMS.Persistence.Repositories
             _dbContext = dbContext;
             _logger = logger;
         }
-        public async Task<VideoStatisticsDetail> CheckClickId(long viewerId)
+        public async Task<VideoStatisticsDetail> CheckClickId(long viewerId, long videoId)
         {
-            return await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(p => p.ClickedBy == viewerId);
+            return await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(p => p.ClickedBy == viewerId && p.VideoId == videoId);
         }
 
         public  List<long> GetAllVideoStatisticsById(long id)

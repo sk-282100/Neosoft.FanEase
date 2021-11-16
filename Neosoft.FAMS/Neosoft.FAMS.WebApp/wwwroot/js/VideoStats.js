@@ -1,5 +1,6 @@
 ﻿var likes = 0;
 var dislikes = 0;
+var views = 0;
 $(document).ready(function () {
     //var videoId = document.getElementById("#videoId").value;
     //https://localhost:44330/Likes/6?viewerId=5&api-version=1
@@ -40,5 +41,20 @@ $(document).ready(function () {
             }
         });
     });
+    $('.vjs-big-play-button').click(function () {
+        $.ajax({
+            type: 'GET',
+           //https://localhost:44330/Views/6?viewerId=2&api-version=1
+            url: 'https://localhost:44330/Views/' + videoId + '?viewerId=' + viewerId + '&api-version=1',
+            async: false,
+            contentType: 'application/json',
+            success: function (data) {
+                views = data
+                $('#views').text(views);
+            }
+        });
+    });
+    
+
 
 });
