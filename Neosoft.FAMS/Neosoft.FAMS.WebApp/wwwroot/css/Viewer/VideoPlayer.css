@@ -13,11 +13,11 @@
     height: 34px;
 }
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 
 .slider {
     position: absolute;
@@ -31,17 +31,17 @@
     transition: .4s;
 }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
 
 input:checked + .slider {
     background-color: #2196F3;
@@ -62,24 +62,27 @@ input:checked + .slider:before {
     border-radius: 34px;
 }
 
-.slider.round:before {
-    border-radius: 50%;
-}
+    .slider.round:before {
+        border-radius: 50%;
+    }
 
-#VideoSection, #ButtonSection, #DetailSection, #DescSection {
-    margin-left: 300px;
+#ButtonSection, #DetailSection, #DescSection {
+    margin-left: 0px;
     margin-top: 10px;
 }
 
-#DetailSection > h6 {
-    margin-left: 10px;
-}
-#DetailSection > h4 {
-    font-weight: bold;
-}
+    #DetailSection > h6 {
+        margin-left: 10px;
+    }
+
+    #DetailSection > h4 {
+        font-weight: bold;
+    }
+
 #ContentDescription {
     font-size: medium;
 }
+
 
 
 /*Modal popup*/
@@ -282,3 +285,4 @@ header .close {
     .field button:hover {
         background: #8d39fa;
     }
+
