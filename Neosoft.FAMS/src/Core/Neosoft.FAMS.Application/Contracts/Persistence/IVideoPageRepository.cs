@@ -17,5 +17,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         Task<VideoStatisticsDetail> UpdateDislike(long id, long viewerId);
         Task<long> GetViewsById(long id);
         Task<VideoStatisticsDetail> UpdateViews(long id, long viewerId);
+        long GetViewCount();
     }
 }

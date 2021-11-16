@@ -24,7 +24,10 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             return await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(p => p.ClickedBy == viewerId && p.VideoId == videoId);
         }
-
+        public long GetViewCount()
+        {
+            return  _dbContext.VideoStatisticsDetails.Where(p => p.IsViewed==true).Count();
+        }
         public  List<long> GetAllVideoStatisticsById(long id)
         {
             
