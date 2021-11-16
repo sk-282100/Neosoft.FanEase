@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
+using System.Collections.Generic;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -23,23 +24,24 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
 
         [HttpGet]
-        public long GetLikes(long id,long viewerId)
+        
+        public List<long> GetLikes([FromQuery]long videoId,[FromQuery]long viewerId)
         {
-            long likes = _videoStatistics.GetLikes(id,viewerId);
+            var likes = _videoStatistics.GetLikes(videoId, viewerId);
             return likes;
         }
 
         [HttpGet]
-        public long GetDislikes(long id, long viewerId)
+        public List<long> GetDislikes([FromQuery] long videoId, [FromQuery] long viewerId)
         {
-            long likes = _videoStatistics.GetDislikes(id, viewerId);
+            var likes = _videoStatistics.GetDislikes(videoId, viewerId);
             return likes;
         }
 
         [HttpGet]
-        public long GetViews(long id,long viewerId)
-        {
-            long likes = _videoStatistics.GetViews(id,viewerId);
+        public long GetViews([FromQuery] long videoId, [FromQuery] long viewerId)
+        { 
+            long likes = _videoStatistics.GetViews(videoId,viewerId);
             return likes;
         }
         [HttpGet]
