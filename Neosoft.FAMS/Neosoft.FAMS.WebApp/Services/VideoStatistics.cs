@@ -30,32 +30,30 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
 
-        public long GetLikes(long id,long viewerId)
+        public List<long> GetLikes(long id,long viewerId)
         {
-            long result =0;
+            var result = new List<long>();
             var uri = API.VideoStatistics.GetLikes(_baseUrl,id,viewerId);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var deserializedata = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
-                var data = deserializedata[0];
-                return data;
+                return deserializedata;
             }
             return result;
         }
 
-        public long GetDislikes(long id, long viewerId)
+        public List<long> GetDislikes(long id, long viewerId)
         {
-            long result = 0;
+            var result = new List<long>();
             var uri = API.VideoStatistics.GetDislikes(_baseUrl, id, viewerId);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var deserializedata = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
-                var data = deserializedata[1];
-                return data;
+                return deserializedata;
             }
             return result;
         }
@@ -68,8 +66,8 @@ namespace Neosoft.FAMS.WebApp.Services
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
-                var deserializedata = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
-                var data = deserializedata[2];
+                var deserializedata = JsonConvert.DeserializeObject<long>(jsonDataStatus);
+                var data = deserializedata;
                 return data;
             }
             return result;

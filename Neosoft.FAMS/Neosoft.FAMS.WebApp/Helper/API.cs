@@ -62,6 +62,7 @@
             public static string  GetStatsById(string baseUri,string path,long videoId) => $"{baseUri}{path}/{videoId}?api-version=1";
             //https://localhost:44330/api/VideoPage/id?viewerId=10&videoId=6&api-version=1
             public static string CheckClickBy(string baseUri, string path, long videoId,long viewerId) => $"{baseUri}{path}/id?viewerId={viewerId}&videoId={videoId}&api-version=1";
+            //https://localhost:44330/Likes/6?viewerId=5&api-version=1
             public static string GetLikes(string baseUri,long videoId,long viewerId) => $"{baseUri}Likes/{videoId}?viewerId={viewerId}&api-version=1";
             public static string GetDislikes(string baseUri,long videoId, long viewerId) => $"{baseUri}Dislikes/{videoId}?viewerId={viewerId}&api-version=1";
             public static string GetViews(string baseUri,long videoId, long viewerId) => $"{baseUri}Views/{videoId}?viewerId={viewerId}&api-version=1";

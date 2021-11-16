@@ -9,10 +9,11 @@ $(document).ready(function () {
     $('#like').click(function () {
         $.ajax({
             type: 'GET',
-            url: '/VideoViewer/GetLikes' + videoId + '?viewerId=' + viewerId + '&api-version=1',
+            url: "/VideoViewer/GetLikes?videoId=" + videoId + "&viewerId="+viewerId,
             async: false,
             contentType: 'application/json',
             success: function (data) {
+
                 likes = data[1];
                 dislikes = data[0];
                 $('#likeSpan').text(likes);
@@ -29,7 +30,7 @@ $(document).ready(function () {
     $('#dislike').click(function () {
         $.ajax({
             type: 'GET',
-            url: '/VideoViewer/GetDislikes' + videoId + ' viewerId=' + viewerId + ' &api-version=1',
+            url: "/VideoViewer/GetDisLikes?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
             contentType: 'application/json',
             success: function (data) {
@@ -44,7 +45,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
            //https://localhost:44330/Views/6?viewerId=2&api-version=1
-            url: 'https://localhost:44330/Views/' + videoId + '?viewerId=' + viewerId + '&api-version=1',
+            url: "/VideoViewer/GetViews?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
             contentType: 'application/json',
             success: function (data) {
