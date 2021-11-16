@@ -14,5 +14,5 @@
     display: inline-block;
 }
 span.baricon.active {
-    background-color: #1aa93f;
+    background-color: #1aa93f !important;
 }

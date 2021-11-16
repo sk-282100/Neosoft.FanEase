@@ -2,12 +2,9 @@
 @using Microsoft.AspNetCore.Http
 @using Neosoft.FAMS.Application.Features.Video.Queries.GetAll
 
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
-    ViewData["step"] = 1;
-
-}
+@{ Layout = "~/Views/Shared/_Layout.cshtml";
+                bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
+                ViewData["step"] = 1; }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <script src="~/js/AddVideo.js"></script>
@@ -21,117 +18,101 @@
 
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_CreatorSideBar")
-        <div class="col align-content-end">
-            @*<div id="wrapper">
-                <br>
-                <span class='baricon'>1</span>
-                <span id="bar1" class='progress_bar'></span>
-                <span class='baricon'>2</span>
-                <span id="bar2" class='progress_bar'></span>
-                <span class='baricon'>3</span>
-            </div>*@
-
-            <div class="col pt-2">
-                <div class="wrapper">
-                    <div id="formContent">
-                        <!-- Tabs Titles -->
-                        <div class="row">
-                            <div class="col-6">
-                                <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
-                                    Add New Video
-                                </h3>
-                            </div>
-                            <div class="col-6">
-                                @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
-                                <partial name="_ProgressBar" view-data="ViewData">
-                            </div>
-                        </div>
-
-                        <div asp-validation-summary="All" class="text text-danger help-block"></div>
-                        <!-- Login Form -->
-                        @using (Html.BeginForm("AddVideoView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <div class="row">
-                                <div class="col">
-                                    <label>Video Thumbnail Image :  </label>
-                                    <span id="errorFileSize" class="text-danger"></span>
-                                </div>
-                                <div class="col" style="padding-right:57px">
-                                    <br />
-                                    <input asp-for="VideoImage" class="form-control" type="file" name="VideoImage" accept="image/*" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;" />
-
-                                </div>
-                                <div class="col">
-                                    <br />
-                                    <img id="thumbnail" class="img-thumbnail" src="#" alt="Thumbnail image">
-                                </div>
-
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>Video Title :  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</label>
-                                    <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title">
-                                    <br /><br />
-                                    <label>Video Description : @Html.ValidationMessage("Decription", "", new { @class = "text-danger" })</label>
-                                    <textarea asp-for="Decription" class="form-control mb-2 mr-sm-2" id="txt_desc" placeholder="Description" name="Decription"></textarea>
-                                    <div id="VideoFile">
-                                        <label>
-                                            MP4 Video File
-                                        </label>
-                                        <input type='file' name="UploadVideoPath" id="mp4videoFile" />
-                                        <br />
-                                    </div>
-                                    <div id="Url" style="display:none">
-                                        <label>MP4 Video URL :</label>
-                                        <input type="text" class="form-control mb-2 mr-sm-2" id="txt_VideoURL" name="VideoUrl" placeholder="Video URL">
-                                    </div>
-
-                                </div>
-                                <div class="form-group col-md-6">
-
-                                    <label id="lbl">
-                                        Start Time<sup style="color:red">*</sup>
-                                        @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
-                                    </label>
-                                    <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM">
-                                    <br /><br />
-                                    <label id="lbl">
-                                        End Time<sup style="color:red">*</sup>
-                                        @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
-                                    </label>
-                                    <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM">
-                                    <br /><br /><br />
-
-                                    <label>Video Type</label>
-                                    <label class="btn btn-secondary">
-                                        <input type="radio" name="VideoTypeId" id="option1" autocomplete="off" onclick="check('option1')" value="1"> Live
-                                    </label>
-                                    <label class="btn btn-secondary">
-                                        <input type="radio" name="VideoTypeId" id="option2" autocomplete="off" onclick="check('option2')" value="2" checked> Pre-Recorded
-                                    </label><br /><br /><br />
-
-                                    <label>Select Video Player:  @Html.ValidationMessage("PlayerTypeId", "", new { @class = "text-danger" })</label>
-                                    <select class="form-select" aria-label="Default select example" name="PlayerTypeId" id="selectVideo" required>
-                                        <option value="1" selected>One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select><br />
-
-                                    <br />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-secondary" id="btnCancel" onclick="window.location= '@Url.Action( "VideoTable", "Creator")'">Cancel</button>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="submit" class="btn btn-primary" id="btnProceed" value="Proceed" />
-                                </div>
-                            </div>
-                        }
-
+        <div class="col mt-2">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
+                            Add New Video
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                        @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
+                        <partial name="_ProgressBar" view-data="ViewData">
                     </div>
                 </div>
+
+                <div asp-validation-summary="All" class="text text-danger help-block"></div>
+                <!-- Login Form -->
+                @using (Html.BeginForm("AddVideoView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+    <div class="row">
+        <div class="col">
+            <label>Video Thumbnail Image :  </label>
+            <span id="errorFileSize" class="text-danger"></span>
+        </div>
+        <div class="col" style="padding-right:57px">
+            <br />
+            <input asp-for="VideoImage" class="form-control" type="file" name="VideoImage" accept="image/*" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;" />
+
+        </div>
+        <div class="col">
+            <br />
+            <img id="thumbnail" class="img-thumbnail" src="#" alt="Thumbnail image">
+        </div>
+
+    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Video Title :  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</label>
+                            <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title">
+                            <br /><br />
+                            <label>Video Description : @Html.ValidationMessage("Decription", "", new { @class = "text-danger" })</label>
+                            <textarea asp-for="Decription" class="form-control mb-2 mr-sm-2" id="txt_desc" placeholder="Description" name="Decription"></textarea>
+                            <div id="VideoFile">
+                                <label>
+                                    MP4 Video File
+                                </label>
+                                <input type='file' name="UploadVideoPath" id="mp4videoFile" />
+                                <br />
+                            </div>
+                            <div id="Url" style="display:none">
+                                <label>MP4 Video URL :</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="txt_VideoURL" name="VideoUrl" placeholder="Video URL">
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-6">
+
+                            <label id="lbl">
+                                Start Time<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM">
+                            <br /><br />
+                            <label id="lbl">
+                                End Time<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM">
+                            <br /><br /><br />
+
+                            <label>Video Type</label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="VideoTypeId" id="option1" autocomplete="off" onclick="check('option1')" value="1"> Live
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="VideoTypeId" id="option2" autocomplete="off" onclick="check('option2')" value="2" checked> Pre-Recorded
+                            </label><br /><br /><br />
+
+                            <label>Select Video Player:  @Html.ValidationMessage("PlayerTypeId", "", new { @class = "text-danger" })</label>
+                            <select class="form-select" aria-label="Default select example" name="PlayerTypeId" id="selectVideo" required>
+                                <option value="1" selected>One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select><br />
+
+                            <br />
+                        </div>
+                    </div>
+                                    <div class="row">
+                                        <div class="col d-flex justify-content-end">
+                                            <button type="button" class="btn btn-secondary" id="btnCancel" onclick="window.location= '@Url.Action( "VideoTable", "Creator")'">Cancel</button>
+                                            <input type="submit" class="btn btn-primary" id="btnProceed" value="Proceed" />
+                                        </div>
+                                    </div>}
+
             </div>
         </div>
     </div>
