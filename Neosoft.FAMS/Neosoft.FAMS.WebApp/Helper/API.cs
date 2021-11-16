@@ -56,6 +56,10 @@
             public static string VideosByContentCreator(string baseUrl, string path, long id) =>
                 $"{baseUrl}{path}/{id}?api-version=1";
             public static string DeleteVideo(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
+
+            /*https://localhost:44330/api/Video/CreatorVideosById/1?api-version=1*/
+            public static string GetCreatorVideoListById(string baseUrl, string path, long id) =>
+                $"{baseUrl}{path}/CreatorVideosById/{id}?api-version=1";
         }
         public static class VideoStatistics
         {

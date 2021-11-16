@@ -4,6 +4,7 @@ using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetVideoOfCreatorById;
 
 namespace Neosoft.FAMS.WebApp.Services.Interface
 {
@@ -17,5 +18,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public Task<long> CreateVideo(VideoCreateCommand videocreateCommand);
         public Task<bool> UpdateVideoDetail(UpdateVideoByIdCommand update);
         public Task<bool> DeleteVideo(DeleteVideoByIdCommand delete);
+        public List<GetVideoOfCreatorDto> creatorVideoListById(long id);
     }
 }

@@ -186,5 +186,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
             }
             return uniqueFileName;
         }
+        [HttpGet]
+        public IActionResult GetCreatorVideoListById([FromRoute] long id)
+        {
+            var data = _video.creatorVideoListById(id);
+            ViewData["data"] = data;
+            return View();
+        }
     }
 }

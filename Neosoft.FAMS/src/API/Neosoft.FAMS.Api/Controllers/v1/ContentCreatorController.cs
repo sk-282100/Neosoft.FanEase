@@ -7,7 +7,9 @@ using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetByEmail;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetById;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetCreatorVideoStatistic;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetMappedData;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetCreatedById;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -124,6 +126,23 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var Email = username.Split('?');
             var creatorQuery = new GetCreatorByEmailQuery { Username = Email[0] };
             var data = await _mediator.Send(creatorQuery);
+            return Ok(data);
+        }
+
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date:15/11/2021
+        /// Reason: To Get All Videos statistic of specific Creators
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        [HttpGet]
+        [Route(("Videos/{id}"))]
+        public async Task<IActionResult> GetTopVideos([FromRoute] long id)
+        {
+            var videoQuery = new GetCreatorVideoStatisticQuery() { CreatedById = id };
+            var data = await _mediator.Send(videoQuery);
             return Ok(data);
         }
 

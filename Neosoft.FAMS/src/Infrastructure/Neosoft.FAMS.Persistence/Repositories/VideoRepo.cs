@@ -21,9 +21,31 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             return await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.VideoId == id);
         }
+        public async Task<string> GetCampaignName(long VideoId)
+        {
+            var campaignId = await _dbContext.CampaignAdvertiseMappings.Where(p => p.VideoId == VideoId)
+                .Select(p => p.CampaignId).FirstOrDefaultAsync();
+            return await _dbContext.CampaignDetails.Where(c => c.CampaignId == campaignId).Select(c => c.CampaignName)
+                .FirstOrDefaultAsync();
+        }
         public async Task<List<VideoDetail>> GetCreatedByIdAsync(long id)
         {
             var listofVideos = await _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false).ToListAsync();
+            return listofVideos;
+        }
+        public int GetTotalVideoByIdAsync(long id)
+        {
+            var listofVideos = _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false).Count();
+            return listofVideos;
+        }
+        public int GetTotalVideoViewsByIdAsync(long id)
+        {
+            var listofVideos = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsViewed==true).Count();
+            return listofVideos;
+        }
+        public int GetTotalVideoClicksByIdAsync(long id)
+        {
+            var listofVideos = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsClicked == true).Count();
             return listofVideos;
         }
     }
