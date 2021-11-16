@@ -7,7 +7,6 @@
     var records = (List<AdvertisementListQueryDto>)ViewData["data"];
     bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
     ViewData["step"] = 2;
-    bool isAddedVideo = Convert.ToBoolean(Context.Session.GetString("isVideoAdded"));
 }
 
 
@@ -36,16 +35,7 @@
         @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
             <h3>Add New Campaign</h3>
-            @*<body onload="myFunction('bar1')">
-            <div id="wrapper" style="float:top; margin: 1px;">
-                <br>
-                <span class='baricon'>1</span>
-                <span id="bar1" class='progress_bar'></span>
-                <span class='baricon'>2</span>
-                <span id="bar2" class='progress_bar'></span>
-                <span class='baricon'>3</span>
-            </div><br /><br />
-        </body>*@
+           
             <partial name="_ProgressBar" view-data="ViewData">
                 <div id="try" style="display:flex">
                     <div style="margin-left: 50px; color: red;">
@@ -90,21 +80,11 @@
                             <input asp-for="EndDate" type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
                         </div>
 
-
-                       @if (@isAddedVideo==true)
-                       {
                            <div style="float: right;">
                                <button type="button" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
                                <input type="submit" class="btn btn-primary" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Proceed" />
                            </div>
-                       }
-                       else
-                       {
-                            <div style="float: right;">
-                                <button type="button" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
-                                <input type="submit" disabled class="btn btn-warning" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Please Add Video First" />
-                            </div>
-                       }
+                      
                     </div>
                     @if (@isDeleted)
                     {

@@ -6,7 +6,7 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
-    <link rel="stylesheet" href="~/css/CreatorRegisteration.css" />
+    <link rel="stylesheet" href="~/css/Creator/Add Video.css" />
     <script src="~/js/ContentCreator.js"></script>
     <style>
         label span {
@@ -23,103 +23,111 @@
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_SideBar")
 
-        <div class="col pt-2">
-            <div class="wrapper">
-                <div id="formContent">
-                    <!-- Tabs Titles -->
-                    <h2 class="active"> ADD Content Creator </h2>
-                    <div asp-validation-summary="All" class="text text-danger help-block"></div>
-                    @if (@isInserted)
-                    {
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Content Creator Added Successfully</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    }
-                    <!-- Login Form -->
-                    @using (Html.BeginForm("CreatorRegisteration", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="form-row">
-                            <label id="lbl" for="formFileMultiple" class="form-label">
-                                Add Profile Image <b id="boldTag" class="text-danger" style="font-size: 12px;">(Max Size 1 MB)</b>
-                                <span id="errorFileSize" class="text-danger"></span>
-                            </label>
-                            <input class="form-control " asp-for="ProfilePhotoPath" onchange="CheckFileSize(this)" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" />
-
-                            <div class="form-group col-md-6">
-                                <label id="lbl" class="form-group required">
-                                    Full Name<sup style="color:red">*</sup>
-                                    @Html.ValidationMessage("CreatorName", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="CreatorName" type="text" class="fadeIn second" name="CreatorName" placeholder="Enter Name">
-
-                                <label id="lbl">
-                                    Address1<sup style="color:red">*</sup>
-                                    @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
-                                </label>
-                                <textarea asp-for="Address1" type="text" class="fadeIn third" name="Address1" placeholder="Address1"></textarea>
-
-                                <label id="lbl">
-                                    Country<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("CountryId", "", new { @class = "text-danger" })
-                                </label>
-                                <select id="formCountry" asp-for="CountryId" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="CountryId">
-                                    <option value="0">Please Select Country</option>
-                                </select>
-
-
-                                <label id="lbl">
-                                    Contact<sup style="color:red">*</sup>
-                                    @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="MobileNumber" type="text" class="fadeIn second" name="MobileNumber" placeholder="Enter mobile number">
-
-                                <label id="lbl">
-                                    Status &nbsp;&nbsp;&nbsp;
-                                    <input name="Status" type="radio" value=true checked />&nbsp; Active &nbsp;&nbsp;&nbsp;
-                                    <input name="Status" type="radio" value=false />&nbsp; Deactive
-                                </label>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label id="lbl">
-                                    Email<sup style="color:red">*</sup>
-                                    <span id="emailSpan" class="text-danger"></span>
-                                    @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
-                                </label>
-                                <input id="creatorEmailId" asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
-
-                                <label id="lbl">Address2</label>
-                                <textarea type="text" class="fadeIn second" name="Address2" placeholder="Address2"></textarea><br />
-
-                                <label id="lbl">
-                                    State<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("StateId", "", new { @class = "text-danger" })
-                                </label>
-                                <select id="formState" asp-for="StateId" style="margin: 10px 10px 0px 35px" name="StateId">
-                                    <option value="0">Please Select State</option>
-                                </select>
-
-                                <label id="lbl">
-                                    City<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("CityId", "", new { @class = "text-danger" })
-                                </label>
-                                <select id="formCity" asp-for="CityId" style="margin: 10px 10px 0px 35px" name="CityId">
-                                    <option value="0">Please Select City</option>
-                                </select>
-
-                                <div style="float:left">
-                                    <label id="lbl">Additional remark</label>
-                                    <textarea type="text" class="fadeIn third" rows="4" name="AdditionalRemark" placeholder="Additional remark"></textarea>
-                                </div>
-                                <br /><br />
-                            </div>
-                        </div>
-                        <input type="button" id="btnCancel" onclick="window.location= '@Url.Action( "CreatorsList", "Admin")'" class="fadeIn fourth" value="Cancel">
-                        <input type="submit" class="fadeIn fourth" value="Save">
-                    }
+        <div class="col mt-2">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
+                            Add Content Creator
+                        </h3>
+                    </div>
                 </div>
+                <div asp-validation-summary="All" class="text text-danger help-block"></div>
+                @if (@isInserted)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Content Creator Added Successfully</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                <!-- Login Form -->
+                @using (Html.BeginForm("CreatorRegisteration", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="form-row">
+                        <label id="lbl" for="formFileMultipleS" class="form-label">
+                            Add Profile Image <b id="boldTag" class="text-danger" style="font-size: 12px;">(Max Size 1 MB)</b>
+                            <span id="errorFileSize" class="text-danger"></span>
+                        </label>
+                        <input class="form-control " asp-for="ProfilePhotoPath" onchange="CheckFileSize(this)" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultipleS" />
+
+                        <div class="form-group col-md-6">
+                            <label id="lbl" class="form-group required">
+                                Full Name<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("CreatorName", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="CreatorName" type="text" class="fadeIn second" name="CreatorName" placeholder="Enter Name">
+
+                            <label id="lbl">
+                                Address1<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
+                            </label>
+                            <textarea asp-for="Address1" type="text" class="fadeIn third" name="Address1" placeholder="Address1"></textarea>
+
+                            <label id="lbl">
+                                Country<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("CountryId", "", new { @class = "text-danger" })
+                            </label>
+                            <select id="formCountry" asp-for="CountryId" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="CountryId">
+                                <option value="0">Please Select Country</option>
+                            </select>
+
+
+                            <label id="lbl">
+                                Contact<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="MobileNumber" type="text" class="fadeIn second" name="MobileNumber" placeholder="Enter mobile number">
+
+                            <label id="lbl">
+                                Status &nbsp;&nbsp;&nbsp;
+                                <input name="Status" type="radio" value=true checked />&nbsp; Active &nbsp;&nbsp;&nbsp;
+                                <input name="Status" type="radio" value=false />&nbsp; Deactive
+                            </label>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label id="lbl">
+                                Email<sup style="color:red">*</sup>
+                                <span id="emailSpan" class="text-danger"></span>
+                                @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
+                            </label>
+                            <input id="creatorEmailId" asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
+
+                            <label id="lbl">Address2</label>
+                            <textarea type="text" class="fadeIn second" name="Address2" placeholder="Address2"></textarea><br />
+
+                            <label id="lbl">
+                                State<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("StateId", "", new { @class = "text-danger" })
+                            </label>
+                            <select id="formState" asp-for="StateId" style="margin: 10px 10px 0px 35px" name="StateId">
+                                <option value="0">Please Select State</option>
+                            </select>
+
+                            <label id="lbl">
+                                City<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("CityId", "", new { @class = "text-danger" })
+                            </label>
+                            <select id="formCity" asp-for="CityId" style="margin: 10px 10px 0px 35px" name="CityId">
+                                <option value="0">Please Select City</option>
+                            </select>
+
+                            <div style="float:left">
+                                <label id="lbl">Additional remark</label>
+                                <textarea type="text" class="fadeIn third" rows="4" name="AdditionalRemark" placeholder="Additional remark"></textarea>
+                            </div>
+                            <br /><br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            <input type="button" id="btnCancel" onclick="window.location= '@Url.Action( "CreatorsList", "Admin")'" class="btn btn-secondary" value="Cancel">
+                            <input type="submit" class="btn btn-primary"id="btnProceed" value="Save">
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
