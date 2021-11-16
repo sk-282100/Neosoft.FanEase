@@ -41,7 +41,7 @@ $(document).ready(function () {
             }
         });
     });
-    $('.vjs-big-play-button').click(function () {
+    $('.vjs-big-play-button,.vjs-icon-placeholder').click(function () {
         $.ajax({
             type: 'GET',
            //https://localhost:44330/Views/6?viewerId=2&api-version=1

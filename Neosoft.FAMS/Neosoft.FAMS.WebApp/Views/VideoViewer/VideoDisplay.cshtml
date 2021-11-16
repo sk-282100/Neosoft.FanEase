@@ -12,93 +12,97 @@
     var shares = TempData["Share"];
 
     var session = Convert.ToInt64(TempData["Session"]);
-    //VideoStatistics _videoStatistics = new VideoStatistics();
-    //long likes = _videoStatistics.GetLikes(@videoRecords.VideoId,session);
-    //long dislikes = _videoStatistics.GetDislikes(@videoRecords.VideoId, session);
-    //long views = _videoStatistics.GetViews(@videoRecords.VideoId, session);
 
 
 
 }
 
 <head>
-
     <link rel="stylesheet" href="~/css/Viewer/VideoPlayer.css" />
     <link rel="stylesheet" href="~/css/temp.css" />
     <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
     <script src="~/js/VideoStats.js"></script>
-</head>
-<div id="VideoSection">
-    <video id="my-video"
-           class="video-js vjs-big-play-centered"
-           controls
-           preload="auto"
-           width="1024"
-           height="464"
-           poster="/Uploads/Creators/Videos/@videoRecords.VideoImage"
-           data-setup="{}">
-        <source src="/Uploads/Creators/Videos/@videoRecords.UploadVideoPath" />
-
-        <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a web browser that
-            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-        </p>
-        <script>
-
-        </script>
-    </video>
     <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
-</div>
-
-<div id="DetailSection">
-    <h4>@videoRecords.Title</h4>
-    <h6><h6 id="views">@views</h6>Views</h6>
-</div>
-<br />
-<input type="text" id="videoId" value="@videoRecords.VideoId" hidden />
-<input type="text" id="viewerId" value="@session" hidden />
-<div id="ButtonSection" class="row">
-    <div class="col-6">
-        <button id="like" type="button" class="btn btn-primary"><span id="likeSpan">@likes</span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
-        <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan">@dislikes</span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
-        <button type="button" class="btn btn-primary view-modal"><span class="fa fa-share share">@shares</span> Share</button>
-    </div>
-    <div class="col-3">
-        <span id="Auto"><b>Auto Next</b></span>
-        <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-        </label>
-    </div>
-
-</div>
-<br />
-
-<div class="row border" id="DescSection">
-    <div class="col-1">
-        @if (creatorRecords.ProfilePhotoPath == null)
-        {
-            <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px;" class="rounded-circle"/>
+    <style>
+        #instructions {
+            max-width: 100%;
+            max-height: 50%;
+            text-align: left;
+            margin: 30px 190px;
         }
-        else
-        {
-            <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px;" class="rounded-circle"/>
+        /* Show the controls (hidden at the start by default) */
+        .video-js .vjs-control-bar {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
         }
+    </style>
 
-    </div>
-    <div class="col-3">
-        <h4><b>@creatorRecords.CreatorName</b></h4>
-        <h6> Videos</h6>
-        <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
+
+
+</head>
+<div id="instructions">
+
+    <video id="my_video_1"
+           class="video-js vjs-default-skin vjs-big-play-centered"
+           width="100%" height="267px"
+           controls
+           preload="none" poster='/Uploads/Creators/Videos/@videoRecords.VideoImage'
+           data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+        <source src="/Uploads/Creators/Videos/@videoRecords.UploadVideoPath" type='video/mp4' />
+
+    </video>
+    <h3><b> @videoRecords.Title </b>
+    </h3>
+    <label><label id="views">@views </label> <b>  <i class="fas fa-eye"></i></b></label>
+
+    <br />
+
+
+    <div class="col-9">
+        <button id="like" type="button" class="btn btn-primary"><span id="likeSpan">@likes </span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
+        <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan">@dislikes </span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
+        <button type="button" class="btn btn-primary view-modal">@shares <span class="fa fa-share share"></span> Share</button>
+
+        <span id="Auto">
+            <b>Auto Next</b>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+            </label>
+        </span>
     </div>
 
-    <div class="col-4 border">
-        <p id="ContentDescription">
-            @videoRecords.Decription
-        </p>
+    <input type="text" id="videoId" value="@videoRecords.VideoId" hidden />
+    <input type="text" id="viewerId" value="@session" hidden />
+    <br />
+
+    <div class="row">
+        <div class="col-3">
+            @if (creatorRecords.ProfilePhotoPath == null)
+            {
+                <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px;" class="rounded-circle" />
+            }
+            else
+            {
+                <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px;" class="rounded-circle" />
+            }
+
+            <h4><b>@creatorRecords.CreatorName</b></h4>
+            
+            <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
+        </div>
+
+        <div class="col-9">
+            <h4><b>Video Description : </b></h4>
+            <p id="ContentDescription">
+                @videoRecords.Decription
+            </p>
+        </div>
     </div>
+
 </div>
-
 
 <div class="popup">
     <header>
@@ -123,6 +127,7 @@
             <button>Copy</button>
         </div>
     </div>
+   
 </div>
 <script>
     var viewBtn = document.querySelector(".view-modal"),
