@@ -16,6 +16,7 @@ using Neosoft.FAMS.WebApp.Models.CampaignModel;
 using Neosoft.FAMS.WebApp.Models.VideoModel;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
@@ -30,7 +31,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private ICampaign _campaign;
         private IAsset _asset;
-
         public CreatorController(IMapper mapper,ICommon common, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
         {
             _mapper = mapper;
@@ -42,6 +42,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         }
 
+        public void AddExistingAssetId(long id)
+        {
+            //long advertisementId = Convert.ToInt64(id);
+            if (AddExistingAssetViewModel.AdvertisementId.Contains(id))
+                AddExistingAssetViewModel.AdvertisementId.Remove(id);
+            else
+                AddExistingAssetViewModel.AdvertisementId.Add(id);
+        }
         public IActionResult GetAdvertisement()
         {
             return Json(_common.GetAdvertisement());
