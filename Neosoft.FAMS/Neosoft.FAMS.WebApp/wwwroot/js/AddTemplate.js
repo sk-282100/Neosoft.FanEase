@@ -117,7 +117,6 @@ function loadValues()
         }
     });
 
-    $()
 }
 
 $(document).ready(function () {

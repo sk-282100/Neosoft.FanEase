@@ -37,7 +37,7 @@
                             if (!(bool)@record.IsDeleted)
                             {
                                 <tr>
-                                    <td><input id='id ' type="checkbox" onchange="insertValue(this)" />    &nbsp;   </td>
+                                    <td><input id="id_@record.AdvertisementId" type="checkbox" onchange="insertValue(this)" />    &nbsp;   </td>
                                     <td>@record.AdvertisementId</td>
                                     @if (@record.ImagePath != null)
                                     {
@@ -69,21 +69,25 @@
 }
 @section Scripts{
     <script src="~/js/creatorSideBar.js"></script>
-    function insertValue(elem) {
-    var Id = $(elem).attr("id");
-    console.log(Id);
-    alert(Id.checked);
-    if (Id.checked)
-    {
-    var val = $(this).value;
-    alert(val);
-    }
-    else
-    {
-    var val = $(this).value;
-    alert('removed'+val );
-    }
+    <script>
+        function insertValue(elem)
+        {
+            var Id = $(elem).attr("id");
+            console.log(Id);
+            var advertisementId = Id.split('_');
+            $.ajax({
+                type: 'GET',
+                url: '/Creator/AddExistingAssetId/' + advertisementId[1],
+                async: false,
+                contentType: 'application/json',
+                success: function (data) {
 
+                },
+                error:function(error) {
 
-    }
+                }
+            });
+        }
+    </script>
+}
 }
