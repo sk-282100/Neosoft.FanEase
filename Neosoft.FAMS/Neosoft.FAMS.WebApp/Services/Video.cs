@@ -76,6 +76,7 @@ namespace Neosoft.FAMS.WebApp.Services
                 var data = JsonConvert.DeserializeObject<Response<long>>(jsonDataStatus);
                 result = (long)data.Data;
                 MappingViewModel.VideoId = result;
+                return result;
             }
             return result;
         }

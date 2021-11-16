@@ -66,7 +66,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public IActionResult AddVideoView()
         {
-            ViewData["isInsert"] = false;
             return View();
         }
         [HttpPost]
@@ -86,9 +85,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 var VideoId = _video.CreateVideo(createCommand);
                 if (VideoId != null)
                 {
-                    ViewData["isInsert"] = true;
                     ViewData["data"] = id;
                 }
+                HttpContext.Session.SetString("isVideoAdded",true.ToString());
                 return RedirectToAction("AddCampaignView", "Creator");
             }
             return View();
@@ -124,6 +123,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 {
                     ViewData["isInsert"] = true;
                 }
+                HttpContext.Session.SetString("isCampaignAdded", true.ToString());
                 return RedirectToAction("AddAsset", "Creator");
             }
             ViewData["isInsert"] = false;
