@@ -21,6 +21,7 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll
         public DateTime? CreatedOn { get; set; }
         public bool isPassowrdUpdated { get; set; }
         public bool isDeleted { get; set; }
+        public long TotalVideos { get; set; }
 
     }
 }

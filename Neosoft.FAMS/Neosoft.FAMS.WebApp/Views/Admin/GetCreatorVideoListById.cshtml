@@ -1,0 +1,80 @@
+﻿@using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+@using Neosoft.FAMS.Application.Features.Video.Queries.GetVideoOfCreatorById
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "VideoList";
+    var records = (List<GetVideoOfCreatorDto>)ViewData["data"];
+}
+<head>
+    <link rel="stylesheet" href="~/css/temp.css" />
+    <link href="~/css/datatablestyle.css" rel="stylesheet" />
+    <script src="~/js/AddVideo.js"></script>
+</head>
+<div class="container-fluid">
+
+    <div class="row" style="background-color: #F5F5F5;">
+        @Html.Partial("_SideBar")
+        <div class="col pt-2">
+            <h3 class="mt-3">@ViewData["CreatorName"]'s Videos</h3>
+
+            <div style="margin-top: 20px; width: 100%;">
+                <table id="myTable" class="table table-bordered table-sm table-hover" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th class="nosort">Thumbnail Image</th>
+                        <th>Video Title</th>
+                        <th>Video Type</th>
+                        <th>Associated Campaign</th>
+                        <th>Views</th>
+                        <th>Clicks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var record in records)
+                    {
+                        <tr>
+                            @if (@record.VideoDetail.VideoImage != null)
+                            {
+                                <td><img src="/Uploads/Creators/Videos/@record.VideoDetail.VideoImage" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                            }
+                            else
+                            {
+                                <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                            }
+                            <td>@record.VideoDetail.Title</td>
+                            @if (@record.VideoDetail.VideoTypeId == 1)
+                            {
+                                <td>Live</td>
+                            }
+                            else
+                            {
+                                <td>Pre-Recorded</td>
+                            }
+                            <td>@record.AssignedCampaign</td>
+                            <td>@record.Views</td>
+                            <td>@record.Clicks</td>
+
+
+                            @*                            <td>@record.CreatedOn</td>
+                            *@ @*  <td>
+            <a class="edit" href="EditCreator/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+        </td>*@
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            @*<script>
+                    $(document).ready(function () {
+                        $('#myTable').dataTable({
+                            "columnDefs": [{ targets: 'no-sort', orderable: false }]
+                        });
+                        console.log(1);
+                    });
+                </script>*@
+        </div>
+    </div>
+</div>
+<script src="~/js/sideBar.js"></script>

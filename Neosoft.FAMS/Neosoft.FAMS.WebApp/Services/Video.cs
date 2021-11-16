@@ -2,6 +2,7 @@
 using Neosoft.FAMS.Application.Features.Video.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetVideoOfCreatorById;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Models;
@@ -143,6 +144,21 @@ namespace Neosoft.FAMS.WebApp.Services
                 return data.Data;
             }
             return false;
+        }
+
+        public List<GetVideoOfCreatorDto> creatorVideoListById(long id)
+        {
+            var result = new List<GetVideoOfCreatorDto>();
+            var uri = API.Video.GetCreatorVideoListById(_baseUrl, _path, id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<GetVideoOfCreatorDto>>(jsonDataStatus);
+                result = data.ToList();
+                return result;
+            }
+            return result;
         }
     }
 }

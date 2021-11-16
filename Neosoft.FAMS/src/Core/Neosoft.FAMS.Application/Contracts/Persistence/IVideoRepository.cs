@@ -8,5 +8,9 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     {
         Task<VideoDetail> GetByIdAsync(long id);
         Task<List<VideoDetail>> GetCreatedByIdAsync(long id);
+        int GetTotalVideoByIdAsync(long id);
+        Task<string> GetCampaignName(long VideoId);
+        int GetTotalVideoViewsByIdAsync(long id);
+        int GetTotalVideoClicksByIdAsync(long id);
     }
 }

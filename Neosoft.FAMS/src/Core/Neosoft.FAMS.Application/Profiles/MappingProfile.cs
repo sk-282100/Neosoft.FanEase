@@ -27,6 +27,7 @@ using Neosoft.FAMS.Application.Features.Users.Queries;
 using Neosoft.FAMS.Application.Features.Video.Command.Create;
 using Neosoft.FAMS.Application.Features.Video.Commands.Update;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetVideoOfCreatorById;
 using Neosoft.FAMS.Application.Features.VideoPage.Commands.Update;
 using Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllVideoStatistics;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
@@ -90,6 +91,7 @@ namespace Neosoft.FAMS.Application.Profiles
 
             CreateMap<TemplateVideoMappedCommand, TemplateVideoMapping>().ReverseMap();
             CreateMap<GetAllTemplateByIdDto, TemplateVideoMapping>().ReverseMap();
+            CreateMap<GetVideoOfCreatorDto, VideoDetail>().ReverseMap();
 
 
         }

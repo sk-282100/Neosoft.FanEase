@@ -7,6 +7,7 @@ using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetById;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetCreatedById;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetVideoOfCreatorById;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -103,6 +104,22 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         public async Task<IActionResult> GetVideosofCreator([FromRoute] long id)
         {
             var videoQuery = new VideoGetCreatedByIdQuery { CreatedById = id };
+            var data = await _mediator.Send(videoQuery);
+            return Ok(data);
+        }
+
+        /// <summary>
+        /// Author: Kajal Padhiyar,Aman Sharma
+        /// Date:16/11/2021
+        /// Reason: To Get All Videos of specific Creators
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route(("CreatorVideosById/{id}"))]
+        public async Task<IActionResult> GetCreatorVideoListById([FromRoute] long id)
+        {
+            var videoQuery = new GetVideoOfCreatorQuery { CreatedBy = id };
             var data = await _mediator.Send(videoQuery);
             return Ok(data);
         }

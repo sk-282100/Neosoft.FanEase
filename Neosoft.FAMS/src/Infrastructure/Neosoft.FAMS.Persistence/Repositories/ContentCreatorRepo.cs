@@ -53,5 +53,14 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             return await _dbContext.ContentCreatorDetails.FirstOrDefaultAsync(p => p.ContentCreatorId == id);
         }
+
+        public List<long> GetAllVideoStatisticsById(long id)
+        {
+            long likes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsLiked == true).Count();
+            long views = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsViewed == true).Count();
+            long clicks = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsClicked == true).Count();
+            List<long> stats = new List<long>() { likes, views, clicks };
+            return stats;
+        }
     }
 }
