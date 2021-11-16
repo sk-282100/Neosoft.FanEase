@@ -6,10 +6,6 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllVideoStatistic
 {
     public class GetAllVideoStatisticsDto
     {
-        //public List<VideoStatisticsDetail> VideoStatisticsDetail { get; set; }
-        // public ContentCreatorDetail ContentCreatorDetail { get; set; };
-        // public VideoDetail VideoDetail { get; set; };
-
         public long VideoStatisticsId { get; set; }
         public long? VideoId { get; set; }
         public bool? IsClicked { get; set; }

@@ -1,0 +1,12 @@
+﻿@{ 
+    var step =Convert.ToInt32( ViewData["step"]);
+}
+<div id="wrapper" class="align-content-end d-flex justify-content-end p-3">
+    <div class="">
+        <span class="baricon @(step>=1?"active":" ")">1</span>
+        <span id="bar1" class="progress_bar"></span>
+        <span class="baricon @(step>=2?"active":" ")">2</span>
+        <span id="bar2" class="progress_bar"></span>
+        <span class="baricon @(step>=3?"active":" ")">3</span>
+    </div>
+</div>

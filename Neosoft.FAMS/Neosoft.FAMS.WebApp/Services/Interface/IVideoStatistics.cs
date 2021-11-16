@@ -9,5 +9,11 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
     public interface IVideoStatistics
     {
         public List<long> StatsGetById(long videoId);
+        public bool CheckClickBy(long videoId, long viewerId);
+        long GetLikes(long id,long viewerId);
+        long GetDislikes(long id, long viewerId);
+        long GetViews(long id, long viewerId);
+        
+
     }
 }

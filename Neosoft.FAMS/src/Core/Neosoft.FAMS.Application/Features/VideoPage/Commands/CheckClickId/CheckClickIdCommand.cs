@@ -3,8 +3,9 @@
 
 namespace Neosoft.FAMS.Application.Features.VideoPage.Commands.CheckClickId
 {
-    public class CheckClickIdCommand :IRequest<bool>
+    public class CheckClickIdCommand : IRequest<bool>
     {
-        public long id { get; set; }
+        public long viewerId { get; set; }
+        public long videoId { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -15,6 +16,7 @@ namespace Neosoft.FAMS.WebApp.Services
         private static HttpClient _client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
         readonly string _baseUrl = "https://localhost:44330/";
         readonly string _path = "api/VideoPage";
+        
         public VideoStatistics()
         {
 
@@ -27,6 +29,54 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+
+        public long GetLikes(long id,long viewerId)
+        {
+            long result =0;
+            var uri = API.VideoStatistics.GetLikes(_baseUrl,id,viewerId);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var deserializedata = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
+                var data = deserializedata[0];
+                return data;
+            }
+            return result;
+        }
+
+        public long GetDislikes(long id, long viewerId)
+        {
+            long result = 0;
+            var uri = API.VideoStatistics.GetDislikes(_baseUrl, id, viewerId);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var deserializedata = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
+                var data = deserializedata[1];
+                return data;
+            }
+            return result;
+        }
+
+        public long GetViews(long id, long viewerId)
+        {
+            long result = 0;
+            var uri = API.VideoStatistics.GetViews(_baseUrl,  id, viewerId);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var deserializedata = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
+                var data = deserializedata[2];
+                return data;
+            }
+            return result;
+        }
+
+        
+
         /// <summary>
         /// Author:Raj Bhosale
         /// Date:15/11/2021
@@ -48,6 +98,18 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
 
+        }
+        public  bool CheckClickBy(long videoId,long viewerId)
+        {
+            var uri = API.VideoStatistics.CheckClickBy(_baseUrl, _path,videoId,viewerId);
+            HttpResponseMessage response =  _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<bool>(jsonDataStatus);
+                return data;
+            }
+            return false;
         }
     }
 }
