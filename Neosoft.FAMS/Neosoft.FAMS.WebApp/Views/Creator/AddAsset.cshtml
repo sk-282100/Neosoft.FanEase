@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
+    ViewData["step"] = 2;
 }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
@@ -21,102 +22,103 @@
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
-            <body onload="myFunction1('bar1','bar2')">
-                <div id="wrapper">
-                    <br>
-                    <span class='baricon'>1</span>
-                    <span id="bar1" class='progress_bar'></span>
-                    <span class='baricon'>2</span>
-                    <span id="bar2" class='progress_bar'></span>
-                    <span class='baricon'>3</span>
-                </div>
-            </body>
-            <div class="wrapper">
-                <div id="formContent">
-                    <!-- Tabs Titles -->
-                    <h1 class="active">ADD ASSET </h1>
-                    <div asp-validation-summary="All" class="text text-danger help-block"></div>
-                    @if (@isInserted)
-                    {
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>New Asset Added Successfully</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    }
-
-                    <!-- Login Form -->
-                    @using (Html.BeginForm("AddAsset", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label id="lbl" class="form-group required">
-                                    Advertisement Title<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="Title" type="text" class="fadeIn second" name="Title" placeholder="Enter Video Title">
-
-                                <label id="lbl">
-                                    Content Type<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
-                                </label>
-                                <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType" onchange="onContentType()">
-                                    <option value="1">Images</option>
-                                    <option value="2">Videos</option>
-                                </select>
-                                <div id="hideMe">
-                                    <label id="lbl" for="formFileMultiple" class="form-label ">Select Image <span id="errorFileSize" class="text-danger"></span></label>
-                                    <input class="form-control " asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
-                                </div>
-                                <div id="hideMe1" style="display: none">
-                                    <label id="lbl" for="formFileMultiple"  class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
-                                    <input class="form-control "  asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
-                                </div>
-                                <label id="lbl">
-                                    Advertisement Description<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
-                                </label>
-                                <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
-
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label id="lbl">
-                                    Start Time<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM">
-
-                                <label id="lbl">
-                                    End Time<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM">
-
-                                <label id="lbl">
-                                    Advertisement Placement<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
-                                </label>
-                                <select asp-for="PlacementId" name="PlacementId" id="AdvertisementPlacement">
-                                    <option value="1">Top-Left</option>
-                                    <option value="2">Top-Right</option>
-                                    <option value="3">Bottom-Left</option>
-                                    <option value="4">Bottom-Right</option>
-                                </select>
-
-                                <label id="lbl">
-                                    Video or Image URL<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
-                                </div>
-                        </div>
-                        <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
-                        <input type="submit" class="fadeIn fourth" value="Save">
-                    }
-                </div>
+            @*<body onload="myFunction1('bar1','bar2')">
+            <div id="wrapper">
+                <br>
+                <span class='baricon'>1</span>
+                <span id="bar1" class='progress_bar'></span>
+                <span class='baricon'>2</span>
+                <span id="bar2" class='progress_bar'></span>
+                <span class='baricon'>3</span>
             </div>
+        </body>*@
+            <partial name="_ProgressBar" view-data="ViewData">
+                <div class="wrapper">
+                    <div id="formContent">
+                        <!-- Tabs Titles -->
+                        <h1 class="active">ADD ASSET </h1>
+                        <div asp-validation-summary="All" class="text text-danger help-block"></div>
+                        @if (@isInserted)
+                        {
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>New Asset Added Successfully</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+
+                        <!-- Login Form -->
+                        @using (Html.BeginForm("AddAsset", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label id="lbl" class="form-group required">
+                                        Advertisement Title<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
+                                    </label>
+                                    <input asp-for="Title" type="text" class="fadeIn second" name="Title" placeholder="Enter Video Title">
+
+                                    <label id="lbl">
+                                        Content Type<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
+                                    </label>
+                                    <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType" onchange="onContentType()">
+                                        <option value="1">Images</option>
+                                        <option value="2">Videos</option>
+                                    </select>
+                                    <div id="hideMe">
+                                        <label id="lbl" for="formFileMultiple" class="form-label ">Select Image <span id="errorFileSize" class="text-danger"></span></label>
+                                        <input class="form-control " asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                    </div>
+                                    <div id="hideMe1" style="display: none">
+                                        <label id="lbl" for="formFileMultiple" class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
+                                        <input class="form-control " asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                    </div>
+                                    <label id="lbl">
+                                        Advertisement Description<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
+                                    </label>
+                                    <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
+
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label id="lbl">
+                                        Start Time<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" })
+                                    </label>
+                                    <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM">
+
+                                    <label id="lbl">
+                                        End Time<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" })
+                                    </label>
+                                    <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM">
+
+                                    <label id="lbl">
+                                        Advertisement Placement<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
+                                    </label>
+                                    <select asp-for="PlacementId" name="PlacementId" id="AdvertisementPlacement">
+                                        <option value="1">Top-Left</option>
+                                        <option value="2">Top-Right</option>
+                                        <option value="3">Bottom-Left</option>
+                                        <option value="4">Bottom-Right</option>
+                                    </select>
+
+                                    <label id="lbl">
+                                        Video or Image URL<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
+                                    </label>
+                                    <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
+                                </div>
+                            </div>
+                            <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
+                            <input type="submit" class="fadeIn fourth" value="Save">
+                        }
+                    </div>
+                </div>
         </div>
     </div>
 </div>

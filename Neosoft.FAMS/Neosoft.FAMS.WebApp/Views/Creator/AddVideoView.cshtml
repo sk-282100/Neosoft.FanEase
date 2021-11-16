@@ -5,6 +5,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
+    ViewData["step"] = 1;
 
 }
 <head>
@@ -35,20 +36,24 @@
             </ul>
         </div>
         <div class="col align-content-end">
-            <div id="wrapper">
-                <br>
-                <span class='baricon'>1</span>
-                <span id="bar1" class='progress_bar'></span>
-                <span class='baricon'>2</span>
-                <span id="bar2" class='progress_bar'></span>
-                <span class='baricon'>3</span>
-            </div>
+
 
             <div class="col pt-2">
                 <div class="wrapper">
                     <div id="formContent">
                         <!-- Tabs Titles -->
-                        <h1 class="active">ADD Video </h1>
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
+                                    Add New Video
+                                </h3>
+                            </div>
+                            <div class="col-6">
+                                @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
+                                <partial name="_ProgressBar" view-data="ViewData">
+                            </div>
+                        </div>
+
                         <div asp-validation-summary="All" class="text text-danger help-block"></div>
                         <!-- Login Form -->
                         @using (Html.BeginForm("AddVideoView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
