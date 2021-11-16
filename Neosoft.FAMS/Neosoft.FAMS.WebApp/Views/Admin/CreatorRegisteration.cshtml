@@ -121,8 +121,12 @@
                             <br /><br />
                         </div>
                     </div>
-                    <input type="button" id="btnCancel" onclick="window.location= '@Url.Action( "CreatorsList", "Admin")'" class="fadeIn fourth" value="Cancel">
-                    <input type="submit" class="fadeIn fourth" value="Save">
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            <input type="button" id="btnCancel" onclick="window.location= '@Url.Action( "CreatorsList", "Admin")'" class="btn btn-secondary" value="Cancel">
+                            <input type="submit" class="btn btn-primary"id="btnProceed" value="Save">
+                        </div>
+                    </div>
                 }
             </div>
         </div>
