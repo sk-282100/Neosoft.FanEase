@@ -13,6 +13,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         long GetLikes(long id,long viewerId);
         long GetDislikes(long id, long viewerId);
         long GetViews(long id, long viewerId);
+        
 
     }
 }

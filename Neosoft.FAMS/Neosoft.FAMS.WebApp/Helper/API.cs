@@ -65,6 +65,7 @@
             public static string GetLikes(string baseUri,long videoId,long viewerId) => $"{baseUri}Likes/{videoId}?viewerId={viewerId}&api-version=1";
             public static string GetDislikes(string baseUri,long videoId, long viewerId) => $"{baseUri}Dislikes/{videoId}?viewerId={viewerId}&api-version=1";
             public static string GetViews(string baseUri,long videoId, long viewerId) => $"{baseUri}Views/{videoId}?viewerId={viewerId}&api-version=1";
+            
         } 
         public static class Campaign
         {

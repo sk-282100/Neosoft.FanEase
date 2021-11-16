@@ -8,15 +8,16 @@
     var creatorRecords = (ContentCreatorDto)ViewData["creatorData"];
     //var likes = TempData["Likes"];
     //var dislikes = TempData["Dislikes"];
-    //var views = TempData["Views"] ;
-    //var shares = TempData["Share"];
+    //var views = TempData["Views"];
+    var shares = TempData["Share"];
 
     var session = Convert.ToInt64(TempData["Session"]);
     VideoStatistics _videoStatistics = new VideoStatistics();
     long likes = _videoStatistics.GetLikes(@videoRecords.VideoId,session);
     long dislikes = _videoStatistics.GetDislikes(@videoRecords.VideoId, session);
     long views = _videoStatistics.GetViews(@videoRecords.VideoId, session);
-   
+
+
 
 }
 
