@@ -187,10 +187,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return uniqueFileName;
         }
         [HttpGet]
-        public IActionResult GetCreatorVideoListById([FromRoute] long id)
+        public IActionResult GetCreatorVideoListById([FromRoute] long id,string CreatorName)
         {
             var data = _video.creatorVideoListById(id);
             ViewData["data"] = data;
+            ViewData["CreatorName"] = CreatorName;
             return View();
         }
     }
