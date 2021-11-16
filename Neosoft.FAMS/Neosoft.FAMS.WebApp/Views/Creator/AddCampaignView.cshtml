@@ -7,6 +7,7 @@
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
     var records = (List<AdvertisementListQueryDto>)ViewData["data"];
     bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
+    ViewData["step"] = 2;
 }
 
 
@@ -35,124 +36,134 @@
         @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
             <h3>Add New Campaign</h3>
-            @Html.Partial("_StepBar")
-            <div id="try" style="display:flex">
-                <div style="margin-left: 50px; color: red;">
-                    <a><label style="text-decoration:underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
-                    <a href="~/Creator/ExistingCampaign"><label>Select Existing Campaign</label></a>
+            @*<body onload="myFunction('bar1')">
+            <div id="wrapper" style="float:top; margin: 1px;">
+                <br>
+                <span class='baricon'>1</span>
+                <span id="bar1" class='progress_bar'></span>
+                <span class='baricon'>2</span>
+                <span id="bar2" class='progress_bar'></span>
+                <span class='baricon'>3</span>
+            </div><br /><br />
+        </body>*@
+            <partial name="_ProgressBar" view-data="ViewData">
+                <div id="try" style="display:flex">
+                    <div style="margin-left: 50px; color: red;">
+                        <a><label style="text-decoration:underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
+                        <a href="~/Creator/ExistingCampaign"><label>Select Existing Campaign</label></a>
 
-                </div>
-
-            </div>
-            <hr />
-
-            @if (@isInserted)
-            {
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>New Campaign Added Successfully</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            }
-
-            @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
-            {
-
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label for="txt_campaignName">
-                            Campaign Name :<sup style="color: red">*</sup>
-                            @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
-                        </label>
-                        <input asp-for="CampaignName" type="text" name="CampaignName" class="form-control" placeholder="Campaign Name ">
-                    </div>
-                    <div class="form-group col-6">
-                        <div style="float: right;">
-                            <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>
-                            <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="form-group col-6">
-                        <label for="start_campaign">
-                            Start Date of Campaign :<sup style="color: red">*</sup>
-                            @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
-                        </label>
-                        <input asp-for="StartDate" type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
-                        <label for="end_campaign">
-                            End Date of Campaign :<sup style="color: red">*</sup>
-                            @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
-                        </label>
-                        <input asp-for="EndDate" type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
                     </div>
 
-
-                    <div style="float: right;">
-                        <button type="button" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
-                        <input type="submit" class="btn btn-primary" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Proceed" />
-                    </div>
                 </div>
-                @if (@isDeleted)
+                <hr />
+
+                @if (@isInserted)
                 {
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Data Deleted Successfully !</strong>
+                        <strong>New Campaign Added Successfully</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                 }
-                <div style="margin-top:40px;">
-                    <table id="myTable" class="table table-sm table-hover">
-                        <thead>
-                            <tr>
-                                <th class="no-sort">Thumbnail Image</th>
-                                <th>Content Type</th>
-                                <th>Asset Title</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th class="no-sort">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var record in records)
-                            {
-                                if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted == false)
-                                {
-                                    <tr>
-                                        <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
-                                        <td>Image</td>
-                                        <td>@record.Title</td>
-                                        <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
-                                        <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                                        <td>
-                                            <a class="edit" href="EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                            <a id="deleteTag" class="delete" onClick="deleteAsset('DeleteAsset/@record.AdvertisementId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
 
-                                        </td>
-                                    </tr>
+                @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
+                {
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="txt_campaignName">
+                                Campaign Name :<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="CampaignName" type="text" name="CampaignName" class="form-control" placeholder="Campaign Name ">
+                        </div>
+                        <div class="form-group col-6">
+                            <div style="float: right;">
+                                <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location= '@Url.Action( "SelectAsset", "Creator")'">View Existing Assets</button>
+                                <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-6">
+                            <label for="start_campaign">
+                                Start Date of Campaign :<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="StartDate" type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
+                            <label for="end_campaign">
+                                End Date of Campaign :<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="EndDate" type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
+                        </div>
+
+
+                        <div style="float: right;">
+                            <button type="button" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
+                            <input type="submit" class="btn btn-primary" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Proceed" />
+                        </div>
+                    </div>
+                    @if (@isDeleted)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Data Deleted Successfully !</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    <div style="margin-top:40px;">
+                        <table id="myTable" class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="no-sort">Thumbnail Image</th>
+                                    <th>Content Type</th>
+                                    <th>Asset Title</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th class="no-sort">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var record in records)
+                                {
+                                    if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted == false)
+                                    {
+                                        <tr>
+                                            <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
+                                            <td>Image</td>
+                                            <td>@record.Title</td>
+                                            <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                            <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                                            <td>
+                                                <a class="edit" href="EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                                                <a id="deleteTag" class="delete" onClick="deleteAsset('DeleteAsset/@record.AdvertisementId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+
+                                            </td>
+                                        </tr>
+                                    }
                                 }
-                            }
-                        </tbody>
-                    </table>
-                    @* Popup Modal *@
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body" style="height: 60px;">
-                                    Are you sure you want to Delete this record?
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="AddCampaignView" class="btn btn-secondary">No</a>
-                                    <a id="hrefElement" class="btn btn-primary">Yes</a>
+                            </tbody>
+                        </table>
+                        @* Popup Modal *@
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body" style="height: 60px;">
+                                        Are you sure you want to Delete this record?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="AddCampaignView" class="btn btn-secondary">No</a>
+                                        <a id="hrefElement" class="btn btn-primary">Yes</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
         </div>
     </div>
 </div>

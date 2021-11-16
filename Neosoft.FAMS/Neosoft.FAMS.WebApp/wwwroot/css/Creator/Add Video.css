@@ -34,9 +34,9 @@ h2 {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;
-    padding: 30px;
-    width: 190%;
-    max-width: 950px;
+    /* padding: 30px;
+       width: 190%;
+    max-width: 950px;*/
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
@@ -61,9 +61,9 @@ h2.inactive {
 h1.active {
     color: #5fbae9;
     font-size: xx-large;
-    border-bottom: 2px solid #5fbae9;
+    /*border-bottom: 2px solid #5fbae9;*/
     text-align: initial;
-    padding: 10px 10px 0px 35px;
+    /*padding: 10px 10px 0px 35px;*/
 }
 
 
@@ -73,30 +73,30 @@ h1.active {
     float: left;
     margin: 40px 10px 0px 35px;
 }
+
 label {
     float: left;
     margin: 40px 10px 0px 35px;
 }
+
 #btnCancel {
     background-color: #a9a9a9;
 }
 
-input[type=button], input[type=submit], input[type=reset],button[type=button] {
+input[type=button], input[type=submit], input[type=reset], button[type=button] {
     /*float:right;*/
     background-color: #56baed;
     border: none;
     color: white;
-    padding: 15px 80px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    margin: 5px 20px 40px 20px;
+    margin: 5px 20px 20px 0px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
