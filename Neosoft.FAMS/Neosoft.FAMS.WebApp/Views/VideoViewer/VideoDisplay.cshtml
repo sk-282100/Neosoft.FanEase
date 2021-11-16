@@ -29,7 +29,7 @@
 </head>
 <div id="VideoSection">
     <video id="my-video"
-           class="video-js"
+           class="video-js vjs-big-play-centered"
            controls
            preload="auto"
            width="1024"
@@ -42,13 +42,16 @@
             To view this video please enable JavaScript, and consider upgrading to a web browser that
             <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
         </p>
+        <script>
+
+        </script>
     </video>
     <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
 </div>
 
 <div id="DetailSection">
     <h4>@videoRecords.Title</h4>
-    <h6>@views Views</h6>
+    <h6><h6 id="views">@views</h6>Views</h6>
 </div>
 <br />
 <input type="text" id="videoId" value="@videoRecords.VideoId" hidden />
@@ -57,7 +60,7 @@
     <div class="col-6">
         <button id="like" type="button" class="btn btn-primary"><span id="likeSpan">@likes</span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
         <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan">@dislikes</span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
-        <button type="button" class="btn btn-primary view-modal"><span class="fa fa-share share"></span> Share</button>
+        <button type="button" class="btn btn-primary view-modal"><span class="fa fa-share share">@shares</span> Share</button>
     </div>
     <div class="col-3">
         <span id="Auto"><b>Auto Next</b></span>

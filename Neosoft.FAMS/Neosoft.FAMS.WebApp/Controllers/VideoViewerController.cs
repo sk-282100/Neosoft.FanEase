@@ -48,7 +48,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var videoData = _video.VideoGetById(id);
             ViewData["videoData"] = videoData;
             long createdBy = Convert.ToInt64( videoData.CreatedBy);
-            TempData["Session"] = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+           
+            var session = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+
+            _videoStatistics.CheckClickBy(id, session);
+            TempData["Session"] = session;
             var creatorData = _creator.GetCreatorById(createdBy);
             var statData = _videoStatistics.StatsGetById(id);
             TempData["Likes"] = statData[0];

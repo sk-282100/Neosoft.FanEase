@@ -97,5 +97,17 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
 
         }
+        public  bool CheckClickBy(long videoId,long viewerId)
+        {
+            var uri = API.VideoStatistics.CheckClickBy(_baseUrl, _path,videoId,viewerId);
+            HttpResponseMessage response =  _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<bool>(jsonDataStatus);
+                return data;
+            }
+            return false;
+        }
     }
 }

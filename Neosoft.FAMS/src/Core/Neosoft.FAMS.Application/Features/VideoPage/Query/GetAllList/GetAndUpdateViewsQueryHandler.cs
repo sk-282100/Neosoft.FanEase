@@ -23,9 +23,9 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllList
         public async Task<long> Handle(GetAndUpdateViewsQuery request, CancellationToken cancellationToken)
         {
             var modify = await _videoPageRepository.UpdateViews(request.videoId, request.viewerId);
-            if (modify.IsClicked == false || modify.IsClicked == null)
+            if (modify.IsViewed == false || modify.IsViewed == null)
             {
-                modify.IsClicked = true;
+                modify.ViewOn = DateTime.Now;
                 modify.IsViewed = true;
             }
             

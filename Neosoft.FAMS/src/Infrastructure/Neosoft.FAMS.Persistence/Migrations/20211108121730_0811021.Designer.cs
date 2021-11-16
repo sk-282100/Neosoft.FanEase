@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Neosoft.FAMS.Persistence;
 
 namespace Neosoft.FAMS.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211108121730_0811021")]
+    partial class _0811021
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -359,7 +361,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Artist = "John Egbert",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 5, 11, 16, 6, 21, 84, DateTimeKind.Local).AddTicks(1876),
+                            Date = new DateTime(2022, 5, 8, 17, 47, 24, 917, DateTimeKind.Local).AddTicks(3625),
                             Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                             Name = "John Egbert Live",
@@ -371,7 +373,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Artist = "Michael Johnson",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 11, 16, 6, 21, 87, DateTimeKind.Local).AddTicks(5593),
+                            Date = new DateTime(2022, 8, 8, 17, 47, 24, 927, DateTimeKind.Local).AddTicks(747),
                             Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg",
                             Name = "The State of Affairs: Michael Live!",
@@ -383,7 +385,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Artist = "DJ 'The Mike'",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 3, 11, 16, 6, 21, 87, DateTimeKind.Local).AddTicks(5796),
+                            Date = new DateTime(2022, 3, 8, 17, 47, 24, 927, DateTimeKind.Local).AddTicks(2334),
                             Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg",
                             Name = "Clash of the DJs",
@@ -395,7 +397,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Artist = "Manuel Santinonisi",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 3, 11, 16, 6, 21, 87, DateTimeKind.Local).AddTicks(5871),
+                            Date = new DateTime(2022, 3, 8, 17, 47, 24, 927, DateTimeKind.Local).AddTicks(2749),
                             Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg",
                             Name = "Spanish guitar hits with Manuel",
@@ -407,7 +409,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Artist = "Many",
                             CategoryId = new Guid("fe98f549-e790-4e9f-aa16-18c2292a2ee9"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 9, 11, 16, 6, 21, 87, DateTimeKind.Local).AddTicks(5945),
+                            Date = new DateTime(2022, 9, 8, 17, 47, 24, 927, DateTimeKind.Local).AddTicks(2967),
                             Description = "The best tech conference in the world",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/conf.jpg",
                             Name = "Techorama 2021",
@@ -419,7 +421,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Artist = "Nick Sailor",
                             CategoryId = new Guid("6313179f-7837-473a-a4d5-a5571b43e6a6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 7, 11, 16, 6, 21, 87, DateTimeKind.Local).AddTicks(6028),
+                            Date = new DateTime(2022, 7, 8, 17, 47, 24, 927, DateTimeKind.Local).AddTicks(3227),
                             Description = "The critics are over the moon and so will you after you've watched this sing and dance extravaganza written by Nick Sailor, the man from 'My dad and sister'.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
                             Name = "To the Moon and Back",
@@ -489,7 +491,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Id = new Guid("7e94bc5b-71a5-4c8c-bc3b-71bb7976237e"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 11, 11, 16, 6, 21, 88, DateTimeKind.Local).AddTicks(507),
+                            OrderPlaced = new DateTime(2021, 11, 8, 17, 47, 24, 928, DateTimeKind.Local).AddTicks(9903),
                             OrderTotal = 400,
                             UserId = new Guid("a441eb40-9636-4ee6-be49-a66c5ec1330b")
                         },
@@ -498,7 +500,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Id = new Guid("86d3a045-b42d-4854-8150-d6a374948b6e"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 11, 11, 16, 6, 21, 88, DateTimeKind.Local).AddTicks(3562),
+                            OrderPlaced = new DateTime(2021, 11, 8, 17, 47, 24, 931, DateTimeKind.Local).AddTicks(2542),
                             OrderTotal = 135,
                             UserId = new Guid("ac3cfaf5-34fd-4e4d-bc04-ad1083ddc340")
                         },
@@ -507,7 +509,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Id = new Guid("771cca4b-066c-4ac7-b3df-4d12837fe7e0"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 11, 11, 16, 6, 21, 88, DateTimeKind.Local).AddTicks(3697),
+                            OrderPlaced = new DateTime(2021, 11, 8, 17, 47, 24, 931, DateTimeKind.Local).AddTicks(3071),
                             OrderTotal = 85,
                             UserId = new Guid("d97a15fc-0d32-41c6-9ddf-62f0735c4c1c")
                         },
@@ -516,7 +518,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Id = new Guid("3dcb3ea0-80b1-4781-b5c0-4d85c41e55a6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 11, 11, 16, 6, 21, 88, DateTimeKind.Local).AddTicks(3759),
+                            OrderPlaced = new DateTime(2021, 11, 8, 17, 47, 24, 931, DateTimeKind.Local).AddTicks(3700),
                             OrderTotal = 245,
                             UserId = new Guid("4ad901be-f447-46dd-bcf7-dbe401afa203")
                         },
@@ -525,7 +527,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Id = new Guid("e6a2679c-79a3-4ef1-a478-6f4c91b405b6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 11, 11, 16, 6, 21, 88, DateTimeKind.Local).AddTicks(3812),
+                            OrderPlaced = new DateTime(2021, 11, 8, 17, 47, 24, 931, DateTimeKind.Local).AddTicks(3972),
                             OrderTotal = 142,
                             UserId = new Guid("7aeb2c01-fe8e-4b84-a5ba-330bdf950f5c")
                         },
@@ -534,7 +536,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Id = new Guid("f5a6a3a0-4227-4973-abb5-a63fbe725923"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 11, 11, 16, 6, 21, 88, DateTimeKind.Local).AddTicks(3902),
+                            OrderPlaced = new DateTime(2021, 11, 8, 17, 47, 24, 931, DateTimeKind.Local).AddTicks(4211),
                             OrderTotal = 40,
                             UserId = new Guid("f5a6a3a0-4227-4973-abb5-a63fbe725923")
                         },
@@ -543,7 +545,7 @@ namespace Neosoft.FAMS.Persistence.Migrations
                             Id = new Guid("ba0eb0ef-b69b-46fd-b8e2-41b4178ae7cb"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 11, 11, 16, 6, 21, 88, DateTimeKind.Local).AddTicks(4009),
+                            OrderPlaced = new DateTime(2021, 11, 8, 17, 47, 24, 931, DateTimeKind.Local).AddTicks(4413),
                             OrderTotal = 116,
                             UserId = new Guid("7aeb2c01-fe8e-4b84-a5ba-330bdf950f5c")
                         });
@@ -612,87 +614,6 @@ namespace Neosoft.FAMS.Persistence.Migrations
                     b.ToTable("State");
                 });
 
-            modelBuilder.Entity("Neosoft.FAMS.Domain.Entities.TemplateDetail", b =>
-                {
-                    b.Property<long>("TemplateId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("PublishStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("TemplateName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<short?>("TemplateType")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("ThumbnailImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TemplateId");
-
-                    b.ToTable("TemplateDetails");
-                });
-
-            modelBuilder.Entity("Neosoft.FAMS.Domain.Entities.TemplateFieldDetail", b =>
-                {
-                    b.Property<long>("TemplateFieldId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("TemplateFieldCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("TemplateId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("TemplateFieldId");
-
-                    b.ToTable("TemplateFieldDetails");
-                });
-
-            modelBuilder.Entity("Neosoft.FAMS.Domain.Entities.TemplateVideoMapping", b =>
-                {
-                    b.Property<long>("TemplateVideoMappingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("TemplateFieldId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("VideoId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("TemplateVideoMappingId");
-
-                    b.ToTable("TemplateVideoMappings");
-                });
-
             modelBuilder.Entity("Neosoft.FAMS.Domain.Entities.UserDemo", b =>
                 {
                     b.Property<Guid>("Id")
@@ -735,8 +656,8 @@ namespace Neosoft.FAMS.Persistence.Migrations
                         {
                             Id = new Guid("ee272f8b-6096-4cb6-8625-bb4bb2d89e8b"),
                             CreatedBy = "1",
-                            CreatedDate = new DateTime(2021, 11, 11, 16, 6, 21, 87, DateTimeKind.Local).AddTicks(3873),
-                            DateOfJoining = new DateTime(2022, 5, 11, 16, 6, 21, 87, DateTimeKind.Local).AddTicks(959),
+                            CreatedDate = new DateTime(2021, 11, 8, 17, 47, 24, 926, DateTimeKind.Local).AddTicks(6254),
+                            DateOfJoining = new DateTime(2022, 5, 8, 17, 47, 24, 925, DateTimeKind.Local).AddTicks(9560),
                             FirstName = "John Egbert Live",
                             IsAdmin = false,
                             LastName = "John Egbert",
@@ -801,57 +722,6 @@ namespace Neosoft.FAMS.Persistence.Migrations
                     b.ToTable("VideoDetails");
                 });
 
-            modelBuilder.Entity("Neosoft.FAMS.Domain.Entities.VideoStatisticsDetail", b =>
-                {
-                    b.Property<long>("VideoStatisticsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long?>("ClickedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("ClickedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("IsClicked")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsLiked")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsShared")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsViewed")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("LikeBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("LikeOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("SharedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("SharedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("VideoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("ViewBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("ViewOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("VideoStatisticsId");
-
-                    b.ToTable("VideoStatisticsDetails");
-                });
-
             modelBuilder.Entity("Neosoft.FAMS.Domain.Entities.ViewerDetail", b =>
                 {
                     b.Property<long>("ViewerId")
@@ -891,9 +761,6 @@ namespace Neosoft.FAMS.Persistence.Migrations
 
                     b.Property<string>("MobileNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("StateId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("ViewerId");
 
