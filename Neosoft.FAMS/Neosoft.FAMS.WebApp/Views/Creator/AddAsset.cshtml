@@ -117,24 +117,15 @@
                                     <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
                                 </div>
                             </div>
-
-                            @if (isAddedVideo == true && isAddedCampaign == true)
-                            {
-                                <div class="row">
+                         <div class="row">
                                     <div class="col d-flex justify-content-end">
-                                        <input type="button" id="btnCancel" class="btn btn-secondary" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
+                                        @if (isAddedVideo == true && isAddedCampaign == true)
+                                        {
+                                            <input type="button" id="btnCancel" class="btn btn-secondary" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
+                                        }
                                         <input type="submit" class="btn btn-primary" value="Save">
                                     </div>
                                 </div>
-                            }
-                            else
-                            {
-                                <div class="row">
-                                    <div class="col d-flex justify-content-end">
-                                        <input type="submit" disabled="" class="btn btn-warning" value="Please Add Video and Campaign to add Assets">
-                                    </div>
-                                </div>
-                            }
                         }
                     </div>
                 </div>
