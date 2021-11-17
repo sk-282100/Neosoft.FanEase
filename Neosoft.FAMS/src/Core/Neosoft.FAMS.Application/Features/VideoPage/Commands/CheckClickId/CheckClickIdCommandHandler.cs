@@ -30,6 +30,7 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Commands.CheckClickId
             GetAllVideoStatisticsDto obj = new GetAllVideoStatisticsDto();
 
             var record = _mapper.Map<VideoStatisticsDetail>(obj);
+            record.IsClicked = true;
             record.VideoId = request.videoId;
             record.ClickedBy = request.viewerId;
             record.ClickedOn = DateTime.Now;

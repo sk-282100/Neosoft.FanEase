@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.WebApp.Models.ViewerModel;
 using Neosoft.FAMS.WebApp.Services.Interface;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Controllers
@@ -12,12 +14,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private IMapper _mapper;
         IViewer _viewer;
         ICommon _common;
+        IVideo _video;
 
-        public ViewerController(IMapper mapper, IViewer viewer, ICommon common)
+        public ViewerController(IMapper mapper, IViewer viewer, ICommon common,IVideo video)
         {
             _mapper = mapper;
             _viewer = viewer;
             _common = common;
+            _video = video;
         }
 
         public IActionResult Index()
@@ -79,5 +83,19 @@ namespace Neosoft.FAMS.WebApp.Controllers
             bool isPresent = _viewer.checkEmail(email);
             return isPresent;
         }
+
+        public ActionResult DisplayAllVideos()
+        {
+            //var data = _video.GetAllVideoList();
+            //ViewData["Data"] = data;
+            return View();
+        }
+        [HttpGet]
+        public List<VideoGetAllDto> GetVideos([FromQuery] long videoId, [FromQuery] long viewerId)
+        { 
+            var videoList = _video.GetAllVideoList();
+            return videoList;
+        }
+        
     }
 }

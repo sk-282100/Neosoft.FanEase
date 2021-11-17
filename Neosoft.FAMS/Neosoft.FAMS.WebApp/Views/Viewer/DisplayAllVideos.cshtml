@@ -1,0 +1,44 @@
+﻿@using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //ViewData["Title"] = "VideoList";
+    //var records = (List<VideoGetAllDto>)ViewData["data"];
+
+}
+<head>
+    <script src="~/js/VideoDisplay.js"></script>
+</head>
+
+<div class="container-fluid">
+    <div class="row" style="background-color: #F5F5F5;">
+        @Html.Partial("_SideBar")
+        <div class="col mt-2">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
+                            Videos
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                        <label>
+                            Sort By :
+                            <select class="form-select" aria-label="Default select example" name="sorts" id="selectVideo" required>
+                                <option value="1" selected>Date(Ascending)</option>
+                                <option value="2">Date(Descending)</option>
+                                <option value="3">Most Liked </option>
+                                <option value="4">Most Viewed </option>
+
+                            </select>
+                        </label>
+                    </div>
+
+                </div>
+                <div id="showTable">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
