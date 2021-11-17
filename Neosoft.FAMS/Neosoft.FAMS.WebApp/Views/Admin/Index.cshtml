@@ -1,5 +1,12 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var ContentCreator = TempData["ContentCreator"];
+    var Advertisements = TempData["Advertisements"];
+    var Videos = TempData["Videos"];
+    var Views = TempData["Views"];
+
+    
 }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
@@ -46,11 +53,11 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-6 mb-4">
                     <div class="bg-white rounded-lg p-3 shadow">
-                        <h2 class="h6 font-weight-bold text-center mb-4">Video Uploads</h2>
-                        <h3 class="h6 font-weight-bold text-center mb-4">6403</h3>
+                        <h2 class="h6 font-weight-bold text-center mb-4">Content Creators</h2>
+                        <h3 class="h6 font-weight-bold text-center mb-4">@ContentCreator</h3>
 
                         <!-- Progress bar 1 -->
-                        <div class="progress mx-auto" data-value='80'>
+                        <div class="progress mx-auto" data-value='@ContentCreator'>
                             <span class="progress-left">
                                 <span class="progress-bar border-primary"></span>
                             </span>
@@ -58,7 +65,7 @@
                                 <span class="progress-bar border-primary"></span>
                             </span>
                             <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                <div class="h2 font-weight-bold">+80<sup class="small">%</sup></div>
+                                <div class="h2 font-weight-bold">@ContentCreator<sup class="small">%</sup></div>
                             </div>
                         </div>
 
@@ -68,7 +75,7 @@
                 <div class="col-xl-3 col-lg-6 mb-4">
                     <div class="bg-white rounded-lg p-3 shadow">
                         <h2 class="h6 font-weight-bold text-center mb-4">Advertisements</h2>
-                        <h3 class="h6 font-weight-bold text-center mb-4">21403</h3>
+                        <h3 class="h6 font-weight-bold text-center mb-4">@Advertisements</h3>
 
                         <!-- Progress bar 2 -->
                         <div class="progress mx-auto" data-value='76'>
@@ -88,8 +95,8 @@
 
                 <div class="col-xl-3 col-lg-6 mb-4">
                     <div class="bg-white rounded-lg p-3 shadow">
-                        <h2 class="h6 font-weight-bold text-center mb-4">Video Views</h2>
-                        <h3 class="h6 font-weight-bold text-center mb-4">5403</h3>
+                        <h2 class="h6 font-weight-bold text-center mb-4">Videos Uploaded</h2>
+                        <h3 class="h6 font-weight-bold text-center mb-4">@Videos</h3>
 
                         <!-- Progress bar 3 -->
                         <div class="progress mx-auto" data-value='12'>
@@ -109,8 +116,8 @@
 
                 <div class="col-xl-3 col-lg-6 mb-4">
                     <div class="bg-white rounded-lg p-3 shadow">
-                        <h2 class="h6 font-weight-bold text-center mb-4">Ad Clicks</h2>
-                        <h3 class="h6 font-weight-bold text-center mb-4">94</h3>
+                        <h2 class="h6 font-weight-bold text-center mb-4">Views on Videos</h2>
+                        <h3 class="h6 font-weight-bold text-center mb-4">@Views</h3>
 
                         <!-- Progress bar 4 -->
                         <div class="progress mx-auto" data-value='25'>
