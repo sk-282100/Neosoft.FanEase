@@ -11,7 +11,7 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
-    <link rel="stylesheet" href="~/css/AddAsset.css" />
+    <link rel="stylesheet" href="~/css/Creator/Add Video.css" />
     <script src="~/js/AddAsset.js"></script>
 
     <style>
@@ -20,27 +20,26 @@
         }
     </style>
 </head>
+
 <div class="container-fluid">
 
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_CreatorSideBar")
 
-        <div class="col pt-2">
-            @*<body onload="myFunction1('bar1','bar2')">
-            <div id="wrapper">
-                <br>
-                <span class='baricon'>1</span>
-                <span id="bar1" class='progress_bar'></span>
-                <span class='baricon'>2</span>
-                <span id="bar2" class='progress_bar'></span>
-                <span class='baricon'>3</span>
-            </div>
-        </body>*@
-            <partial name="_ProgressBar" view-data="ViewData">
-                <div class="wrapper">
-                    <div id="formContent">
-                        <!-- Tabs Titles -->
-                        <h1 class="active">ADD ASSET </h1>
+            <div class="col mt-2">
+                <div id="formContent">
+                    <!-- Tabs Titles -->
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
+                                Add Asset
+                            </h3>
+                        </div>
+                        <div class="col-6">
+                            @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
+                            <partial name="_ProgressBar" view-data="ViewData">
+                        </div>
+                        </div>
                         <div asp-validation-summary="All" class="text text-danger help-block"></div>
                         @if (@isInserted)
                         {
@@ -61,7 +60,7 @@
                                         Advertisement Title<sup style="color: red">*</sup>
                                         @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
                                     </label>
-                                    <input asp-for="Title" type="text" class="fadeIn second" name="Title" placeholder="Enter Video Title">
+                                    <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" name="Title" placeholder="Enter Video Title">
 
                                     <label id="lbl">
                                         Content Type<sup style="color: red">*</sup>
@@ -73,11 +72,11 @@
                                     </select>
                                     <div id="hideMe">
                                         <label id="lbl" for="formFileMultiple" class="form-label ">Select Image <span id="errorFileSize" class="text-danger"></span></label>
-                                        <input class="form-control " asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                        <input asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="mp4videoFile" onchange="readURL(this);" multiple />
                                     </div>
                                     <div id="hideMe1" style="display: none">
                                         <label id="lbl" for="formFileMultiple" class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
-                                        <input class="form-control " asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="formFileMultiple" onchange="readURL(this);" multiple />
+                                        <input asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="mp4videoFile" onchange="readURL(this);" multiple />
                                     </div>
                                     <label id="lbl">
                                         Advertisement Description<sup style="color: red">*</sup>
@@ -118,20 +117,19 @@
                                     <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
                                 </div>
                             </div>
-                            @if (isAddedVideo == true && isAddedCampaign == true)
-                            {
-                                <input type="button" id="btnCancel" class="fadeIn fourth" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
-                                <input type="submit" class="fadeIn fourth" value="Save">
-                            }
-                            else
-                            {
-                                <input type="submit" disabled="" class="fadeIn fourth btn btn-warning" value="Please Add Video and Campaign to add Assets">
-                            }
-                    }
+                         <div class="row">
+                                    <div class="col d-flex justify-content-end">
+                                        @if (isAddedVideo == true && isAddedCampaign == true)
+                                        {
+                                            <input type="button" id="btnCancel" class="btn btn-secondary" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
+                                        }
+                                        <input type="submit" class="btn btn-primary" value="Save">
+                                    </div>
+                                </div>
+                        }
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+</div>
 </div>
 
 @section Scripts{
