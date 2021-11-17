@@ -25,28 +25,36 @@
             <div style="margin-top: 80px;">
                 <table id="myTable" class="table table-bordered table-sm table-hover">
                     <thead>
-                        <tr>
-                            <th>Campaign ID</th>
-                            <th>Campaign Name</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                    <tr>
+                        <th class="nosort">Select</th>
+                        <th>Campaign ID</th>
+                        <th>Campaign Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach (var record in records)
-                        {
-                            <tr>
-                                <td>@record.CampaignId</td>
-                                <td>@record.CampaignName</td>
-                                <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
-                                <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                            </tr>
-                        }
+                    @foreach (var record in records)
+                    {
+                        <tr>
+                            <td><input id="campaignRadioBtn_@record.CampaignId" onclick="changeId('@record.CampaignId')" name="existedCampaign" type="radio" />   &nbsp; </td>
+                            <td>@record.CampaignId</td>
+                            <td>@record.CampaignName</td>
+                            <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                            <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
+            </div>
+            <div style="float:right; margin-top: 10px;">
+                <button class="btn btn-secondary" onclick="window.location= '@Url.Action( "AddCampaignView", "Creator")'">Back</button>
+                <button id="proceedBtn" class="btn btn-primary" onclick="insertValue(this)">Proceed</button>
             </div>
         </div>
     </div>
 </div>
 @section Scripts{
     <script src="~/js/creatorSideBar.js"></script>
+    <script src="~/js/ExistingCampaign.js"></script>
 }

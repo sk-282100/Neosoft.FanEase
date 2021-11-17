@@ -113,7 +113,14 @@
                                     if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted == false)
                                     {
                                         <tr>
-                                            <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
+                                            @if (@record.ImagePath != null)
+                                            {
+                                            <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                            }
+                                            else
+                                            {
+                                                <td><img src="~/DefaultPhotos/default_template.png" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"/></td>
+                                            }
                                             <td>Image</td>
                                             <td>@record.Title</td>
                                             <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
