@@ -29,35 +29,41 @@
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
-            <h3>Campaign Table</h3>
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="ml-1 mt-4 text-left" style="color: #8b8b8b;">
+                        Campaign Table
+                    </h3>
+                </div>
+            </div>
             <div style="margin-top: 80px;">
-                <table id="myTable" class="table table-bordered table-sm table-hover">
+                <table id="myTable" class="table table-sm table-hover">
                     <thead>
-                        <tr>
-                            <th>Campaign ID</th>
-                            <th>Campaign Name</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th class="no-sort">Action</th>
+                    <tr>
+                    <th>Campaign ID</th>
+                    <th>Campaign Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th class="no-sort">Action</th>
                     </thead>
                     <tbody>
-                        @foreach (var record in records)
+                    @foreach (var record in records)
+                    {
+                        if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted == false)
                         {
-                            if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted == false)
-                            {
-                                <tr>
-                                    <td>@record.CampaignId</td>
-                                    <td>@record.CampaignName</td>
-                                    <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
-                                    <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                                    <td>
-                                        <a class="edit" href="EditCampaign/@record.CampaignId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
-                                        <a id="deleteTag" class="delete" onClick="deleteCampaign('DeleteCampaign/@record.CampaignId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
+                            <tr>
+                                <td>@record.CampaignId</td>
+                                <td>@record.CampaignName</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                                <td>
+                                    <a class="edit" href="EditCampaign/@record.CampaignId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                    <a id="deleteTag" class="delete" onClick="deleteCampaign('DeleteCampaign/@record.CampaignId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
 
-                                    </td>
-                                </tr>
-                            }
+                                </td>
+                            </tr>
                         }
+                    }
                     </tbody>
                 </table>
                 @* Popup Modal *@
