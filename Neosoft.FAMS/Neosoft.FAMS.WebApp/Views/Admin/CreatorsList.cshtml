@@ -69,8 +69,8 @@
                                     {
                                         <td><img src="/DefaultPhotos/default_profile.png" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
                                     }
-                                    <td>@record.CreatorName.ToString()</td>
-                                    <td><a href="GetCreatorVideoListById/@record.ContentCreatorId.ToString()?CreatorName=@record.CreatorName">@record.TotalVideos</a></td>
+                                    <td><a href="EditCreator/@record.ContentCreatorId.ToString()" style="text-decoration: underline;color: blue">@record.CreatorName.ToString()</a></td>
+                                    <td><a href="GetCreatorVideoListById/@record.ContentCreatorId.ToString()?CreatorName=@record.CreatorName"  style="text-decoration: underline;color: blue">@record.TotalVideos</a></td>
                                     <td>@record.EmailId</td>
                                     @{
                                         int id = (int)@record.CountryId;
