@@ -8,6 +8,7 @@ using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.WebApp.Models.CreatorModel;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -21,8 +22,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
         IMapper _mapper;
         private readonly IWebHostEnvironment webHostEnvironment;
         ICommon _common;
+        IAdminDashboard _adminDashboard;
 
-        public AdminController(ICreator creator, IViewer viewer, IVideo video, IWebHostEnvironment hostEnvironment, IMapper mapper, ICommon common)
+        public AdminController(ICreator creator, IViewer viewer, IVideo video, IWebHostEnvironment hostEnvironment, IMapper mapper, ICommon common, IAdminDashboard adminDashboard)
         {
             _mapper = mapper;
             _creator = creator;
@@ -30,9 +32,18 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _video = video;
             webHostEnvironment = hostEnvironment;
             _common = common;
+            _adminDashboard = adminDashboard;
         }
+        [HttpGet]
         public IActionResult Index()
         {
+            
+            var data = _adminDashboard.GetAdminStats();
+            TempData["ContentCreator"] = data[0];
+            TempData["Advertisements"] = data[1];
+            TempData["Videos"] = data[2];
+            TempData["Views"] = data[3];
+            ViewData["AdminStats"] = data;
             return View();
         }
 
