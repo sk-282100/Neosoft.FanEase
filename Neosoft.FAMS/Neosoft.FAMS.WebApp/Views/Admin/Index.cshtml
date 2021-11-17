@@ -5,8 +5,12 @@
     var Advertisements = TempData["Advertisements"];
     var Videos = TempData["Videos"];
     var Views = TempData["Views"];
+    var LatestCreator = TempData["LatestCreator"];
+    var LatestAdvertisements = TempData["LatestAdvertisements"];
+    var LatestVideos = TempData["LatestVideos"];
+    var LatestViews = TempData["LatestViews"];
 
-    
+
 }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
@@ -57,7 +61,7 @@
                         <h3 class="h6 font-weight-bold text-center mb-4">@ContentCreator</h3>
 
                         <!-- Progress bar 1 -->
-                        <div class="progress mx-auto" data-value='@ContentCreator'>
+                        <div class="progress mx-auto" data-value='@LatestCreator'>
                             <span class="progress-left">
                                 <span class="progress-bar border-primary"></span>
                             </span>
@@ -65,7 +69,7 @@
                                 <span class="progress-bar border-primary"></span>
                             </span>
                             <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                <div class="h2 font-weight-bold">@ContentCreator<sup class="small">%</sup></div>
+                                <div class="h2 font-weight-bold">+@LatestCreator<sup class="small"></sup></div>
                             </div>
                         </div>
 
@@ -78,7 +82,7 @@
                         <h3 class="h6 font-weight-bold text-center mb-4">@Advertisements</h3>
 
                         <!-- Progress bar 2 -->
-                        <div class="progress mx-auto" data-value='76'>
+                        <div class="progress mx-auto" data-value='@LatestAdvertisements'>
                             <span class="progress-left">
                                 <span class="progress-bar border-primary"></span>
                             </span>
@@ -86,7 +90,7 @@
                                 <span class="progress-bar border-primary"></span>
                             </span>
                             <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                <div class="h2 font-weight-bold">+76<sup class="small">%</sup></div>
+                                <div class="h2 font-weight-bold">+@LatestAdvertisements<sup class="small"></sup></div>
                             </div>
                         </div>
 
@@ -99,7 +103,7 @@
                         <h3 class="h6 font-weight-bold text-center mb-4">@Videos</h3>
 
                         <!-- Progress bar 3 -->
-                        <div class="progress mx-auto" data-value='12'>
+                        <div class="progress mx-auto" data-value='@LatestVideos'>
                             <span class="progress-left">
                                 <span class="progress-bar border-primary"></span>
                             </span>
@@ -107,7 +111,7 @@
                                 <span class="progress-bar border-primary"></span>
                             </span>
                             <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                <div class="h2 font-weight-bold">+12<sup class="small">%</sup></div>
+                                <div class="h2 font-weight-bold">+@LatestVideos<sup class="small"></sup></div>
                             </div>
                         </div>
 
@@ -120,7 +124,7 @@
                         <h3 class="h6 font-weight-bold text-center mb-4">@Views</h3>
 
                         <!-- Progress bar 4 -->
-                        <div class="progress mx-auto" data-value='25'>
+                        <div class="progress mx-auto" data-value='@LatestViews'>
                             <span class="progress-left">
                                 <span class="progress-bar border-primary"></span>
                             </span>
@@ -128,7 +132,7 @@
                                 <span class="progress-bar border-primary"></span>
                             </span>
                             <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                <div class="h2 font-weight-bold">+25<sup class="small">%</sup></div>
+                                <div class="h2 font-weight-bold">+@LatestViews<sup class="small"></sup></div>
                             </div>
                         </div>
 

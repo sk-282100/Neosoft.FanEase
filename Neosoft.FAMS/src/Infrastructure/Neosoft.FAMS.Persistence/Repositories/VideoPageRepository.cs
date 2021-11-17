@@ -39,6 +39,15 @@ namespace Neosoft.FAMS.Persistence.Repositories
             List<long> stats = new List<long>() {likes,dislikes,views,shared};
             return stats;
         }
+
+        public  List<long> GetTopVideos()
+        {
+            var data= _dbContext.VideoStatisticsDetails.Select(p => p.VideoId ?? 0).Distinct().ToList();
+            return data;
+
+        }
+
+
         public async Task<long> GetLikesById(long id)
         {
             long likes =  _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsLiked == true).Count();
@@ -71,6 +80,11 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             var modify = await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(m => m.VideoId == id && m.ViewBy == viewerId);
             return modify;
+        }
+        public async Task<List<VideoStatisticsDetail>> GetLatestViews()
+        {
+            var data = await _dbContext.VideoStatisticsDetails.Where(p => p.ViewOn >= DateTime.Today).OrderByDescending(p => p.VideoId).ToListAsync();
+            return data;
         }
     }
 }

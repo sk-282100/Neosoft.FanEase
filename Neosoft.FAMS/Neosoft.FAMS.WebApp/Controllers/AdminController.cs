@@ -43,6 +43,10 @@ namespace Neosoft.FAMS.WebApp.Controllers
             TempData["Advertisements"] = data[1];
             TempData["Videos"] = data[2];
             TempData["Views"] = data[3];
+            TempData["LatestCreator"] = data[4];
+            TempData["LatestAdvertisements"] = data[5];
+            TempData["LatestVideos"] = data[6];
+            TempData["LatestViews"] = data[7];
             ViewData["AdminStats"] = data;
             return View();
         }
@@ -117,6 +121,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var data = _creator.GetCreatorById(id);
             ViewData["data"] = data;
             TempData["imgPath"] = data.ProfilePhotoPath;
+            TempData["isPassword"] = data.isPassowrdUpdated;
+            TempData["isDeleted"] = data.isDeleted;
             return View();
         }
 
@@ -124,8 +130,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult EditCreator([FromRoute] long id, CreatorRegisteration editCreator)
         {
             editCreator.ContentCreatorId = id;
-            editCreator.CityId = 1;
-            editCreator.CountryId = 1;
+            editCreator.isPassowrdUpdated = Convert.ToBoolean(TempData["isPassword"]);
+            editCreator.isDeleted = Convert.ToBoolean(TempData["isDeleted"]);
             if (ModelState.IsValid)
             {
                 var updateCreator = _mapper.Map<UpdateCreatorByIdCommand>(editCreator);

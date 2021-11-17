@@ -9,5 +9,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         public Task<AdvertisementDetail> GetByIdAsync(long id);
         public Task<CampaignAdvertiseMapping> AddMapperDataAsync(CampaignAdvertiseMapping entity);
         public Task<List<AdvertisementDetail>> GetAllById(long id);
+        Task<List<AdvertisementDetail>> GetLatestAdvertisement();
     }
 }

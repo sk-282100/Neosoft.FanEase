@@ -34,7 +34,18 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
             var Videos = await _videoRepository.ListAllAsync();
             var countOfVideos = Videos.Count;
             var viewCount = _videoPageRepository.GetViewCount();
-            List<long> result = new List<long>() { countOfCreators,countOfAdvertisements,countOfVideos,viewCount };
+            var latestCreator = await _contentCreatorRepo.GetLatestCreator();
+            var countOfLatestCreator = latestCreator.Count;
+            var latestAdvertisement = await _advertisementRepo.GetLatestAdvertisement();
+            var countOfLatestAd = latestAdvertisement.Count;
+            var latestVideo = await _videoRepository.GetLatestVideo();
+            var countOfLatestVideo = latestVideo.Count;
+            var latestViews = await _videoPageRepository.GetLatestViews();
+            var countOfLatesViews = latestViews.Count;
+
+
+
+            List<long> result = new List<long>() { countOfCreators,countOfAdvertisements,countOfVideos,viewCount ,countOfLatestCreator, countOfLatestAd, countOfLatestVideo, countOfLatesViews };
             return result;
 
         }
