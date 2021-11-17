@@ -42,6 +42,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         }
 
+      
         public void AddExistingAssetId(long id)
         {
             //long advertisementId = Convert.ToInt64(id);

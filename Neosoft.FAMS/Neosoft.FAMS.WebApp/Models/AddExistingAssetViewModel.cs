@@ -7,6 +7,6 @@ namespace Neosoft.FAMS.WebApp.Models
 {
     public static class AddExistingAssetViewModel
     {
-        public static List<long> AdvertisementId { get; set; }
+        public static List<long> AdvertisementId = new List<long>();
     }
 }
