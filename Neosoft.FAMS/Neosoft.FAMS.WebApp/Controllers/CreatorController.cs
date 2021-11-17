@@ -42,7 +42,19 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         }
 
-      
+        public IActionResult AddExistingAssets()
+        {
+            foreach (var id in AddExistingAssetViewModel.AdvertisementId)
+            {
+                var data = _asset.GetAssetById(id);
+                var createAdvertisement = _mapper.Map<CreateAdvertisementCommand>(data);
+                createAdvertisement.CreatedBy= long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+                createAdvertisement.CreatedOn=DateTime.Now;
+                _asset.SaveAssetDetail(createAdvertisement);
+            }
+
+            return RedirectToAction("AddCampaignView");
+        }
         public void AddExistingAssetId(long id)
         {
             //long advertisementId = Convert.ToInt64(id);

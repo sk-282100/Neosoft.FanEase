@@ -57,8 +57,8 @@
                 </table>
             </div>
             <div style="float:right; margin-top: 10px;">
-                <button class="btn btn-secondary">Previous</button>
-                <button class="btn btn-primary">Proceed</button>
+                <button class="btn btn-secondary" onclick="window.location= '@Url.Action( "AddCampaignView", "Creator")'">Back</button>
+                <button id="proceedBtn" style="display: none;" class="btn btn-primary" onclick="window.location= '@Url.Action( "AddExistingAssets", "Creator")'">Proceed</button>
             </div>
         </div>
     </div>
@@ -70,8 +70,9 @@
 @section Scripts{
     <script src="~/js/creatorSideBar.js"></script>
     <script>
-        function insertValue(elem)
-        {
+        function insertValue(elem) {
+            $("#proceedBtn").css("display", "inline");
+
             var Id = $(elem).attr("id");
             console.log(Id);
             var advertisementId = Id.split('_');
