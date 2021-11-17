@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,6 +48,12 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             var listofVideos = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsClicked == true).Count();
             return listofVideos;
+        }
+
+        public async Task<List<VideoDetail>> GetLatestVideo()
+        {
+            var data = await _dbContext.VideoDetails.Where(p => p.CreatedOn >= DateTime.Today).OrderByDescending(p => p.VideoId).ToListAsync();
+            return data;
         }
     }
 }

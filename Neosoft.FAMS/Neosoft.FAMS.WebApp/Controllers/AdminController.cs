@@ -43,6 +43,10 @@ namespace Neosoft.FAMS.WebApp.Controllers
             TempData["Advertisements"] = data[1];
             TempData["Videos"] = data[2];
             TempData["Views"] = data[3];
+            TempData["LatestCreator"] = data[4];
+            TempData["LatestAdvertisements"] = data[5];
+            TempData["LatestVideos"] = data[6];
+            TempData["LatestViews"] = data[7];
             ViewData["AdminStats"] = data;
             return View();
         }

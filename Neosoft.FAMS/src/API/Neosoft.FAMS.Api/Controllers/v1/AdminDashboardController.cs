@@ -22,8 +22,17 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         [HttpGet]
         public async Task<IActionResult> GetAdminStats()
         {
-            var VideoQuery = new GetAdminStatisticQuery();
-            var data = await _mediator.Send(VideoQuery);
+            var adminStats = new GetAdminStatisticQuery();
+            var data = await _mediator.Send(adminStats);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("GetTopVideos")]
+        public async Task<IActionResult> GetTopVideos()
+        {
+            var topVideos = new GetTopVideoQuery();
+            var data = await _mediator.Send(topVideos);
             return Ok(data);
         }
 

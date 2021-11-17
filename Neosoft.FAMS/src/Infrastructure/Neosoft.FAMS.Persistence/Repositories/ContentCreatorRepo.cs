@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
@@ -22,6 +23,12 @@ namespace Neosoft.FAMS.Persistence.Repositories
         public async Task<List<ContentCreatorDetail>> GetAllCreator()
         {
             return await _dbContext.ContentCreatorDetails.Where(p => p.isDeleted == false).OrderByDescending(p => p.ContentCreatorId).ToListAsync();
+        }
+
+        public async Task<List<ContentCreatorDetail>> GetLatestCreator()
+        {
+            var data= await _dbContext.ContentCreatorDetails.Where(p =>p.CreatedOn >= DateTime.Today ).OrderByDescending(p => p.ContentCreatorId).ToListAsync();
+            return data;
         }
 
         public Task<MappedDto> GetMappedData()

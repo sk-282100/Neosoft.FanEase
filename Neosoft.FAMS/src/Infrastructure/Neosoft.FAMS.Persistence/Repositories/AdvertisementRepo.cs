@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
 using System.Threading.Tasks;
+using System;
 
 namespace Neosoft.FAMS.Persistence.Repositories
 {
@@ -33,6 +34,11 @@ namespace Neosoft.FAMS.Persistence.Repositories
         public async Task<List<AdvertisementDetail>> GetAllById(long id)
         {
             return await _dbContext.AdvertisementDetails.Where(p => p.AdvertisementId == id).ToListAsync();
+        }
+        public async Task<List<AdvertisementDetail>> GetLatestAdvertisement()
+        {
+            var data = await _dbContext.AdvertisementDetails.Where(p => p.CreatedOn >= DateTime.Today).OrderByDescending(p => p.AdvertisementId).ToListAsync();
+            return data;
         }
     }
 }
