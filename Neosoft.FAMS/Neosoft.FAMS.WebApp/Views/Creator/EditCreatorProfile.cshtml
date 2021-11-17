@@ -1,0 +1,128 @@
+﻿@using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetAll;
+@model CreatorRegisteration
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var records = (ContentCreatorDto)ViewData["data"];
+
+
+}
+<head>
+    <link rel="stylesheet" href="~/css/temp.css" />
+    <link rel="stylesheet" href="~/css/Creator/Add Video.css" />
+    <style>
+        label span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<div class="container-fluid">
+
+    <div class="row" style="background-color: #F5F5F5;">
+        @Html.Partial("_CreatorSideBar")
+
+        <div class="col mt-2">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
+                            EDIT Profile
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                @using (Html.BeginForm("EditCreatorProfile", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
+                    <input id="LoginId" name="LoginId" value="@records.CreatedBy" type="hidden" />
+                    <input id="ContentCreatorId" name="ContentCreatorId" value="@records.ContentCreatorId" type="hidden" />
+                    <input id="CountryId" value="@records.CountryId" type="hidden" />
+                    <input id="CityId" value="@records.CityId" type="hidden" />
+                    <input id="StateId" value="@records.StateId" type="hidden" />
+
+
+                    <div class="form-row">
+                        <label id="lbl" for="formFileMultiples" class="form-label">Update Profile Image</label>
+                        <input class="form-control" type="file" name="ProfilePhotoPath" value="@records.ProfilePhotoPath" id="formFileMultipleS" />
+                        <img src="~/Uploads/Creators/Images/@records.ProfilePhotoPath" style="height:150px;width:150px;">
+
+                        <div class="form-group col-md-6">
+                            <label id="lbl" class="form-group required">
+                                Name<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("CreatorName", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="CreatorName" type="text" class="fadeIn second" name="CreatorName" value="@records.CreatorName">
+
+                            <label id="lbl">
+                                Address1<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="Address1" type="text" class="fadeIn third" name="Address1" value="@records.Address1">
+
+                            <label id="lbl">Country<sup style="color:red">*</sup></label>
+                            <select id="formCountry" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="CountryId">
+                            </select>
+
+                            <label id="lbl">
+                                Mobile Number<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="MobileNumber" type="text" class="fadeIn second" name="MobileNumber" value="@records.MobileNumber">
+
+                            <label id="lbl">
+                                Status &nbsp;&nbsp;&nbsp;
+                                @if (records.Status.Value == true)
+                                {
+                                    <input asp-for="Status" name="Status" type="radio" value=true checked /><span style=" font-size: 16px;">Active &nbsp; &nbsp;</span>
+                                    <input asp-for="Status" name="Status" type="radio" value=false /><span style=" font-size: 16px;">Deactive</span>
+                                }
+                                else
+                                {
+                                    <input asp-for="Status" name="Status" type="radio" value=true /><span style=" font-size: 16px;">Active &nbsp; &nbsp;</span>
+                                    <input asp-for="Status" name="Status" type="radio" value=false checked /> <span style=" font-size: 16px;">Deactive</span>
+                                }
+                            </label>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label id="lbl">
+                                Email<sup style="color:red">*</sup>
+                                @Html.ValidationMessage("EmailId", "", new { @class = "text-danger" })
+                            </label>
+                            <input readonly asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" value="@records.EmailId">
+
+                            <label id="lbl">Address2</label>
+                            <input type="text" class="fadeIn second" value="@records.Address2" name="Address2" placeholder="Address2"><br />
+
+                            <label id="lbl">State<sup style="color:red">*</sup></label>
+                            <select id="formState" style="margin: 10px 10px 0px 35px" name="StateId">
+                            </select>
+
+                            <label id="lbl">City<sup style="color:red">*</sup></label>
+                            <select id="formCity" style="margin: 10px 10px 0px 35px" name="CityId">
+                            </select>
+                            <div style="float:left">
+                                <label id="lbl">Additional remark</label>
+                                <textarea type="text" class="fadeIn third" value="@records.AdditionalRemark" rows="4" cols="32" name="AdditionalRemark" placeholder="Additional remark"></textarea>
+                            </div>
+                            <br /><br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            <input type="button" id="btnCancel" onclick="window.location = '@Url.Action("Index", "Creator")'" class="btn btn-secondary" value="Cancel">
+                            <input type="submit" class="btn btn-primary" id="btnProceed" value="Update">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/creatorSideBar.js"></script>
+    <script src="~/js/editCreator.js"></script>
+
+}

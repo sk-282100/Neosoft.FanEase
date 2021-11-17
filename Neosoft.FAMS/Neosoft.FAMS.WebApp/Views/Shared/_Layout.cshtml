@@ -34,6 +34,46 @@
                 background-color: #6b6963;
                 color: white;
             }
+        .menu-btn {
+            color: white;
+            font-weight: bolder;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border: none;
+            float: left;
+            background-color: white;
+            overflow: hidden;
+        }
+        .dropdown-menu {
+            position: relative;
+            display: inline-block;
+            border-style: none;
+            float: left;
+        }
+        .menu-content {
+            display: none;
+            float: left;
+            overflow: hidden;
+            position: absolute;
+            width: 80px;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #52BAF1;
+            z-index: 1;
+        }
+        .links,.links-hidden{
+            display: inline-block;
+            color: rgb(255, 255, 255);
+            padding: 5px 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .links-hidden{
+            display: block;
+        }
+        .dropdown-menu:hover .menu-content {
+            display: block;
+        }
     </style>
 </head>
 <body style="background-color: #F5F5F5;">
@@ -54,7 +94,14 @@
                 {
                     
             <div style="margin-left:auto;margin-right:5px;">
-                <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
+                
+                <div class="dropdown-menu">
+                    Username: @Context.Session.GetString("Username")&emsp;&emsp;
+                    <button class="menu-btn"><i class="fa fa-caret-down" style="color: gray "></i></button>
+                    <div class="menu-content">
+                        <a class="links-hidden" href="~/Creator/EditCreatorProfile/@Context.Session.GetString("ContentCreatorId")">Profile</a>
+                    </div>
+                </div>
                 <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
             </div>
                 }

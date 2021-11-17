@@ -2,9 +2,7 @@
     margin-top: 100px;
 }
 
-.paging_simple_numbers {
-    color: white !important;
-}
+.paging_simple_numbers { color: white !important; }
 
 .paginate_button {
     color: white !important;
@@ -48,14 +46,6 @@
     background: #C1C0C0;
     text-decoration-color: white;
     color: white;
-}
-
-h3 {
-    text-align: left;
-    margin-left: 10px;
-    color: #52BAF1;
-    font-family: Rockwell;
-    text-shadow: #56baed 0.05em 0.05em 0.02em;
 }
 
 table,

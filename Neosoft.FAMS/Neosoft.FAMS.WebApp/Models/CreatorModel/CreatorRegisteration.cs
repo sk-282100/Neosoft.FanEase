@@ -58,5 +58,7 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         public DateTime? CreatedOn { get; set; }
 
         public long CreatedBy { get; set; }
+        public bool isPassowrdUpdated { get; set; }
+        public bool isDeleted { get; set; }
     }
 }
