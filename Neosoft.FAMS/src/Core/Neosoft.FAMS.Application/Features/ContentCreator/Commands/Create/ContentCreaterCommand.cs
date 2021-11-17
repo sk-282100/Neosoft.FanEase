@@ -20,6 +20,8 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
         public long CreatedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public bool? Status { get; set; }
+        public bool isPassowrdUpdated { get; set; }
+        public bool isDeleted { get; set; }
 
 
     }

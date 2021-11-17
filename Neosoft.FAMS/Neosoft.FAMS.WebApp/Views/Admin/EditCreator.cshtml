@@ -75,13 +75,13 @@
                                     Status &nbsp;&nbsp;&nbsp;
                                     @if (records.Status.Value == true)
                                     {
-                                        <input asp-for="Status" name="Status" type="radio" value=true checked /><label>Active &nbsp; &nbsp;</label>
-                                        <input asp-for="Status" name="Status" type="radio" value=false /><label>Deactive</label>
+                                        <input asp-for="Status" name="Status" type="radio" value=true checked /><span style=" font-size: 16px;">Active &nbsp; &nbsp;</span>
+                                        <input asp-for="Status" name="Status" type="radio" value=false /><span style=" font-size: 16px;">Deactive</span>
                                     }
                                     else
                                     {
-                                        <input asp-for="Status" name="Status" type="radio" value=true /><label>Active &nbsp; &nbsp;</label>
-                                        <input asp-for="Status" name="Status" type="radio" value=false checked /> <label>Deactive</label>
+                                        <input asp-for="Status" name="Status" type="radio" value=true /><span style=" font-size: 16px;">Active &nbsp; &nbsp;</span>
+                                        <input asp-for="Status" name="Status" type="radio" value=false checked /> <span style=" font-size: 16px;">Deactive</span>
                                     }
                                 </label>
                             </div>

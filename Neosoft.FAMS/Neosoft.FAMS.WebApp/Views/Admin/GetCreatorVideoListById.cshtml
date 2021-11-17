@@ -16,10 +16,16 @@
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_SideBar")
         <div class="col pt-2">
-            <h3 class="mt-3">@ViewData["CreatorName"]'s Videos</h3>
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="ml-1 mt-4 text-left" style="color: #8b8b8b;">
+                        @ViewData["CreatorName"]'s Videos
+                    </h3>
+                </div>
+            </div>
 
             <div style="margin-top: 20px; width: 100%;">
-                <table id="myTable" class="table table-bordered table-sm table-hover" style="width: 100%">
+                <table id="myTable" class="table table-sm table-hover" style="width: 100%">
                     <thead>
                     <tr>
                         <th class="nosort">Thumbnail Image</th>

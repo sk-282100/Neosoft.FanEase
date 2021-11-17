@@ -17,7 +17,13 @@
         @Html.Partial("_CreatorSideBar")
         <div class="col pt-2">
             <div class="row header">
-                <h3>Select Existing Assets</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="ml-1 mt-4 text-left" style="color: #8b8b8b;">
+                            Select Existing Assets
+                        </h3>
+                    </div>
+                </div>
             </div>
             <div style="margin-top:20px;">
                 <table id="myTable" class="table table-sm table-hover">
@@ -57,21 +63,19 @@
                 </table>
             </div>
             <div style="float:right; margin-top: 10px;">
-                <button class="btn btn-secondary">Previous</button>
-                <button class="btn btn-primary">Proceed</button>
+                <button class="btn btn-secondary" onclick="window.location= '@Url.Action( "AddCampaignView", "Creator")'">Back</button>
+                <button id="proceedBtn" style="display: none;" class="btn btn-primary" onclick="window.location= '@Url.Action( "AddExistingAssets", "Creator")'">Proceed</button>
             </div>
         </div>
     </div>
 </div>
-@{
-    List<long> myList = new List<long>();
 
-}
 @section Scripts{
     <script src="~/js/creatorSideBar.js"></script>
     <script>
-        function insertValue(elem)
-        {
+        function insertValue(elem) {
+            $("#proceedBtn").css("display", "inline");
+
             var Id = $(elem).attr("id");
             console.log(Id);
             var advertisementId = Id.split('_');

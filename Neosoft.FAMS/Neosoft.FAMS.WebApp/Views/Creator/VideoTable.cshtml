@@ -22,45 +22,51 @@
         @Html.Partial("_CreatorSideBar")
 
         <div class="col pt-2">
-            <h3>Video List</h3>
-            <div class="row header">
-                <div style="float: right;">
-                    <button style="float: right; margin-right: 5px; margin-bottom: 5px; width: 220px; height: 50px; background-color: #C1C0C0; color: white;" type="button" class="btn add-new" onclick="window.location= '@Url.Action( "AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="ml-1 mt-4 text-left" style="color: #8b8b8b;">
+                        Video List
+                    </h3>
                 </div>
             </div>
-            <div style="margin-top:20px;">
+            <div class="row header">
+                <div style="float: right;">
+                    <button style="float: right; margin-right: 5px; margin-bottom: 5px; width: 220px; height: 50px; background-color: #C1C0C0; color: white;" type="button" class="btn add-new" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'"><i class="fa fa-plus"></i> Add New Video</button>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
                 <table id="myTable" class="table table-sm table-hover">
                     <thead>
-                        <tr>
-                            <th class="nosort">Thumbnail Image</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Video Title</th>
-                            <th>Action</th>
+                    <tr>
+                        <th class="nosort">Thumbnail Image</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Video Title</th>
+                        <th>Action</th>
 
-                        </tr>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach (var record in records)
-                        {
-                            <tr>
-                                @if (@record.VideoImage != null)
-                                {
-                                    <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height:50px;width:50px;" /></td>
-                                }
-                                else
-                                {
-                                    <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" /></td>
-                                }
-                                <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
-                                <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                                <td>@record.Title</td>
-                                <td>
-                                    <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                    <a class="delete" title="Delete" onClick="deleteCreator('DeleteVideo/@record.VideoId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"><i class="material-icons"></i></a>
-                                </td>
-                            </tr>
-                        }
+                    @foreach (var record in records)
+                    {
+                        <tr>
+                            @if (@record.VideoImage != null)
+                            {
+                                <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height: 50px; width: 50px;"/></td>
+                            }
+                            else
+                            {
+                                <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height: 50px; width: 50px;"/></td>
+                            }
+                            <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                            <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                            <td>@record.Title</td>
+                            <td>
+                                <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                <a class="delete" title="Delete" onClick="deleteCreator('DeleteVideo/@record.VideoId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
+                            </td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
 

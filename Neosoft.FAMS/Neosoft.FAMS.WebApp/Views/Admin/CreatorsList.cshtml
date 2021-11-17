@@ -28,8 +28,13 @@
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_SideBar")
         <div class="col pt-2">
-
-            <h3>Content Creators</h3>
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="ml-1 mt-4 text-left" style="color: #8b8b8b;">
+                        Content Creators
+                    </h3>
+                </div>
+            </div>
             <div class="row header" style="float: right;">
                 <button type="button" class="btn add-new btnAddNewCreator" onclick="window.location = '@Url.Action("CreatorRegisteration", "Admin")'"><i class="fa fa-plus"></i> Add New Content Creator</button>
             </div>

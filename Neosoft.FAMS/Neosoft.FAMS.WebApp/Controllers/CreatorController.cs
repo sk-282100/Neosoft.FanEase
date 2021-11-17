@@ -20,6 +20,8 @@ using System.Collections.Generic;
 using System.IO;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
+using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
+using Neosoft.FAMS.WebApp.Models.CreatorModel;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -31,7 +33,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private ICampaign _campaign;
         private IAsset _asset;
-        public CreatorController(IMapper mapper,ICommon common, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset)
+        private ICreator _creator;
+        public CreatorController(IMapper mapper,ICommon common, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset, ICreator creator)
         {
             _mapper = mapper;
             _common = common;
@@ -39,10 +42,23 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _webHostEnvironment = webHostEnvironment;
             _campaign = campaign;
             _asset = asset;
+            _creator = creator;
 
         }
 
-      
+        public IActionResult AddExistingAssets()
+        {
+            foreach (var id in AddExistingAssetViewModel.AdvertisementId)
+            {
+                var data = _asset.GetAssetById(id);
+                var createAdvertisement = _mapper.Map<CreateAdvertisementCommand>(data);
+                createAdvertisement.CreatedBy= long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+                createAdvertisement.CreatedOn=DateTime.Now;
+                _asset.SaveAssetDetail(createAdvertisement);
+            }
+
+            return RedirectToAction("AddCampaignView");
+        }
         public void AddExistingAssetId(long id)
         {
             //long advertisementId = Convert.ToInt64(id);
@@ -350,7 +366,58 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return video;
         }
 
+        [HttpGet]
+        public IActionResult EditCreatorProfile([FromRoute] long id)
+        {
+            var data = _creator.GetCreatorById(id);
+            ViewData["data"] = data;
+            TempData["imgPath"] = data.ProfilePhotoPath;
+            TempData["isPassword"] = data.isPassowrdUpdated;
+            TempData["isDeleted"] = data.isDeleted;
+            return View();
+        }
 
-        
+        [HttpPost]
+        public IActionResult EditCreatorProfile([FromRoute] long id, CreatorRegisteration editCreator)
+        {
+            editCreator.ContentCreatorId = id;
+            editCreator.isPassowrdUpdated = Convert.ToBoolean(TempData["isPassword"]);
+            editCreator.isDeleted = Convert.ToBoolean(TempData["isDeleted"]);
+            if (ModelState.IsValid)
+            {
+                var updateCreator = _mapper.Map<UpdateCreatorByIdCommand>(editCreator);
+                if (editCreator.ProfilePhotoPath == null)
+                    updateCreator.ProfilePhotoPath = TempData["imgPath"].ToString();
+                else
+                {
+                    string uniqueFileName = UploadedFile(editCreator);
+                    updateCreator.ProfilePhotoPath = uniqueFileName;
+                }
+
+                var isupdated = _creator.UpdateCreatorDetail(updateCreator);
+                return RedirectToAction("Index");
+
+            }
+            var record = _creator.GetCreatorById(id);
+            ViewData["data"] = record;
+            return View();
+        }
+        private string UploadedFile(CreatorRegisteration model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ProfilePhotoPath != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Creators/Images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfilePhotoPath.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ProfilePhotoPath.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+        }
+
     }
 }

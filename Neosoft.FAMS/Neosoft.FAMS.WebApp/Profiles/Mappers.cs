@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Create;
 using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
+using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Create;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
@@ -28,6 +29,8 @@ namespace Neosoft.FAMS.WebApp.Profiles
             CreateMap<ViewerCreateCommand, ViewerRegisteration>().ReverseMap();
             CreateMap<UpdateAdvertisementCommand, AddAsset>().ReverseMap();
             CreateMap<UpdateCampaignCommand, CreateCampaign>().ReverseMap();
+            CreateMap<CreateAdvertisementCommand, AdvertisementListQueryDto>().ReverseMap();
+
 
         }
     }
