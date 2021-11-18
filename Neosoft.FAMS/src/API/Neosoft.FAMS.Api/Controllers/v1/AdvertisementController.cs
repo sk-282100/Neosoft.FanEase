@@ -8,6 +8,7 @@ using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetById;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetMappedDataByCampaignId;
+using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetMappedVideoById;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -58,6 +59,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         public async Task<IActionResult> GetMappedAdvertisedById([FromRoute] long id)
         {
             var getAdvertisement = new GetMappedListByIdQuery() { CampaignId = id };
+            var result = await _mediator.Send(getAdvertisement);
+            return Ok(result);
+        }
+        [HttpGet]
+        [Route("GetMappedVideoById/{id}")]
+        public async Task<IActionResult> GetMappedVideoById([FromRoute] long id)
+        {
+            var getAdvertisement = new GetMappedVideoByIdQuery() { CampaignId = id };
             var result = await _mediator.Send(getAdvertisement);
             return Ok(result);
         }

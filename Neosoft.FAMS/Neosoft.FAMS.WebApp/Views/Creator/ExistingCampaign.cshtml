@@ -1,4 +1,5 @@
 ﻿@using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll
+@using Microsoft.AspNetCore.Http
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -11,6 +12,18 @@
     <link href="~/css/Creator/ExistingCampaign.css" rel="stylesheet" />
     <link href="~/css/datatablestyle.css" rel="stylesheet" />
     <script src="~/js/AddVideo.js"></script>
+    <style>
+        input[type=radio] {
+            padding: 0.3em;
+            -webkit-appearance: none;
+            outline: 0.1em solid black;
+            outline-offset: 0.1em;
+        }
+            input[type=radio]:checked {
+                display: inline-block;
+                background-color: #52BAF1;
+            }
+    </style>
 </head>
 
 <div class="container-fluid">
@@ -42,13 +55,16 @@
                     <tbody>
                     @foreach (var record in records)
                     {
-                        <tr>
-                            <td><input id="campaignRadioBtn_@record.CampaignId" onclick="changeId('@record.CampaignId')" name="existedCampaign" type="radio"/> &nbsp; </td>
-                            <td>@record.CampaignId</td>
-                            <td>@record.CampaignName</td>
-                            <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
-                            <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                        </tr>
+                        if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted == false)
+                        {
+                            <tr>
+                                <td><input id="campaignRadioBtn_@record.CampaignId" onclick="changeId('@record.CampaignId')" name="existedCampaign" type="radio"/> &nbsp; </td>
+                                <td>@record.CampaignId</td>
+                                <td>@record.CampaignName</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                            </tr>
+                        }
                     }
                     </tbody>
                 </table>

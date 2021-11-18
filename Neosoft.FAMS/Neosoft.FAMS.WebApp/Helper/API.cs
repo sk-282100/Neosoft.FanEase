@@ -79,6 +79,8 @@
             public static string SaveCampaign(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetCampaignById(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
             public static string DeleteCampaign(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
+            public static string GetMappedVideoIdCampaign(string baseUri,long id) => $"{baseUri}api/Advertisement/GetMappedVideoById/{id}?api-version=1";
+
 
 
         }
@@ -91,7 +93,6 @@
             public static string SaveCampaignAdvertisementMappedData(string baseUri, string path) => $"{baseUri}{path}/AddCampaignAdvertiseData?api-version=1";
 
             public static string DeleteAsset(string baseUri, string path, long id) => $"{baseUri}{path}/{id}?api-version=1";
-            /* https://localhost:44330/api/Advertisement/GetMappedAdvertisedById/50?api-version=1*/
             public static string GetAllMapeedAssetById(string baseUri, string path, long id) => $"{baseUri}{path}/GetMappedAdvertisedById/{id}?api-version=1";
         }
         public static class Template

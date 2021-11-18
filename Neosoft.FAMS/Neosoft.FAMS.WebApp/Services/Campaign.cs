@@ -109,5 +109,19 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return false;
         }
+
+        public long GetMappedVideoIdCampaign(long campaignId)
+        {
+            var uri = API.Campaign.GetMappedVideoIdCampaign(_baseUrl, campaignId);
+            HttpResponseMessage response =  _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<long>(jsonDataStatus);
+                MappingViewModel.VideoId = data;
+                return data;
+            }
+            return 0;
+        }
     }
 }
