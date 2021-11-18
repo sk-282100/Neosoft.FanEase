@@ -45,6 +45,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _creator = creator;
 
         }
+        public IActionResult AddExistingCampaignIdToMapped(long id)
+        {
+            MappingViewModel.CampaignId = id;
+            _campaign.GetMappedVideoIdCampaign(id);
+            HttpContext.Session.SetString("isCampaignAdded",true.ToString());
+            return RedirectToAction("AddAsset");
+        }
 
         public IActionResult AddExistingCampaignId(long id)
         {

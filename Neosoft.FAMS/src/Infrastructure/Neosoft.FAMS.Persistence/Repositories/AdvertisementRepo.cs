@@ -45,5 +45,9 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             return await _dbContext.CampaignAdvertiseMappings.Where(p => p.CampaignId == id).ToListAsync();
         }
+        public async Task<CampaignAdvertiseMapping> GetMappedVideoByIdAsync(long id)
+        {
+            return await _dbContext.CampaignAdvertiseMappings.Where(p => p.CampaignId == id).FirstOrDefaultAsync();
+        }
     }
 }

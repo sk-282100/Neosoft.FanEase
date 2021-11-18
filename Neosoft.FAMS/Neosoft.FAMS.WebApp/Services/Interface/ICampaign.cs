@@ -14,5 +14,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public CampaignGetAllDto GetCampaignById(long id);
         public Task<bool> UpdateCampaignDetail(UpdateCampaignCommand update);
         public Task<bool> DeleteCampaign(DeleteCampaignByIdCommand command);
+        public long GetMappedVideoIdCampaign(long campaignId);
     }
 }

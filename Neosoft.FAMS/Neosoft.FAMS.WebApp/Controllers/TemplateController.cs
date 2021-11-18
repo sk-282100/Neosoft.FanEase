@@ -54,7 +54,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 var command = new TemplateVideoMappedCommand()
                 {
                     TemplateFieldId = i+1,
-                    VideoId = 73,
+                    VideoId = MappingViewModel.VideoId,
                     Title = advertisementData.Title,
                     Description = advertisementData.Description,
                     Link = advertisementData.Url,
