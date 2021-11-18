@@ -1,12 +1,32 @@
 ﻿@using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //ViewData["Title"] = "VideoList";
-    //var records = (List<VideoGetAllDto>)ViewData["data"];
-
 }
 <head>
     <script src="~/js/VideoDisplay.js"></script>
+    <style>
+    .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+   
+    }
+        .column:hover {
+            background-color: #D3D3D3;
+        }
+    /* Clear floats after the columns */
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+
+    label{
+        margin-left: 30px;
+    }
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  
+</style>
 </head>
 
 <div class="container-fluid">
