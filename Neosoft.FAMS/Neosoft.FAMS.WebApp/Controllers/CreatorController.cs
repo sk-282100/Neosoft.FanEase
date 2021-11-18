@@ -46,15 +46,22 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         }
 
+        public IActionResult AddExistingCampaignId(long id)
+        {
+            var campaignData=_campaign.GetCampaignById(id);
+            ViewData["campaignData"] = campaignData;
+            ViewData["displayBlock"] = "block";
+            ViewData["displayNone"] = "none";
+            ViewData["AdvertisementData"] = _asset.GetAllMappedAsset(id);
+            return RedirectToAction("AddCampaignView");
+        }
+
         public IActionResult AddExistingAssets()
         {
             foreach (var id in AddExistingAssetViewModel.AdvertisementId)
             {
-                var data = _asset.GetAssetById(id);
-                var createAdvertisement = _mapper.Map<CreateAdvertisementCommand>(data);
-                createAdvertisement.CreatedBy= long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-                createAdvertisement.CreatedOn=DateTime.Now;
-                _asset.SaveAssetDetail(createAdvertisement);
+                MappingViewModel.AdvertisementId = id;
+                _asset.AddMappedData();
             }
 
             return RedirectToAction("AddCampaignView");
@@ -132,6 +139,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var data = _asset.GetAllAsset();
             ViewData["data"] = data;
             ViewData["isInsert"] = false;
+            ViewData["displayBlock"] = "none";
+            ViewData["displayNone"] = "block";
             return View();
         }
         [HttpPost]

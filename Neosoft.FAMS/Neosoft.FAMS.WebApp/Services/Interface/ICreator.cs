@@ -15,5 +15,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public ContentCreatorDto GetCreatorByEmail(string username);
         public Task<bool> DeleteCreator(DeleteCreatorByIdCommand command);
 
+
     }
 }

@@ -40,5 +40,10 @@ namespace Neosoft.FAMS.Persistence.Repositories
             var data = await _dbContext.AdvertisementDetails.Where(p => p.CreatedOn >= DateTime.Today).OrderByDescending(p => p.AdvertisementId).ToListAsync();
             return data;
         }
+
+        public async Task<List<CampaignAdvertiseMapping>> GetMappedByIdAsync(long id)
+        {
+            return await _dbContext.CampaignAdvertiseMappings.Where(p => p.CampaignId == id).ToListAsync();
+        }
     }
 }
