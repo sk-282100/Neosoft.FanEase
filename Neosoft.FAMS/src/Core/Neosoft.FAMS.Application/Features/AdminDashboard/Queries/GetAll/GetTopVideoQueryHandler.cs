@@ -33,15 +33,22 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
         {
             List<GetTopVideoDto> result = new List<GetTopVideoDto>();
             var topVideos = _videoPageRepository.GetTopVideos();
-
+            
             for (var i = 0; i < topVideos.Count; i++)
             {
-                result.Add(new GetTopVideoDto()
+                var detail = await _videoRepository.GetByIdAsync(topVideos[i]);
+                if (detail != null)
                 {
-                    topVideoId = topVideos[i],
-                    topViews = await _videoPageRepository.GetViewsById(topVideos[i]),
-                    topClicks = await _videoPageRepository.GetLikesById(topVideos[i]),
-                });
+                    result.Add(new GetTopVideoDto()
+                    {
+                        topVideoId = topVideos[i],
+                        UploadVideoPath = detail.UploadVideoPath,
+                        Title=detail.Title,
+                        topViews = await _videoPageRepository.GetViewsById(topVideos[i]),
+                        topClicks = await _videoPageRepository.GetLikesById(topVideos[i]),
+                    });
+                }
+                
             }
 
             return result.OrderByDescending(p=>p.topViews).ToList();

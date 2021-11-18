@@ -103,6 +103,7 @@
         public static class AdminDashboard
         {
             public static string GetAdminStats(string baseUri,string path) => $"{baseUri}{path}?api-version=1";
+            public static string GetTopVideos(string baseUri, string path) => $"{baseUri}{path}/GetTopVideos?api-version=1";
         }
     }
 }

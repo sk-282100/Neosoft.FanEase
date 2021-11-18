@@ -38,6 +38,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult Index()
         {
             
+            var record = _adminDashboard.GetTopVideo();
+            ViewData["records"] = record;
             var data = _adminDashboard.GetAdminStats();
             TempData["ContentCreator"] = data[0];
             TempData["Advertisements"] = data[1];
