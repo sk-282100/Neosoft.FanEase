@@ -53,7 +53,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["displayBlock"] = "block";
             ViewData["displayNone"] = "none";
             ViewData["AdvertisementData"] = _asset.GetAllMappedAsset(id);
-            return RedirectToAction("AddCampaignView");
+            return View("AddCampaignView");
         }
 
         public IActionResult AddExistingAssets()
