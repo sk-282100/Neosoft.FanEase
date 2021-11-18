@@ -21,7 +21,8 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Queries.GetMappedVideo
         public async Task<long> Handle(GetMappedVideoByIdQuery request, CancellationToken cancellationToken)
         {
             var mappedData = await _advertisementRepo.GetMappedVideoByIdAsync(request.CampaignId);
-            return mappedData.VideoId??0;
+            long result = (mappedData==null) ? 0 : (long)mappedData.VideoId;
+            return result;
         }
     }
 }
