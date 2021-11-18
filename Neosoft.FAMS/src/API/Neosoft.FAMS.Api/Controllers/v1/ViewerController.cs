@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetTopViewsVideo;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Update;
@@ -100,5 +101,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(viewerQuery);
             return Ok(data);
         }
+
+        [HttpGet]
+        [Route("GetTopLikes")]
+        public async Task<IActionResult> GetTopLikes()
+        {
+            var topVideos = new GetTopLikesVideoListQuery();
+            var data = await _mediator.Send(topVideos);
+            return Ok(data);
+        }
+
     }
 }

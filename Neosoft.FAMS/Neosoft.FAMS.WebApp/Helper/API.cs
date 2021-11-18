@@ -22,6 +22,7 @@
             public static string GetEmailUrl(string baseUri, string path, string email) => $"{baseUri}{path}/getViewerByEmail?username={email}?api-version=1";
             public static string SaveViewer(string baseUri, string path) => $"{baseUri}{path}?api-version=1";
             public static string GetViewerByEmail(string baseUri, string path, string username) => $"{baseUri}{path}/getViewerByEmail?username={username}?api-version=1";
+            public static string GetTopLikedVideos(string baseUri, string path) => $"{baseUri}{path}/GetTopLikes?api-version=1";
 
         }
         public static class Creator

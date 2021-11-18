@@ -1,4 +1,5 @@
-﻿using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
+﻿using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetTopViewsVideo;
+using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,5 +12,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public List<ViewerDto> GetAllViewer();
         Task<long> SaveViewer(ViewerCreateCommand viewerCreateCommand);
         public ViewerDto GetViewerByEmail(string username);
+        public List<GetTopLikesVideoListDto> GetTopLikedVideo();
     }
 }

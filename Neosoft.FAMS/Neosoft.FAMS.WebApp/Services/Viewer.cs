@@ -1,4 +1,5 @@
-﻿using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
+﻿using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetTopViewsVideo;
+using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
@@ -101,6 +102,21 @@ namespace Neosoft.FAMS.WebApp.Services
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var data = JsonConvert.DeserializeObject<ViewerDto>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+
+
+        public List<GetTopLikesVideoListDto> GetTopLikedVideo()
+        {
+            var result = new List<GetTopLikesVideoListDto>();
+            var uri = API.Viewer.GetTopLikedVideos(_baseUrl, _path);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<GetTopLikesVideoListDto>>(jsonDataStatus);
                 return data;
             }
             return result;
