@@ -151,7 +151,7 @@ namespace Neosoft.FAMS.WebApp.Services
 
         public List<AdvertisementListQueryDto> GetAllMappedAsset(long campaignId)
         {
-            var result = new AdvertisementListQueryDto();
+            var result = new List<AdvertisementListQueryDto>();
             var uri = API.Asset.GetAllMapeedAssetById(_baseUrl, _path, campaignId);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             var data=new List<AdvertisementListQueryDto>();

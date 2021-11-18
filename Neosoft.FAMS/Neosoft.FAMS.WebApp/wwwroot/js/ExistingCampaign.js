@@ -7,18 +7,8 @@ function insertValue(elem) {
     var isChecked = $(`#campaignRadioBtn_${Id}`).is(':checked');
     if (isChecked) {
         var campaignId = Id;
-        $.ajax({
-            type: 'GET',
-            url: '/Creator/AddExistingCampaignId/' + campaignId,
-            async: false,
-            contentType: 'application/json',
-            success: function (data) {
-
-            },
-            error: function (error) {
-
-            }
-        });
+        window.location = '/Creator/AddExistingCampaignId/' + campaignId;
+       
     }
     else {
         alert("Please Select Campaign from the list given below");
