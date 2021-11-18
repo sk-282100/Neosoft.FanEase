@@ -10,11 +10,15 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
 {
     public interface IAsset
     {
+        public void AddMappedData();
+
         public List<AdvertisementListQueryDto> GetAllAsset();
         public Task<long> SaveAssetDetail(CreateAdvertisementCommand createAdvertisementCommand);
         public Task<long> AddCampaignAdvertiseMappedData(AddCampaignAdvertisementCommand command);
         public AdvertisementListQueryDto GetAssetById(long id);
         public Task<bool> UpdateAssetDetail(UpdateAdvertisementCommand update);
         public Task<bool> DeleteAsset(DeleteAdvertisementCommand command);
+        public List<AdvertisementListQueryDto> GetAllMappedAsset(long campaignId);
+
     }
 }

@@ -51,12 +51,15 @@ namespace Neosoft.FAMS.WebApp.Services
                 var data = JsonConvert.DeserializeObject<Response<long>>(jsonDataStatus);
                 result = data.Data;
                 MappingViewModel.AdvertisementId = result;
-                
-                AddMappedData();
+                if (MappingViewModel.CampaignId > 0)
+                {
+                    AddMappedData();
+                }
                 return result;
             }
             return result;
         }
+
 
         public List<AdvertisementListQueryDto> GetAllAsset()
         {
@@ -72,7 +75,7 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-        private void AddMappedData()
+        public void AddMappedData()
         {
 
             var addCampaignAdvertisement = new AddCampaignAdvertisementCommand();
@@ -144,6 +147,21 @@ namespace Neosoft.FAMS.WebApp.Services
                 return data.Data;
             }
             return false;
+        }
+
+        public List<AdvertisementListQueryDto> GetAllMappedAsset(long campaignId)
+        {
+            var result = new List<AdvertisementListQueryDto>();
+            var uri = API.Asset.GetAllMapeedAssetById(_baseUrl, _path, campaignId);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            var data=new List<AdvertisementListQueryDto>();
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                data = JsonConvert.DeserializeObject<List<AdvertisementListQueryDto>>(jsonDataStatus);
+                return data;
+            }
+            return data;
         }
     }
 }

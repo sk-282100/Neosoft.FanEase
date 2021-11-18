@@ -13,6 +13,6 @@ namespace Neosoft.FAMS.Domain.Entities
         public long? AdvertisementId { get; set; }
         public long? CreatedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
-        public long VideoId { get; set; }
+        public long? VideoId { get; set; }
     }
 }

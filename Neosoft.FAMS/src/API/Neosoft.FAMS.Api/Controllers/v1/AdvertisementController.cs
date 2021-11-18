@@ -7,6 +7,7 @@ using Neosoft.FAMS.Application.Features.Advertisement.Commands.Update;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetById;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetMappedDataByCampaignId;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -42,6 +43,21 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         public async Task<IActionResult> GetAll()
         {
             var getAdvertisement = new GetAdvertisementListQuery();
+            var result = await _mediator.Send(getAdvertisement);
+            return Ok(result);
+        }
+        /// <summary>
+        /// Author:Aman Sharma
+        /// Date:25/10/2021
+        /// Reason:It will get Details of a Specific Advertisement by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetMappedAdvertisedById/{id}")]
+        public async Task<IActionResult> GetMappedAdvertisedById([FromRoute] long id)
+        {
+            var getAdvertisement = new GetMappedListByIdQuery() { CampaignId = id };
             var result = await _mediator.Send(getAdvertisement);
             return Ok(result);
         }
