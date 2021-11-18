@@ -51,8 +51,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["videoData"] = videoData;
             long createdBy = Convert.ToInt64( videoData.CreatedBy);
            
-            //var session = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-            var session = 2;
+            var session = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+           // var session = 2;
             _videoStatistics.CheckClickBy(id, session);
             TempData["Session"] = session;
             var creatorData = _creator.GetCreatorById(createdBy);
