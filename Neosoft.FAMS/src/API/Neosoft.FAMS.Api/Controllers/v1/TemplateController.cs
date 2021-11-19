@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Template.Commands.TemplateVideo;
+using Neosoft.FAMS.Application.Features.Template.Queries.GetAdvertisementByVideoId;
 using Neosoft.FAMS.Application.Features.Template.Queries.GetAllById;
 using Neosoft.FAMS.Application.Features.Template.Queries.GetById;
 
@@ -33,6 +34,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
 
             var templateList = new GetTemplateListQuery();
             var data = await _mediator.Send(templateList);
+            return Ok(data);
+        }
+        [HttpGet]
+        [Route("VideoAdvertisementByVideoId{id}")]
+        public async Task<IActionResult> VideoAdvertisementByVideoId([FromRoute] long id)
+        {
+
+            var template = new VideoAdvertisementByVideoIdQuery() { VideoId = id };
+            var data = await _mediator.Send(template);
             return Ok(data);
         }
         /// <summary>
