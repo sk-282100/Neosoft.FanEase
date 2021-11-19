@@ -103,31 +103,31 @@
     <input type="text" id="viewerId" value="@session" hidden />
     <br />
 
-    <div class="row">
-        <div class="col-3">
-            @if (creatorRecords.ProfilePhotoPath == null)
-            {
-                <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px;" class="rounded-circle" />
-            }
-            else
-            {
-                <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px;" class="rounded-circle" />
-            }
+            <div class="row no-gutters">
+                <div class="col-1">
+                    @if (creatorRecords.ProfilePhotoPath == null)
+                    {
+                        <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle"/>
+                    }
+                    else
+                    {
+                        <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle"/>
+                    }
+                </div>
+                <div class="col-3 ml-1">
+                    <h4><b>@creatorRecords.CreatorName</b></h4>
 
-            <h4><b>@creatorRecords.CreatorName</b></h4>
-            
-            <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
-        </div>
+                    <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
+                </div>
+                <div class="col-7">
+                    <h4><b>Video Description : </b></h4>
+                    <p id="ContentDescription">
+                        @videoRecords.Decription
+                    </p>
+                </div>
+            </div>
 
-        <div class="col-9">
-            <h4><b>Video Description : </b></h4>
-            <p id="ContentDescription">
-                @videoRecords.Decription
-            </p>
-        </div>
-    </div>
 <div>
-<p>@advertiserecords.Count()</p>
 @if (advertiserecords.Count() <= 3)
 {
 
@@ -147,7 +147,7 @@
                     var check = advertiserecords[0].ImagePath.Split(".");
                     if (check[1] == "mp4")
                     {
-                        <video width="320" height="240" controls>
+                        <video id="centreImg1" class="rounded ml-2" controls>
                             <source src="/Uploads/Creators/Images/@advertiserecords[0].ImagePath" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -165,7 +165,7 @@
                 {
                     <img
                         src="/Uploads/Creators/Images/25baf1d8-e8b5-4c7f-a3f3-b09cc538c797_img1.jfif"
-                        class=" rounded ml-2 mb-4 imgW" 
+                        class="rounded ml-2 mb-4 imgW" 
                         alt=""
                     />
                 }
@@ -174,7 +174,7 @@
                     var check = advertiserecords[2].ImagePath.Split(".");
                     if (check[1] == "mp4")
                     {
-                        <video width="320" height="240" controls>
+                        <video id="centreImg1" class="rounded ml-2" controls>
                             <source src="" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -183,7 +183,7 @@
                     {
                         <img
                             src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath"
-                            class=" rounded ml-2 mb-4 imgW" 
+                            class="rounded ml-2 mb-4 imgW" 
                             alt=""
                         />
                     }
