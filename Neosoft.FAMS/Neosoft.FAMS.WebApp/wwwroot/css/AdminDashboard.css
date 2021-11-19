@@ -99,7 +99,7 @@ div.h4 {
 
     .panel-top > .panel-heading a {
         text-decoration: none;
-        color: #666;
+        color: lightgrey;
         font-weight: bold;
         font-size: 15px;
         -webkit-transition: all 0.1s linear;
@@ -108,8 +108,8 @@ div.h4 {
     }
 
         .panel-top > .panel-heading a.active {
-            color: #56baed;
-            font-size: 18px;
+            color:black;
+            /*font-size: 18px;*/
         }
 
     .panel-top > .panel-heading hr {
