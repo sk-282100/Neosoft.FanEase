@@ -33,7 +33,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public async Task<Login> ResetPassword(string userName, string Password)
         {
-            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
+            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName && u.Password==Password);
         }
 
         public async Task<PasswordResetRequest> AddCode(PasswordResetRequest passwordResetRequest)
