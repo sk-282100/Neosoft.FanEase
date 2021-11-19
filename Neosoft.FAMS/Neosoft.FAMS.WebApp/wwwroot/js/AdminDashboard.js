@@ -37,8 +37,8 @@ $(function () {
     })
 
     function percentageToDegrees(percentage) {
-
-        return percentage / 100 * 360;
+        
+        return 360 * percentage / 100;;
 
     }
 
