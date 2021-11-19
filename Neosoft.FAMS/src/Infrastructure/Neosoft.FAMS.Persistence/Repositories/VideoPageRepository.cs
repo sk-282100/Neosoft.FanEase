@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
+using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.VideoPage.Query.GetAllVideoStatistics;
 using Neosoft.FAMS.Domain.Entities;
 using System;
@@ -46,7 +47,16 @@ namespace Neosoft.FAMS.Persistence.Repositories
             return data;
 
         }
+        public List<VideoDetail> GetAllVideos()
+        {
+            var data = _dbContext.VideoDetails.Where(p=> p.IsDeleted == false).ToList();
+            return data;
 
+        }
+        public async Task<VideoStatisticsDetail> GetByIdAsync(long id)
+        {
+            return await _dbContext.VideoStatisticsDetails.FirstOrDefaultAsync(p => p.VideoId == id);
+        }
 
         public async Task<long> GetLikesById(long id)
         {
@@ -56,6 +66,11 @@ namespace Neosoft.FAMS.Persistence.Repositories
         public async Task<long> GetDislikesById(long id)
         {
             long likes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsLiked == false).Count();
+            return likes;
+        }
+        public async Task<long> GetSharesById(long id)
+        {
+            long likes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsShared == true).Count();
             return likes;
         }
 

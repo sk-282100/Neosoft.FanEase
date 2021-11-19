@@ -43,9 +43,12 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
                     {
                         topVideoId = topVideos[i],
                         UploadVideoPath = detail.UploadVideoPath,
-                        Title=detail.Title,
+                        Title = detail.Title,
                         topViews = await _videoPageRepository.GetViewsById(topVideos[i]),
                         topClicks = await _videoPageRepository.GetLikesById(topVideos[i]),
+                        topShares=await _videoPageRepository.GetSharesById(topVideos[i]),
+                        Decription = detail.Decription,
+                        videoImage = detail.VideoImage
                     });
                 }
                 

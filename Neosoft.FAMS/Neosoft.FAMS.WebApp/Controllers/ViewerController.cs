@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetTopViewsVideo;
 using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.Viewer.Commands.Create;
 using Neosoft.FAMS.WebApp.Models.ViewerModel;
@@ -12,13 +14,15 @@ namespace Neosoft.FAMS.WebApp.Controllers
     public class ViewerController : Controller
     {
         private IMapper _mapper;
+        IAdminDashboard _adminDashboard;
         IViewer _viewer;
         ICommon _common;
         IVideo _video;
 
-        public ViewerController(IMapper mapper, IViewer viewer, ICommon common,IVideo video)
+        public ViewerController(IMapper mapper, IViewer viewer, ICommon common,IVideo video,IAdminDashboard adminDashboard)
         {
             _mapper = mapper;
+            _adminDashboard = adminDashboard;
             _viewer = viewer;
             _common = common;
             _video = video;
@@ -86,9 +90,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public ActionResult DisplayAllVideos()
         {
-            //var data = _video.GetAllVideoList();
-            //ViewData["Data"] = data;
             return View();
+        }
+        public List<GetTopVideoDto> topViewsVideo()
+        {
+            var videoList = _adminDashboard.GetTopVideo();
+            return videoList;
+
         }
         [HttpGet]
         public List<VideoGetAllDto> GetVideos([FromQuery] long videoId, [FromQuery] long viewerId)
@@ -96,6 +104,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var videoList = _video.GetAllVideoList();
             return videoList;
         }
-        
+        public List<GetTopLikesVideoListDto> GetTopLikedVideos()
+        {
+            var videoList = _viewer.GetTopLikedVideo();
+            return videoList;
+        }
+
     }
 }
