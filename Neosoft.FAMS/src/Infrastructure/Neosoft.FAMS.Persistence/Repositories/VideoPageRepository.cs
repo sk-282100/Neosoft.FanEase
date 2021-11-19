@@ -68,6 +68,11 @@ namespace Neosoft.FAMS.Persistence.Repositories
             long likes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsLiked == false).Count();
             return likes;
         }
+        public async Task<long> GetSharesById(long id)
+        {
+            long likes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsShared == true).Count();
+            return likes;
+        }
 
         public async Task<VideoStatisticsDetail> UpdateLike(long id, long viewerId)
         {

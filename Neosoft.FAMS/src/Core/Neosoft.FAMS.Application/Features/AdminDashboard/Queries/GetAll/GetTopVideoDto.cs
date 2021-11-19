@@ -12,6 +12,7 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
         public string Title { get; set; }
         public long topViews { get; set; }
         public long topClicks { get; set; }
+        public long topShares { get; set; }
         public string Decription { get; set; }
         public string videoImage { get; set; }
         
