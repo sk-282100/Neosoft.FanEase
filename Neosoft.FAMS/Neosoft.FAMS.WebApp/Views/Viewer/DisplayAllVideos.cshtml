@@ -1,32 +1,40 @@
 ﻿@using Neosoft.FAMS.Application.Features.Video.Queries.GetAll;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 <head>
+    <link rel="stylesheet" href="~/css/temp.css" />
     <script src="~/js/VideoDisplay.js"></script>
     <style>
-    .column {
-    float: left;
-    width: 33.33%;
-    padding: 10px;
-   
-    }
-        .column:hover {
-            background-color: #D3D3D3;
+        .column {
+            float: center;
+            width: 33.33%;
+            padding: 10px;
         }
-    /* Clear floats after the columns */
-    .row:after {
-    content: "";
-    display: table;
-    clear: both;
-    }
+        .card {
+            border: 2px solid gray
+        }
 
-    label{
-        margin-left: 30px;
-    }
+            .card:hover {
+                background-color: #D3D3D3;
+            }
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .card-title {
+            font-family: Garamond, serif;
+        }
+
+        label {
+            margin-left: 30px;
+        }
     /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-  
-</style>
+
+    </style>
 </head>
 
 <div class="container-fluid">
@@ -43,14 +51,20 @@
                     </div>
                     <div class="col-6">
                         <label>
-                            Sort By :
-                            <select class="form-select" aria-label="Default select example" name="sorts" id="selectVideo" required>
-                                <option value="1" selected>Date(Ascending)</option>
-                                <option value="2">Date(Descending)</option>
-                                <option value="3">Most Liked </option>
-                                <option value="4">Most Viewed </option>
+                            <div class="row">
+                                <div class="col-2 mt-2 ml-4">
+                                    <span style="font-size: 16px;">Sort By :</span>
+                                </div>
+                                <div class="col-4 mr-10 pr-10">
+                                    <select class="form-select" aria-label="Default select example" style="width: 400px;" name="sorts" id="selectVideo" required>
+                                        <option value="1" selected>Date(Ascending)</option>
+                                        <option value="2">Date(Descending)</option>
+                                        <option value="3">Most Liked </option>
+                                        <option value="4">Most Viewed </option>
 
-                            </select>
+                                    </select>
+                                </div>
+                            </div>
                         </label>
                     </div>
 

@@ -22,6 +22,7 @@ namespace Neosoft.FAMS.WebApp.Models.CreatorModel
         public string CreatorName { get; set; }
 
         [Required(ErrorMessage = "Address-1 is required")]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 50)]
         public string Address1 { get; set; }
 
         public string Address2 { get; set; }

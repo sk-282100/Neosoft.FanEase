@@ -16,13 +16,13 @@ $(document).ready(function () {
                 var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(temp);
                     $('#showTable').append
                         (`
-                            <div class="col-md-12 col-lg-4 col-sm-3 mb-4">
+                            <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">
                                 <div class="card">
                                     <a class="edit" href="/VideoViewer/VideoDisplay/${videodata[i].videoId}">
                                         <img src="/Uploads/Creators/Videos/${videodata[i].videoImage}" class="card-img-top" style="height:250px;">
                                     </a>
-                                    <div class="card-body">
-                                        <h3 class="card-title">${videodata[i].title}</h3>
+                                    <div class="card-body text-center">
+                                        <h3 class="card-title align-items-center d-flex justify-content-center">${videodata[i].title}</h3>
                                         <p class="card-text"><b>Uploaded On :</b> ${da}-${mo}-${ye}</p>
                                     </div>
                                 </div>
@@ -50,13 +50,13 @@ $(document).ready(function () {
                         console.log(`${da}-${mo}-${ye}`);
                         $('#showTable').append
                             (`
-                            <div class="col-md-12 col-lg-4 col-sm-3 mb-4">
+                            <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">
                                 <div class="card">
                                     <a class="edit" href="/VideoViewer/VideoDisplay/${videodata[i].videoId}">
                                         <img src="/Uploads/Creators/Videos/${videodata[i].videoImage}" class="card-img-top" style="height:250px;">
                                     </a>
-                                    <div class="card-body">
-                                        <h3 class="card-title">${videodata[i].title}</h3>
+                                    <div class="card-body text-center">
+                                        <h3 class="card-title align-items-center d-flex justify-content-center">${videodata[i].title}</h3>
                                         <p class="card-text"><b>Uploaded On :</b> ${da}-${mo}-${ye}</p>
                                     </div>
                                 </div>
@@ -87,13 +87,13 @@ $(document).ready(function () {
                         console.log(`${da}-${mo}-${ye}`);
                         $('#showTable').append
                             (`
-                            <div class="col-md-12 col-lg-4 col-sm-3 mb-4">
+                            <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">
                                 <div class="card">
                                     <a class="edit" href="/VideoViewer/VideoDisplay/${videodata[i].videoId}">
                                         <img src="/Uploads/Creators/Videos/${videodata[i].videoImage}" class="card-img-top" style="height:250px;">
                                     </a>
-                                    <div class="card-body">
-                                        <h3 class="card-title">${videodata[i].title}</h3>
+                                    <div class="card-body text-center">
+                                        <h3 class="card-title  align-items-center d-flex justify-content-center">${videodata[i].title}</h3>
                                         <p class="card-text"><b>Uploaded On :</b> ${da}-${mo}-${ye}</p>
                                     </div>
                                 </div>
@@ -125,12 +125,12 @@ $(document).ready(function () {
                         console.log(`${da}-${mo}-${ye}`);
                         $('#showTable').append
                             (`
-                            <div class="col-md-12 col-lg-4 col-sm-3 mb-4">
+                            <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">
                                 <div class="card">
                                     <a class="edit" href="/VideoViewer/VideoDisplay/${videodata[i].topVideoId}">
                                         <img src="/Uploads/Creators/Videos/${videodata[i].videoImage}" class="card-img-top" style="height:250px;">
                                     </a>
-                                    <div class="card-body">
+                                    <div class="card-body text-center">
                                         <h3 class="card-title">${videodata[i].title}</h3>
                                         <p class="card-text"><b>Uploaded On :</b> ${da}-${mo}-${ye}</p>
                                     </div>
@@ -164,7 +164,7 @@ $(document).ready(function () {
                         console.log(`${da}-${mo}-${ye}`);
                         $('#showTable').append
                             (`
-                            <div class="col-md-12 col-lg-4 col-sm-3 mb-4">
+                            <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">
                                 <div class="card">
                                     <a class="edit" href="/VideoViewer/VideoDisplay/${videodata[i].topVideoId}">
                                         <img src="/Uploads/Creators/Videos/${videodata[i].videoImage}" class="card-img-top" style="height:250px;">

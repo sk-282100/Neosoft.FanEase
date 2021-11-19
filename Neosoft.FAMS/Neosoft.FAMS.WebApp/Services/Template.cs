@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.Template.Commands.TemplateVideo;
 using Neosoft.FAMS.Application.Features.Template.Queries;
+using Neosoft.FAMS.Application.Features.Template.Queries.GetAllById;
 using Neosoft.FAMS.Application.Features.Viewer.Queries.GetAll;
 using Neosoft.FAMS.Application.Responses;
 using Neosoft.FAMS.WebApp.Helper;
@@ -47,6 +48,21 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return 0;
 
+        }
+
+        public List<GetAllTemplateByIdDto> GetAdvertiseByVideoId(long id)
+        {
+            var result = new List<GetAllTemplateByIdDto>();
+            var uri = API.Template.GetAllAdvertiseByVideoId(_baseUrl, _path, id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<GetAllTemplateByIdDto>>(jsonDataStatus);
+                result = data.ToList();
+                return result;
+            }
+            return null;
         }
 
         public List<TemplateListDto> GetAllTemplate()

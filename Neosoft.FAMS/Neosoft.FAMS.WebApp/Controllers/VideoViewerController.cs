@@ -12,15 +12,17 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private IVideoStatistics _videoStatistics;
         private IVideo _video;
         private ICreator _creator;
-        
+        private Itemplate _template;
+
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public VideoViewerController(IVideo video,ICreator creator,IWebHostEnvironment webHostEnvironment,IVideoStatistics videoStatistics)
+        public VideoViewerController(IVideo video,ICreator creator,IWebHostEnvironment webHostEnvironment,IVideoStatistics videoStatistics,Itemplate template)
         {
             _video = video;
             _creator = creator;
             _videoStatistics = videoStatistics;
             _webHostEnvironment = webHostEnvironment;
+            _template = template;
         }
 
         [HttpGet]
@@ -48,11 +50,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult VideoDisplay([FromRoute]long id)
         {
             var videoData = _video.VideoGetById(id);
+            var advertisebyVideoId = _template.GetAdvertiseByVideoId(id);
+            ViewData["advertiseData"] = advertisebyVideoId;
             ViewData["videoData"] = videoData;
             long createdBy = Convert.ToInt64( videoData.CreatedBy);
            
-            var session = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-           // var session = 2;
+           // var session = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+            var session = 1;
             _videoStatistics.CheckClickBy(id, session);
             TempData["Session"] = session;
             var creatorData = _creator.GetCreatorById(createdBy);
