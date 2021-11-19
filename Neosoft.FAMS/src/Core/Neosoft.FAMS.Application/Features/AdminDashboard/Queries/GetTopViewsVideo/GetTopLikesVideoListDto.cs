@@ -13,5 +13,6 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetTopViewsVi
         public long topLikes { get; set; }
         public string Decription { get; set; }
         public string videoImage { get; set; }
+        public DateTime? createdOn { get; set; }
     }
 }

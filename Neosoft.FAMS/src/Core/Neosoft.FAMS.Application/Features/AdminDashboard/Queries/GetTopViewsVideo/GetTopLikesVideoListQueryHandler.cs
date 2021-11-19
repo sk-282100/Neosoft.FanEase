@@ -48,7 +48,8 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetTopViewsVi
                         topViews = await _videoPageRepository.GetViewsById(topVideo[i].VideoId),
                         topLikes = await _videoPageRepository.GetLikesById(topVideo[i].VideoId),
                         Decription = topVideo[i].Decription,
-                        videoImage = topVideo[i].VideoImage
+                        videoImage = topVideo[i].VideoImage,
+                        createdOn = topVideo[i].CreatedOn
                     });
                 
 
