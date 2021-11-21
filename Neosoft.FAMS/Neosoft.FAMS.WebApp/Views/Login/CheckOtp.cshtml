@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var isTrue = Convert.ToBoolean(ViewData["isTrueCredentials"]);
 }
 
 <head>
@@ -17,6 +18,15 @@
         <!-- Login Form -->
         @using (Html.BeginForm("CheckOtp", "Login", FormMethod.Post))
         {
+            if (isTrue)
+            {
+                <div class="alert alert-danger alert-dismissible fade show hideAfter3Sec" role="alert">
+                    <strong>Otp is Invalid</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
             <label id="lbl" class="form-group required">
                 OTP<sup style="color:red">*</sup>
             </label>

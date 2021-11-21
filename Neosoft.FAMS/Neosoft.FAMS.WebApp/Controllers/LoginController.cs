@@ -121,6 +121,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public IActionResult SendOtp()
         {
+            ViewData["isTrueCredentials"] = false;
             return View();
         }
         [HttpPost]
@@ -152,6 +153,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public ActionResult CheckOtp()
         {
+            ViewData["isTrueCredentials"] = false;
             return View();
         }
         [HttpPost]
@@ -179,6 +181,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public IActionResult ForgotPassword()
         {
+            ViewData["isTrueCredentials"] = false;
             return View();
         }
 
