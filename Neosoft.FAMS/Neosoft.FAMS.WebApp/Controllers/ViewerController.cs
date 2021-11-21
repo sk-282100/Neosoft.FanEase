@@ -54,6 +54,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public ActionResult ViewerRegisteration()
         {
+            ViewData["countryId"] = 0;
+            ViewData["stateId"] = 0;
+            ViewData["cityId"] = 0;
             ViewData["isInsert"] = false;
             return View();
         }
@@ -65,6 +68,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 var isEmailPresent = _viewer.GetViewerByEmail(viewerRegisteration.EmailId);
                 if (isEmailPresent != null)
                 {
+                    ViewData["countryId"] = viewerRegisteration.CountryId;
+                    ViewData["stateId"] = viewerRegisteration.StateId;
+                    ViewData["cityId"] = viewerRegisteration.CityId;
                     ViewData["isInsert"] = false;
                     ModelState.AddModelError(" ", "Email Id already Present");
                     return View();
@@ -77,6 +83,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 ModelState.Clear();
                 return View();
             }
+            ViewData["countryId"] = viewerRegisteration.CountryId;
+            ViewData["stateId"] = viewerRegisteration.StateId;
+            ViewData["cityId"] = viewerRegisteration.CityId;
             ViewData["isInsert"] = false;
             return View();
         }

@@ -34,6 +34,10 @@
         <!-- Login Form -->
         @using (Html.BeginForm("ViewerRegisteration", "Viewer", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            <input type="hidden" id="countryValue" value="@ViewData["countryId"]" />
+            <input type="hidden" id="stateValue" value="@ViewData["stateId"]" />
+            <input type="hidden" id="cityValue" value="@ViewData["cityId"]" />
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label id="lbl" class="form-group required">
