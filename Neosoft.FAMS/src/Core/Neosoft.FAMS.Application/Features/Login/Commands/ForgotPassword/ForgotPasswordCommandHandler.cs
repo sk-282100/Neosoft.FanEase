@@ -24,7 +24,7 @@ namespace Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword
 
         public async Task<bool> Handle(ForgotPasswordCommand request, CancellationToken cancellationToken)
         {
-            var data = await _loginRepository.ResetPassword(request.Username, request.newPassword);
+            var data = await _loginRepository.CheckUsername(request.Username);
             long id = data.Id;
             data.Password = request.newPassword;
             if (data != null)
