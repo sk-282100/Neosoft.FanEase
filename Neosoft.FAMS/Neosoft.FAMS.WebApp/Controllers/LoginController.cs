@@ -108,6 +108,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 });
                 if(Convert.ToBoolean(result.Result))
                 {
+                    Logout();
                     return RedirectToAction("Index", "Login");
                 }
                 else
@@ -214,7 +215,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             HttpContext.Session.Remove("RoleId");
             HttpContext.Session.Remove("LoginId");
 
-            return RedirectToAction("Home", "Login");
+            return RedirectToAction("Index", "Login");
         }
     }
 }
