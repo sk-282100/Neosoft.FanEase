@@ -25,13 +25,16 @@ namespace Neosoft.FAMS.Application.Features.Login.Queries
             //{
             long LoginId = data.Id;
                 var result = await _loginRepository.CheckOtp(LoginId,request.Otp);
-                DateTime expiredDate=(DateTime)result.ExpiredOn;
-                int check = DateTime.Compare(expiredDate,DateTime.Now);
-                if(check>=0 && result.ValidCode==request.Otp)
+                if (result != null)
                 {
-                     return (int)result.LoginId;
-                }
-            //}
+                    DateTime expiredDate = (DateTime)result.ExpiredOn;
+                    int check = DateTime.Compare(expiredDate, DateTime.Now);
+                    if (check >= 0 && result.ValidCode == request.Otp)
+                    {
+                        return (int)result.LoginId;
+                    }
+                 }
+                //}
             return 0;
         }
     }

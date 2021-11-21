@@ -69,9 +69,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
                             return RedirectToAction("Index", "Creator");
                         return RedirectToAction("ResetPassword", "Login");
                     }
-                    else
+                    else if (RoleId == 3)
                     {
-                        return RedirectToAction("Index", "Login");
+                        HttpContext.Session.SetString("Username", model.Username);
+                        HttpContext.Session.SetString("RoleId", RoleId.ToString());
+                        return RedirectToAction("DisplayAllVideos", "Viewer");
                     }
                 }
                 else
@@ -88,6 +90,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public IActionResult ResetPassword()
         {
+            ViewData["isTrueCredentials"] = false;
             return View(new ResetPassword());
         }
         [HttpPost]
@@ -97,20 +100,29 @@ namespace Neosoft.FAMS.WebApp.Controllers
             {
                 string Password = model.Password;
                 string newPassword = model.newPassword;
-                var serviceresult = _login.SavePassword(new ResetPasswordCommand
+                var result = _login.SavePassword(new ResetPasswordCommand
                 {
                     Username = HttpContext.Session.GetString("Username"),
                     Password = Password,
                     newPassword = newPassword
                 });
-
-                return RedirectToAction("Index", "Login");
+                if(Convert.ToBoolean(result.Result))
+                {
+                    Logout();
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    ViewData["isTrueCredentials"] = true;
+                    return View();
+                }
             }
             return View();
         }
 
         public IActionResult SendOtp()
         {
+            ViewData["isTrueCredentials"] = false;
             return View();
         }
         [HttpPost]
@@ -120,12 +132,20 @@ namespace Neosoft.FAMS.WebApp.Controllers
             {
                 string Username = model.Username;
                 HttpContext.Session.SetString("UserName", model.Username);
-                var serviceresult = _login.SaveOTP(new CheckUsernameCommand
+                var result = _login.SaveOTP(new CheckUsernameCommand
                 {
                     UserName = Username,
 
                 });
-                return RedirectToAction("CheckOtp", "Login");
+                if (Convert.ToBoolean(result.Result))
+                {
+                    return RedirectToAction("CheckOtp", "Login");
+                }
+                else
+                {
+                    ViewData["isTrueCredentials"] = true;
+                    return View();
+                }
             }
             return View();
 
@@ -134,6 +154,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public ActionResult CheckOtp()
         {
+            ViewData["isTrueCredentials"] = false;
             return View();
         }
         [HttpPost]
@@ -141,19 +162,27 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             string id = HttpContext.Session.GetString("UserName");
             string code = passwordResetRequest.Otp;
-            var serviceresult = _login.CheckOTP(new CheckOtpQuery
+            var result = _login.CheckOTP(new CheckOtpQuery
             {
                 Username=id,
                 Otp = code,
 
             });
+            if (result.Result>0)
+            {
+                return RedirectToAction("ForgotPassword", "Login");
+            }
+            else
+            {
+                ViewData["isTrueCredentials"] = true;
+                return View();
+            }
 
-
-            return RedirectToAction("ForgotPassword", "Login");
         }
 
         public IActionResult ForgotPassword()
         {
+            ViewData["isTrueCredentials"] = false;
             return View();
         }
 
@@ -162,14 +191,22 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             string id = HttpContext.Session.GetString("UserName");
             string newPassword = model.Password;
-            var serviceresult = _login.ForgotPassword(new ForgotPasswordCommand
+            var result = _login.ForgotPassword(new ForgotPasswordCommand
             {
                 Username = id,
                 newPassword = newPassword,
                 
             });
+            if (Convert.ToBoolean(result.Result))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewData["isTrueCredentials"] = true;
+                return View();
+            }
 
-            return RedirectToAction("Index", "Login");
                 
         }
         public IActionResult Logout()
@@ -178,7 +215,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             HttpContext.Session.Remove("RoleId");
             HttpContext.Session.Remove("LoginId");
 
-            return RedirectToAction("Home", "Login");
+            return RedirectToAction("Index", "Login");
         }
     }
 }

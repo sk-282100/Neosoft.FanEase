@@ -21,25 +21,27 @@ namespace Neosoft.FAMS.Application.Features.Login.Commands
         public async Task<bool> Handle(CheckUsernameCommand request, CancellationToken cancellationToken)
         {
             var data = await _loginRepository.CheckUsername(request.UserName);
-            long id = data.Id;
             if (data != null)
             {
+                long id = data.Id;
                 Random rdm = new Random();
                 int code = rdm.Next(1000, 9999);
                 string to = request.UserName;
-                string subject = "For reset password";
-                string body = $"Your code is {code}";
+                string subject = "Reset password for FanEase Portal";
+                string body = $"Your 4 digit code is {code}";
                 MailMessage mm = new MailMessage();
                 mm.To.Add(to);
                 mm.Subject = subject;
                 mm.Body = body;
-                mm.From = new MailAddress("sanahaju777@gmail.com");
-                mm.IsBodyHtml = false;
+                mm.BodyEncoding = System.Text.Encoding.GetEncoding("utf-8");
+                mm.SubjectEncoding = System.Text.Encoding.Default;
+                mm.From = new MailAddress("fanease11@gmail.com");
+                mm.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");
                 smtp.Port = 587;
                 smtp.UseDefaultCredentials = false;
                 smtp.EnableSsl = true;
-                smtp.Credentials = new System.Net.NetworkCredential("sanahaju777@gmail.com", "SA@hj#77");
+                smtp.Credentials = new System.Net.NetworkCredential("fanease11@gmail.com", "FanEase05");
                 smtp.Send(mm);
 
                 PasswordResetRequest passwordResetRequest = new PasswordResetRequest();

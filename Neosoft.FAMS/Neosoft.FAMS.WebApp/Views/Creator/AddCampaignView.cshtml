@@ -9,8 +9,7 @@
     bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
     bool isAddedCampaign = Convert.ToBoolean(Context.Session.GetString("isCampaignAdded"));
     var campaignData=(CampaignGetAllDto)ViewData["campaignData"];
-    var displayBlock="display:"+ViewData["displayBlock"].ToString()+";";
-    var displayNone="display:"+ViewData["displayNone"].ToString()+";";
+   
     ViewData["step"] = 2;
 }
 
@@ -22,16 +21,6 @@
     <script src="~/js/AddVideo.js"></script>
     <link href="~/css/Creator/AddCampaignView.css" rel="stylesheet" />
     <link href="~/css/datatablestyle.css" rel="stylesheet" />
-    <style>
-        label span {
-            font-size: 12px;
-        }
-
-        #deleteTag:hover {
-            color: #56baed;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <div class="container-fluid">
@@ -65,7 +54,7 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="txt_campaignName">
-                                    Campaign Name :<sup style="color: red">*</sup>
+                                    Campaign Name<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="CampaignName" type="text" name="CampaignName" class="form-control" placeholder="Campaign Name ">
@@ -85,12 +74,12 @@
 
                             <div class="form-group col-6">
                                 <label for="start_campaign">
-                                    Start Date of Campaign :<sup style="color: red">*</sup>
+                                    Start Date of Campaign<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="StartDate" type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
                                 <label for="end_campaign">
-                                    End Date of Campaign :<sup style="color: red">*</sup>
+                                    End Date of Campaign<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="EndDate" type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
@@ -153,7 +142,7 @@
                         </div>
                         @if (@isDeleted)
                         {
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div class="alert alert-success alert-dismissible fade show hideAfter3Sec" role="alert">
                                 <strong>Data Deleted Successfully !</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>

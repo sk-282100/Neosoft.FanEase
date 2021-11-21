@@ -52,6 +52,15 @@ $(document).ready(function () {
         }
     });
 
+    var cityId = $('#cityValue').val();
+    $(`#formCity option[value="${cityId}"]`).attr("selected", "selected");
+
+    var stateId = $('#stateValue').val();
+    $(`#formState option[value="${stateId}"]`).attr("selected", "selected");
+
+    var countryId = $('#countryValue').val();
+    $(`#formCountry option[value="${countryId}"]`).attr("selected", "selected");
+
     $('#formCountry').change(function () {
         $('#formState').empty();
         var countryId = $('#formCountry').val();

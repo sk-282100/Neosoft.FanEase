@@ -106,6 +106,13 @@
                 <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
             </div>
                 }
+                else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "3")
+                {
+                    <div style="margin-left:auto;margin-right:5px;">
+                        <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
+                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
+                    </div>
+                }
                 else
                 {
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">

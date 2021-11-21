@@ -25,10 +25,10 @@ namespace Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword
         public async Task<bool> Handle(ForgotPasswordCommand request, CancellationToken cancellationToken)
         {
             var data = await _loginRepository.CheckUsername(request.Username);
-            long id = data.Id;
-            data.Password = request.newPassword;
             if (data != null)
             {
+                long id = data.Id;
+                data.Password = request.newPassword;
                 var update = _mapper.Map<Neosoft.FAMS.Domain.Entities.Login>(data);
                 await _loginRepository.UpdateAsync(update);
                 return true;

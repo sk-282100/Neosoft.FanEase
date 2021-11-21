@@ -24,7 +24,7 @@
         <div asp-validation-summary="All" class="text text-danger help-block"></div>
         @if (@isInserted)
         {
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-success alert-dismissible fade show hideAfter3Sec" role="alert">
                 <strong>Viewer Registered Successfully</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -34,6 +34,10 @@
         <!-- Login Form -->
         @using (Html.BeginForm("ViewerRegisteration", "Viewer", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            <input type="hidden" id="countryValue" value="@ViewData["countryId"]" />
+            <input type="hidden" id="stateValue" value="@ViewData["stateId"]" />
+            <input type="hidden" id="cityValue" value="@ViewData["cityId"]" />
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label id="lbl" class="form-group required">
@@ -124,5 +128,4 @@
 </div>
 @section Scripts{
     <script src="~/js/ViewerEmailCheck.js"></script>
-
 }
