@@ -8,17 +8,17 @@ namespace Neosoft.FAMS.WebApp.Models.ViewerModel
     {
         [DisplayName("First Name")]
         [Required(ErrorMessage = "First Name is required")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(100, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [DisplayName("Middle Name")]
         [Required(ErrorMessage = "Middle Name is required")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(100, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 3)]
         public string MiddleName { get; set; }
 
         [DisplayName("Last Name")]
         [Required(ErrorMessage = "Last Name is required")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(100, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 3)]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Address-1 is required")]

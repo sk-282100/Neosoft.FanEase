@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/temp.css" />
     <script src="~/js/AddVideo.js"></script>
     <link rel="stylesheet" href="~/css/Creator/Add Video.css" />
-
+   
 </head>
 
 
@@ -39,7 +39,7 @@
                 {
     <div class="row">
         <div class="col">
-            <label>Video Thumbnail Image :  </label>
+            <label>Video Thumbnail Image<sup style="color:red">*</sup>  </label>
             <span id="errorFileSize" class="text-danger"></span>
         </div>
         <div class="col" style="padding-right:57px">
@@ -55,20 +55,20 @@
     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Video Title :  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</label>
+                            <label>Video Title<sup style="color:red">*</sup>  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</label>
                             <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title">
                             <br /><br />
-                            <label>Video Description : @Html.ValidationMessage("Decription", "", new { @class = "text-danger" })</label>
+                            <label>Video Description<sup style="color:red">*</sup> @Html.ValidationMessage("Decription", "", new { @class = "text-danger" })</label>
                             <textarea asp-for="Decription" class="form-control mb-2 mr-sm-2" id="txt_desc" placeholder="Description" name="Decription"></textarea>
                             <div id="VideoFile">
                                 <label>
-                                    MP4 Video File
+                                    MP4 Video File<sup style="color:red">*</sup> @Html.ValidationMessage("UploadVideoPath", "", new { @class = "text-danger" })
                                 </label>
-                                <input type='file' name="UploadVideoPath" id="mp4videoFile" />
+                                <input type='file' asp-for="UploadVideoPath" name="UploadVideoPath" id="mp4videoFile" />
                                 <br />
                             </div>
                             <div id="Url" style="display:none">
-                                <label>MP4 Video URL :</label>
+                                <label>MP4 Video URL<sup style="color:red">*</sup></label>
                                 <input type="text" class="form-control mb-2 mr-sm-2" id="txt_VideoURL" name="VideoUrl" placeholder="Video URL">
                             </div>
 
@@ -76,13 +76,13 @@
                         <div class="form-group col-md-6">
 
                             <label id="lbl">
-                                Start Time<sup style="color:red">*</sup>
+                                Start Date<sup style="color:red">*</sup>
                                 @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
                             </label>
                             <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM">
                             <br /><br />
                             <label id="lbl">
-                                End Time<sup style="color:red">*</sup>
+                                End Date<sup style="color:red">*</sup>
                                 @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
                             </label>
                             <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM">

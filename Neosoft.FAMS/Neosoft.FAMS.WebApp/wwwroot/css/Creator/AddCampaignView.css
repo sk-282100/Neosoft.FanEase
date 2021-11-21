@@ -19,6 +19,14 @@
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
 }
+label span {
+    font-size: 12px;
+}
+
+#deleteTag:hover {
+    color: #56baed;
+    cursor: pointer;
+}
     input[type=text], input[type=date]:focus {
         background-color: #fff;
         border-bottom: 2px solid #5fbae9;
