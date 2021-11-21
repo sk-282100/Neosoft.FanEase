@@ -17,8 +17,7 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update
 
             RuleFor(p => p.Address1)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+                .NotNull();
 
             RuleFor(p => p.EmailId)
                .NotEmpty().WithMessage("{PropertyName} is required.")

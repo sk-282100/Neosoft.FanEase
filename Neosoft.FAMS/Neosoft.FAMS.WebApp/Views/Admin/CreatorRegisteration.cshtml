@@ -37,6 +37,10 @@
                 <!-- Login Form -->
                 @using (Html.BeginForm("CreatorRegisteration", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
+                    <input type="hidden" id="countryValue" value="@ViewData["countryId"]" />
+                    <input type="hidden" id="stateValue" value="@ViewData["stateId"]" />
+                    <input type="hidden" id="cityValue" value="@ViewData["cityId"]" />
+
                     <div class="form-row">
                         <label id="lbl" for="formFileMultipleS" class="form-label">
                             Add Profile Image <b id="boldTag" class="text-danger" style="font-size: 12px;">(Max Size 1 MB)</b>
@@ -126,6 +130,11 @@
 @section Scripts{
     <script src="~/js/sideBar.js"></script>
     <script src="~/js/creatorEmailCheck.js"></script>
-
+    <script>
+        $(document).ready(function() {
+           
+        });
+        
+    </script>
 }
 
