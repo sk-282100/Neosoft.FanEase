@@ -10,5 +10,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
     {
         public List<long> GetAdminStats();
         public List<GetTopVideoDto> GetTopVideo();
+        public List<string> GetTopCampaignName();
     }
 }

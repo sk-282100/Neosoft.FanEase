@@ -58,5 +58,19 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+
+        public List<string> GetTopCampaignName()
+        {
+            var result = new List<string>();
+            var uri = API.AdminDashboard.GetTopCampaign(_baseUrl, _path);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<string>>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
     }
 }

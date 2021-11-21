@@ -110,6 +110,8 @@
         {
             public static string GetAdminStats(string baseUri,string path) => $"{baseUri}{path}?api-version=1";
             public static string GetTopVideos(string baseUri, string path) => $"{baseUri}{path}/GetTopVideos?api-version=1";
+            //https://localhost:44330/api/AdminDashboard/GetTopCampaign?api-version=1
+            public static string GetTopCampaign(string baseUri,string path) => $"{baseUri}{path}/GetTopCampaign?api-version=1";
         }
     }
 }

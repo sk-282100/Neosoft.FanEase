@@ -45,3 +45,112 @@ $(function () {
 });
 
 
+
+
+$(document).ready(function () {
+    $.ajax({
+        type: 'GET',
+        url: "https://localhost:44330/api/AdminDashboard/GetYearlyStatistics?years=2021&api-version=1",
+        async: false,
+        contentType: 'application/json',
+        success: function (data) {
+            chartdata = data;
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Statistics"
+                },
+                axisX: {
+                    title: "Months"
+
+                },
+                axisY: {
+                    title: "Video Uploaded"
+                },
+                data: [{
+                    type: "line",
+                    indexLabelFontSize: 16,
+                    dataPoints: [
+                        { y: chartdata[0] },
+                        { y: chartdata[1] },
+                        { y: chartdata[2] },
+                        { y: chartdata[3] },
+                        { y: chartdata[4] },
+                        { y: chartdata[5] },
+                        { y: chartdata[6] },
+                        { y: chartdata[7] },
+                        { y: chartdata[8] },
+                        { y: chartdata[9] },
+                        { y: chartdata[10] },
+                        { y: chartdata[11] }
+                    ]
+                }]
+            });
+            chart.render();
+        }
+    });
+
+    var ddlYears = document.getElementById("selectYear");
+
+
+    var currentYear = (new Date()).getFullYear();
+
+
+    for (var i = currentYear; i >= 1980; i--) {
+        var option = document.createElement("OPTION");
+        option.innerHTML = i;
+        option.value = i;
+        ddlYears.appendChild(option);
+    }
+
+
+    $('#selectYear').change(function () {
+        var year = document.getElementById("selectYear").value;
+        $.ajax({
+            type: 'GET',
+            url: "https://localhost:44330/api/AdminDashboard/GetYearlyStatistics?years=" + year + "&api-version=1",
+            async: false,
+            contentType: 'application/json',
+            success: function (data) {
+                chartdata = data;
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    theme: "light2",
+                    title: {
+                        text: "Statistics"
+                    },
+                    axisX: {
+                        title: "Months"
+                       
+                    },
+                    axisY: {
+                        title: "Video Uploaded"
+                    },
+                    data: [{
+                        type: "line",
+                        indexLabelFontSize: 16,
+                        dataPoints: [
+                            {x:"January", y: chartdata[0] },
+                            { y: chartdata[1] },
+                            { y: chartdata[2] },
+                            { y: chartdata[3] },
+                            { y: chartdata[4] },
+                            { y: chartdata[5] },
+                            { y: chartdata[6] },
+                            { y: chartdata[7] },
+                            { y: chartdata[8] },
+                            { y: chartdata[9] },
+                            { y: chartdata[10] },
+                            { y: chartdata[11] }
+                        ]
+                    }]
+                });
+                chart.render();
+            }
+    });
+
+
+});
+
+});

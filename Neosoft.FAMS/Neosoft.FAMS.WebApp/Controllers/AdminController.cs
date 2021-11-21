@@ -37,7 +37,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            
+            TempData["CampDetails"] = _adminDashboard.GetTopCampaignName();
             var record = _adminDashboard.GetTopVideo();
             ViewData["records"] = record;
             var data = _adminDashboard.GetAdminStats();

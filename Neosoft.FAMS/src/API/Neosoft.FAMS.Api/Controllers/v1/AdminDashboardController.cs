@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.TopCampaign;
+using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetYearlyStatistics;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -33,6 +35,23 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             var topVideos = new GetTopVideoQuery();
             var data = await _mediator.Send(topVideos);
+            return Ok(data);
+        }
+        [HttpGet]
+        [Route("GetTopCampaign")]
+        public async Task<IActionResult> GetTopCampaign() 
+        {
+            var topCampaign = new GetTopCampaignQuery();
+            var data = await _mediator.Send(topCampaign);
+            return Ok(data);
+
+        }
+        [HttpGet]
+        [Route("GetYearlyStatistics")]
+        public async Task<IActionResult> GetYearlyStatistics(long years)
+        {
+            var yearlyStats = new GetYearlyStatisticsQuery { year = years };
+            var data = await _mediator.Send(yearlyStats);
             return Ok(data);
         }
 
