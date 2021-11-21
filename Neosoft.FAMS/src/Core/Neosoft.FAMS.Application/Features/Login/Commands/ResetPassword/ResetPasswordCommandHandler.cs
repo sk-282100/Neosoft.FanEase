@@ -21,10 +21,10 @@ namespace Neosoft.FAMS.Application.Features.Events.Login.Commands
         {
             var data = await _loginRepository.ResetPassword(request.Username, request.Password);
             var creatorData = await _creator.GetByEmailAsync(request.Username);
-            long id = data.Id;
-            data.Password = request.newPassword;
             if (data != null)
             {
+                long id = data.Id;
+                data.Password = request.newPassword;
                 var update = _mapper.Map<Neosoft.FAMS.Domain.Entities.Login>(data);
                 await _loginRepository.UpdateAsync(update);
                 creatorData.isPassowrdUpdated = true;
