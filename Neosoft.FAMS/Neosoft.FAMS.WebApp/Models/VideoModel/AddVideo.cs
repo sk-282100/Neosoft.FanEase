@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.WebApp.Models.Validations;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Neosoft.FAMS.WebApp.Models.VideoModel
 {
-    public class AddVideo
+    public class AddVideo : IValidatableObject
     {
 
         public long VideoId { get; set; }
@@ -17,14 +18,18 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         [Required(ErrorMessage = "Start Time is required")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-        public DateTime? StartDate { get; set; }
+        [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "Date cannot be less than today date")]
+
+        public DateTime StartDate { get; set; }
 
         [Required(ErrorMessage = "End Time is required")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-        public DateTime? EndDate { get; set; }
+        [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "Date cannot be less than today date")]
 
-        [Required(ErrorMessage = "Title is required")]
+        public DateTime EndDate { get; set; }
+
+        [Required(ErrorMessage = "Video Title is required")]
         [MaxLength(30, ErrorMessage = "Title Length Cannot Exceed 30 characters")]
         public string Title { get; set; }
 
@@ -34,6 +39,7 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
 
 
         public string? VideoUrl { get; set; }
+        [Required(ErrorMessage = "Please upload video file")]
         public IFormFile UploadVideoPath { get; set; }
         public short? VideoCategoryId { get; set; }
         public short? VideoStatus { get; set; }
@@ -45,6 +51,13 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         [MinLength(10, ErrorMessage = "Description Length Cannot be Less than 10 characters")]
         public string Decription { get; set; }
 
-
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            int result = DateTime.Compare(EndDate, StartDate);
+            if (result < 0)
+            {
+                yield return new ValidationResult("start date must be less than the end date", new[] { "StartDate" });
+            }
+        }
     }
 }

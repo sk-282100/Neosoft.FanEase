@@ -48,13 +48,15 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
                         topClicks = await _videoPageRepository.GetLikesById(topVideos[i]),
                         topShares=await _videoPageRepository.GetSharesById(topVideos[i]),
                         Decription = detail.Decription,
-                        videoImage = detail.VideoImage
+                        videoImage = detail.VideoImage,
+                        createdOn = detail.CreatedOn
                     });
                 }
                 
             }
 
-            return result.OrderByDescending(p=>p.topViews).ToList();
+            var temp = result.OrderByDescending(p=>p.topViews).ToList();
+            return temp;
 
         }
     }

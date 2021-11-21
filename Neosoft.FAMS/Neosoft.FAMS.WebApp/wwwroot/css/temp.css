@@ -10,7 +10,13 @@ body {
     height: 100vh;
     /*background-color: #56baed;*/
 }
+label span {
+    font-size: 12px;
+}
 
+.help-block ul {
+    list-style-type: none;
+}
 #nav {
     background-color: white;
     color: black;

@@ -8,15 +8,6 @@
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/Creator/Add Video.css" />
     <script src="~/js/ContentCreator.js"></script>
-    <style>
-        label span {
-            font-size: 12px;
-        }
-
-        .help-block ul {
-            list-style-type: none;
-        }
-    </style>
 </head>
 <div class="container-fluid">
 
@@ -36,7 +27,7 @@
                 <div asp-validation-summary="All" class="text text-danger help-block"></div>
                 @if (@isInserted)
                 {
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show hideAfter3Sec" role="alert">
                         <strong>Content Creator Added Successfully</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>

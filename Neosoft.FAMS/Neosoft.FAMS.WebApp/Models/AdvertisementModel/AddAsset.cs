@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.WebApp.Models.Validations;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
 {
-    public class AddAsset
+    public class AddAsset : IValidatableObject
     {
         public long AdvertisementId { get; set; }
 
@@ -19,13 +20,15 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         [DisplayName("Start Time")]
-        public DateTime? StartDate { get; set; }
+        [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "Start Date cannot be less than today date")]
+        public DateTime StartDate { get; set; }
 
         [Required(ErrorMessage = "End Time is required")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         [DisplayName("End Time")]
-        public DateTime? EndDate { get; set; }
+        [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "End Date cannot be less than today date")]
+        public DateTime EndDate { get; set; }
 
         [Required(ErrorMessage = "Content Type is required")]
         [DisplayName("Content Type")]
@@ -54,5 +57,14 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         public DateTime? CreatedOn { get; set; }
         public bool? IsDeleted { get; set; }
         public short? Status { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            int result = DateTime.Compare(EndDate, StartDate);
+            if (result < 0)
+            {
+                yield return new ValidationResult("start date must be less than the end date", new[] { "StartDate" });
+            }
+        }
     }
 }
