@@ -15,6 +15,7 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
         public long topShares { get; set; }
         public string Decription { get; set; }
         public string videoImage { get; set; }
+        public DateTime? createdOn { get; set; }
         
     }
 }

@@ -157,7 +157,6 @@ $(document).ready(function () {
                     videodata = data;
                     for (i = 0; i < (videodata.length); i++) {
                         var temp = new Date(videodata[i].createdOn);
-
                         var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(temp);
                         var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(temp);
                         var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(temp);
