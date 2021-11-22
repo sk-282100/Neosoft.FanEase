@@ -18,38 +18,6 @@ namespace Neosoft.FAMS.Persistence.Repositories
             _logger = logger;
 
         }
-        public List<string> GetTopCampaigns(long id)
-        {
-            var data = (from VSvID in _dbContext.VideoStatisticsDetails.Where(p => p.IsLiked == true)
-
-                join CMvID in _dbContext.CampaignAdvertiseMappings
-                    on VSvID.VideoId equals CMvID.VideoId
-                join CDID in _dbContext.CampaignDetails
-                    on CMvID.CampaignId equals CDID.CampaignId
-                //group VSvID by VSvID.VideoId into gb
-                select new
-                {
-                    VSvID.VideoId,
-                    CDID.CampaignName
-
-                }).ToList();
-            List<string> campaignName = new List<string>();
-            var groupedData = data.GroupBy(c => c.VideoId).ToList();
-            var counts = 0;
-            var Name = "";
-
-            foreach (var gd in groupedData)
-            {
-                var county = gd.ToList();
-                counts = county.Count();
-                Name = county[0].CampaignName;
-                campaignName.Add(Name);
-            }
-
-
-
-            return campaignName;
-        }
 
         public List<long> GetYearlyStats(long id,long years)
         {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.GetCreatorStatisticById;
+using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.GetYearlyStats;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -37,6 +38,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        [HttpGet]
+        [Route("GetYearlyStatistics/{id}")]
+        public async Task<IActionResult> GetYearlyStatistics([FromRoute] long id,long years)
+        {
+            var yearlyStats = new GetYearlyStatisticQuery { ContentCreatorId = id,year = years };
+            var data = await _mediator.Send(yearlyStats);
+            return Ok(data);
+        }
 
 
     }

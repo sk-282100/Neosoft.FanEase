@@ -28,6 +28,7 @@ namespace Neosoft.FAMS.Persistence
             services.AddScoped<ITemplateRepository, TemplateRepository>();
             services.AddScoped<IVideoPageRepository, VideoPageRepository>();
             services.AddScoped<IAdminDashboard, AdminDashboardRepo>();
+            services.AddScoped<ICreatorDashboard, CreatorDashboardRepo>();
             return services;
         }
     }

@@ -17,7 +17,7 @@
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/AdminDashboard.css" />
-    <script src="~/js/AdminDashboard.js"></script>
+    <script src="~/js/CreatorDashboard.js"></script>
     <script>
 
     </script>
@@ -114,14 +114,31 @@
             </div>
         </div>
 
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <div class="jumbotron" style="height:650px;margin:10px 10px 10px 5px;">
+                    <div class="panel panel-top">
+                        <div class="panel-heading">
 
-       
-                           
-    </div></div>
+                            <select class="form-select" aria-label="Default select example" name="Year" id="selectYear" required>
+                            </select><br />
+
+                            <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+                            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
     @section Scripts{
 
         <script src="~/js/sideBar.js"></script>
     }
+
+
+
 
 
 
