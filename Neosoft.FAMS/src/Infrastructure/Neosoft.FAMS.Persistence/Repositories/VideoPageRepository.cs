@@ -101,5 +101,17 @@ namespace Neosoft.FAMS.Persistence.Repositories
             var data = await _dbContext.VideoStatisticsDetails.Where(p => p.ViewOn >= DateTime.Today).OrderByDescending(p => p.VideoId).ToListAsync();
             return data;
         }
+
+        public async Task<long> GetLatestCreatorViews(long id)
+        {
+            long data =  _dbContext.VideoStatisticsDetails.Where(p =>p.VideoId==id && p.ViewOn >= DateTime.Today).Count();
+            return data;
+        }
+
+        public async Task<long> GetLatestCreatorLikes(long id)
+        {
+            long data =  _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.ViewOn >= DateTime.Today).Count();
+            return data;
+        }
     }
 }
