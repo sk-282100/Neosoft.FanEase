@@ -34,7 +34,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private ICampaign _campaign;
         private IAsset _asset;
         private ICreator _creator;
-        public CreatorController(IMapper mapper,ICommon common, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset, ICreator creator)
+        private ICreatorDashboard _creatorDashboard;
+        public CreatorController(IMapper mapper,ICommon common, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset, ICreator creator,ICreatorDashboard creatorDashboard)
         {
             _mapper = mapper;
             _common = common;
@@ -43,6 +44,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _campaign = campaign;
             _asset = asset;
             _creator = creator;
+            _creatorDashboard = creatorDashboard;
 
         }
         public IActionResult AddExistingCampaignIdToMapped(long id)
@@ -57,8 +59,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             var campaignData=_campaign.GetCampaignById(id);
             ViewData["campaignData"] = campaignData;
-            ViewData["displayBlock"] = "block";
-            ViewData["displayNone"] = "none";
+          
             ViewData["AdvertisementData"] = _asset.GetAllMappedAsset(id);
             return View("AddCampaignView");
         }
@@ -85,8 +86,21 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             return Json(_common.GetAdvertisement());
         }
+        [HttpGet]
         public IActionResult Index()
         {
+            var id = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+            var CreatorStatRecord = _creatorDashboard.GetCreatorStats(id);
+            ViewData["CreatorStatRecords"] = CreatorStatRecord;
+            var CreatorStatData = _creatorDashboard.GetCreatorVideoStats(id);
+            TempData["CreatorStatVideos"] = CreatorStatRecord[0];
+            TempData["CreatorStatAdvertisements"] = CreatorStatRecord[1];
+            TempData["LatestCreatorVideo"] = CreatorStatRecord[2];
+            TempData["LatestCreatorAds"] = CreatorStatRecord[3];
+            TempData["CreatorStatViews"] = CreatorStatData[0];
+            TempData["CreatorStatLikes"] = CreatorStatData[1];
+            TempData["CreatorLatestViews"] = CreatorStatData[2];
+            TempData["CreatorLatestLikes"] = CreatorStatData[3];
             return View();
         }
 
@@ -146,8 +160,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var data = _asset.GetAllAsset();
             ViewData["data"] = data;
             ViewData["isInsert"] = false;
-            ViewData["displayBlock"] = "none";
-            ViewData["displayNone"] = "block";
+            
             return View();
         }
         [HttpPost]

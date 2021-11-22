@@ -23,5 +23,7 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         List<long> GetTopVideos();
         List<VideoDetail> GetAllVideos();
         public Task<VideoStatisticsDetail> GetByIdAsync(long id);
+        Task<long> GetLatestCreatorViews(long id);
+        Task<long> GetLatestCreatorLikes(long id);
     }
 }

@@ -110,4 +110,10 @@ $(document).ready(function () {
 
     var cityId = $('#cityValue').val();
     $(`#formCity option[value="${cityId}"]`).attr("selected", "selected");
+
+    var status = $('#statusValue').val();
+    $(`.statusClass input[value="${status}"]`).attr("checked", true);
+
+    var imgPath = $('#imgValue').val();
+    document.getElementById('formFileMultipleS').value = imgPath;
 });
