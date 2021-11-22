@@ -24,7 +24,7 @@ namespace Neosoft.FAMS.WebApp.Models.Validations
         public void AddValidation(ClientModelValidationContext context)
         {
             context.Attributes.Add("data-val", "true");
-            context.Attributes.Add("data-val-dateNotValid", "error");
+            context.Attributes.Add("data-val-dateNotValid","Date cannot be less than today date");
         }
     }
 }
