@@ -59,8 +59,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             var campaignData=_campaign.GetCampaignById(id);
             ViewData["campaignData"] = campaignData;
-            ViewData["displayBlock"] = "block";
-            ViewData["displayNone"] = "none";
+          
             ViewData["AdvertisementData"] = _asset.GetAllMappedAsset(id);
             return View("AddCampaignView");
         }
@@ -161,8 +160,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var data = _asset.GetAllAsset();
             ViewData["data"] = data;
             ViewData["isInsert"] = false;
-            ViewData["displayBlock"] = "none";
-            ViewData["displayNone"] = "block";
+            
             return View();
         }
         [HttpPost]
