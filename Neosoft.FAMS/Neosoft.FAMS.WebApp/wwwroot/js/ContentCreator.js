@@ -52,19 +52,9 @@ $(document).ready(function () {
         }
     });
 
-    var cityId = $('#cityValue').val();
-    $(`#formCity option[value="${cityId}"]`).attr("selected", "selected");
-
-    var stateId = $('#stateValue').val();
-    $(`#formState option[value="${stateId}"]`).attr("selected", "selected");
-
-    var countryId = $('#countryValue').val();
-    $(`#formCountry option[value="${countryId}"]`).attr("selected", "selected");
-
     $('#formCountry').change(function () {
         $('#formState').empty();
         var countryId = $('#formCountry').val();
-        console.log(countryId);
         $.ajax({
             type: 'GET',
             url: "GetStates/"+countryId.toString(),
@@ -78,11 +68,18 @@ $(document).ready(function () {
                         $('#formState').append(
                             $('<option></option>').val(text.id).html(text.text)
                         );
+                }
+                    if (stateId > 0) {
+                        $(`#formState option[value="${stateId}"]`).attr("selected", "selected");
                     }
+
                 });
             }
         });
     });
+    var countryId = $('#countryValue').val();
+    $(`#formCountry option[value="${countryId}"]`).attr("selected", "selected");
+    $("#formCountry").trigger("change");
 
     $('#formState').change(function() {
         $('#formCity').empty();
@@ -107,5 +104,10 @@ $(document).ready(function () {
         });
 
     });
+    var stateId = $('#stateValue').val();
+    $(`#formState option[value="${stateId}"]`).attr("selected", "selected");
+    $("#formState").trigger("change");
 
+    var cityId = $('#cityValue').val();
+    $(`#formCity option[value="${cityId}"]`).attr("selected", "selected");
 });
