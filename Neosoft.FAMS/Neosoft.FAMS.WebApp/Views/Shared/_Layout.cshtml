@@ -100,18 +100,18 @@
                 }
                 else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "2")
                 {
-                    
-            <div style="margin-left:auto;margin-right:5px;">
-                
-                <div class="dropdown-menu">
-                    Username: @Context.Session.GetString("Username")&emsp;&emsp;
-                    <button class="menu-btn"><i class="fa fa-caret-down" style="color: gray "></i></button>
-                    <div class="menu-content">
-                        <a class="links-hidden" href="~/Creator/EditCreatorProfile/@Context.Session.GetString("ContentCreatorId")">Profile</a>
+
+                    <div style="margin-left:auto;margin-right:5px;">
+
+                        <div class="dropdown-menu">
+                            Username: @Context.Session.GetString("Username")&emsp;&emsp;
+                            <button class="menu-btn"><i class="fa fa-caret-down" style="color: gray "></i></button>
+                            <div class="menu-content">
+                                <a class="links-hidden" href="~/Creator/EditCreatorProfile/@Context.Session.GetString("ContentCreatorId")">Profile</a>
+                            </div>
+                        </div>
+                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
                     </div>
-                </div>
-                <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
-            </div>
                 }
                 else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "3")
                 {
@@ -163,13 +163,12 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-   
+    <script src="~/js/validateDates.js"></script>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    
     @RenderSection("Scripts", required: false)
 </body>
 </html>
