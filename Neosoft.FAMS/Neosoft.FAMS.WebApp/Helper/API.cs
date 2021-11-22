@@ -112,6 +112,8 @@
             public static string GetTopVideos(string baseUri, string path) => $"{baseUri}{path}/GetTopVideos?api-version=1";
             //https://localhost:44330/api/AdminDashboard/GetTopCampaign?api-version=1
             public static string GetTopCampaign(string baseUri,string path) => $"{baseUri}{path}/GetTopCampaign?api-version=1";
+           
+            public static string GetYearlyStats(string baseUri, string path,long year) => $"{baseUri}{path}/GetYearlyStatistics?years={year}&api-version=1";
         }
     }
 }

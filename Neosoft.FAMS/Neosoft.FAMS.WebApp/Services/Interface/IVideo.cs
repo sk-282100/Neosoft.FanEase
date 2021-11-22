@@ -19,5 +19,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public Task<bool> UpdateVideoDetail(UpdateVideoByIdCommand update);
         public Task<bool> DeleteVideo(DeleteVideoByIdCommand delete);
         public List<GetVideoOfCreatorDto> creatorVideoListById(long id);
+
     }
 }

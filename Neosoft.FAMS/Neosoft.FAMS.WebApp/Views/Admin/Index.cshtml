@@ -1,4 +1,5 @@
 ﻿@using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
+@using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.TopCampaign;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     //var records = TempData["records"];
@@ -11,7 +12,7 @@
     var LatestAdvertisements = TempData["LatestAdvertisements"];
     var LatestVideos = TempData["LatestVideos"];
     var LatestViews = TempData["LatestViews"];
-    var topCampaign = (List<string>)TempData["CampDetails"];
+    var topCampaign = (List<GetTopCampaignDto>)ViewData["CampDetails"];
 
 
 }
@@ -19,9 +20,6 @@
     <link rel="stylesheet" href="~/css/temp.css" />
     <link rel="stylesheet" href="~/css/AdminDashboard.css" />
     <script src="~/js/AdminDashboard.js"></script>
-    <script>
-
-    </script>
 </head>
 <div class="row" style="background-color: #F5F5F5;">
     @Html.Partial("_SideBar")
@@ -121,11 +119,10 @@
                 <div class="jumbotron" style="height:650px;margin:10px 10px 10px 5px;">
                     <div class="panel panel-top">
                         <div class="panel-heading">
-                            
-                                <select class="form-select" aria-label="Default select example" name="Year" id="selectYear" required>
 
-                                </select><br />
-                            
+                            <select class="form-select" aria-label="Default select example" name="Year" id="selectYear" required>
+                            </select><br />
+
                             <div id="chartContainer" style="height: 500px; width: 100%;"></div>
                             <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                         </div>
@@ -202,18 +199,20 @@
                                     <table class="table table-borderless" style="height: 600px;">
                                         <thead>
                                             <tr>
-                                                <th style="padding: 0px 2px 0px 40px;"></th>
-
+                                                <th style="padding: 0px 2px 0px 40px;">Campaign Name</th>
+                                                <th style="padding: 0px 2px 0px 40px;">Clicks</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @for (int i = 0; i < topCampaign.Count(); i++)
+
+                                            @foreach (var tC in topCampaign)
                                             {
                                                 <tr class="border">
                                                     <td>
-                                                        <b>@topCampaign[i]</b>
+                                                        <b>@tC.CampaignName</b>
 
                                                     </td>
+                                                    <td style="padding: 50px;">@tC.ClickCount</td>
                                                 </tr>
                                             }
                                         </tbody>
