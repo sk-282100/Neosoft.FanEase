@@ -2,7 +2,7 @@
 /* BASIC */
 html {
     /*background-color: #56baed;*/
-    background-color: #F5F5F5;
+    background-color: #ffffff;
 }
 
 body {
@@ -190,8 +190,15 @@ input[type=text] {
     width: 500px;
 }
 
-#btnCancel, #btnProceed {
+#btnCancel, #btnProceed, #proceedBtn {
     text-align: center;
+    border: none;
+}
+#proceedBtn {
+    background-color: #56baed;
+}
+#btnCancel {
+    background-color: #a9a9a9;
 }
 
 #sidebar {

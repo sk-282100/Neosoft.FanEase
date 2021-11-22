@@ -44,8 +44,10 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [DisplayName("Url")]
         public string Url { get; set; }
 
+        [Required(ErrorMessage = "Please upload photo")]
         [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile ProfilePhotoPath { get; set; }
+
 
         [MaxFileSize(20 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile VideoPath { get; set; }
