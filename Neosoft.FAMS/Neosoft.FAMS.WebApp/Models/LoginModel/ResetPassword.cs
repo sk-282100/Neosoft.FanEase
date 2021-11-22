@@ -11,5 +11,6 @@ namespace Neosoft.FAMS.WebApp.Models.LoginModel
 
         [Required(ErrorMessage = "Password is required")]
         public string newPassword { get; set; }
+        public string confirmPassword { get; set; }
     }
 }
