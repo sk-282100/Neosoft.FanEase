@@ -91,6 +91,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult ResetPassword()
         {
             ViewData["isTrueCredentials"] = false;
+            ViewData["isMatching"] = false;
             return View(new ResetPassword());
         }
         [HttpPost]
@@ -100,23 +101,38 @@ namespace Neosoft.FAMS.WebApp.Controllers
             {
                 string Password = model.Password;
                 string newPassword = model.newPassword;
-                var result = _login.SavePassword(new ResetPasswordCommand
+                string confirmPassword = model.confirmPassword;
+                ViewData["oldPassword"] = Password;
+                ViewData["newPassword"] = newPassword;
+                ViewData["confirmPassword"] = confirmPassword;
+                if (newPassword == confirmPassword)
                 {
-                    Username = HttpContext.Session.GetString("Username"),
-                    Password = Password,
-                    newPassword = newPassword
-                });
-                if(Convert.ToBoolean(result.Result))
-                {
-                    Logout();
-                    return RedirectToAction("Index", "Login");
+                    var result = _login.SavePassword(new ResetPasswordCommand
+                    {
+                        Username = HttpContext.Session.GetString("Username"),
+                        Password = Password,
+                        newPassword = newPassword
+                    });
+                    if (Convert.ToBoolean(result.Result))
+                    {
+                        Logout();
+                        return RedirectToAction("Index", "Login");
+                    }
+                    else
+                    {
+                        ViewData["isTrueCredentials"] = true;
+                        return View();
+                    }
                 }
                 else
                 {
-                    ViewData["isTrueCredentials"] = true;
+                    ViewData["isMatching"] = true;
                     return View();
                 }
             }
+            ViewData["oldPassword"] = model.Password;
+            ViewData["newPassword"] = model.newPassword;
+            ViewData["confirmPassword"] = model.confirmPassword;
             return View();
         }
 
@@ -183,6 +199,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult ForgotPassword()
         {
             ViewData["isTrueCredentials"] = false;
+            ViewData["isMatching"] = false;
             return View();
         }
 
@@ -191,23 +208,35 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             string id = HttpContext.Session.GetString("UserName");
             string newPassword = model.Password;
-            var result = _login.ForgotPassword(new ForgotPasswordCommand
+            string confirmPassword = model.confirmPassword;
+
+            ViewData["newPassword"] = newPassword;
+            ViewData["confirmPassword"] = confirmPassword;
+            if (newPassword == confirmPassword)
             {
-                Username = id,
-                newPassword = newPassword,
-                
-            });
-            if (Convert.ToBoolean(result.Result))
-            {
-                return RedirectToAction("Index", "Login");
+                var result = _login.ForgotPassword(new ForgotPasswordCommand
+                {
+                    Username = id,
+                    newPassword = newPassword,
+
+                });
+                if (Convert.ToBoolean(result.Result))
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    ViewData["isTrueCredentials"] = true;
+                    return View();
+                }
             }
             else
             {
-                ViewData["isTrueCredentials"] = true;
+                ViewData["isMatching"] = true;
                 return View();
             }
 
-                
+
         }
         public IActionResult Logout()
         {

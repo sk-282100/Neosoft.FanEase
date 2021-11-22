@@ -23,117 +23,127 @@
 
 <div class="container-fluid">
 
-    <div class="row" style="background-color: #F5F5F5;">
+    <div class="row">
         @Html.Partial("_CreatorSideBar")
 
-            <div class="col mt-2">
-                <div id="formContent">
-                    <!-- Tabs Titles -->
-                    <div class="row">
-                        <div class="col-6">
-                            <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
-                                Add Asset
-                            </h3>
-                        </div>
-                        <div class="col-6">
-                            @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
-                            <partial name="_ProgressBar" view-data="ViewData">
-                        </div>
-                        </div>
-                        <div asp-validation-summary="All" class="text text-danger help-block"></div>
-                        @if (@isInserted)
-                        {
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>New Asset Added Successfully</strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        }
-
-                        <!-- Login Form -->
-                        @using (Html.BeginForm("AddAsset", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label id="lbl" class="form-group required">
-                                        Advertisement Title<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
-                                    </label>
-                                    <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" name="Title" placeholder="Enter Advertisement Title">
-
-                                    <label id="lbl">
-                                        Content Type<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
-                                    </label>
-                                    <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType" onchange="onContentType()">
-                                        <option value="1">Images</option>
-                                        <option value="2">Videos</option>
-                                    </select>
-                                    <div id="hideMe">
-                                        <label id="lbl" for="formFileMultiple" class="form-label ">Select Image <span id="errorFileSize" class="text-danger"></span></label>
-                                        <input asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="mp4videoFile" onchange="readURL(this);" multiple />
-                                    </div>
-                                    <div id="hideMe1" style="display: none">
-                                        <label id="lbl" for="formFileMultiple" class="form-label ">Select Video <span id="errorFileSize2" class="text-danger"></span></label>
-                                        <input asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" value="img.jpeg" id="mp4videoFile" onchange="readURL(this);" multiple />
-                                    </div>
-                                    <label id="lbl">
-                                        Advertisement Description<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
-                                    </label>
-                                    <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
-
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label id="lbl">
-                                        Start Time<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" })
-                                    </label>
-                                    <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM">
-
-                                    <label id="lbl">
-                                        End Time<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" })
-                                    </label>
-                                    <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM">
-
-                                    <label id="lbl">
-                                        Advertisement Placement<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
-                                    </label>
-                                    <select asp-for="PlacementId" name="PlacementId" id="AdvertisementPlacement">
-                                        <option value="1">Top-Left</option>
-                                        <option value="2">Top-Right</option>
-                                        <option value="3">Bottom-Left</option>
-                                        <option value="4">Bottom-Right</option>
-                                    </select>
-
-                                    <label id="lbl">
-                                        Video or Image URL<sup style="color: red">*</sup>
-                                        @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
-                                    </label>
-                                    <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
-                                </div>
-                            </div>
-                         <div class="row">
-                                    <div class="col d-flex justify-content-end">
-                                        @if (isAddedVideo == true && isAddedCampaign == true)
-                                        {
-                                            <input type="button" id="btnCancel" class="btn btn-secondary" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
-                                        }
-                                        <input type="submit" class="btn btn-primary" value="Save">
-                                    </div>
-                                </div>
-                        }
+        <div class="col mt-2">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="ml-4 mt-4 text-left" style="color: #8b8b8b;">
+                            Add Asset
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                        @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
+                        <partial name="_ProgressBar" view-data="ViewData">
                     </div>
                 </div>
-</div>
+                <div asp-validation-summary="All" class="text text-danger help-block"></div>
+                @if (@isInserted)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>New Asset Added Successfully</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
+                <!-- Login Form -->
+                @using (Html.BeginForm("AddAsset", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label id="lbl" class="form-group required">
+                                Advertisement Title<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" name="Title" placeholder="Enter Advertisement Title">
+
+                            <label id="lbl">
+                                Content Type<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
+                            </label>
+                            <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType" onchange="onContentType()">
+                                <option value="1">Images</option>
+                                <option value="2">Videos</option>
+                            </select>
+                            <div id="hideMe">
+                                <label id="lbl" for="formFileMultiple" class="form-label ">
+                                    Select Image<sup style="color: red">*</sup>
+                                    @Html.ValidationMessage("ProfilePhotoPath", "", new { @class = "text-danger" })
+                                    <span id="errorFileSize" class="text-danger"></span>
+                                </label>
+                                <input asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" id="mp4videoFile" onchange="readURL(this);" multiple />
+                            </div>
+                            <div id="hideMe1" style="display: none">
+                                <label id="lbl" for="formFileMultiple" class="form-label ">
+                                    Select Video<sup style="color: red">*</sup>
+                                    @Html.ValidationMessage("VideoPath", "", new { @class = "text-danger" })
+                                    <span id="errorFileSize2" class="text-danger"></span>
+                                </label>
+                                <input asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" id="mp4videoFile" onchange="readURL(this);" multiple />
+                            </div>
+                            <label id="lbl">
+                                Advertisement Description<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
+                            </label>
+                            <textarea asp-for="Description" type="text" rows="6" class="fadeIn second" name="Description" placeholder="Enter Description"></textarea>
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label id="lbl">
+                                Start Time<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="StartDate" type="datetime-local" class="fadeIn second" name="StartDate" placeholder="HH:MM AM/PM">
+
+                            <label id="lbl">
+                                End Time<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="EndDate" type="datetime-local" class="fadeIn second" name="EndDate" placeholder="HH:MM AM/PM">
+
+                            <label id="lbl">
+                                Advertisement Placement<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
+                            </label>
+                            <select asp-for="PlacementId" name="PlacementId" id="AdvertisementPlacement">
+                                <option value="1">Top-Left</option>
+                                <option value="2">Top-Right</option>
+                                <option value="3">Bottom-Left</option>
+                                <option value="4">Bottom-Right</option>
+                            </select>
+
+                            <label id="lbl">
+                                Video or Image URL<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("Url", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="Url" type="text" class="fadeIn second" placeholder="Enter Website URL">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            @if (isAddedVideo == true && isAddedCampaign == true)
+                            {
+                                <input type="button" id="btnCancel" class="btn btn-secondary" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
+                            }
+                            <input type="submit" class="btn btn-primary" value="Save">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts{
 
     <script src="~/js/creatorSideBar.js"></script>
     <script src="~/js/StepBar.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
 }

@@ -22,6 +22,7 @@
             color: cornflowerblue;
             height: 80px;
         }
+
         .mylink {
             border: none;
             outline: none;
@@ -34,6 +35,7 @@
                 background-color: #6b6963;
                 color: white;
             }
+
         .menu-btn {
             color: white;
             font-weight: bolder;
@@ -43,12 +45,14 @@
             background-color: white;
             overflow: hidden;
         }
+
         .dropdown-menu {
             position: relative;
             display: inline-block;
             border-style: none;
             float: left;
         }
+
         .menu-content {
             display: none;
             float: left;
@@ -60,7 +64,8 @@
             background-color: #52BAF1;
             z-index: 1;
         }
-        .links,.links-hidden{
+
+        .links, .links-hidden {
             display: inline-block;
             color: rgb(255, 255, 255);
             padding: 5px 5px;
@@ -69,15 +74,17 @@
             text-align: center;
             font-weight: bold;
         }
-        .links-hidden{
+
+        .links-hidden {
             display: block;
         }
+
         .dropdown-menu:hover .menu-content {
             display: block;
         }
     </style>
 </head>
-<body style="background-color: #F5F5F5;">
+<body style="background-color: #ffffff;">
 
     <div id="head">
         <nav class="navbar navbar-expand-lg navbar-light " id="nav">
@@ -93,18 +100,18 @@
                 }
                 else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "2")
                 {
-                    
-            <div style="margin-left:auto;margin-right:5px;">
-                
-                <div class="dropdown-menu">
-                    Username: @Context.Session.GetString("Username")&emsp;&emsp;
-                    <button class="menu-btn"><i class="fa fa-caret-down" style="color: gray "></i></button>
-                    <div class="menu-content">
-                        <a class="links-hidden" href="~/Creator/EditCreatorProfile/@Context.Session.GetString("ContentCreatorId")">Profile</a>
+
+                    <div style="margin-left:auto;margin-right:5px;">
+
+                        <div class="dropdown-menu">
+                            Username: @Context.Session.GetString("Username")&emsp;&emsp;
+                            <button class="menu-btn"><i class="fa fa-caret-down" style="color: gray "></i></button>
+                            <div class="menu-content">
+                                <a class="links-hidden" href="~/Creator/EditCreatorProfile/@Context.Session.GetString("ContentCreatorId")">Profile</a>
+                            </div>
+                        </div>
+                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
                     </div>
-                </div>
-                <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
-            </div>
                 }
                 else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "3")
                 {
@@ -156,13 +163,12 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-   
+    <script src="~/js/validateDates.js"></script>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    
     @RenderSection("Scripts", required: false)
 </body>
 </html>

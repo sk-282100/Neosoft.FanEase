@@ -16,13 +16,15 @@ namespace Neosoft.FAMS.WebApp.Controllers
 {
     public class AdminController : Controller
     {
-        ICreator _creator;
-        IViewer _viewer;
-        IVideo _video;
-        IMapper _mapper;
+        #region PrivateVariables
+        private readonly ICreator _creator;
+        private readonly IViewer _viewer;
+        private readonly IVideo _video;
+        private readonly IMapper _mapper;
         private readonly IWebHostEnvironment webHostEnvironment;
-        ICommon _common;
-        IAdminDashboard _adminDashboard;
+        private readonly ICommon _common;
+        private readonly IAdminDashboard _adminDashboard;
+        #endregion
 
         public AdminController(ICreator creator, IViewer viewer, IVideo video, IWebHostEnvironment hostEnvironment, IMapper mapper, ICommon common, IAdminDashboard adminDashboard)
         {
@@ -95,6 +97,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["countryId"] = 0;
             ViewData["stateId"] = 0;
             ViewData["cityId"] = 0;
+            ViewData["status"] = true;
+            ViewData["imgPath"] = "";
+
 
             ViewData["isInsert"] = false;
             return View();
@@ -113,6 +118,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     ViewData["countryId"] = registeration.CountryId;
                     ViewData["stateId"] = registeration.StateId;
                     ViewData["cityId"] = registeration.CityId;
+                    ViewData["status"] = registeration.Status;
+                    ViewData["imgPath"] = registeration.ProfilePhotoPath.FileName;
+
                     ModelState.AddModelError(" ", "Email Id already Present");
                     return View();
                 }
@@ -130,6 +138,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["countryId"] = registeration.CountryId;
             ViewData["stateId"] = registeration.StateId;
             ViewData["cityId"] = registeration.CityId;
+            ViewData["status"] = registeration.Status;
             ViewData["isInsert"] = false;
             return View();
         }

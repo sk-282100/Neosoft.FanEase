@@ -40,13 +40,16 @@
                     <input type="hidden" id="countryValue" value="@ViewData["countryId"]" />
                     <input type="hidden" id="stateValue" value="@ViewData["stateId"]" />
                     <input type="hidden" id="cityValue" value="@ViewData["cityId"]" />
+                    <input type="hidden" id="statusValue" value="@ViewData["status"].ToString()" />
+                    <input type="hidden" id="imgValue" value="@ViewData["imgPath"].ToString()" />
+
 
                     <div class="form-row">
                         <label id="lbl" for="formFileMultipleS" class="form-label">
                             Add Profile Image <b id="boldTag" class="text-danger" style="font-size: 12px;">(Max Size 1 MB)</b>
                             <span id="errorFileSize" class="text-danger"></span>
                         </label>
-                        <input class="form-control " asp-for="ProfilePhotoPath" onchange="CheckFileSize(this)" type="file" accept="image/*" name="ProfilePhotoPath" value="img.jpeg" id="formFileMultipleS" />
+                        <input class="form-control " asp-for="ProfilePhotoPath" onchange="CheckFileSize(this)" type="file" accept="image/*" name="ProfilePhotoPath" id="formFileMultipleS" />
 
                         <div class="form-group col-md-6">
                             <label id="lbl" class="form-group required">
@@ -76,10 +79,10 @@
                             </label>
                             <input asp-for="MobileNumber" type="text" class="fadeIn second" name="MobileNumber" placeholder="Enter mobile number">
 
-                            <label id="lbl">
+                            <label id="lbl" class="statusClass">
                                 Status &nbsp;&nbsp;&nbsp;
-                                <input name="Status" type="radio" value=true checked />&nbsp; Active &nbsp;&nbsp;&nbsp;
-                                <input name="Status" type="radio" value=false />&nbsp; Deactive
+                                <input name="Status" type="radio" value=True checked />&nbsp; Active &nbsp;&nbsp;&nbsp;
+                                <input name="Status" type="radio" value=False />&nbsp; Deactive
                             </label>
                         </div>
                         <div class="form-group col-md-6">
@@ -130,11 +133,6 @@
 @section Scripts{
     <script src="~/js/sideBar.js"></script>
     <script src="~/js/creatorEmailCheck.js"></script>
-    <script>
-        $(document).ready(function() {
-           
-        });
-        
-    </script>
+   
 }
 

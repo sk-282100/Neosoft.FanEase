@@ -12,5 +12,7 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         Task<List<AdvertisementDetail>> GetLatestAdvertisement();
         public Task<List<CampaignAdvertiseMapping>> GetMappedByIdAsync(long id);
         public Task<CampaignAdvertiseMapping> GetMappedVideoByIdAsync(long id);
+        Task<List<AdvertisementDetail>> GetCreatedByIdAsync(long id);
+        Task<List<AdvertisementDetail>> GetLatestCreatorAdvertisement(long id);
     }
 }
