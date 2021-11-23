@@ -13,7 +13,9 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public List<long> GetLikes(long id,long viewerId);
         public List<long> GetDislikes(long id, long viewerId);
         long GetViews(long id, long viewerId);
-        
+        public bool? LikeStatus(long videoId, long viewerId);
+
+
 
     }
 }
