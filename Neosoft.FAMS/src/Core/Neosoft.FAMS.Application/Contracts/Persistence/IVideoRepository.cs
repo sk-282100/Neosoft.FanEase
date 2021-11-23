@@ -15,5 +15,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         Task<List<VideoDetail>> GetLatestVideo();
         long GetAllVideoCount();
         Task<List<VideoDetail>> GetLatestCreatorVideos(long id);
+        Task<VideoDetail>GetCreatorVideo(long CreatorId,long VideoId);
     }
 }

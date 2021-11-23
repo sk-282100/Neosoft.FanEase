@@ -66,5 +66,12 @@ namespace Neosoft.FAMS.Persistence.Repositories
             var data = await _dbContext.VideoDetails.Where(p =>p.CreatedBy==id && p.CreatedOn >= DateTime.Today).OrderByDescending(p => p.VideoId).ToListAsync();
             return data;
         }
+
+        public async Task<VideoDetail> GetCreatorVideo(long CreatorId, long VideoId)
+        {
+            var temp = await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.CreatedBy==CreatorId && p.VideoId ==VideoId);
+            return temp;
+        }
+
     }
 }

@@ -120,6 +120,7 @@
         {
             public static string GetCreatorStats(string baseUri, string path,long id) => $"{baseUri}{path}/{id}?api-version=1";
             public static string GetCreatorVideoStats(string baseUri,long id) => $"{baseUri}VideoStatistics/{id}?api-version=1";
+            public static string GetTopVideos(string baseUri, string path,long id) => $"{baseUri}{path}/GetTopVideos/{id}?api-version=1";
 
         }
     }
