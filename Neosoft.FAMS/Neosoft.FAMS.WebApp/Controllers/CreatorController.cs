@@ -191,7 +191,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     ViewData["isInsert"] = true;
                 }
                 HttpContext.Session.SetString("isCampaignAdded", true.ToString());
-                return RedirectToAction("AddAsset", "Creator");
+                return RedirectToAction("AddCampaignView", "Creator");
             }
             ViewData["isInsert"] = false;
             return View();
@@ -270,6 +270,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 createAdvertisement.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
 
                 var result = _asset.SaveAssetDetail(createAdvertisement);
+                HttpContext.Session.SetString("isAssetAdded", true.ToString());
                 ModelState.Clear();
                 return View();
 

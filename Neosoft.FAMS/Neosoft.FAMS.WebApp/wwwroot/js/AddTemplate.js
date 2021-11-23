@@ -150,7 +150,8 @@ $(document).ready(function () {
                     $.ajax({
                         url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3,
                         type: 'POST',
-                        success: function(result) {
+                        success: function (result) {
+                            window.location = '/Template/TemplateList';
                         },
                         error: function(result) {
                         }
@@ -183,6 +184,7 @@ $(document).ready(function () {
                         url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3 + section4 + section5,
                         type: 'POST',
                         success: function (result) {
+                            window.location = '/Template/TemplateList';
                         },
                         error: function (result) {
                         }

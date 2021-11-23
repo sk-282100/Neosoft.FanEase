@@ -6,6 +6,7 @@
     bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
     bool isAddedVideo = Convert.ToBoolean(Context.Session.GetString("isVideoAdded"));
     bool isAddedCampaign = Convert.ToBoolean(Context.Session.GetString("isCampaignAdded"));
+    bool isAddedAsset = Convert.ToBoolean(Context.Session.GetString("isAssetAdded"));
 
     ViewData["step"] = 2;
 }
@@ -127,7 +128,7 @@
                     </div>
                     <div class="row">
                         <div class="col d-flex justify-content-end">
-                            @if (isAddedVideo == true && isAddedCampaign == true)
+                            @if (isAddedVideo == true && isAddedCampaign == true && isAddedAsset==true)
                             {
                                 <input type="button" id="btnCancel" class="btn btn-secondary" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
                             }

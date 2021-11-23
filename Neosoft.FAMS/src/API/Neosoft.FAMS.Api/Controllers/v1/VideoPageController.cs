@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Application.Features.VideoPage.Query.CheckIsLikedById;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -86,6 +87,17 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             GetViews.videoId = id;
             GetViews.viewerId = viewerId;
             var data = await _mediator.Send(GetViews);
+            return Ok(data);
+        }
+        [HttpGet]
+        [Route("/IsLikedById/{VideoId}/{ViewerId}")]
+
+        public async Task<IActionResult> CheckLikeById([FromRoute] long VideoId, [FromRoute] long ViewerId)
+        {
+            CheckIsLikedByIdQuery checkIsLiked = new CheckIsLikedByIdQuery();
+            checkIsLiked.VideoId = VideoId;
+            checkIsLiked.ViewerId = ViewerId;
+            var data = await _mediator.Send(checkIsLiked);
             return Ok(data);
         }
 

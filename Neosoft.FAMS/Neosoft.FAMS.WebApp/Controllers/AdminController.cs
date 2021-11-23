@@ -98,8 +98,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["stateId"] = 0;
             ViewData["cityId"] = 0;
             ViewData["status"] = true;
-            ViewData["imgPath"] = "";
-
 
             ViewData["isInsert"] = false;
             return View();
@@ -119,7 +117,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     ViewData["stateId"] = registeration.StateId;
                     ViewData["cityId"] = registeration.CityId;
                     ViewData["status"] = registeration.Status;
-                    ViewData["imgPath"] = registeration.ProfilePhotoPath.FileName;
 
                     ModelState.AddModelError(" ", "Email Id already Present");
                     return View();
@@ -132,6 +129,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 if (id > 0)
                     ViewData["isInsert"] = true;
                 ModelState.Clear();
+                ViewData["status"] = true;
                 return View();
             }
 
