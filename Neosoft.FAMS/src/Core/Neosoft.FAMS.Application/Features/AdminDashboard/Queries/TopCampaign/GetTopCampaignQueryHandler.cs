@@ -2,13 +2,14 @@
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.TopCampaign
 {
-    public class GetTopCampaignQueryHandler : IRequestHandler<GetTopCampaignQuery, List<string>>
+    public class GetTopCampaignQueryHandler : IRequestHandler<GetTopCampaignQuery, List<GetTopCampaignDto>>
     {
         
         private readonly IAdminDashboard _adminDashboard;
@@ -18,10 +19,24 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.TopCampaign
              _adminDashboard = adminDashboard;
         }
 
-        public  Task<List<string>> Handle(GetTopCampaignQuery request, CancellationToken cancellationToken)
+        public  Task<List<GetTopCampaignDto>> Handle(GetTopCampaignQuery request, CancellationToken cancellationToken)
         {
+            List<GetTopCampaignDto> campaignDetails = new List<GetTopCampaignDto>();
             var data =  _adminDashboard.GetTopCampaigns();
-            return Task.FromResult(data);
+            
+            //return Task.FromResult(data);
+            for(int i = 0; i<(data.Count-1);i+=2 )
+            {
+                var temp = data[i + 1].ToString();
+                campaignDetails.Add(new GetTopCampaignDto()
+                {
+                    CampaignName =data[i].ToString(),
+                    ClickCount = int.Parse(temp)
+
+                });;
+
+            }
+            return Task.FromResult(campaignDetails.OrderByDescending(p => p.ClickCount).ToList());
         }
     }
 }

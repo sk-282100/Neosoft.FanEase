@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.GetCreatorStatisticById;
 using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.GetYearlyStats;
+using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopVideo;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -47,7 +48,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
-
+        [HttpGet]
+        [Route("GetTopVideos/{id}")]
+        public async Task<IActionResult> GetTopVideos([FromRoute] long id)
+        {
+            var topVideos = new GetTopVideoQuery{ContentCreatorId = id};
+            var data = await _mediator.Send(topVideos);
+            return Ok(data);
+        }
     }
 }
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll;
 using Neosoft.FAMS.WebApp.Helper;
 using Newtonsoft.Json;
+using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.TopCampaign;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -59,18 +60,35 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
-        public List<string> GetTopCampaignName()
+        public List<GetTopCampaignDto> GetTopCampaignName()
         {
-            var result = new List<string>();
+            var result = new List<GetTopCampaignDto>();
             var uri = API.AdminDashboard.GetTopCampaign(_baseUrl, _path);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
-                var data = JsonConvert.DeserializeObject<List<string>>(jsonDataStatus);
+                var data = JsonConvert.DeserializeObject<List<GetTopCampaignDto>>(jsonDataStatus);
                 return data;
             }
             return result;
         }
+
+
+        public List<long> GetYearlyStatistics(long year)
+        {
+            var result = new List<long>();
+            var uri = API.AdminDashboard.GetYearlyStats(_baseUrl, _path,year);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+
+        
     }
 }

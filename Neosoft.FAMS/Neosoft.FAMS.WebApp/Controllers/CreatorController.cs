@@ -90,6 +90,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult Index()
         {
             var id = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+            TempData["CreatorId"] = id;
+            var record = _creatorDashboard.GetTopVideo(id);
+            ViewData["records"] = record;
             var CreatorStatRecord = _creatorDashboard.GetCreatorStats(id);
             ViewData["CreatorStatRecords"] = CreatorStatRecord;
             var CreatorStatData = _creatorDashboard.GetCreatorVideoStats(id);

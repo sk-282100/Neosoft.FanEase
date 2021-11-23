@@ -1,6 +1,8 @@
-﻿
+﻿@using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopVideo
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var records = (List<GetTopVideoDto>)ViewData["records"];
     var CreatorStatVideos = TempData["CreatorStatVideos"];
     var CreatorStatAdvertisements = TempData["CreatorStatAdvertisements"];
     var CreatorStatViews = TempData["CreatorStatViews"];
@@ -10,7 +12,7 @@
     var LatestCreatorAds = TempData["LatestCreatorAds"];
     var CreatorLatestViews = TempData["CreatorLatestViews"];
     var CreatorLatestLikes = TempData["CreatorLatestLikes"];
-
+    var session = Convert.ToInt64(TempData["CreatorId"]);
 
 
 }
@@ -90,7 +92,7 @@
 
                     </div>
                 </div>
-
+                <input type="text" id="CreatorId" value="@session" hidden />
                 <div class="col-xl-3 col-lg-6 mb-4">
                     <div class="bg-white rounded-lg p-3 shadow">
                         <h2 class="h6 font-weight-bold text-center mb-4">Video Likes</h2>
@@ -129,13 +131,79 @@
                     </div>
                 </div>
             </div>
-            </div>
-        </div>
-    </div>
-    @section Scripts{
+            <div class="form-group col-md-6" style="height: 400px;">
+            <div class="jumbotron" style="margin: 10px 5px 10px 0px; height: 650px;">
+                <div class="panel panel-top" style="width: 580px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a href="#" class="active" id="TV-form-link">TOP VIDEOS</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="#" id="TC-form-link">TOP CAMPAIGNS</a>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
 
-        <script src="~/js/sideBar.js"></script>
-    }
+                <div class="card" id="TV-form" style="height: 505px; width: 580px;">
+                    <div class="card-body" style="height: 480px;">
+
+                        <div class="table-responsive" style="height: 480px;">
+                            <table class="table table-borderless" style="height: 600px;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 0px 2px 0px 40px;"></th>
+                                        <th style="padding: 0px 2px 0px 40px;">Views</th>
+                                        <th style="padding: 0px 2px 0px 40px;">Clicks</th>
+                                        <th style="padding: 0px 2px 0px 40px;">Shares</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @if (records == null)
+                                {
+                                    <h6><b>No Record Found</b></h6>
+                                }
+                                else
+                                {
+                                    @foreach (var record in records)
+                                    {
+                                        <tr class="border">
+                                            <td>
+                                                <b>@record.Title</b><br/>
+                                                <video id="my_video_1"
+                                                       class="video-js vjs-default-skin vjs-big-play-centered"
+                                                       width="200px" height="80px"
+                                                       controls
+                                                       preload="none" poster='/Uploads/Creators/Videos/@record.UploadVideoPath'
+                                                       @*data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'*@>
+                                                    <source src="/Uploads/Creators/Videos/@record.UploadVideoPath" type='video/mp4'/>
+                                                </video>
+
+                                            </td>
+                                            <td style="padding: 50px;">@record.topViews</td>
+                                            <td style="padding: 50px;">@record.topClicks</td>
+                                            <td style="padding: 50px;">@record.topShares</td>
+                                        </tr>
+                                    }
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div></div>
+    </div>
+</div>
+@section Scripts{
+
+    <script src="~/js/sideBar.js"></script>
+}
+
+
 
 
 

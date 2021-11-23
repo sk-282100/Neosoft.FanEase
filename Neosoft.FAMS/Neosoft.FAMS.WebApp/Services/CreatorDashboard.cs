@@ -5,7 +5,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll;
+using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.GetCreatorStatisticById;
+using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopVideo;
 using Neosoft.FAMS.WebApp.Helper;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Newtonsoft.Json;
@@ -55,6 +56,20 @@ namespace Neosoft.FAMS.WebApp.Services
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
                 var data = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+
+        public List<GetTopVideoDto> GetTopVideo(long id)
+        {
+            var result = new List<GetTopVideoDto>();
+            var uri = API.CreatorDashboard.GetTopVideos(_baseUrl, _path,id);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<GetTopVideoDto>>(jsonDataStatus);
                 return data;
             }
             return result;

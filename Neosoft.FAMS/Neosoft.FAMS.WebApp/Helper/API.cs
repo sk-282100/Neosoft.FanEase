@@ -112,12 +112,15 @@
             public static string GetTopVideos(string baseUri, string path) => $"{baseUri}{path}/GetTopVideos?api-version=1";
             //https://localhost:44330/api/AdminDashboard/GetTopCampaign?api-version=1
             public static string GetTopCampaign(string baseUri,string path) => $"{baseUri}{path}/GetTopCampaign?api-version=1";
+           
+            public static string GetYearlyStats(string baseUri, string path,long year) => $"{baseUri}{path}/GetYearlyStatistics?years={year}&api-version=1";
         }
 
         public static class CreatorDashboard
         {
             public static string GetCreatorStats(string baseUri, string path,long id) => $"{baseUri}{path}/{id}?api-version=1";
             public static string GetCreatorVideoStats(string baseUri,long id) => $"{baseUri}VideoStatistics/{id}?api-version=1";
+            public static string GetTopVideos(string baseUri, string path,long id) => $"{baseUri}{path}/GetTopVideos/{id}?api-version=1";
 
         }
     }

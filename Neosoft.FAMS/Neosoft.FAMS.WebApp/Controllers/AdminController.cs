@@ -39,7 +39,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            TempData["CampDetails"] = _adminDashboard.GetTopCampaignName();
+            ViewData["CampDetails"] = _adminDashboard.GetTopCampaignName();
             var record = _adminDashboard.GetTopVideo();
             ViewData["records"] = record;
             var data = _adminDashboard.GetAdminStats();
@@ -54,7 +54,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["AdminStats"] = data;
             return View();
         }
-
+        [HttpGet]
+        public List<long> yearlyStats([FromQuery]long years)
+        {
+            var result = _adminDashboard.GetYearlyStatistics(years);
+            return result;
+        }
         [HttpGet]
         public bool checkForEmailExist([FromQuery] string email)
         {
@@ -226,7 +231,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return uniqueFileName;
         }
         [HttpGet]
-        public IActionResult GetCreatorVideoListById([FromRoute] long id,string CreatorName)
+        public IActionResult GetCreatorVideoListById([FromRoute] long id, string CreatorName)
         {
             var data = _video.creatorVideoListById(id);
             ViewData["data"] = data;
