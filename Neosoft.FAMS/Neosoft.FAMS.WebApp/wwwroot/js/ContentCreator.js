@@ -78,8 +78,11 @@ $(document).ready(function () {
         });
     });
     var countryId = $('#countryValue').val();
-    $(`#formCountry option[value="${countryId}"]`).attr("selected", "selected");
-    $("#formCountry").trigger("change");
+    if (countryId > 0) {
+        $(`#formCountry option[value="${countryId}"]`).attr("selected", "selected");
+        $("#formCountry").trigger("change");
+    }
+  
 
     $('#formState').change(function() {
         $('#formCity').empty();
@@ -105,11 +108,14 @@ $(document).ready(function () {
 
     });
     var stateId = $('#stateValue').val();
-    $(`#formState option[value="${stateId}"]`).attr("selected", "selected");
-    $("#formState").trigger("change");
+    if (stateId > 0) {
+        $(`#formState option[value="${stateId}"]`).attr("selected", "selected");
+        $("#formState").trigger("change");
+    }
 
     var cityId = $('#cityValue').val();
-    $(`#formCity option[value="${cityId}"]`).attr("selected", "selected");
+    if(cityId>0)
+        $(`#formCity option[value="${cityId}"]`).attr("selected", "selected");
 
     var status = $('#statusValue').val();
     $(`.statusClass input[value="${status}"]`).attr("checked", true);

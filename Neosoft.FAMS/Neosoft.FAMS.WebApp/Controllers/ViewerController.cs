@@ -54,9 +54,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public ActionResult ViewerRegisteration()
         {
-            ViewData["countryId"] = 0;
-            ViewData["stateId"] = 0;
-            ViewData["cityId"] = 0;
+           
             ViewData["isInsert"] = false;
             return View();
         }
