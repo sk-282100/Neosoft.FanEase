@@ -53,6 +53,11 @@
             width: 250px;
             object-fit: cover !important;
         }
+        .videoOne {
+            height: 220px;
+            width: 440px;
+            object-fit: cover !important;
+        }
         #centreImg1 {
             height: 460px;
             margin-left: 190px;
@@ -147,7 +152,7 @@
                     var check = advertiserecords[0].ImagePath.Split(".");
                     if (check[1] == "mp4")
                     {
-                        <video id="centreImg1" class="rounded ml-2" controls>
+                        <video class="rounded ml-2 mb-4 imgW videoOne" controls>
                             <source src="/Uploads/Creators/Images/@advertiserecords[0].ImagePath" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -174,8 +179,8 @@
                     var check = advertiserecords[2].ImagePath.Split(".");
                     if (check[1] == "mp4")
                     {
-                        <video id="centreImg1" class="rounded ml-2" controls>
-                            <source src="" type="video/mp4">
+                        <video class="rounded ml-2 mb-4 imgW videoOne" controls>
+                            <source src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     }
@@ -206,7 +211,7 @@
                     var check = advertiserecords[1].ImagePath.Split(".");
                     if (check[1] == "mp4")
                     {
-                        <video id="centreImg1" class="rounded mb-4 pt-0 imgW" controls>
+                        <video id="centreImg1" class="rounded mb-4 imgW" controls>
                             <source src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>

@@ -31,7 +31,7 @@ $(document).ready(function () {
                 }
         }
     });
-    $('#selectVideo').change(function () {
+    $('#selectVideo').select(function () {
         if ($('#selectVideo').val() == 1) {
             $.ajax({
                 type: 'GET',
@@ -68,7 +68,7 @@ $(document).ready(function () {
 
         }
     });
-    $('#selectVideo').change(function () {
+    $('#selectVideo').click(function () {
         if ($('#selectVideo').val() == 2) {
             $.ajax({
                 type: 'GET',
@@ -106,7 +106,7 @@ $(document).ready(function () {
     });
 
 
-    $('#selectVideo').change(function () {
+    $('#selectVideo').click(function () {
         if ($('#selectVideo').val() == 3) {
             $.ajax({
                 type: 'GET',
@@ -145,7 +145,7 @@ $(document).ready(function () {
     });
 
 
-    $('#selectVideo').change(function () {
+    $('#selectVideo').click(function () {
         if ($('#selectVideo').val() == 4) {
             $.ajax({
                 type: 'GET',
