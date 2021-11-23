@@ -1,9 +1,11 @@
 ﻿@using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopVideo
+@using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopCampaign
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var records = (List<GetTopVideoDto>)ViewData["records"];
     var CreatorStatVideos = TempData["CreatorStatVideos"];
+    var topCampaign = (List<GetTopCampaignDto>)ViewData["CampaignDetails"];
     var CreatorStatAdvertisements = TempData["CreatorStatAdvertisements"];
     var CreatorStatViews = TempData["CreatorStatViews"];
     var CreatorStatLikes = TempData["CreatorStatLikes"];
@@ -193,7 +195,45 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="card" id="TC-form" style="display: none;width: 580px;">
+                    <div class="card-body">
+
+
+                        @if (topCampaign == null)
+                        {
+                            <h6><b>No Record Found</b></h6>
+                        }
+                        else
+                        {
+                            <div class="table-responsive" style="height: 480px;">
+                                <table class="table table-borderless" style="height: 600px;">
+                                    <thead>
+                                    <tr>
+                                        <th style="padding: 0px 2px 0px 40px;">Campaign Name</th>
+                                        <th style="padding: 0px 2px 0px 40px;">Clicks</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @foreach (var tC in topCampaign)
+                                    {
+                                        <tr class="border">
+                                            <td>
+                                                <b>@tC.CampaignName</b>
+
+                                            </td>
+                                            <td style="padding: 50px;">@tC.ClickCount</td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        
+                    </div>
+
+
+                </div>
             </div>
         </div></div>
     </div>

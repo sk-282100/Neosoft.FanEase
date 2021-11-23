@@ -1,4 +1,5 @@
-﻿using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopVideo;
+﻿using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopCampaign;
+using Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopVideo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public List<long> GetCreatorStats(long id);
         public List<long> GetCreatorVideoStats(long id);
         public List<GetTopVideoDto> GetTopVideo(long id);
+        public List<GetTopCampaignDto> GetTopCampaignName(long id);
+        public List<long> GetYearlyStatistics(long id,long year);
     }
 }
