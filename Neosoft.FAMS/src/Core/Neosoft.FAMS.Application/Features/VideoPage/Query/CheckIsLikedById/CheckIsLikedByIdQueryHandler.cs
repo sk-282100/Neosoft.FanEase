@@ -9,7 +9,7 @@ using Neosoft.FAMS.Application.Contracts.Persistence;
 
 namespace Neosoft.FAMS.Application.Features.VideoPage.Query.CheckIsLikedById
 {
-    public class CheckIsLikedByIdQueryHandler : IRequestHandler<CheckIsLikedByIdQuery, bool>
+    public class CheckIsLikedByIdQueryHandler : IRequestHandler<CheckIsLikedByIdQuery, bool?>
     {
         private readonly IVideoPageRepository _videoPageRepository;
         private readonly IMapper _mapper;
@@ -18,12 +18,11 @@ namespace Neosoft.FAMS.Application.Features.VideoPage.Query.CheckIsLikedById
             _mapper = mapper;
             _videoPageRepository = videoPageRepository;
         }
-        public async Task<bool> Handle(CheckIsLikedByIdQuery request, CancellationToken cancellationToken)
+        public async Task<bool?> Handle(CheckIsLikedByIdQuery request, CancellationToken cancellationToken)
         {
-            bool isLiked = await _videoPageRepository.CheckLikeById(request.VideoId, request.ViewerId);
-            if (isLiked)
-                return true;
-            return false ;
+            bool? isLiked = await _videoPageRepository.CheckLikeById(request.VideoId, request.ViewerId);
+                return isLiked;
+            
         }
     }
 }

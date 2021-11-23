@@ -4,8 +4,21 @@ var views = 0;
 $(document).ready(function () {
     //var videoId = document.getElementById("#videoId").value;
     //https://localhost:44330/Likes/6?viewerId=5&api-version=1
+    var status = $("#likeStatus").val();
     var videoId = $('#videoId').val();
     var viewerId = $('#viewerId').val();
+    var likeId = $('#likeIcon');
+    var dislikeId = $('#dislikeIcon');
+    if (status == "True") {
+        $('#likeIcon').removeClass();
+        likeId.addClass("fas fa-thumbs-up");
+    }
+    else if (status == "False") {
+        $('#dislikeIcon').removeClass();
+        dislikeId.addClass("fas fa-thumbs-down");
+    }
+
+
     $('#like').click(function () {
         $.ajax({
             type: 'GET',

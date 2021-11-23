@@ -51,6 +51,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpGet]
         public IActionResult VideoDisplay([FromRoute]long id)
         {
+           
             var videoData = _video.VideoGetById(id);
             var advertisebyVideoId = _template.GetAdvertiseByVideoId(id);
             ViewData["advertiseData"] = advertisebyVideoId;
@@ -59,6 +60,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var username = HttpContext.Session.GetString("Username");
             var ViewerData = _viewer.GetViewerByEmail(username);
             _videoStatistics.CheckClickBy(id, ViewerData.ViewerId);
+            TempData["likeStatus"] = _videoStatistics.LikeStatus(id, ViewerData.ViewerId);
+            var temp = TempData["likeStatus"];
             TempData["Session"] = ViewerData.ViewerId;
             var creatorData = _creator.GetCreatorById(createdBy);
             var statData = _videoStatistics.StatsGetById(id);

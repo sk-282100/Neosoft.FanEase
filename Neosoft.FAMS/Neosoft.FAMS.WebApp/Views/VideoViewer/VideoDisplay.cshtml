@@ -12,7 +12,11 @@
     var dislikes = TempData["Dislikes"];
     var views = TempData["Views"];
     var shares = TempData["Share"];
-
+    var status = "null";
+    if (TempData["likeStatus"] != null)
+    {
+        status = TempData["likeStatus"].ToString();
+    }
     var session = Convert.ToInt64(TempData["Session"]);
 
 
@@ -101,6 +105,7 @@
 
     <input type="text" id="videoId" value="@videoRecords.VideoId" hidden />
     <input type="text" id="viewerId" value="@session" hidden />
+    <input type="text" id="likeStatus" value="@status" hidden />
     <br />
 
             <div class="row no-gutters">
