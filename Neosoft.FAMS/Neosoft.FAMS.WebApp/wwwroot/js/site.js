@@ -12,6 +12,6 @@ $(document).ready(function () {
         }]
     });
 
-    $('.hideAfter3Sec').delay(3000).fadeOut(2000);
+    $('.hideAfter3Sec').delay(5000).fadeOut(2000);
 });
    
