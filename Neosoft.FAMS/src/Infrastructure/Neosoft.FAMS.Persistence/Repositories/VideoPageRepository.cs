@@ -114,12 +114,12 @@ namespace Neosoft.FAMS.Persistence.Repositories
             return data;
         }
 
-        public async Task<bool> CheckLikeById(long VideoId,long ViewerId)
+        public async Task<bool?> CheckLikeById(long VideoId,long ViewerId)
         {
-            var likes = await _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == VideoId && p.ViewBy==ViewerId && p.IsLiked == true).FirstOrDefaultAsync();
+            var likes = await _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == VideoId && p.ViewBy==ViewerId && p.IsLiked != null).FirstOrDefaultAsync();
             if (likes != null)
-                return true;
-            return false;
+                return likes.IsLiked;
+            return null;
         }
     }
 }

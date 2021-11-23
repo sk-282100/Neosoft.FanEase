@@ -63,8 +63,8 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
-        //url: "Creator/yearlyStats?id=" + CreatorId + "years=" + currentYear,
-        url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + currentYear +"&api-version=1",
+        url: "Creator/yearlyStats/"+ CreatorId.toString() + "/"+ currentYear.toString(),
+        //url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + currentYear +"&api-version=1",
         async: false,
         contentType: 'application/json',
         success: function (data) {
@@ -85,6 +85,7 @@ $(document).ready(function () {
                 },
                 data: [{
                     type: "line",
+                    color: "orangered",
                     indexLabelFontSize: 16,
                     dataPoints: [
                         { y: chartdata[0], label: "January" },
@@ -112,8 +113,8 @@ $(document).ready(function () {
         var year = document.getElementById("selectYear").value;
         $.ajax({
             type: 'GET',
-           // url: "Creator/yearlyStats?"+ CreatorId +"years=" + year,
-            url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + year + "&api-version=1",
+            url: "Creator/yearlyStats/" + CreatorId.toString() + "/" + year.toString(),
+            //url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + year + "&api-version=1",
 
             async: false,
             contentType: 'application/json',
@@ -135,6 +136,7 @@ $(document).ready(function () {
                     },
                     data: [{
                         type: "line",
+                        color: "orangered",
                         indexLabelFontSize: 16,
                         dataPoints: [
                             { y: chartdata[0], label: "January" },

@@ -109,5 +109,19 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return false;
         }
+        public bool? LikeStatus(long videoId,long viewerId)
+        {
+            //https://localhost:44330/IsLikedById/87/12?api-version=1;
+            var uri = API.VideoStatistics.likeStatus(_baseUrl, videoId, viewerId);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<bool?>(jsonDataStatus);
+                return data;
+            }
+            return false;
+
+        }
     }
 }

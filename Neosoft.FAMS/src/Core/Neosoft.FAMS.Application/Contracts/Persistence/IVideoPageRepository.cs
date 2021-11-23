@@ -25,6 +25,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         public Task<VideoStatisticsDetail> GetByIdAsync(long id);
         Task<long> GetLatestCreatorViews(long id);
         Task<long> GetLatestCreatorLikes(long id);
-        Task<bool> CheckLikeById(long VideoId,long ViewerId);
+        Task<bool?> CheckLikeById(long VideoId,long ViewerId);
     }
 }

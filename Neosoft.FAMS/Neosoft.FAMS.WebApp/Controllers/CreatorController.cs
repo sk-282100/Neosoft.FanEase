@@ -109,7 +109,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
 
         [HttpGet]
-        public List<long> yearlyStats([FromQuery] long id, [FromQuery]long years)
+        [Route("Creator/yearlyStats/{id}/{years}")]
+
+        public List<long> yearlyStats([FromRoute]long id,[FromRoute]long years)
         {
             var result = _creatorDashboard.GetYearlyStatistics(id,years);
             return result;

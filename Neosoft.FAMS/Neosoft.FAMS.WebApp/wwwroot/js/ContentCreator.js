@@ -120,6 +120,6 @@ $(document).ready(function () {
     var status = $('#statusValue').val();
     $(`.statusClass input[value="${status}"]`).attr("checked", true);
 
-    var imgPath = $('#imgValue').val();
-    document.getElementById('formFileMultipleS').value = imgPath;
+   /* var imgPath = $('#imgValue').val();
+    document.getElementById('formFileMultipleS').value = imgPath;*/
 });

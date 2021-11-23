@@ -140,6 +140,7 @@ $(document).ready(function () {
                     },
                     data: [{
                         type: "line",
+                        color: "orangered",
                         indexLabelFontSize: 16,
                         dataPoints: [
                             { y: chartdata[0], label: "January" },
