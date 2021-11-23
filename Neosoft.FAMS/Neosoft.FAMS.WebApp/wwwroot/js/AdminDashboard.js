@@ -78,19 +78,19 @@ $(document).ready(function () {
             var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 theme: "light2",
-                title: {
-                    text: "Statistics"
-                },
                 axisX: {
+                    titleFontColor:"black",
                     title: "Months"
 
                 },
                 axisY: {
+                    titleFontColor: "black",
                     title: " No of Videos Uploaded",
                     maximum: 100
                 },
                 data: [{
                     type: "line",
+                    color:"orangered",
                     indexLabelFontSize: 16,
                     dataPoints: [
                         { y: chartdata[0],label:"January" },

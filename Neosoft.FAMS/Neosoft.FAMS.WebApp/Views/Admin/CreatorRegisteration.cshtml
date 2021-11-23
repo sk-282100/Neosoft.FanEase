@@ -41,8 +41,6 @@
                     <input type="hidden" id="stateValue" value="@ViewData["stateId"]" />
                     <input type="hidden" id="cityValue" value="@ViewData["cityId"]" />
                     <input type="hidden" id="statusValue" value="@ViewData["status"].ToString()" />
-                    <input type="hidden" id="imgValue" value="@ViewData["imgPath"].ToString()" />
-
 
                     <div class="form-row">
                         <label id="lbl" for="formFileMultipleS" class="form-label">
@@ -62,7 +60,7 @@
                                 Address1<sup style="color:red">*</sup>
                                 @Html.ValidationMessage("Address1", "", new { @class = "text-danger" })
                             </label>
-                            <textarea asp-for="Address1" type="text" class="fadeIn third" name="Address1" placeholder="Address1"></textarea>
+                            <textarea asp-for="Address1" type="text" style="height: 90px;" class="fadeIn third" name="Address1" placeholder="Address1"></textarea>
 
                             <label id="lbl">
                                 Country<sup style="color: red">*</sup>
@@ -94,7 +92,7 @@
                             <input id="creatorEmailId" asp-for="EmailId" type="text" class="fadeIn first" name="EmailId" placeholder="Enter Email ID">
 
                             <label id="lbl">Address2</label>
-                            <textarea type="text" class="fadeIn second" name="Address2" placeholder="Address2"></textarea><br />
+                            <textarea type="text" class="fadeIn second" style="height: 90px;" name="Address2" placeholder="Address2"></textarea><br />
 
                             <label id="lbl">
                                 State<sup style="color: red">*</sup>

@@ -113,5 +113,13 @@ namespace Neosoft.FAMS.Persistence.Repositories
             long data =  _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.ViewOn >= DateTime.Today).Count();
             return data;
         }
+
+        public async Task<bool> CheckLikeById(long VideoId,long ViewerId)
+        {
+            var likes = await _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == VideoId && p.ViewBy==ViewerId && p.IsLiked == true).FirstOrDefaultAsync();
+            if (likes != null)
+                return true;
+            return false;
+        }
     }
 }
