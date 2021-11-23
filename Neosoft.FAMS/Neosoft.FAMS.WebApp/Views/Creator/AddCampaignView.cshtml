@@ -34,9 +34,12 @@
                         Add New Campaign
                     </h3>
                 </div>
+                <div class="col-6">
+                    @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
+                    <partial name="_ProgressBar" view-data="ViewData">
+                </div>
             </div>
 
-            <partial name="_ProgressBar" view-data="ViewData"/>
                 <div id="try" style="display: flex">
                     <div style="margin-left: 50px; color: red;">
                         <a><label style="text-decoration: underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
