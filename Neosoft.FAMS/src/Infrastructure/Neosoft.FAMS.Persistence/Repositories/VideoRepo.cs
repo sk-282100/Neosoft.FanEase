@@ -63,13 +63,13 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         public async Task<List<VideoDetail>> GetLatestCreatorVideos(long id)
         {
-            var data = await _dbContext.VideoDetails.Where(p =>p.CreatedBy==id && p.CreatedOn >= DateTime.Today).OrderByDescending(p => p.VideoId).ToListAsync();
+            var data = await _dbContext.VideoDetails.Where(p =>p.CreatedBy==id && p.CreatedOn >= DateTime.Today && p.IsDeleted==false).OrderByDescending(p => p.VideoId).ToListAsync();
             return data;
         }
 
         public async Task<VideoDetail> GetCreatorVideo(long CreatorId, long VideoId)
         {
-            var temp = await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.CreatedBy==CreatorId && p.VideoId ==VideoId);
+            var temp = await _dbContext.VideoDetails.Where(p=>p.IsDeleted==false).FirstOrDefaultAsync(p => p.CreatedBy==CreatorId && p.VideoId ==VideoId);
             return temp;
         }
 
