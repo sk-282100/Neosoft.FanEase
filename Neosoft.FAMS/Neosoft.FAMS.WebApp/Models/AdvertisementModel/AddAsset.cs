@@ -19,14 +19,12 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [Required(ErrorMessage = "Start Time is required")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-        [DisplayName("Start Time")]
         [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "Start Date cannot be less than today date")]
         public DateTime StartDate { get; set; }
 
         [Required(ErrorMessage = "End Time is required")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-        [DisplayName("End Time")]
         [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "End Date cannot be less than today date")]
         public DateTime EndDate { get; set; }
 
@@ -44,7 +42,6 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [DisplayName("Url")]
         public string Url { get; set; }
 
-        [Required(ErrorMessage = "Please upload photo")]
         [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile ProfilePhotoPath { get; set; }
 
