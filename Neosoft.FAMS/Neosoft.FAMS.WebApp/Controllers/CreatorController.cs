@@ -91,6 +91,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             var id = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
             TempData["CreatorId"] = id;
+            ViewData["CampaignDetails"] = _creatorDashboard.GetTopCampaignName(id);
             var record = _creatorDashboard.GetTopVideo(id);
             ViewData["records"] = record;
             var CreatorStatRecord = _creatorDashboard.GetCreatorStats(id);
@@ -105,6 +106,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
             TempData["CreatorLatestViews"] = CreatorStatData[2];
             TempData["CreatorLatestLikes"] = CreatorStatData[3];
             return View();
+        }
+
+        [HttpGet]
+        public List<long> yearlyStats([FromQuery] long id, [FromQuery]long years)
+        {
+            var result = _creatorDashboard.GetYearlyStatistics(id,years);
+            return result;
         }
 
         public ActionResult ViewCampaign()

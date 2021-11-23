@@ -63,6 +63,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
+        //url: "Creator/yearlyStats?id=" + CreatorId + "years=" + currentYear,
         url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + currentYear +"&api-version=1",
         async: false,
         contentType: 'application/json',
@@ -111,7 +112,8 @@ $(document).ready(function () {
         var year = document.getElementById("selectYear").value;
         $.ajax({
             type: 'GET',
-            url: "https://localhost:44330/api/AdminDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + year + "&api-version=1",
+           // url: "Creator/yearlyStats?"+ CreatorId +"years=" + year,
+            url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + year + "&api-version=1",
 
             async: false,
             contentType: 'application/json',
