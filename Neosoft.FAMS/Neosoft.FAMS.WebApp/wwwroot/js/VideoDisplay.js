@@ -169,7 +169,7 @@ $(document).ready(function () {
                                     <a class="edit" href="/VideoViewer/VideoDisplay/${videodata[i].topVideoId}">
                                         <img src="/Uploads/Creators/Videos/${videodata[i].videoImage}" class="card-img-top" style="height:250px;">
                                     </a>
-                                    <div class="card-body">
+                                    <div class="card-body text-center">
                                         <h3 class="card-title">${videodata[i].title}</h3>
                                         <p class="card-text"><b>Uploaded On :</b> ${da}-${mo}-${ye}</p>
                                     </div>

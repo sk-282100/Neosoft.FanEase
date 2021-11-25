@@ -32,7 +32,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public async Task<List<VideoDetail>> GetCreatedByIdAsync(long id)
         {
-            var listofVideos = await _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false).ToListAsync();
+            var listofVideos = await _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now).ToListAsync();
             return listofVideos;
         }
         public long GetAllVideoCount()
@@ -47,7 +47,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public int GetTotalVideoByIdAsync(long id)
         {
-            var listofVideos = _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false).Count();
+            var listofVideos = _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now).Count();
             return listofVideos;
         }
         public int GetTotalVideoViewsByIdAsync(long id)
