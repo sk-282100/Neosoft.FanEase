@@ -80,6 +80,8 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<long> SaveViewer(ViewerCreateCommand viewerCreateCommand)
         {
             var uri = API.Viewer.SaveViewer(_baseUrl, _path);
+            var pass = EncryptionDecryption.EncryptString(viewerCreateCommand.Password);
+            viewerCreateCommand.Password = pass;
             long _id = 0;
             var content = JsonConvert.SerializeObject(viewerCreateCommand);
             HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
