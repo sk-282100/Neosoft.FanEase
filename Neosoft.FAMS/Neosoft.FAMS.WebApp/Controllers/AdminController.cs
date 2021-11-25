@@ -36,6 +36,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _common = common;
             _adminDashboard = adminDashboard;
         }
+        //this method is only for testing purpose
+        [HttpGet]
+        public string GetExceptionInfo()
+        {
+            throw new NullReferenceException();
+        }
         [HttpGet]
         public IActionResult Index()
         {

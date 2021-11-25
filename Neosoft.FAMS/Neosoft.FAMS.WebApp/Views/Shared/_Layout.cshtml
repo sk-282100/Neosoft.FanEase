@@ -88,36 +88,41 @@
 
     <div id="head">
         <nav class="navbar navbar-expand-lg navbar-light " id="nav">
-            <a id="logoText" class="navbar-brand">Fan<span id="logonext">Ease</span></a>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        @if (@Context.Session.GetString("Username") != null){
+            <a id="logoText" href="#" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png"/></span>Fan<span id="logonext">Ease</span></a>
+        }
+       else
+       {
+            <a id="logoText" href="~/Login/Home" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png"/></span>Fan<span id="logonext">Ease</span></a>
+        }
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 @if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "1")
                 {
-                    <div style="margin-left:auto;margin-right:5px;">
+                    <div style="margin-left: auto; margin-right: 5px;">
                         <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
-                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
+                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1"><i class="fa fa-sign-out" style="color: #ffffff"></i>Log out</a>
                     </div>
                 }
                 else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "2")
                 {
 
-                    <div style="margin-left:auto;margin-right:5px;">
+                    <div style="margin-left: auto; margin-right: 5px;">
 
                         <div class="dropdown-menu">
                             Username: @Context.Session.GetString("Username")&emsp;&emsp;
-                            <button class="menu-btn"><i class="fa fa-caret-down" style="color: gray "></i></button>
+                            <button class="menu-btn"><i class="fa fa-caret-down" style="color: gray"></i></button>
                             <div class="menu-content">
                                 <a class="links-hidden" href="~/Creator/EditCreatorProfile/@Context.Session.GetString("ContentCreatorId")">Profile</a>
                             </div>
                         </div>
-                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
+                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1"><i class="fa fa-sign-out" style="color: #ffffff"></i>Log out</a>
                     </div>
                 }
                 else if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "3")
                 {
-                    <div style="margin-left:auto;margin-right:5px;">
+                    <div style="margin-left: auto; margin-right: 5px;">
                         <span>Username: @Context.Session.GetString("Username")</span>&emsp;&emsp;
-                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1 "><i class="fa fa-sign-out" style="color: #ffffff "></i>Log out</a>
+                        <a asp-controller="Login" asp-action="Logout" style="color: black; padding: 5px; border-radius: 10px; background-color: #52BAF1"><i class="fa fa-sign-out" style="color: #ffffff"></i>Log out</a>
                     </div>
                 }
                 else
