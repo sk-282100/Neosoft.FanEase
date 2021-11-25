@@ -14,10 +14,10 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private ICreator _creator;
         private Itemplate _template;
         private IViewer _viewer;
-
+        private ICreatorDashboard _creatorDashboard;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public VideoViewerController(IVideo video,ICreator creator,IWebHostEnvironment webHostEnvironment,IVideoStatistics videoStatistics,Itemplate template,IViewer viewer)
+        public VideoViewerController(IVideo video,ICreator creator,IWebHostEnvironment webHostEnvironment,IVideoStatistics videoStatistics,Itemplate template,IViewer viewer,ICreatorDashboard creatorDashboard)
         {
             _video = video;
             _creator = creator;
@@ -25,6 +25,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _webHostEnvironment = webHostEnvironment;
             _template = template;
             _viewer = viewer;
+            _creatorDashboard = creatorDashboard;
         }
 
         [HttpGet]
@@ -64,6 +65,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var temp = TempData["likeStatus"];
             TempData["Session"] = ViewerData.ViewerId;
             var creatorData = _creator.GetCreatorById(createdBy);
+            var CreatorStatRecord = _creatorDashboard.GetCreatorStats(createdBy);
+            TempData["CreatorVideos"] = CreatorStatRecord[0];
+
             var statData = _videoStatistics.StatsGetById(id);
             TempData["Likes"] = statData[0];
             TempData["Dislikes"] = statData[1];

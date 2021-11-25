@@ -12,6 +12,7 @@
     var dislikes = TempData["Dislikes"];
     var views = TempData["Views"];
     var shares = TempData["Share"];
+    var videos = TempData["CreatorVideos"];
     var status = "null";
     if (TempData["likeStatus"] != null)
     {
@@ -64,11 +65,14 @@
         }
         #centreImg1 {
             height: 460px;
-            margin-left: 190px;
+            margin-left: 120px;
             width: 400px;
         }
         .imgW {
             width: 460px;
+        }
+        .col-12, .col-md-12,.pl-3 {
+            padding-left: 0px;
         }
 
     </style>
@@ -87,19 +91,22 @@
         <source src="/Uploads/Creators/Videos/@videoRecords.UploadVideoPath" type='video/mp4' />
 
     </video>
-    <h3><b> @videoRecords.Title </b>
+    <br />
+    <h3>
+        <b> @videoRecords.Title </b>
     </h3>
     <label><label id="views">@views </label> <b>  <i class="fas fa-eye"></i></b></label>
 
     <br />
 
 
-    <div class="col-9">
-        <button id="like" type="button" class="btn btn-primary"><span id="likeSpan">@likes </span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
-        <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan">@dislikes </span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
-        <button type="button" class="btn btn-primary view-modal">@shares <span class="fa fa-share share"></span> Share</button>
+    <div class="col-12" align="left">
+        <button id="like" type="button" class="btn btn-primary"><span id="likeSpan">@likes</span><span>  </span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
+        <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan">@dislikes</span><span>  </span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
+        <button type="button" class="btn btn-primary view-modal">@shares <span class="fa fa-share share"><span>  </span></span> Share</button>
 
         <span id="Auto">
+            &emsp;
             <b>Auto Next</b>
             <label class="switch">
                 <input type="checkbox" checked>
@@ -112,278 +119,258 @@
     <input type="text" id="viewerId" value="@session" hidden />
     <input type="text" id="likeStatus" value="@status" hidden />
     <br />
+    <hr />
 
-            <div class="row no-gutters">
-                <div class="col-1">
-                    @if (creatorRecords.ProfilePhotoPath == null)
+    <div class="row no-gutters">
+        <div class="col-1">
+            @if (creatorRecords.ProfilePhotoPath == null)
+            {
+                <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle" />
+            }
+            else
+            {
+                <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle" />
+            }
+        </div>
+        <div class="col-3 ml-1">
+            <h4><b>@creatorRecords.CreatorName</b></h4>
+            <h6>@videos Videos</h6>
+            <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
+        </div>
+
+        <div class="col-7" style="border-left: 3px solid #D3D3D3 ">
+            <h4><b>&emsp;Video Description : </b></h4>
+            <p id="ContentDescription">
+                &emsp;&nbsp;
+                @videoRecords.Decription
+            </p>
+        </div>
+    </div>
+    <hr />
+
+<div style="padding-left:0px;">
+    @if (advertiserecords.Count() == 3)
+    {
+
+        <div class="container pt-4 ">
+            <div class="row pt-4 pr-3 pl-3 ">
+                <div class="col-lg-4 col-md-12 mb-3 mb-lg-0">
+                    @if (advertiserecords[0].ImagePath == null)
                     {
-                        <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle"/>
+                        <img src="/Uploads/Creators/Images/1185912a-2478-47ab-95c9-d8ed94358969_img3.jfif"
+                             class="rounded ml-4 mb-3 imgW"
+                             alt="" />
                     }
                     else
                     {
-                        <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle"/>
+                        var check = advertiserecords[0].ImagePath.Split(".");
+                        if (check[1] == "mp4")
+                        {
+                            <video class="rounded ml-2 mb-2 imgW videoOne" controls>
+                                <source src="/Uploads/Creators/Images/@advertiserecords[0].ImagePath" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img src="/Uploads/Creators/Videos/@advertiserecords[0].ImagePath"
+                                 class="rounded ml-2 mb-3 imgW"
+                                 alt="" />
+                        }
                     }
+                    @if (advertiserecords[2].ImagePath == null)
+                    {
+                        <img src="/Uploads/Creators/Images/25baf1d8-e8b5-4c7f-a3f3-b09cc538c797_img1.jfif"
+                             class="rounded ml-2 mb-3 imgW"
+                             alt="" />
+                    }
+                    else
+                    {
+                        var check = advertiserecords[2].ImagePath.Split(".");
+                        if (check[1] == "mp4")
+                        {
+                            <video class="rounded ml-2 mb-3 imgW videoOne" controls>
+                                <source src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath"
+                                 class="rounded ml-2 mb-3 imgW"
+                                 alt="" />
+                        }
+                    }
+
                 </div>
-                <div class="col-3 ml-1">
-                    <h4><b>@creatorRecords.CreatorName</b></h4>
 
-                    <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
-                </div>
-                <div class="col-7">
-                    <h4><b>Video Description : </b></h4>
-                    <p id="ContentDescription">
-                        @videoRecords.Decription
-                    </p>
-                </div>
-            </div>
+                <div class="col-lg-4 mb-3 mr-4 mb-lg-0">
 
-<div>
-@if (advertiserecords.Count() == 3)
-{
-
-    <div class="container pt-4 ">
-        <div class="row pt-4 pr-3 pl-3 border border-dark">
-            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                @if (advertiserecords[0].ImagePath == null)
-                {
-                    <img 
-                        src="/Uploads/Creators/Images/1185912a-2478-47ab-95c9-d8ed94358969_img3.jfif"
-                        class="rounded ml-2 mb-4 imgW"
-                        alt=""
-                    />
-                }
-                else
-                {
-                    var check = advertiserecords[0].ImagePath.Split(".");
-                    if (check[1] == "mp4")
-                    {
-                        <video class="rounded ml-2 mb-4 imgW videoOne" controls>
-                            <source src="/Uploads/Creators/Images/@advertiserecords[0].ImagePath" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    }
-                    else
-                    {
-                        <img 
-                            src="/Uploads/Creators/Videos/@advertiserecords[0].ImagePath"
-                            class="rounded ml-2 mb-4 imgW"
-                            alt=""
-                        />
-                    }
-                }
-                @if (advertiserecords[2].ImagePath == null)
-                {
-                    <img
-                        src="/Uploads/Creators/Images/25baf1d8-e8b5-4c7f-a3f3-b09cc538c797_img1.jfif"
-                        class="rounded ml-2 mb-4 imgW" 
-                        alt=""
-                    />
-                }
-                else
-                {
-                    var check = advertiserecords[2].ImagePath.Split(".");
-                    if (check[1] == "mp4")
-                    {
-                        <video class="rounded ml-2 mb-4 imgW videoOne" controls>
-                            <source src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    }
-                    else
-                    {
-                        <img
-                            src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath"
-                            class="rounded ml-2 mb-4 imgW" 
-                            alt=""
-                        />
-                    }
-                }
-
-            </div>
-
-            <div class="col-lg-4 mb-4 mr-4 mb-lg-0">
-                            
-                @if (advertiserecords[1].ImagePath == null)
-                {
-                    <img id="centreImg1"
-                         src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg"
-                         class="rounded mb-4 imgW"
-                         alt=""
-                    />
-                }
-                else
-                {
-                    var check = advertiserecords[1].ImagePath.Split(".");
-                    if (check[1] == "mp4")
-                    {
-                        <video id="centreImg1" class="rounded mb-4 imgW" controls>
-                            <source src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    }
-                    else
+                    @if (advertiserecords[1].ImagePath == null)
                     {
                         <img id="centreImg1"
-                             src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath"
+                             src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg"
                              class="rounded mb-4 imgW"
-                             alt=""
-                        />
+                             alt="" />
                     }
-                }
+                    else
+                    {
+                        var check = advertiserecords[1].ImagePath.Split(".");
+                        if (check[1] == "mp4")
+                        {
+                            <video id="centreImg1" class="rounded mb-3 imgW" controls>
+                                <source src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img id="centreImg1"
+                                 src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath"
+                                 class="rounded mb-3 imgW"
+                                 alt="" />
+                        }
+                    }
+
+                </div>
 
             </div>
-
         </div>
-    </div>
-}
-else if(advertiserecords.Count()==5)
-{
-    <div class="container pt-4 ">
-        <div class="row pt-4 pr-2 border border-dark">
-            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                @if (advertiserecords[0].ImagePath == null)
-                {
-                    <img 
-                        src="/Uploads/Creators/Images/1185912a-2478-47ab-95c9-d8ed94358969_img3.jfif"
-                        class="w-100 shadow-1-strong rounded ml-2 mb-4"
-                        alt=""
-                    />
-                }
-                else
-                {
-                    var check = advertiserecords[0].ImagePath.Split(".");
-                    if (check[1] == "mp4")
+    }
+    else if (advertiserecords.Count() == 5)
+    {
+        <div class="container pt-4 ">
+            <div class="row pt-4 pr-2">
+                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                    @if (advertiserecords[0].ImagePath == null)
                     {
-                        <video class="w-100 shadow-1-strong rounded ml-2 mb-4" controls>
-                            <source src="/Uploads/Creators/Videos/@advertiserecords[0].ImagePath" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <img src="/Uploads/Creators/Images/1185912a-2478-47ab-95c9-d8ed94358969_img3.jfif"
+                             class="w-100 shadow-1-strong rounded ml-2 mb-4"
+                             alt="" />
                     }
                     else
                     {
-                        <img 
-                            src="/Uploads/Creators/Videos/@advertiserecords[0].ImagePath"
-                            class="w-100 shadow-1-strong rounded ml-2 mb-4"
-                            alt=""
-                        />
+                        var check = advertiserecords[0].ImagePath.Split(".");
+                        if (check[1] == "mp4")
+                        {
+                            <video class="w-100 shadow-1-strong rounded ml-2 mb-4" controls>
+                                <source src="/Uploads/Creators/Videos/@advertiserecords[0].ImagePath" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img src="/Uploads/Creators/Videos/@advertiserecords[0].ImagePath"
+                                 class="w-100 shadow-1-strong rounded ml-2 mb-4"
+                                 alt="" />
+                        }
                     }
-                }
-                @if (advertiserecords[1].ImagePath == null)
-                {
-                    <img
-                        src="/Uploads/Creators/Images/25baf1d8-e8b5-4c7f-a3f3-b09cc538c797_img1.jfif"
-                        class="w-100 shadow-1-strong rounded ml-2 mb-4" 
-                        alt=""
-                    />
-                }
-                else
-                {
-                    var check = advertiserecords[1].ImagePath.Split(".");
-                    if (check[1] == "mp4")
+                    @if (advertiserecords[1].ImagePath == null)
                     {
-                        <video class="w-100 shadow-1-strong rounded ml-2 mb-4" controls>
-                            <source src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <img src="/Uploads/Creators/Images/25baf1d8-e8b5-4c7f-a3f3-b09cc538c797_img1.jfif"
+                             class="w-100 shadow-1-strong rounded ml-2 mb-4"
+                             alt="" />
                     }
                     else
                     {
-                        <img
-                            src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath"
-                            class="w-100 shadow-1-strong rounded ml-2 mb-4" 
-                            alt=""
-                        />
+                        var check = advertiserecords[1].ImagePath.Split(".");
+                        if (check[1] == "mp4")
+                        {
+                            <video class="w-100 shadow-1-strong rounded ml-2 mb-4" controls>
+                                <source src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img src="/Uploads/Creators/Videos/@advertiserecords[1].ImagePath"
+                                 class="w-100 shadow-1-strong rounded ml-2 mb-4"
+                                 alt="" />
+                        }
                     }
-                }
-            </div>
+                </div>
 
-            <div class="col-lg-4 mb-4 mb-lg-0">
-                @if (advertiserecords[2].ImagePath == null)
-                {
-                    <img id="centreImg"
-                         src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg"
-                         class="w-100 shadow-1-strong rounded mb-4"
-                         alt=""
-                    />
-                }
-                else
-                {
-                    var check = advertiserecords[2].ImagePath.Split(".");
-                    if (check[1] == "mp4")
-                    {
-                        <video id="centreImg" class="w-100 shadow-1-strong rounded mb-4" controls>
-                            <source src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    }
-                    else
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    @if (advertiserecords[2].ImagePath == null)
                     {
                         <img id="centreImg"
-                             src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath"
+                             src="/Uploads/Creators/Images/06479d63-0677-47e8-8d60-0fbd033b7874_img2.jpg"
                              class="w-100 shadow-1-strong rounded mb-4"
-                             alt=""
-                        />
-                    }
-                }
-            </div>
-
-            <div class="col-lg-4 mb-4 mb-lg-0">
-                @if (advertiserecords[3].ImagePath == null)
-                {
-                    <img
-                        src="/Uploads/Creators/Images/35b34c9a-aebb-48bc-b623-e455c95f45bc_Ganesha.jpg"
-                        class="w-100 shadow-1-strong rounded  mb-4"
-                        alt=""/>
-                }
-                else
-                {
-                    var check = advertiserecords[3].ImagePath.Split(".");
-                    if (check[1] == "mp4")
-                    {
-                        <video class="w-100 shadow-1-strong rounded  mb-4" controls>
-                            <source src="/Uploads/Creators/Videos/@advertiserecords[3].ImagePath" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                             alt="" />
                     }
                     else
                     {
-                        <img
-                            src="/Uploads/Creators/Videos/@advertiserecords[3].ImagePath"
-                            class="w-100 shadow-1-strong rounded  mb-4"
-                            alt=""/>
+                        var check = advertiserecords[2].ImagePath.Split(".");
+                        if (check[1] == "mp4")
+                        {
+                            <video id="centreImg" class="w-100 shadow-1-strong rounded mb-4" controls>
+                                <source src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img id="centreImg"
+                                 src="/Uploads/Creators/Videos/@advertiserecords[2].ImagePath"
+                                 class="w-100 shadow-1-strong rounded mb-4"
+                                 alt="" />
+                        }
                     }
-                }
+                </div>
 
-                @if (advertiserecords[4].ImagePath == null)
-                {
-                    <img
-                        src="/Uploads/Creators/Images/25baf1d8-e8b5-4c7f-a3f3-b09cc538c797_img1.jfif"
-                        class="w-100 shadow-1-strong rounded mb-4  "
-                        alt=""/>
-                }
-                else
-                {
-                    var check = advertiserecords[4].ImagePath.Split(".");
-                    if (check[1] == "mp4")
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    @if (advertiserecords[3].ImagePath == null)
                     {
-                        <video class="w-100 shadow-1-strong rounded mb-4" controls>
-                            <source src="/Uploads/Creators/Videos/@advertiserecords[4].ImagePath" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <img src="/Uploads/Creators/Images/35b34c9a-aebb-48bc-b623-e455c95f45bc_Ganesha.jpg"
+                             class="w-100 shadow-1-strong rounded  mb-4"
+                             alt="" />
                     }
                     else
                     {
-                        <img
-                            src="/Uploads/Creators/Videos/@advertiserecords[4].ImagePath"
-                            class="w-100 shadow-1-strong rounded mb-4"
-                            alt=""/>
+                        var check = advertiserecords[3].ImagePath.Split(".");
+                        if (check[1] == "mp4")
+                        {
+                            <video class="w-100 shadow-1-strong rounded  mb-4" controls>
+                                <source src="/Uploads/Creators/Videos/@advertiserecords[3].ImagePath" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img src="/Uploads/Creators/Videos/@advertiserecords[3].ImagePath"
+                                 class="w-100 shadow-1-strong rounded  mb-4"
+                                 alt="" />
+                        }
                     }
-                }
+
+                    @if (advertiserecords[4].ImagePath == null)
+                    {
+                        <img src="/Uploads/Creators/Images/25baf1d8-e8b5-4c7f-a3f3-b09cc538c797_img1.jfif"
+                             class="w-100 shadow-1-strong rounded mb-4  "
+                             alt="" />
+                    }
+                    else
+                    {
+                        var check = advertiserecords[4].ImagePath.Split(".");
+                        if (check[1] == "mp4")
+                        {
+                            <video class="w-100 shadow-1-strong rounded mb-4" controls>
+                                <source src="/Uploads/Creators/Videos/@advertiserecords[4].ImagePath" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img src="/Uploads/Creators/Videos/@advertiserecords[4].ImagePath"
+                                 class="w-100 shadow-1-strong rounded mb-4"
+                                 alt="" />
+                        }
+                    }
+                </div>
             </div>
         </div>
-    </div>
 
-}
+    }
 </div>
 </div>
 

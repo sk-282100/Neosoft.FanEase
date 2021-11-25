@@ -12,6 +12,7 @@
             width: 33.33%;
             padding: 10px;
         }
+
         .card {
             border: 2px solid gray
         }
@@ -25,6 +26,7 @@
             display: table;
             clear: both;
         }
+
         .card-title {
             font-family: Garamond, serif;
         }
@@ -32,7 +34,7 @@
         label {
             margin-left: 30px;
         }
-    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 
     </style>
 </head>
@@ -49,22 +51,15 @@
                         </h3>
                     </div>
                     <div class="col-6">
-                        <label>
-                            <div class="row">
-                                <div class="col-2 mt-2 ml-4">
-                                    <span style="font-size: 16px;">Sort By :</span>
-                                </div>
-                                <div class="col-4 mr-10 pr-10">
-                                    <select class="form-select" aria-label="Default select example" style="width: 400px;" name="sorts" id="selectVideo" required>
-                                        <option value="1" selected>Date(Ascending)</option>
-                                        <option value="2">Date(Descending)</option>
-                                        <option value="3">Most Liked </option>
-                                        <option value="4">Most Viewed </option>
+                        <div class="col-4 mr-10 pr-10">
+                            <select class="form-select" aria-label="Default select example" style="width: 400px; margin-right:10px;" name="sorts" id="selectVideo" required>
+                                <option value="1" selected>Date(Ascending)</option>
+                                <option value="2">Date(Descending)</option>
+                                <option value="3">Most Liked </option>
+                                <option value="4">Most Viewed </option>
 
-                                    </select>
-                                </div>
-                            </div>
-                        </label>
+                            </select>
+                        </div>
                     </div>
 
                 </div>
