@@ -31,11 +31,11 @@ $(document).ready(function () {
                 }
         }
     });
-    $('#selectVideo').select(function () {
+    $('#selectVideo').click(function () {
         if ($('#selectVideo').val() == 1) {
             $.ajax({
                 type: 'GET',
-                url: "/Viewer/GetTopVideos",
+                url: "/Viewer/GetVideos",
                 async: false,
                 contentType: 'application/json',
                 success: function (data) {
