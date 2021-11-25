@@ -93,16 +93,16 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <param name="Password"></param>
         /// <param name="NewPassword"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("ResetPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> ResetPassword(string EmailAddress, string Password, string NewPassword)
+        public async Task<IActionResult> ResetPassword(ResetPasswordCommand reset)
         {
             ResetPasswordCommand resetPasswordCommand = new ResetPasswordCommand();
-            resetPasswordCommand.Username = EmailAddress;
-            resetPasswordCommand.Password = Password;
-            resetPasswordCommand.newPassword = NewPassword;
+            resetPasswordCommand.Username = reset.Username;
+            resetPasswordCommand.Password = reset.Password;
+            resetPasswordCommand.newPassword = reset.newPassword;
             var data = await _mediator.Send(resetPasswordCommand);
             return Ok(data);
         }

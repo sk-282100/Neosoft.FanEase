@@ -73,14 +73,19 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<bool> SavePassword(ResetPasswordCommand resetPasswordCommand)
         {
             bool result = false;
-            var uri = API.Login.SavePassword(_baseUrl, _path, resetPasswordCommand.Username, resetPasswordCommand.Password, resetPasswordCommand.newPassword);
-            HttpResponseMessage response = _client.GetAsync(uri).Result;
-
+            resetPasswordCommand.Password = EncryptionDecryption.EncryptString(resetPasswordCommand.Password);
+            resetPasswordCommand.newPassword = EncryptionDecryption.EncryptString(resetPasswordCommand.newPassword);
+            var content = JsonConvert.SerializeObject(resetPasswordCommand);
+            var uri = API.Login.SavePassword(_baseUrl, _path);
+            HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
+                "application/json"));
             if (response.IsSuccessStatusCode)
             {
-                result = bool.Parse(response.Content.ReadAsStringAsync().Result);
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var res = JsonConvert.DeserializeObject<bool>(jsonDataStatus);
+                return res;
             }
-            return result;
+            return bool.Parse(null);
 
         }
 
