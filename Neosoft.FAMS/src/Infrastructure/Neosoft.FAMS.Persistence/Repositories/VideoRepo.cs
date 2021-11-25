@@ -37,7 +37,13 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public long GetAllVideoCount()
         {
-            return _dbContext.VideoDetails.Where(p => p.IsDeleted == false).Count();
+            var temp = _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+            var result = (from vd in temp
+                          join CC in _dbContext.ContentCreatorDetails
+                          on vd.CreatedBy equals CC.ContentCreatorId
+                          select vd);
+
+            return result.Count();
         }
         public int GetTotalVideoByIdAsync(long id)
         {
