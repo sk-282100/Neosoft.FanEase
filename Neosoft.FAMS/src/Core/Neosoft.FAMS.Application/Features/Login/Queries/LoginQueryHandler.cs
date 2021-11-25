@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Application.Features.Login.Queries
 {
-    public class LoginQueryHandler : IRequestHandler<LoginQuery, List<object>>
+    public class LoginQueryHandler : IRequestHandler<LoginQuery, Domain.Entities.Login>
     {
         private readonly ILoginRepo _loginRepository;
         private readonly IMapper _mapper;
@@ -16,18 +16,20 @@ namespace Neosoft.FAMS.Application.Features.Login.Queries
             _loginRepository = loginRepository;
             _mapper = mapper;
         }
-        public async Task<List<object>> Handle(LoginQuery request, CancellationToken cancellationToken)
+        public async Task<Domain.Entities.Login> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
-            List<object> result = new List<object>();
+            Domain.Entities.Login result = new Domain.Entities.Login();
+           
             var data = await _loginRepository.GetLoginDetail(request.UserName, request.Password);
             if (data != null)
             {
                 //data.Password = EncryptionDecryption.DecryptString(data.Password);
-                if (data.Username == request.UserName && data.Password == request.Password)
+                if (data.Id>0 && data.RoleId > 0)
                 {
-                    result.Add(data.Id);
-                    result.Add(data.RoleId);
-
+                    result.Id=data.Id;
+                    result.RoleId=data.RoleId;
+                    result.Username = data.Username;
+                    result.Password = data.Password;
                     return result;
                 }
             }

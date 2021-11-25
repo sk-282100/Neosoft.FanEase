@@ -6,6 +6,7 @@ using Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword;
 using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Queries;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Domain.Entities;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -27,17 +28,18 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("CheckUsernameAndPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CheckUsernameAndPassword(string username, string password)
+        public async Task<IActionResult> CheckUsernameAndPassword(Login _login)
         {
             LoginQuery loginQuery = new LoginQuery();
-            loginQuery.Password = password;
-            loginQuery.UserName = username;
+            loginQuery.Password = _login.Password;
+            loginQuery.UserName = _login.Username;
             var data = await _mediator.Send(loginQuery);
-
+            if(data==null)
+                return NotFound();
             return Ok(data);
         }
 

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Services
@@ -38,16 +39,24 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public List<object> CheckUsernameAndPassword(string userName, string password)
+        public async Task<Domain.Entities.Login> CheckUsernameAndPassword(string userName, string password)
         {
             //var uri = API.Login.CheckUsernameAndPassword(_path, userName, password);
+            
             string pass = EncryptionDecryption.EncryptString(password);
-            var uri = API.Login.CheckUsernameAndPassword(_path, userName, pass);
-            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            Domain.Entities.Login _login = new Domain.Entities.Login();
+            _login.Password = EncryptionDecryption.EncryptString(password);
+            _login.Username = userName;
+            var content = JsonConvert.SerializeObject(_login);
+            var uri = API.Login.CheckUsernameAndPassword(_path);
+            HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
+               "application/json"));
+
+
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
-                var result = JsonConvert.DeserializeObject<List<object>>(jsonDataStatus);
+                var result = JsonConvert.DeserializeObject<Domain.Entities.Login>(jsonDataStatus);
                 return result;
             }
             return null;
