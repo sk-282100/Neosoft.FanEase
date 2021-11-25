@@ -29,7 +29,7 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll
         {
             var Creators = await _contentCreatorRepo.GetAllCreator();
             var countOfCreators=Creators.Count;
-            var Advertisements= await _advertisementRepo.ListAllAsync();
+            var Advertisements= await _advertisementRepo.GetAllAssets();
             var countOfAdvertisements = Advertisements.Count;
             var countOfVideos = _videoRepository.GetAllVideoCount();
             var viewCount = _videoPageRepository.GetViewCount();

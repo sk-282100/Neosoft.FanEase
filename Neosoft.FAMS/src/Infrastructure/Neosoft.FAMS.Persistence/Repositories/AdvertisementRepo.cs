@@ -61,5 +61,10 @@ namespace Neosoft.FAMS.Persistence.Repositories
             var data = await _dbContext.AdvertisementDetails.Where(p =>p.CreatedBy==id && p.CreatedOn >= DateTime.Today).OrderByDescending(p => p.AdvertisementId).ToListAsync();
             return data;
         }
+        public async Task<List<AdvertisementDetail>> GetAllAssets()
+        {
+            var data =  _dbContext.AdvertisementDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now).ToList();
+            return data;
+        }
     }
 }

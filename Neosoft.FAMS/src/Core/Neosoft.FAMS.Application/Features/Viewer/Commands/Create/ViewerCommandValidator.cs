@@ -36,14 +36,12 @@ namespace Neosoft.FAMS.Application.Features.Viewer.Commands.Create
 
             RuleFor(p => p.Address1)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+                .NotNull();
 
 
             RuleFor(p => p.Address2)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 character.");
+                .NotNull();
 
             RuleFor(p => p.CountryId)
                 .GreaterThan(0).WithMessage("{PropertyName} must be grater than zero.");
