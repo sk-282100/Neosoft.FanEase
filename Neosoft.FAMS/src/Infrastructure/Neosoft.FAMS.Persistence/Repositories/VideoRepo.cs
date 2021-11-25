@@ -20,7 +20,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public async Task<VideoDetail> GetByIdAsync(long id)
         {
-            var temp =  await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.VideoId == id);
+            var temp = await _dbContext.VideoDetails.FirstOrDefaultAsync(p => p.VideoId == id);
             return temp;
         }
         public async Task<string> GetCampaignName(long VideoId)
@@ -46,7 +46,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public int GetTotalVideoViewsByIdAsync(long id)
         {
-            var listofVideos = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsViewed==true).Count();
+            var listofVideos = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == id && p.IsViewed == true).Count();
             return listofVideos;
         }
         public int GetTotalVideoClicksByIdAsync(long id)
@@ -63,14 +63,27 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         public async Task<List<VideoDetail>> GetLatestCreatorVideos(long id)
         {
-            var data = await _dbContext.VideoDetails.Where(p =>p.CreatedBy==id && p.CreatedOn >= DateTime.Today && p.IsDeleted==false).OrderByDescending(p => p.VideoId).ToListAsync();
+            var data = await _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.CreatedOn >= DateTime.Today && p.IsDeleted == false).OrderByDescending(p => p.VideoId).ToListAsync();
             return data;
         }
 
         public async Task<VideoDetail> GetCreatorVideo(long CreatorId, long VideoId)
         {
-            var temp = await _dbContext.VideoDetails.Where(p=>p.IsDeleted==false).FirstOrDefaultAsync(p => p.CreatedBy==CreatorId && p.VideoId ==VideoId);
+            var temp = await _dbContext.VideoDetails.Where(p => p.IsDeleted == false).FirstOrDefaultAsync(p => p.CreatedBy == CreatorId && p.VideoId == VideoId);
             return temp;
+        }
+
+        public async Task<List<VideoDetail>> GetAllVideos()
+        {
+            //List<VideoDetail> result = new List<VideoDetail>();
+            var temp = _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+            var result = (from vd in temp
+                          join CC in _dbContext.ContentCreatorDetails
+                          on vd.CreatedBy equals CC.ContentCreatorId
+                          select vd);
+
+            return result.ToList();
+
         }
 
     }

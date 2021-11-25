@@ -19,7 +19,8 @@ namespace Neosoft.FAMS.Application.Features.Video.Queries.GetAll
         }
         public async Task<List<VideoGetAllDto>> Handle(VideoGetAllCommand request, CancellationToken cancellationToken)
         {
-            var data = await _videoRepo.ListAllAsync();
+            var data = await _videoRepo.GetAllVideos();
+            
             var response = _mapper.Map<List<VideoGetAllDto>>(data);
             return response;
         }

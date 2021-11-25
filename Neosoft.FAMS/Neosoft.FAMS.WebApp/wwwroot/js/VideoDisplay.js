@@ -1,6 +1,7 @@
 ﻿var videodata = 0;
 var Description = "";
 $(document).ready(function () {
+  
     $.ajax({
         type: 'GET',
         url: "/Viewer/GetVideos",
@@ -47,7 +48,7 @@ $(document).ready(function () {
                         var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(temp);
                         var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(temp);
                         var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(temp);
-                        console.log(`${da}-${mo}-${ye}`);
+                        
                         $('#showTable').append
                             (`
                             <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">
@@ -84,7 +85,7 @@ $(document).ready(function () {
                         var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(temp);
                         var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(temp);
                         var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(temp);
-                        console.log(`${da}-${mo}-${ye}`);
+                       
                         $('#showTable').append
                             (`
                             <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">
@@ -122,7 +123,7 @@ $(document).ready(function () {
                         var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(temp);
                         var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(temp);
                         var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(temp);
-                        console.log(`${da}-${mo}-${ye}`);
+                       
                         $('#showTable').append
                             (`
                             <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">
@@ -160,7 +161,7 @@ $(document).ready(function () {
                         var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(temp);
                         var mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(temp);
                         var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(temp);
-                        console.log(`${da}-${mo}-${ye}`);
+                     
                         $('#showTable').append
                             (`
                             <div id="column" class="col-md-12 col-lg-4 col-sm-3 mb-4">

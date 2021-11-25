@@ -43,14 +43,25 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         public  List<long> GetTopVideos()
         {
-            var data= _dbContext.VideoStatisticsDetails.Select(p => p.VideoId ?? 0).Distinct().ToList();
+            var temp = _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+            var result = (from vd in temp
+                          join CC in _dbContext.ContentCreatorDetails
+                          on vd.CreatedBy equals CC.ContentCreatorId
+                          select vd);
+            
+            var data= result.Select(p => p.VideoId).Distinct().ToList();
             return data;
 
         }
         public List<VideoDetail> GetAllVideos()
         {
-            var data = _dbContext.VideoDetails.Where(p=> p.IsDeleted == false).ToList();
-            return data;
+            var temp = _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+            var result = (from vd in temp
+                          join CC in _dbContext.ContentCreatorDetails
+                          on vd.CreatedBy equals CC.ContentCreatorId
+                          select vd);
+            
+            return result.ToList();
 
         }
         public async Task<VideoStatisticsDetail> GetByIdAsync(long id)
