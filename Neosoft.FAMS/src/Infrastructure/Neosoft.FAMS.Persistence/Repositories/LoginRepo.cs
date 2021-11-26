@@ -25,7 +25,8 @@ namespace Neosoft.FAMS.Persistence.Repositories
                     return null;
             }
 
-            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
+            //return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName);
+            return await _dbContext.Logins.FirstOrDefaultAsync(u => u.Username == userName && u.Password==Password);
         }
         public async Task<Login> CheckUsername(string userName)
         {

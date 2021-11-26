@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Services
@@ -38,16 +39,24 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public List<object> CheckUsernameAndPassword(string userName, string password)
+        public async Task<Domain.Entities.Login> CheckUsernameAndPassword(string userName, string password)
         {
             //var uri = API.Login.CheckUsernameAndPassword(_path, userName, password);
+            
             string pass = EncryptionDecryption.EncryptString(password);
-            var uri = API.Login.CheckUsernameAndPassword(_path, userName, pass);
-            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            Domain.Entities.Login _login = new Domain.Entities.Login();
+            _login.Password = EncryptionDecryption.EncryptString(password);
+            _login.Username = userName;
+            var content = JsonConvert.SerializeObject(_login);
+            var uri = API.Login.CheckUsernameAndPassword(_path);
+            HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
+               "application/json"));
+
+
             if (response.IsSuccessStatusCode)
             {
                 var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
-                var result = JsonConvert.DeserializeObject<List<object>>(jsonDataStatus);
+                var result = JsonConvert.DeserializeObject<Domain.Entities.Login>(jsonDataStatus);
                 return result;
             }
             return null;
@@ -64,14 +73,19 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<bool> SavePassword(ResetPasswordCommand resetPasswordCommand)
         {
             bool result = false;
-            var uri = API.Login.SavePassword(_baseUrl, _path, resetPasswordCommand.Username, resetPasswordCommand.Password, resetPasswordCommand.newPassword);
-            HttpResponseMessage response = _client.GetAsync(uri).Result;
-
+            resetPasswordCommand.Password = EncryptionDecryption.EncryptString(resetPasswordCommand.Password);
+            resetPasswordCommand.newPassword = EncryptionDecryption.EncryptString(resetPasswordCommand.newPassword);
+            var content = JsonConvert.SerializeObject(resetPasswordCommand);
+            var uri = API.Login.SavePassword(_baseUrl, _path);
+            HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
+                "application/json"));
             if (response.IsSuccessStatusCode)
             {
-                result = bool.Parse(response.Content.ReadAsStringAsync().Result);
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var res = JsonConvert.DeserializeObject<bool>(jsonDataStatus);
+                return res;
             }
-            return result;
+            return false;
 
         }
 
@@ -121,14 +135,19 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<bool> ForgotPassword(ForgotPasswordCommand forgotPasswordCommand)
         {
             bool result = false;
-            var uri = API.Login.ForgotPassword(_baseUrl, _path, forgotPasswordCommand.Username,forgotPasswordCommand.newPassword);
-            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            forgotPasswordCommand.newPassword = EncryptionDecryption.EncryptString(forgotPasswordCommand.newPassword);
+            var content = JsonConvert.SerializeObject(forgotPasswordCommand);
+            var uri = API.Login.ForgotPassword(_baseUrl, _path);
+            HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
+                "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
-                result = bool.Parse(response.Content.ReadAsStringAsync().Result);
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var res = JsonConvert.DeserializeObject<bool>(jsonDataStatus);
+                return res;
             }
-            return result;
+            return false;
         }
     }
 }

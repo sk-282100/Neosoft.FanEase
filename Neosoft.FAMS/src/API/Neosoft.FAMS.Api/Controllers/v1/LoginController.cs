@@ -6,6 +6,7 @@ using Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword;
 using Neosoft.FAMS.Application.Features.Login.Commands;
 using Neosoft.FAMS.Application.Features.Login.Queries;
 using System.Threading.Tasks;
+using Neosoft.FAMS.Domain.Entities;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -27,17 +28,18 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("CheckUsernameAndPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> CheckUsernameAndPassword(string username, string password)
+        public async Task<IActionResult> CheckUsernameAndPassword(Login _login)
         {
             LoginQuery loginQuery = new LoginQuery();
-            loginQuery.Password = password;
-            loginQuery.UserName = username;
+            loginQuery.Password = _login.Password;
+            loginQuery.UserName = _login.Username;
             var data = await _mediator.Send(loginQuery);
-
+            if(data==null)
+                return NotFound();
             return Ok(data);
         }
 
@@ -91,29 +93,29 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <param name="Password"></param>
         /// <param name="NewPassword"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("ResetPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> ResetPassword(string EmailAddress, string Password, string NewPassword)
+        public async Task<IActionResult> ResetPassword(ResetPasswordCommand reset)
         {
             ResetPasswordCommand resetPasswordCommand = new ResetPasswordCommand();
-            resetPasswordCommand.Username = EmailAddress;
-            resetPasswordCommand.Password = Password;
-            resetPasswordCommand.newPassword = NewPassword;
+            resetPasswordCommand.Username = reset.Username;
+            resetPasswordCommand.Password = reset.Password;
+            resetPasswordCommand.newPassword = reset.newPassword;
             var data = await _mediator.Send(resetPasswordCommand);
             return Ok(data);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("ForgotPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> NewPassword(string EmailAddress, string NewPassword)
+        public async Task<IActionResult> NewPassword(ForgotPasswordCommand forgot)
         {
             ForgotPasswordCommand forgotPasswordCommand = new ForgotPasswordCommand();
-            forgotPasswordCommand.Username = EmailAddress;
-            forgotPasswordCommand.newPassword = NewPassword;
+            forgotPasswordCommand.Username = forgot.Username;
+            forgotPasswordCommand.newPassword = forgot.newPassword;
             var data = await _mediator.Send(forgotPasswordCommand);
             return Ok(data);
         }

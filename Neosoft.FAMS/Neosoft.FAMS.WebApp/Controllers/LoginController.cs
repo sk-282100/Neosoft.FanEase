@@ -8,7 +8,9 @@ using Neosoft.FAMS.Application.Features.Users.Commands.CreateUser;
 using Neosoft.FAMS.WebApp.Models.LoginModel;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
+using System.Linq;
 using Neosoft.FAMS.WebApp.Models;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -29,7 +31,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View(new Login());
         }
         [HttpPost]
-        public IActionResult Index(Login model)
+        public async Task<IActionResult> Index(Login model)
         {
             if (ModelState.IsValid)
             {
@@ -37,19 +39,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 string Password = model.Password;
                 // var userList = _user.GetAllUserList();
 
-                var serviceresult = _user.SaveUser(new CreateUserCommand
-                {
-                    DateOfJoining = DateTime.Now,
-                    FirstName = "John",
-                    IsAdmin = true,
-                    LastName = "john",
-                    MiddleName = "John"
-                });
-                var data = _login.CheckUsernameAndPassword(Username, Password);
+                var data = await _login.CheckUsernameAndPassword(Username, Password);
                 if (data != null)
                 {
-                    int RoleId = Convert.ToInt32(data[1]);
-                    HttpContext.Session.SetString("LoginId", data[0].ToString());
+                    //int RoleId = 0;
+                    int RoleId = Convert.ToInt32(data.RoleId);
+                    HttpContext.Session.SetString("LoginId", data.Id.ToString());
 
                     if (RoleId == 1)
                     {
@@ -81,8 +76,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     ViewData["isTrueCredentials"] = true;
                     return View();
                 }
+
             }
             return View();
+        }
+
+        public async Task<Domain.Entities.Login> ValidateUser(string Username, string Password) {
+            return await _login.CheckUsernameAndPassword(Username, Password);
         }
         public IActionResult Home()
         {

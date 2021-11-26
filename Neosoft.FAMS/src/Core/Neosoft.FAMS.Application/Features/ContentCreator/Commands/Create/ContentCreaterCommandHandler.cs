@@ -26,8 +26,8 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Create
             if (validationResult.Errors.Count > 0)
                 throw new Exceptions.ValidationException(validationResult);
 
-            string password = "Pass123";
-            var createrData = await _creatorRepo.AddLoginDetailAsync(request.EmailId, password);
+           
+            var createrData = await _creatorRepo.AddLoginDetailAsync(request.EmailId,request.Password );
 
             var record = _mapper.Map<ContentCreatorDetail>(request);
             record.CreatedOn = DateTime.Now;

@@ -63,6 +63,8 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<long> SaveCreatorDetail(UpdateCreatorByIdCommand registeration)
         {
             long result = 0;
+            string pass = EncryptionDecryption.EncryptString("Pass123");
+            registeration.Password = pass;
             var uri = API.Creator.SaveCreator(_baseUrl, _path);
             var content = JsonConvert.SerializeObject(registeration);
             HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
