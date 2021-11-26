@@ -8,7 +8,7 @@
             public static string SavePassword(string baseUri,string path) => $"{baseUri}{path}/ResetPassword?api-version=1";
             public static string SaveOTP(string baseUri, string path, string username) => $"{baseUri}{path}/checkUsername?EmailAddress={username}&api-version=1";
             public static string CheckOTP(string baseUri, string path, string username, string otp) => $"{baseUri}{path}/CheckOtp?Username={username}&Otp={otp}&api-version=1";
-            public static string ForgotPassword(string baseUri, string path, string username,string newPassword) => $"{baseUri}{path}/ForgotPassword?EmailAddress={username}&NewPassword={newPassword}&api-version=1";
+            public static string ForgotPassword(string baseUri, string path) => $"{baseUri}{path}/ForgotPassword?api-version=1";
 
         }
         public static class User

@@ -107,15 +107,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("ForgotPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> NewPassword(string EmailAddress, string NewPassword)
+        public async Task<IActionResult> NewPassword(ForgotPasswordCommand forgot)
         {
             ForgotPasswordCommand forgotPasswordCommand = new ForgotPasswordCommand();
-            forgotPasswordCommand.Username = EmailAddress;
-            forgotPasswordCommand.newPassword = NewPassword;
+            forgotPasswordCommand.Username = forgot.Username;
+            forgotPasswordCommand.newPassword = forgot.newPassword;
             var data = await _mediator.Send(forgotPasswordCommand);
             return Ok(data);
         }

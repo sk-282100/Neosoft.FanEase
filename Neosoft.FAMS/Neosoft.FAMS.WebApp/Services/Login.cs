@@ -85,7 +85,7 @@ namespace Neosoft.FAMS.WebApp.Services
                 var res = JsonConvert.DeserializeObject<bool>(jsonDataStatus);
                 return res;
             }
-            return bool.Parse(null);
+            return false;
 
         }
 
@@ -135,14 +135,19 @@ namespace Neosoft.FAMS.WebApp.Services
         public async Task<bool> ForgotPassword(ForgotPasswordCommand forgotPasswordCommand)
         {
             bool result = false;
-            var uri = API.Login.ForgotPassword(_baseUrl, _path, forgotPasswordCommand.Username,forgotPasswordCommand.newPassword);
-            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            forgotPasswordCommand.newPassword = EncryptionDecryption.EncryptString(forgotPasswordCommand.newPassword);
+            var content = JsonConvert.SerializeObject(forgotPasswordCommand);
+            var uri = API.Login.ForgotPassword(_baseUrl, _path);
+            HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
+                "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
-                result = bool.Parse(response.Content.ReadAsStringAsync().Result);
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var res = JsonConvert.DeserializeObject<bool>(jsonDataStatus);
+                return res;
             }
-            return result;
+            return false;
         }
     }
 }
