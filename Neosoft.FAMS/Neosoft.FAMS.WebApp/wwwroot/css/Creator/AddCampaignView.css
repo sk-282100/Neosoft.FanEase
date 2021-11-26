@@ -1,4 +1,25 @@
-﻿input[type=text], input[type=date] {
+﻿input[type=text], input[type=date], textarea, #AdvertisementPlacement, #ContentType, .dateinput, #selectVideo, #txt_desc, #txt_VideoURL, #mp4videoFile {
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 15px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    height: 60px;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+.Dateecss {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -22,17 +43,53 @@
 label span {
     font-size: 12px;
 }
+input[type=datetime-local] {
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 15px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+#btnCancel {
+    background-color: #a9a9a9;
+}
+
+input[type=button], input[type=submit], input[type=reset], button[type=button] {
+    /*float:right;*/
+    background-color: #56baed;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin: 5px 20px 20px 0px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
 
 #deleteTag:hover {
     color: #56baed;
     cursor: pointer;
 }
-    input[type=text], input[type=date]:focus {
-        background-color: #fff;
-        border-bottom: 2px solid #5fbae9;
-    }
-
-    input[type=text], input[type=date]:placeholder {
-        color: #cccccc;
-    }
 

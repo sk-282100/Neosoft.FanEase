@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var records = (AdvertisementListQueryDto)ViewData["data"];
+    var description = (string) records.Description;
 }
 <head>
     <link rel="stylesheet" href="~/css/temp.css" />
@@ -59,7 +60,7 @@
                                     Advertisement Description<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
                                 </label>
-                                <textarea type="text" asp-for="Description" style="height: 90px; width: 500px;" class="fadeIn second" name="Description" value="@records.Description"></textarea>
+                                <input type="text" asp-for="Description" style="height: 90px; width: 500px;" class="fadeIn second" name="Description" value="@description" />
                             </div>
 
                             <div class="form-group col-md-6">
@@ -94,7 +95,7 @@
 
                                 <label id="lbl" for="formFileMultiple" class="form-label">Add Images or Add Video</label>
                                 <input class="form-control" type="file" name="ProfilePhotoPath" value="@records.ImagePath" id="mp4videoFile" multiple />
-                                <img src="~/Uploads/Creators/Videos/@records.ImagePath" style="height:150px;width:150px;">
+                                <img id="lbl" style="margin-left: 50px;" src="~/Uploads/Creators/Videos/@records.ImagePath" height="100px;" width="100px;">
                             </div>
                         </div>
                         <div class="row">

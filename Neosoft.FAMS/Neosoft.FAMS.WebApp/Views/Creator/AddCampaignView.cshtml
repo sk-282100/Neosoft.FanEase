@@ -18,8 +18,8 @@
 
     <link rel="stylesheet" href="~/css/temp.css" />
     <script src="~/js/AddVideo.js"></script>
+    <link rel="stylesheet" href="~/css/Creator/AddCampaignView.css" />
     <link href="~/css/datatablestyle.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/Creator/Add Video.css" />
 </head>
 
 <div class="container-fluid">
@@ -80,7 +80,7 @@
                                     @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
                                 </label>
                                 <input asp-for="StartDate" type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
-                                <label for="end_campaign">
+                                <label for="end_campaign" style="margin-top: 15px;">
                                     End Date of Campaign<sup style="color: red">*</sup>
                                     @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
                                 </label>
@@ -111,7 +111,7 @@
                                     Campaign Name 
                                     @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
                                 </label>
-                                <input asp-for="CampaignName" type="text" name="CampaignName" class="form-control" readonly value="@campaignData.CampaignName">
+                                <input asp-for="CampaignName" type="text" name="CampaignName" style="background-color: #f6f6f6;" class="form-control" readonly value="@campaignData.CampaignName">
                             </div>
                             <div class="form-group col-6">
                                 <div style="float: right;">
@@ -130,17 +130,19 @@
                                 <label for="start_campaign">
                                     Start Date of Campaign 
                                 </label>
-                                @Html.EditorFor(model => StartDate , new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.EditorFor(model => StartDate , new { htmlAttributes = new { @class = "form-control,Dateecss", @readonly = "readonly" } })
                                
-                                <label for="end_campaign">
+                                <label for="end_campaign" style="margin-top: 15px;">
                                     End Date of Campaign 
                                 </label>
-                                @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control",@readonly="readonly" } })
+                                @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control,Dateecss", @readonly="readonly" } })
                             </div>
 
-                            <div style="float: right;">
-                                <button type="button" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
-                                <input type="button" class="btn btn-primary" onclick="window.location = '@Url.Action("AddExistingCampaignIdToMapped", "Creator",new{id=@campaignData.CampaignId})'" style="height: 40px; margin-top: 0px; padding-top: 10px;" value="Proceed" />
+                            <div class="row">
+                                <div class="col d-flex justify-content-end">
+                                    <button type="button" id="btnCancel" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
+                                    <input type="button" id="btnProceed" class="btn btn-primary" onclick="window.location = '@Url.Action("AddExistingCampaignIdToMapped", "Creator",new{id=@campaignData.CampaignId})'" value="Proceed" />
+                                </div>
                             </div>
 
                         </div>
