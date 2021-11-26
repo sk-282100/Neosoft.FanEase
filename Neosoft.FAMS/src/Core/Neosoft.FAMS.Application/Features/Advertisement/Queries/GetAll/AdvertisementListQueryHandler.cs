@@ -19,7 +19,7 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll
 
         public async Task<List<AdvertisementListQueryDto>> Handle(GetAdvertisementListQuery request, CancellationToken cancellationToken)
         {
-            var data = await _advertisementRepo.ListAllAsync();
+            var data = await _advertisementRepo.GetAllAsync();
             var response = _mapper.Map<List<AdvertisementListQueryDto>>(data);
             return response;
         }

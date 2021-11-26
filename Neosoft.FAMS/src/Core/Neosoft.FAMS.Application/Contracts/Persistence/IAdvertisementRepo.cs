@@ -15,5 +15,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         Task<List<AdvertisementDetail>> GetCreatedByIdAsync(long id);
         Task<List<AdvertisementDetail>> GetLatestCreatorAdvertisement(long id);
         public Task<List<AdvertisementDetail>> GetAllAssets();
+        Task<List<AdvertisementDetail>> GetAllAsync();
     }
 }

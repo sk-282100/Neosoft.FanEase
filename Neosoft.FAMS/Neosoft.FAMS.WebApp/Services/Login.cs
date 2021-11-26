@@ -40,9 +40,9 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <returns></returns>
         public List<object> CheckUsernameAndPassword(string userName, string password)
         {
-            //var uri = API.Login.CheckUsernameAndPassword(_path, userName, password);
-            string pass = EncryptionDecryption.EncryptString(password);
-            var uri = API.Login.CheckUsernameAndPassword(_path, userName, pass);
+            var uri = API.Login.CheckUsernameAndPassword(_path, userName, password);
+            //string pass = EncryptionDecryption.EncryptString(password);
+            //var uri = API.Login.CheckUsernameAndPassword(_path, userName, pass);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
