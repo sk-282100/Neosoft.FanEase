@@ -26,7 +26,7 @@
         var $el = $('#videoThumbnail');
         $el.wrap('<form>').closest('form').get(0).reset();
         $el.unwrap();
-        $('#errorFileSize').text("Select Images Only");
+        $('#errorFileSize').text("Only png, jpg and jpeg Images allowed");
     }
 }
 
