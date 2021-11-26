@@ -66,5 +66,17 @@ namespace Neosoft.FAMS.Persistence.Repositories
             var data =  _dbContext.AdvertisementDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now).ToList();
             return data;
         }
+
+        public async Task<List<AdvertisementDetail>> GetAllAsync()
+        {
+            //List<VideoDetail> result = new List<VideoDetail>();
+            var temp = _dbContext.AdvertisementDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+            var result = (from vd in temp
+                join CC in _dbContext.ContentCreatorDetails
+                    on vd.CreatedBy equals CC.ContentCreatorId
+                select vd);
+
+            return result.ToList();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             var campaignId = await _dbContext.CampaignAdvertiseMappings.Where(p => p.VideoId == VideoId)
                 .Select(p => p.CampaignId).FirstOrDefaultAsync();
-            return await _dbContext.CampaignDetails.Where(c => c.CampaignId == campaignId).Select(c => c.CampaignName)
+            return await _dbContext.CampaignDetails.Where(c => c.CampaignId == campaignId && c.StartDate <= DateTime.Now && c.EndDate >= DateTime.Now).Select(c => c.CampaignName)
                 .FirstOrDefaultAsync();
         }
         public async Task<List<VideoDetail>> GetCreatedByIdAsync(long id)

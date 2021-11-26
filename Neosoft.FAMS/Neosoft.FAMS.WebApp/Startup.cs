@@ -85,11 +85,11 @@ namespace Neosoft.FAMS.WebApp
 
 
             app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Login}/{action=Home}");
-        });
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Login}/{action=Home}/{id?}");
+            });
         }
     }
 }

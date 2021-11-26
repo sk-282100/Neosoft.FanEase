@@ -28,10 +28,15 @@ namespace Neosoft.FAMS.Application.Features.Video.Queries.GetVideoOfCreatorById
             var videoData = await _videoRepo.GetCreatedByIdAsync(request.CreatedBy);
             for (var i = 0; i < videoData.Count; i++)
             {
+                var campaignName = await _videoRepo.GetCampaignName(videoData[i].VideoId);
+                if (campaignName == null)
+                {
+                    campaignName = "Not available";
+                }
                 getVideoOfCreatorDto.Add(new GetVideoOfCreatorDto()
                 {
                     VideoDetail = videoData[i],
-                    AssignedCampaign = await _videoRepo.GetCampaignName(videoData[i].VideoId),
+                    AssignedCampaign =campaignName ,
                     Views = _videoRepo.GetTotalVideoViewsByIdAsync(videoData[i].VideoId),
                     Clicks = _videoRepo.GetTotalVideoClicksByIdAsync(videoData[i].VideoId)
             });

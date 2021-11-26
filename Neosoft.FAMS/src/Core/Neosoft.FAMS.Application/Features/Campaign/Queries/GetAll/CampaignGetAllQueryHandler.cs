@@ -19,7 +19,7 @@ namespace Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll
 
         public async Task<List<CampaignGetAllDto>> Handle(CampaignGetAllQuery request, CancellationToken cancellationToken)
         {
-            var data = await _campaignDetailRepo.ListAllAsync();
+            var data = await _campaignDetailRepo.GetAllAsync();
             var response = _mapper.Map<List<CampaignGetAllDto>>(data);
             return response;
         }
