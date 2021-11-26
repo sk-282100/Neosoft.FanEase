@@ -74,8 +74,11 @@
 * ==========================================
 *
 */
-
-
+#tblRow {
+    height: 10px;
+    width: 10px;
+    border-right: none;
+}
 .rounded-lg {
     border-radius: 1rem;
 }
@@ -99,6 +102,9 @@ h2 {
     background-color: #fff;
     border-color: #fff;
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
 }
 
     .panel-top > .panel-heading a {
