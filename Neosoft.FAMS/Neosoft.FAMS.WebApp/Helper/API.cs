@@ -4,11 +4,11 @@
     {
         public static class Login
         {
-            public static string CheckUsernameAndPassword(string baseUri, string userName, string password) => $"{baseUri}/CheckUsernameAndPassword?username={userName}&password={password}&api-version=1";
-            public static string SavePassword(string baseUri, string path, string username, string password, string newPassword) => $"{baseUri}{path}/ResetPassword?EmailAddress={username}&Password={password}&NewPassword={newPassword}&api-version=1";
+            public static string CheckUsernameAndPassword(string baseUri) => $"{baseUri}/CheckUsernameAndPassword?api-version=1";
+            public static string SavePassword(string baseUri,string path) => $"{baseUri}{path}/ResetPassword?api-version=1";
             public static string SaveOTP(string baseUri, string path, string username) => $"{baseUri}{path}/checkUsername?EmailAddress={username}&api-version=1";
             public static string CheckOTP(string baseUri, string path, string username, string otp) => $"{baseUri}{path}/CheckOtp?Username={username}&Otp={otp}&api-version=1";
-            public static string ForgotPassword(string baseUri, string path, string username,string newPassword) => $"{baseUri}{path}/ForgotPassword?EmailAddress={username}&NewPassword={newPassword}&api-version=1";
+            public static string ForgotPassword(string baseUri, string path) => $"{baseUri}{path}/ForgotPassword?api-version=1";
 
         }
         public static class User

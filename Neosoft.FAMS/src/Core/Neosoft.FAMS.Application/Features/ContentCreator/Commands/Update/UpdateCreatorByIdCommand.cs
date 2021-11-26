@@ -23,6 +23,8 @@ namespace Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update
         public DateTime? CreatedOn { get; set; }
         public bool isPassowrdUpdated { get; set; }
         public bool isDeleted { get; set; }
+        public string Password { get; set; }
+
 
     }
 }
