@@ -26,17 +26,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-           var exception = HttpContext.Features.Get<IExceptionHandlerFeature>();
-           var statusCode = exception.Error.GetType().Name switch
-           {
-               "ArgumentException" => HttpStatusCode.BadRequest,
-               _ => HttpStatusCode.ServiceUnavailable
-           };
-            return Problem(detail:exception.Error.Message,statusCode:(int)statusCode);
-            //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+
+       
     }
 }
