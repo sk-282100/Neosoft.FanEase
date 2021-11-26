@@ -63,7 +63,7 @@
                         @Html.ValidationMessage("CountryId", "", new { @class = "text-danger" })
                     </label>
                     <select id="formCountry" asp-for="CountryId" style="margin:10px 10px 0px 35px" class="js-example-basic-single" name="CountryId">
-                        <option value="0">Please Select Country</option>    
+                        <option value="0">Please Select Country</option>
                     </select>
 
                     <label id="lbl">
@@ -73,7 +73,7 @@
                     <select id="formCity" asp-for="CityId" style="margin: 10px 10px 0px 35px" name="CityId">
                         <option value="0">Please Select City</option>
                     </select>
-                    
+
                     <label id="lbl">
                         Password<sup style="color:red">*</sup>
                         @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
@@ -119,8 +119,9 @@
 
                 </div>
             </div>
-            <input type="button" id="btnCancel" onclick="window.location= '@Url.Action( "Index", "Login")'" class="fadeIn fourth" value="Cancel">
             <input type="submit" class="fadeIn fourth" value="Save">
+            <input type="button" id="btnCancel" onclick="window.location= '@Url.Action( "Index", "Login")'" class="fadeIn fourth" value="Cancel">
+
         }
 
 
