@@ -9,7 +9,6 @@
     bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
     bool isAddedCampaign = Convert.ToBoolean(Context.Session.GetString("isCampaignAdded"));
     var campaignData=(CampaignGetAllDto)ViewData["campaignData"];
-   
     ViewData["step"] = 2;
 }
 
@@ -33,7 +32,7 @@
                     <h3 class="ml-1 mt-4 text-left" style="color: #8b8b8b;">
                         Add New Campaign
                     </h3>
-                </div>
+                </div> 
                 <div class="col-6">
                     @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
                     <partial name="_ProgressBar" view-data="ViewData">
