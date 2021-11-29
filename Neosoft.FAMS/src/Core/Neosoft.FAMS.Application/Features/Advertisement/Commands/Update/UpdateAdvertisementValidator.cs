@@ -19,14 +19,6 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Commands.Update
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
 
-            RuleFor(p => p.ImagePath)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
-
-            RuleFor(p => p.VideoPath)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
-
             RuleFor(p => p.Url)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();

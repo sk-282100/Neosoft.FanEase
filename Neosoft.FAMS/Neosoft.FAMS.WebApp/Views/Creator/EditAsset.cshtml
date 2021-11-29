@@ -38,6 +38,8 @@
                         DateTime StartDate = (DateTime)records.StartDate;
                         <input id="CreatedOn" name="CreatedOn" value="@records.CreatedOn" type="hidden" />
                         <input id="CreatedBy" name="CreatedBy" value="@records.CreatedBy" type="hidden" />
+                        <input id="IsDeleted" name="IsDeleted" value="@records.IsDeleted.ToString()" type="hidden" />
+                        <input id="Status" name="Status" value="@records.Status.ToString()" type="hidden" />
                         <input id="AdvertisementId" name="AdvertisementId" value="@records.AdvertisementId" type="hidden" />
                         <div class="form-row">
                             <div class="form-group col-md-6">

@@ -287,6 +287,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var data = _asset.GetAssetById(id);
             ViewData["data"] = data;
             TempData["imgPath"] = data.ImagePath;
+            TempData["VideoPath"] = data.VideoPath;
+            TempData["startDate"] = data.StartDate;
+            TempData["endDate"] = data.EndDate;
             return View();
         }
 
@@ -294,24 +297,73 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult EditAsset([FromRoute] long id, AddAsset editAsset)
         {
             editAsset.AdvertisementId = id;
-            if (ModelState.IsValid)
+            var updateAsset = _mapper.Map<UpdateAdvertisementCommand>(editAsset);
+            if (editAsset.ProfilePhotoPath == null)
+                updateAsset.ImagePath = TempData["imgPath"].ToString();
+            else if (editAsset.VideoPath == null)
             {
-                var updateAsset = _mapper.Map<UpdateAdvertisementCommand>(editAsset);
-                if (editAsset.ProfilePhotoPath == null)
-                    updateAsset.ImagePath = TempData["imgPath"].ToString();
-                else
-                {
-                    string uniqueFileName = UniqueName(editAsset.ProfilePhotoPath);
-                    updateAsset.ImagePath = uniqueFileName;
-                    updateAsset.VideoPath = uniqueFileName;
-                }
-
-                var isupdated = _asset.UpdateAssetDetail(updateAsset);
-                return RedirectToAction("SelectAsset");
-
+                updateAsset.VideoPath = TempData["VideoPath"].ToString();
             }
+            else if (editAsset.ProfilePhotoPath != null)
+            {
+                string uniquePath = UniqueName(editAsset.ProfilePhotoPath);
+                updateAsset.ImagePath = uniquePath;
+                ModelState.Remove("VideoPath");
+            }
+            else
+            {
+                string uniquePath = UniqueName(editAsset.VideoPath);
+                updateAsset.VideoPath = uniquePath;
+                ModelState.Remove("ProfilePhotoPath");
+            }
+
+
+            if (editAsset.StartDate == (DateTime)TempData["startDate"] &&
+                editAsset.EndDate == (DateTime)TempData["endDate"])
+            {
+                ModelState.Remove("StartDate");
+                ModelState.Remove("EndDate");
+                if (ModelState.IsValid)
+                {
+                    var isupdated = _asset.UpdateAssetDetail(updateAsset);
+                    return RedirectToAction("ExistingCampaign");
+                }
+            }
+            else if (editAsset.StartDate == (DateTime)TempData["startDate"])
+            {
+                ModelState.Remove("StartDate");
+                if (ModelState.IsValid)
+                {
+                    var isupdated = _asset.UpdateAssetDetail(updateAsset);
+                    return RedirectToAction("ExistingCampaign");
+                }
+            }
+            else if (editAsset.EndDate == (DateTime)TempData["endDate"])
+            {
+                ModelState.Remove("EndDate");
+                if (ModelState.IsValid)
+                {
+                    var isupdated = _asset.UpdateAssetDetail(updateAsset);
+                    return RedirectToAction("ExistingCampaign");
+                }
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var isupdated = _asset.UpdateAssetDetail(updateAsset);
+                    return RedirectToAction("ExistingCampaign");
+
+                }
+            }
+
             var record = _asset.GetAssetById(id);
             ViewData["data"] = record;
+            TempData["imgPath"] = record.ImagePath;
+            TempData["VideoPath"] = record.VideoPath;
+            TempData["startDate"] = record.StartDate;
+            TempData["endDate"] = record.EndDate;
             return View();
         }
 
