@@ -62,8 +62,10 @@
                             <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
                             <td>
                                 <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
-                                <a class="delete" title="Delete" onClick="deleteCreator('DeleteVideo/@record.VideoId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
-                            </td>
+                                <a id="deleteTag" class="delete" title="Delete" onClick="deleteCreator('DeleteVideo/@record.VideoId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>
+                               
+
+                                </td>
                         </tr>
                     }
                     </tbody>
