@@ -152,47 +152,49 @@
             <div class="card" id="TV-form" style="height: 500px;">
                 <div class="card-body">
 
-                    <div class="table-responsive" style="max-height: 480px;">
-                        <table class="table table-borderless" style="max-height: 600px;">
-                            <thead>
-                            <tr class="border-bottom">
-                                <th style="padding: 0px 2px 0px 40px;"></th>
-                                <th style="padding: 0px 2px 0px 40px;">Views</th>
-                                <th style="padding: 0px 2px 0px 40px;">Clicks</th>
-                                <th style="padding: 0px 2px 0px 40px;">Shares</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                    
                             @if (records.Count <= 0)
                             {
                                 <h6 style="text-align: center;"><b>No Record Found</b></h6>
                             }
                             else
                             {
-                                @foreach (var record in records)
-                                {
-                                    <tr class="border-bottom">
-                                        <td>
-                                            <b>@record.Title</b><br />
-                                            <video id="my_video_1"
-                                                   class="video-js vjs-default-skin vjs-big-play-centered"
-                                                   width="200px" height="80px"
-                                                   controls
-                                                   preload="none" poster='/Uploads/Creators/Videos/@record.UploadVideoPath'
-                                                   @*data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'*@>
-                                                <source src="/Uploads/Creators/Videos/@record.UploadVideoPath" type='video/mp4' />
-                                            </video>
+                                <div class="table-responsive" style="max-height: 480px;">
+                                    <table class="table table-borderless" style="max-height: 600px;">
+                                        <thead>
+                                        <tr class="border-bottom">
+                                            <th style="padding: 0px 2px 0px 40px;"></th>
+                                            <th style="padding: 0px 2px 0px 40px;">Views</th>
+                                            <th style="padding: 0px 2px 0px 40px;">Clicks</th>
+                                            <th style="padding: 0px 2px 0px 40px;">Shares</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach (var record in records)
+                                        {
+                                            <tr class="border-bottom">
+                                                <td>
+                                                    <b>@record.Title</b><br/>
+                                                    <video id="my_video_1"
+                                                           class="video-js vjs-default-skin vjs-big-play-centered"
+                                                           width="200px" height="80px"
+                                                           controls
+                                                           preload="none" poster='/Uploads/Creators/Videos/@record.UploadVideoPath'
+                                                           @*data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'*@>
+                                                        <source src="/Uploads/Creators/Videos/@record.UploadVideoPath" type='video/mp4'/>
+                                                    </video>
 
-                                        </td>
-                                        <td style="padding: 50px;">@record.topViews</td>
-                                        <td style="padding: 50px;">@record.topClicks</td>
-                                        <td style="padding: 50px;">@record.topShares</td>
-                                    </tr>
-                                }
+                                                </td>
+                                                <td style="padding: 50px;">@record.topViews</td>
+                                                <td style="padding: 50px;">@record.topClicks</td>
+                                                <td style="padding: 50px;">@record.topShares</td>
+                                            </tr>
+                                        
+                                        }
+                                        </tbody>
+                                    </table>
+                                </div>
                             }
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
             <div class="card" id="TC-form" style="display: none; height: 500px;">
@@ -208,7 +210,7 @@
                         <div class="table-responsive" style="height: 480px;">
                             <table class="table table-borderless" style="max-height: 600px;">
                                 <thead>
-                                <tr>
+                                <tr class="border-bottom">
                                     <th style="padding: 0px 2px 0px 40px;">Campaign Name</th>
                                     <th style="padding: 0px 2px 0px 40px;">No. of Assets</th>
                                 </tr>
