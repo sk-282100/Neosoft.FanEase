@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
-        url: "Creator/yearlyStats/"+ CreatorId.toString() + "/"+ currentYear.toString(),
+        url: "/Creator/yearlyStats/"+ CreatorId.toString() + "/"+ currentYear.toString(),
         //url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + currentYear +"&api-version=1",
         async: false,
         contentType: 'application/json',
@@ -113,7 +113,7 @@ $(document).ready(function () {
         var year = document.getElementById("selectYear").value;
         $.ajax({
             type: 'GET',
-            url: "Creator/yearlyStats/" + CreatorId.toString() + "/" + year.toString(),
+            url: "/Creator/yearlyStats/" + CreatorId.toString() + "/" + year.toString(),
             //url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + year + "&api-version=1",
 
             async: false,

@@ -77,7 +77,7 @@
                                     @Html.ValidationMessage("ProfilePhotoPath", "", new { @class = "text-danger" })
                                     <span id="errorFileSize" class="text-danger"></span>
                                 </label>
-                                <input asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" id="mp4videoFile" onchange="readURL(this);" multiple />
+                                <input asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" id="mp4ImageFile" onchange="readURL(this);" multiple />
                             </div>
                             <div id="hideMe1" style="display: none">
                                 <label id="lbl" for="formFileMultiple" class="form-label ">

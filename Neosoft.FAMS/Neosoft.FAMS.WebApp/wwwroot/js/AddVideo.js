@@ -1,6 +1,7 @@
 ﻿function readURL(input) {
     var ext = $(input).val().split('.').pop().toLowerCase();
-    if (input.files && input.files[0] && $.inArray(ext, ['png', 'jpg', 'jpeg']) == 1) {
+    var result = $.inArray(ext, ['PNG', 'png', 'JPG', 'JPEG', 'jpg', 'jpeg']);
+    if (input.files && input.files[0] && result >= 0) {
         var fileSize = $(input)[0].files[0].size;
         if (fileSize <= 1000000) {
             $('#errorFileSize').text("");
