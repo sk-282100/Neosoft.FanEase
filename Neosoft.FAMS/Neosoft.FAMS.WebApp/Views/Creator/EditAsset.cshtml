@@ -57,7 +57,24 @@
                                     <option value="1">Images</option>
                                     <option value="2">Videos</option>
                                 </select>
-
+                                <div id="hideMe">
+                                    <label id="lbl" for="formFileMultiple" class="form-label ">
+                                        Select Image<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("ProfilePhotoPath", "", new { @class = "text-danger" })
+                                        <span id="errorFileSize" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="ProfilePhotoPath" type="file" accept="image/*" name="ProfilePhotoPath" id="mp4videoFile" value="@records.ImagePath" onchange="readURL(this);" multiple />
+                           
+                                    </div>
+                                <div id="hideMe1" style="display: none">
+                                    <label id="lbl" for="formFileMultiple" class="form-label ">
+                                        Select Video<sup style="color: red">*</sup>
+                                        @Html.ValidationMessage("VideoPath", "", new { @class = "text-danger" })
+                                        <span id="errorFileSize2" class="text-danger"></span>
+                                    </label>
+                                    <input asp-for="VideoPath" type="file" accept="video/mp4" name="videoPath" id="mp4videoFile" value="@records.VideoPath" onchange="readURL(this);" multiple />
+                                    
+                                    </div>
                                 <label id="lbl">
                                     Advertisement Description<sup style="color:red">*</sup>
                                     @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
@@ -94,10 +111,6 @@
                                 </label>
                                 <input asp-for="Url" type="text" class="fadeIn second" value="@records.Url">
 
-
-                                <label id="lbl" for="formFileMultiple" class="form-label">Add Images or Add Video</label>
-                                <input class="form-control" type="file" name="ProfilePhotoPath" value="@records.ImagePath" id="mp4videoFile" multiple />
-                                <img id="lbl" style="margin-left: 50px;" src="~/Uploads/Creators/Videos/@records.ImagePath" height="100px;" width="100px;">
                             </div>
                         </div>
                         <div class="row">

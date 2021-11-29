@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetById;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Neosoft.FAMS.Application.Features.Template.Commands.TemplateVideo;
@@ -67,7 +68,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
                   _template.AddTemplateVideo(command);
             }
-
+            HttpContext.Session.SetString("isVideoAdded",false.ToString());
+            HttpContext.Session.SetString("isCampaignAdded", false.ToString());
+            HttpContext.Session.SetString("isAssetAdded", false.ToString());
             return RedirectToAction("TemplateList");
         }
     }

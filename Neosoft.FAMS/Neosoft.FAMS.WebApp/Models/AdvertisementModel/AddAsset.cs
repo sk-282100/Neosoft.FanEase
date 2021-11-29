@@ -41,11 +41,11 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [Required(ErrorMessage = "Url is required")]
         [DisplayName("Url")]
         public string Url { get; set; }
-
+        [Required]
         [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile ProfilePhotoPath { get; set; }
 
-
+        [Required]
         [MaxFileSize(20 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile VideoPath { get; set; }
 

@@ -255,6 +255,15 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult AddAsset(AddAsset addAsset)
         {
             addAsset.CreatedOn = DateTime.Now;
+            if (addAsset.ContentTypeId == 1)
+            {
+                ModelState.Remove("VideoPath");
+
+            }
+            else
+            {
+                ModelState.Remove("ProfilePhotoPath");
+            }
             if (ModelState.IsValid)
             {
                 var createAdvertisement = _mapper.Map<CreateAdvertisementCommand>(addAsset);
@@ -298,23 +307,30 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             editAsset.AdvertisementId = id;
             var updateAsset = _mapper.Map<UpdateAdvertisementCommand>(editAsset);
-            if (editAsset.ProfilePhotoPath == null)
-                updateAsset.ImagePath = TempData["imgPath"].ToString();
-            else if (editAsset.VideoPath == null)
+            if (editAsset.ContentTypeId == 1)
             {
-                updateAsset.VideoPath = TempData["VideoPath"].ToString();
-            }
-            else if (editAsset.ProfilePhotoPath != null)
-            {
-                string uniquePath = UniqueName(editAsset.ProfilePhotoPath);
-                updateAsset.ImagePath = uniquePath;
                 ModelState.Remove("VideoPath");
+                updateAsset.VideoPath = null;
+                if (editAsset.ProfilePhotoPath == null)
+                    updateAsset.ImagePath = TempData["imgPath"].ToString();
+                else
+                {
+                    string uniquePath = UniqueName(editAsset.ProfilePhotoPath);
+                    updateAsset.ImagePath = uniquePath;
+                }
+
             }
             else
             {
-                string uniquePath = UniqueName(editAsset.VideoPath);
-                updateAsset.VideoPath = uniquePath;
                 ModelState.Remove("ProfilePhotoPath");
+                updateAsset.ImagePath = null;
+                if (editAsset.VideoPath == null)
+                    updateAsset.VideoPath = TempData["VideoPath"].ToString();
+                else
+                {
+                    string uniquePath = UniqueName(editAsset.VideoPath);
+                    updateAsset.VideoPath = uniquePath;
+                }
             }
 
 

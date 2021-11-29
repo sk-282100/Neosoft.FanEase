@@ -1,6 +1,7 @@
 ﻿@using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetAll
 @using Microsoft.AspNetCore.Http
 @using Neosoft.FAMS.Application.Features.Campaign.Queries.GetAll
+@using System.Net.Mime
 @model CreateCampaign;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -171,24 +172,27 @@
                                     @foreach (var record in records)
                                     {
                                         
-                                            <tr>
-                                                @if (@record.ImagePath != null)
-                                                {
-                                                    <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
-                                                }
-                                                else
-                                                {
-                                                    <td><img src="~/DefaultPhotos/default_template.png" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
-                                                }
+                                        <tr>
+                                            @if (@record.ImagePath == null)
+                                            {
+                                                <td><video src="~/Uploads/Creators/Videos/@record.VideoPath" controls alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"></video></td>
+                                                <td>Video</td>
+                                            }
+                                            else
+                                            {
+                                                <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
                                                 <td>Image</td>
-                                                <td>@record.Title</td>
-                                                <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
-                                                <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                                                <td>
-                                                    <a class="edit" href="~/Creator/EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                            }
+                                            
+                          
+                                            <td>@record.Title</td>
+                                            <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                            <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                                            <td>
+                                                <a class="edit" href="~/Creator/EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
 
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
                                         
                                     }
                                 </tbody>
