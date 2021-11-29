@@ -24,19 +24,24 @@ namespace Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.TopC
             var data = _creatorDashboard.GetTopCampaigns(request.ContentCreatorId);
 
             //return Task.FromResult(data);
-            for (int i = 0; i < (data.Count - 1); i += 2)
+            for (int i = 0; i < (data.Count - 1); i += 4)
             {
-                var temp = data[i + 1].ToString();
+                var views = data[i + 1].ToString();
+                var Clicks = data[i + 2].ToString();
+                var Likes = data[i + 3].ToString();
                 campaignDetails.Add(new GetTopCampaignDto()
                 {
                     CampaignName = data[i].ToString(),
-                    ClickCount = int.Parse(temp)
+                    ViewCount = Convert.ToInt64(views),
+                    ClickCount = Convert.ToInt64(Clicks),
+                    LikeCount = Convert.ToInt64(Likes)
 
                 }); ;
 
             }
-            return Task.FromResult(campaignDetails.OrderByDescending(p => p.ClickCount).ToList());
+            return Task.FromResult(campaignDetails.OrderByDescending(p => p.ClickCount).ThenByDescending(p => p.ViewCount).ThenByDescending(p => p.LikeCount).ToList());
         }
     }
 }
+
 
