@@ -23,5 +23,7 @@ namespace Neosoft.FAMS.Application.Features.Video.Commands.Update
         public long CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string Decription { get; set; }
+        public bool? IsDeleted { get; set; }
+
     }
 }

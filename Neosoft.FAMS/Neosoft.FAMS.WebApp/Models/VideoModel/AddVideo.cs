@@ -50,6 +50,7 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         [Required(ErrorMessage = "Description is required")]
         [MinLength(10, ErrorMessage = "Description Length Cannot be Less than 10 characters")]
         public string Decription { get; set; }
+        public bool? IsDeleted { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
