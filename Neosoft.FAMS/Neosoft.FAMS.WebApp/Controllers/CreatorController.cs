@@ -399,14 +399,22 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             var updateVideo = _mapper.Map<UpdateVideoByIdCommand>(editVideo);
 
-            if (editVideo.VideoImage == null && editVideo.UploadVideoPath != null)
-                updateVideo.VideoImage = TempData["imgPath"].ToString();
-            else if (editVideo.UploadVideoPath == null && editVideo.VideoImage != null)
-                updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
-            else if (editVideo.UploadVideoPath == null && editVideo.VideoImage == null)
+            if (editVideo.VideoImage == null && editVideo.UploadVideoPath == null)
             {
                 updateVideo.VideoImage = TempData["imgPath"].ToString();
                 updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
+            }
+            else if (editVideo.UploadVideoPath == null)
+            {
+                updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
+                string thumbnail = UniqueName(editVideo.VideoImage);
+                updateVideo.VideoImage = thumbnail;
+            }
+            else if (editVideo.VideoImage == null)
+            {
+                updateVideo.VideoImage = TempData["imgPath"].ToString();
+                string video = VideoFile(editVideo);
+                updateVideo.UploadVideoPath = video;
             }
             else
             {
@@ -488,14 +496,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             string video = null;
 
-            if (model.VideoImage != null)
+            if (model.UploadVideoPath != null)
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Creators/Videos");
                 video = Guid.NewGuid().ToString() + "_" + model.UploadVideoPath.FileName;
                 string filePath = Path.Combine(uploadsFolder, video);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.VideoImage.CopyTo(fileStream);
+                    model.UploadVideoPath.CopyTo(fileStream);
                 }
             }
             return video;
