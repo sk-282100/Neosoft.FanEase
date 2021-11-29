@@ -70,7 +70,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
-        url: "Admin/yearlyStats?years=" + currentYear,
+        url: "/Admin/yearlyStats?years=" + currentYear,
         async: false,
         contentType: 'application/json',
         success: function (data) {
@@ -118,7 +118,7 @@ $(document).ready(function () {
         var year = document.getElementById("selectYear").value;
         $.ajax({
             type: 'GET',
-            url:"Admin/yearlyStats?years="+year,
+            url:"/Admin/yearlyStats?years="+year,
                
             async: false,
             contentType: 'application/json',
