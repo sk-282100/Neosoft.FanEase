@@ -47,13 +47,13 @@
                                 <tr>
                                     <td><input id="id_@record.AdvertisementId" type="checkbox" onchange="insertValue(this)" />    &nbsp;   </td>
                                     <td>@record.AdvertisementId</td>
-                                    @if (@record.ImagePath != null)
+                                    @if (@record.ImagePath == null)
                                     {
-                                        <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height: 50px; width: 50px;" class="rounded-circle" /></td>
+                                        <td><video src="~/Uploads/Creators/Videos/@record.VideoPath" controls alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"></video></td>
                                     }
                                     else
                                     {
-                                        <td><img src="~/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
+                                        <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
                                     }
                                     <td>@record.Title</td>
                                     <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
