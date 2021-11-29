@@ -55,7 +55,7 @@
                     <tbody>
                     @foreach (var record in records)
                     {
-                        if (@record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && @record.IsDeleted == false)
+                        if (record.CreatedBy == long.Parse(@Context.Session.GetString("ContentCreatorId")) && record.IsDeleted == false)
                         {
                             <tr>
                                 <td><input id="campaignRadioBtn_@record.CampaignId" onclick="changeId('@record.CampaignId')" name="existedCampaign" type="radio"/> &nbsp; </td>
