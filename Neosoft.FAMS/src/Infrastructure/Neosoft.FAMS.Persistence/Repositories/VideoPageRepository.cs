@@ -31,6 +31,8 @@ namespace Neosoft.FAMS.Persistence.Repositories
             var result = (from vs in temp
                           join VD in _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now)
                           on vs.VideoId equals VD.VideoId
+                          join CD in _dbContext.ContentCreatorDetails
+                          on VD.CreatedBy equals CD.ContentCreatorId
                           select vs);
 
            

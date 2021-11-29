@@ -40,7 +40,7 @@ namespace Neosoft.FAMS.Application.Features.AdminDashboard.Queries.TopCampaign
                 });
 
             }
-            return Task.FromResult(campaignDetails.OrderByDescending(p => p.ClickCount).ToList());
+            return Task.FromResult(campaignDetails.OrderByDescending(p => p.ClickCount).ThenByDescending(p=>p.ViewCount).ThenByDescending(p=>p.LikeCount).ToList());
         }
     }
 }
