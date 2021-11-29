@@ -18,8 +18,7 @@ namespace Neosoft.FAMS.Application.Features.Video.Command.Update
 
             RuleFor(p => p.VideoImage)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+                .NotNull();
 
             RuleFor(p => p.VideoId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

@@ -59,8 +59,8 @@
                                 <input id="PlayerTypeId" name="PlayerTypeId" value="@records.PlayerTypeId" type="hidden" />
                                 <input id="VideoCategoryId" name="VideoCategoryId" value="@records.VideoCategoryId" type="hidden" />
                                 <input id="VideoStatus" name="VideoStatus" value="@records.VideoStatus" type="hidden" />
-                                <input id="PublishStatus" name="PublishStatus" value="@records.PublishStatus" type="checkbox" hidden />
-                                <input id="IsDeleted" name="IsDeleted" value="@records.IsDeleted" type="hidden" />
+                                <input id="PublishStatus" name="PublishStatus" value="@records.PublishStatus.ToString()" type="hidden"  />
+                                <input id="IsDeleted" name="IsDeleted" value="@records.IsDeleted.ToString()" type="hidden" />
 
                                 <label>Video Title :  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</label>
                                 <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title" value="@records.Title">

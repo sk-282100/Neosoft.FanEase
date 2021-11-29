@@ -37,14 +37,13 @@
             <div style="margin-top: 20px;">
                 <table id="myTable" class="table table-sm table-hover">
                     <thead>
-                    <tr>
-                        <th class="nosort">Thumbnail Image</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Video Title</th>
-                        <th>Action</th>
-
-                    </tr>
+                        <tr>
+                            <th class="nosort">Thumbnail Image</th>
+                            <th>Video Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach (var record in records)
@@ -52,15 +51,15 @@
                         <tr>
                             @if (@record.VideoImage != null)
                             {
-                                <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height: 50px; width: 50px;"/></td>
+                                <td><img src="/Uploads/Creators/Videos/@record.VideoImage" alt="profile" style="height: 50px; width: 50px;" /></td>
                             }
                             else
                             {
-                                <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height: 50px; width: 50px;"/></td>
+                                <td><img src="/DefaultPhotos/video-thumbnail-default.png" alt="profile" style="height: 50px; width: 50px;" /></td>
                             }
+                            <td>@record.Title</td>
                             <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
                             <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                            <td>@record.Title</td>
                             <td>
                                 <a class="edit" href="EditVideoView/@record.VideoId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
                                 <a class="delete" title="Delete" onClick="deleteCreator('DeleteVideo/@record.VideoId.ToString()')" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"><i class="material-icons" style="color: red"></i></a>

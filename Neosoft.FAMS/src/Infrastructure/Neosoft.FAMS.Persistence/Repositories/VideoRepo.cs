@@ -32,7 +32,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public async Task<List<VideoDetail>> GetCreatedByIdAsync(long id)
         {
-            var listofVideos = await _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now).ToListAsync();
+            var listofVideos = await _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false && p.EndDate >= DateTime.Now).ToListAsync();
             return listofVideos;
         }
         public long GetAllVideoCount()

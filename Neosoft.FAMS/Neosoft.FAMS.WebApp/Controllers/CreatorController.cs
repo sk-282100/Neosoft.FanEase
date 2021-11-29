@@ -18,6 +18,7 @@ using Neosoft.FAMS.WebApp.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
@@ -336,42 +337,81 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["data"] = data;
             TempData["imgPath"] = data.VideoImage;
             TempData["VideoPath"] = data.UploadVideoPath;
+            TempData["startDate"] = data.StartDate;
+            TempData["endDate"] = data.EndDate;
+
             return View();
         }
         [HttpPost]
         public IActionResult EditVideoView([FromRoute] long id, AddVideo editVideo)
         {
-            editVideo.PublishStatus = false;
-            //editCreator.CountryId = 1;
-            if (ModelState.IsValid)
+            var updateVideo = _mapper.Map<UpdateVideoByIdCommand>(editVideo);
+
+            if (editVideo.VideoImage == null && editVideo.UploadVideoPath != null)
+                updateVideo.VideoImage = TempData["imgPath"].ToString();
+            else if (editVideo.UploadVideoPath == null && editVideo.VideoImage != null)
+                updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
+            else if (editVideo.UploadVideoPath == null && editVideo.VideoImage == null)
             {
-                var updateVideo = _mapper.Map<UpdateVideoByIdCommand>(editVideo);
-                if (editVideo.VideoImage == null && editVideo.UploadVideoPath != null)
-                    updateVideo.VideoImage = TempData["imgPath"].ToString();
-                else if (editVideo.UploadVideoPath == null && editVideo.VideoImage != null)
-                    updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
-                else if (editVideo.UploadVideoPath == null && editVideo.VideoImage == null)
-                {
-                    updateVideo.VideoImage = TempData["imgPath"].ToString();
-                    updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
-
-                }
-                else
-                {
-                    string thumbnail = UniqueName(editVideo.VideoImage);
-                    updateVideo.VideoImage = thumbnail;
-
-                    string video = VideoFile(editVideo);
-                    updateVideo.UploadVideoPath = video;
-                }
-
-
-                var isupdated = _video.UpdateVideoDetail(updateVideo);
-                return RedirectToAction("VideoTable");
-
+                updateVideo.VideoImage = TempData["imgPath"].ToString();
+                updateVideo.UploadVideoPath = TempData["VideoPath"].ToString();
             }
+            else
+            {
+                string thumbnail = UniqueName(editVideo.VideoImage);
+                updateVideo.VideoImage = thumbnail;
+                string video = VideoFile(editVideo);
+                updateVideo.UploadVideoPath = video;
+            }
+            ModelState.Remove("UploadVideoPath");
+
+            if (editVideo.StartDate == (DateTime) TempData["startDate"] &&
+                editVideo.EndDate == (DateTime) TempData["endDate"])
+            {
+                ModelState.Remove("StartDate");
+                ModelState.Remove("EndDate");
+                if (ModelState.IsValid)
+                {
+                    var isupdated = _video.UpdateVideoDetail(updateVideo);
+                    return RedirectToAction("VideoTable");
+                }
+            }
+            else if (editVideo.StartDate == (DateTime) TempData["startDate"])
+            {
+                ModelState.Remove("StartDate");
+                if (ModelState.IsValid)
+                {
+                    var isupdated = _video.UpdateVideoDetail(updateVideo);
+                    return RedirectToAction("VideoTable");
+
+                }
+            }
+            else if (editVideo.EndDate == (DateTime) TempData["endDate"])
+            {
+                ModelState.Remove("EndDate");
+                if (ModelState.IsValid)
+                {
+                    var isupdated = _video.UpdateVideoDetail(updateVideo);
+                    return RedirectToAction("VideoTable");
+
+                }
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    var isupdated = _video.UpdateVideoDetail(updateVideo);
+                    return RedirectToAction("VideoTable");
+
+                }
+            }
+            
             var record = _video.VideoGetById(id);
             ViewData["data"] = record;
+            TempData["imgPath"] = record.VideoImage;
+            TempData["VideoPath"] = record.UploadVideoPath;
+            TempData["startDate"] = record.StartDate;
+            TempData["endDate"] = record.EndDate;
             return View();
         }
         private string UniqueName(IFormFile nameFile)

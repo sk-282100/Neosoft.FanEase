@@ -58,7 +58,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         /// <returns></returns>
         [HttpPut]
         [Route("")]
-        public async Task<IActionResult> Update([FromBody] UpdateVideoByIdCommand updateVideoByIdCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateVideoByIdCommand updateVideoByIdCommand) 
         {
             var data = await _mediator.Send(updateVideoByIdCommand);
             return Ok(data);
