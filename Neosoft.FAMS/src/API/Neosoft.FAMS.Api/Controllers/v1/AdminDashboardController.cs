@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetAll;
 using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.TopCampaign;
 using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetYearlyStatistics;
+using Neosoft.FAMS.Application.Features.AdminDashboard.Queries.GetYearlyLiveStatistics;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -54,6 +55,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(yearlyStats);
             return Ok(data);
         }
-
+        [HttpGet]
+        [Route("GetYearlyLiveStatistics")]
+        public async Task<IActionResult> GetYearlyLiveStatistics(long years)
+        {
+            var yearlyStats = new GetYearlyLiveStatisticsQuery { year = years };
+            var data = await _mediator.Send(yearlyStats);
+            return Ok(data);
+        }
     }
 }

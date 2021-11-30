@@ -11,5 +11,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
     {
         public List<object> GetTopCampaigns();
         public List<long> GetYearlyStats(long years);
+        public List<long> GetYearlyLiveVideoStats(long years);
     }
 }

@@ -26,22 +26,22 @@ $(function () {
 
         var left = $(this).find('.progress-left .progress-bar');
         var right = $(this).find('.progress-right .progress-bar');
-        
-        
+
+
         if (value > 0) {
-            var temp = value/2
+            var temp = value / 2
             if (datas <= temp) {
-                right.css('transform', 'rotate(' + percentageToDegrees(datas,value) + 'deg)')
+                right.css('transform', 'rotate(' + percentageToDegrees(datas, value) + 'deg)')
             } else {
                 right.css('transform', 'rotate(180deg)')
-                left.css('transform', 'rotate(' + percentageToDegrees((datas - temp),value) + 'deg)')
+                left.css('transform', 'rotate(' + percentageToDegrees((datas - temp), value) + 'deg)')
             }
         }
 
     })
 
-    function percentageToDegrees(percentage,value) {
-        
+    function percentageToDegrees(percentage, value) {
+
         return 360 * percentage / value;
 
     }
@@ -66,9 +66,18 @@ $(document).ready(function () {
         ddlYears.appendChild(option);
     }
 
-
-   
-
+    var LiveData = [];
+    //https://localhost:44330/api/AdminDashboard/GetYearlyLiveStatistics?years=2021&api-version=1
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:44330/api/AdminDashboard/GetYearlyLiveStatistics?years=' + currentYear + '&api-version=1',
+        async: false,
+        contentType: 'application/json',
+        success: function (data) {
+            chartdata = data;
+            LiveData = data;
+        }
+    });
 
 
 
@@ -83,32 +92,68 @@ $(document).ready(function () {
                 animationEnabled: true,
                 theme: "light2",
                 axisX: {
-                    titleFontColor:"black",
+                    titleFontColor: "black",
                     title: "Months"
-
                 },
                 axisY: {
                     titleFontColor: "black",
                     title: " No of Videos Uploaded",
                     maximum: 100
                 },
+                legend: {
+                    cursor: "pointer",
+                    verticalAlign: "top",
+                    horizontalAlign: "center",
+                    dockInsidePlotArea: true
+
+                },
+                toolTip: {
+                    shared: true
+                },
                 data: [{
                     type: "line",
-                    color:"orangered",
-                    indexLabelFontSize: 16,
+                    axisYType: "primary",
+                    name: "Total Videos",
+                    showInLegend: true,
+
+                    markerSize: 1,
                     dataPoints: [
-                        { y: chartdata[0],label:"January" },
-                        { y: chartdata[1],label:"February" },
-                        { y: chartdata[2],label:"March" },
-                        { y: chartdata[3],label:"April" },
-                        { y: chartdata[4],label:"May" },
-                        { y: chartdata[5],label:"June" },
-                        { y: chartdata[6],label:"July" },
-                        { y: chartdata[7],label:"August" },
-                        { y: chartdata[8],label:"September"},
-                        { y: chartdata[9],label:"October" },
-                        { y: chartdata[10],label:"November"},
-                        { y: chartdata[11],label:"December" }
+                        { y: chartdata[0], label: "January" },
+                        { y: chartdata[1], label: "February" },
+                        { y: chartdata[2], label: "March" },
+                        { y: chartdata[3], label: "April" },
+                        { y: chartdata[4], label: "May" },
+                        { y: chartdata[5], label: "June" },
+                        { y: chartdata[6], label: "July" },
+                        { y: chartdata[7], label: "August" },
+                        { y: chartdata[8], label: "September" },
+                        { y: chartdata[9], label: "October" },
+                        { y: chartdata[10], label: "November" },
+                        { y: chartdata[11], label: "December" }
+                    ]
+                },
+                {
+
+                    type: "line",
+                    axisYType: "primary",
+                    name: "Live Videos",
+                    showInLegend: true,
+                    markerSize: 1,
+                    color: "orangered",
+
+                    dataPoints: [
+                        { y: LiveData[0], label: "January" },
+                        { y: LiveData[1], label: "February" },
+                        { y: LiveData[2], label: "March" },
+                        { y: LiveData[3], label: "April" },
+                        { y: LiveData[4], label: "May" },
+                        { y: LiveData[5], label: "June" },
+                        { y: LiveData[6], label: "July" },
+                        { y: LiveData[7], label: "August" },
+                        { y: LiveData[8], label: "September" },
+                        { y: LiveData[9], label: "October" },
+                        { y: LiveData[10], label: "November" },
+                        { y: LiveData[11], label: "December" }
                     ]
                 }]
             });
@@ -116,14 +161,27 @@ $(document).ready(function () {
         }
     });
 
-   
+
 
     $('#selectYear').change(function () {
         var year = document.getElementById("selectYear").value;
+
         $.ajax({
             type: 'GET',
-            url:"/Admin/yearlyStats?years="+year,
-               
+            url: 'https://localhost:44330/api/AdminDashboard/GetYearlyLiveStatistics?years=' + year + '&api-version=1',
+            async: false,
+            contentType: 'application/json',
+            success: function (data) {
+                chartdata = data;
+                LiveData = data;
+            }
+        });
+
+
+        $.ajax({
+            type: 'GET',
+            url: "/Admin/yearlyStats?years=" + year,
+
             async: false,
             contentType: 'application/json',
             success: function (data) {
@@ -136,16 +194,29 @@ $(document).ready(function () {
                     },
                     axisX: {
                         title: "Months"
-                       
+
                     },
                     axisY: {
                         title: "No of Videos Uploaded",
                         maximum: 100
                     },
+                    legend: {
+                        cursor: "pointer",
+                        verticalAlign: "top",
+                        horizontalAlign: "center",
+                        dockInsidePlotArea: true
+
+                    },
+                    toolTip: {
+                        shared: true
+                    },
                     data: [{
                         type: "line",
-                        color: "orangered",
-                        indexLabelFontSize: 16,
+                        axisYType: "primary",
+                        name: "Total Videos",
+                        showInLegend: true,
+                        maximum: 100,
+                        markerSize: 1,
                         dataPoints: [
                             { y: chartdata[0], label: "January" },
                             { y: chartdata[1], label: "February" },
@@ -160,13 +231,39 @@ $(document).ready(function () {
                             { y: chartdata[10], label: "November" },
                             { y: chartdata[11], label: "December" }
                         ]
+                    },
+                    {
+
+
+                        type: "line",
+                        axisYType: "primary",
+                        name: "Live Videos",
+                        showInLegend: true,
+                        markerSize: 1,
+                        color: "orangered",
+                        maximum: 100,
+                        dataPoints: [
+                            { y: LiveData[0], label: "January" },
+                            { y: LiveData[1], label: "February" },
+                            { y: LiveData[2], label: "March" },
+                            { y: LiveData[3], label: "April" },
+                            { y: LiveData[4], label: "May" },
+                            { y: LiveData[5], label: "June" },
+                            { y: LiveData[6], label: "July" },
+                            { y: LiveData[7], label: "August" },
+                            { y: LiveData[8], label: "September" },
+                            { y: LiveData[9], label: "October" },
+                            { y: LiveData[10], label: "November" },
+                            { y: LiveData[11], label: "December" }
+                        ]
+
                     }]
                 });
                 chart.render();
             }
+        });
+
+
     });
-
-
-});
 
 });
