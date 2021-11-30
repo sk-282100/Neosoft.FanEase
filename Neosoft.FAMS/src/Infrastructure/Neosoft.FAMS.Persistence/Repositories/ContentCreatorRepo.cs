@@ -27,7 +27,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         public async Task<List<ContentCreatorDetail>> GetLatestCreator()
         {
-            var data= await _dbContext.ContentCreatorDetails.Where(p =>p.CreatedOn >= DateTime.Today ).OrderByDescending(p => p.ContentCreatorId).ToListAsync();
+            var data= await _dbContext.ContentCreatorDetails.Where(p =>p.CreatedOn >= DateTime.Today && p.isDeleted == false ).OrderByDescending(p => p.ContentCreatorId).ToListAsync();
             return data;
         }
 
