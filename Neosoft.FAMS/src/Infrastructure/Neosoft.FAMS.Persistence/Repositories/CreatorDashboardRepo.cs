@@ -48,14 +48,18 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
             foreach (var gd in groupedData)
             {
-                
+                var Likes = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == gd.Key && p.IsLiked == true).Count();
+                var Clicks = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == gd.Key && p.IsClicked == true).Count();
+                var Views = _dbContext.VideoStatisticsDetails.Where(p => p.VideoId == gd.Key && p.IsViewed == true).Count();
+
                 var county = gd.ToList();
                 if (county[0].CreatedBy == id)
                 {
-                    counts = county.Count();
                     Name = county[0].CampaignName;
                     campaignName.Add(Name);
-                    campaignName.Add(county.Count());
+                    campaignName.Add(Views);
+                    campaignName.Add(Clicks);
+                    campaignName.Add(Likes);
                 }
             }
 
