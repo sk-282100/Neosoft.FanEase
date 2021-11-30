@@ -56,7 +56,6 @@
                                 <input id="CreatedBy" name="CreatedBy" value="@records.CreatedBy" type="hidden" />
                                 <input id="VideoId" name="VideoId" value="@records.VideoId" type="hidden" />
                                 <input id="VideoTypeId" name="VideoTypeId" value="@records.VideoTypeId" type="hidden" />
-                                <input id="PlayerTypeId" name="PlayerTypeId" value="@records.PlayerTypeId" type="hidden" />
                                 <input id="VideoCategoryId" name="VideoCategoryId" value="@records.VideoCategoryId" type="hidden" />
                                 <input id="VideoStatus" name="VideoStatus" value="@records.VideoStatus" type="hidden" />
                                 <input id="PublishStatus" name="PublishStatus" value="@records.PublishStatus.ToString()" type="hidden"  />
@@ -66,7 +65,7 @@
                                 <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title" value="@records.Title">
                                 <br /><br />
                                 <label>Video Description :  @Html.ValidationMessage("Decription", "", new { @class = "text-danger" })</label>
-                                <textarea class="form-control mb-2 mr-sm-2" id="txt_desc" style="height: 90px; width: 500px;" placeholder="Description" name="Decription">@records.Decription</textarea>
+                                <textarea class="form-control mb-2 mr-sm-2" id="txt_desc" style="height: 90px; width: 440px;" placeholder="Description" name="Decription">@records.Decription</textarea>
                                 <div id="temp">
                                     <label id="lbl_mp4videoFile">
                                         MP4 Video File
@@ -111,27 +110,7 @@
                                         <input type="radio" name="VideoTypeId" id="option2" autocomplete="off" onclick="check(this.id)" value=true checked> Pre-Recorded
                                     </label><br /><br /><br />
                                 }
-                                <label>Select Video Player:  @Html.ValidationMessage("PlayerTypeId", "", new { @class = "text-danger" })</label>
-                                <select class="form-select" aria-label="Default select example" name="PlayerTypeId" id="selectVideo" required>
-                                    @if (records.PlayerTypeId == 1)
-                                    {
-                                        <option value="1" selected>One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    }
-                                    else if (records.PlayerTypeId == 2)
-                                    {
-                                        <option value="1">One</option>
-                                        <option value="2" selected>Two</option>
-                                        <option value="3">Three</option>
-                                    }
-                                    else if (records.PlayerTypeId == 3)
-                                    {
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3" selected>Three</option>
-                                    }
-                                </select><br />
+                               <br />
 
                                 <label>MP4 Video URL :  @Html.ValidationMessage("VideoUrl", "", new { @class = "text-danger" })</label>
                                 <input asp-for="VideoUrl" type="text" class="form-control mb-2 mr-sm-2" id="txt_VideoURL" name="VideoUrl" placeholder="Video URL" value="@records.VideoUrl">

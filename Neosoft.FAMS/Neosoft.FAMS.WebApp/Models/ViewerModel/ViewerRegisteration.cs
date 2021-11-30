@@ -57,6 +57,7 @@ namespace Neosoft.FAMS.WebApp.Models.ViewerModel
 
         [DisplayName("Password")]
         [Required(ErrorMessage = "Password is required")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$", ErrorMessage = "Should have at least one lower case,at least one upper case,at least one number,at least one special character,Minimum 8 characters")]
         public string Password { get; set; }
 
         public DateTime? CreatedOn { get; set; }

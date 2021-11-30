@@ -36,8 +36,6 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         public short? VideoTypeId { get; set; }
         public short? PlayerTypeId { get; set; }
 
-
-
         public string? VideoUrl { get; set; }
         [Required(ErrorMessage = "Please upload video file")]
         public IFormFile UploadVideoPath { get; set; }
