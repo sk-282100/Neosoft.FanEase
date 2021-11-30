@@ -1,5 +1,5 @@
 ﻿﻿@import url('https://fonts.googleapis.com/css?family=Poppins');
- BASIC 
+ /*BASIC */
 
 a {
     color: #92badd;
@@ -20,7 +20,7 @@ h2 {
 
 
 
- STRUCTURE 
+/* STRUCTURE */
 
 .wrapper {
     display: flex;
@@ -61,7 +61,7 @@ h2 {
 }
 
 
- TABS 
+/* TABS */
 
 h2.inactive {
     color: #cccccc;
@@ -74,7 +74,7 @@ h2.active {
 
 
 
- FORM TYPOGRAPHY
+ /*FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset] {
     background-color: #56baed;
@@ -168,9 +168,9 @@ input[type=password] {
 
 
 
- ANIMATIONS 
+/* ANIMATIONS */
 
- Simple CSS3 Fade-in-down Animation 
+ /*Simple CSS3 Fade-in-down Animation*/ 
 .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
@@ -208,7 +208,7 @@ input[type=password] {
     }
 }
 
- Simple CSS3 Fade-in Animation 
+/* Simple CSS3 Fade-in Animation */
 @-webkit-keyframes fadeIn {
     from {
         opacity: 0;
@@ -276,7 +276,7 @@ input[type=password] {
         animation-delay: 1s;
     }
 
- Simple CSS3 Fade-in Animation 
+ /*Simple CSS3 Fade-in Animation */
 .underlineHover:after {
     display: block;
     left: 0;
@@ -298,7 +298,7 @@ input[type=password] {
 
 
 
- OTHERS 
+/* OTHERS */
 
 *:focus {
     outline: none;
