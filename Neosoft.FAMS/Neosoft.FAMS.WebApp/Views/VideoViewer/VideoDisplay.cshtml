@@ -131,13 +131,13 @@
             <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
         </div>
 
-        <div class="col-7" style="border-left: 3px solid #D3D3D3 ">
-            <h4><b>&emsp;Video Description : </b></h4>
-            <p id="ContentDescription">
-                &emsp;&nbsp;
-                @videoRecords.Decription
-            </p>
-        </div>
+        <div class="col-7" style="border-left: 3px solid #D3D3D3; justify-content: center; ">
+            <h4 style="margin-left: 15px;"><b>Video Description : </b></h4>
+            <p style="text-indent:1em each-line; margin-left: 15px;" id="ContentDescription">
+                    
+                    @videoRecords.Decription
+                </p>
+            </div>
     </div>
     <hr />
 
