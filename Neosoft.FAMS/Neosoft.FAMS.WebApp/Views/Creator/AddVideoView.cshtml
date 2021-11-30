@@ -59,7 +59,7 @@
                             <input asp-for="Title" type="text" class="form-control mb-2 mr-sm-2" id="txt_title" name="Title" placeholder="Title">
                             <br /><br />
                             <label>Video Description<sup style="color:red">*</sup> @Html.ValidationMessage("Decription", "", new { @class = "text-danger" })</label>
-                            <textarea asp-for="Decription" class="form-control mb-2 mr-sm-2" style="height: 90px; width: 440px;" id="txt_desc" placeholder="Description" name="Decription"></textarea>
+                            <textarea asp-for="Decription" class="form-control mb-2 mr-sm-2" style="height: 90px;" id="txt_desc" placeholder="Description" name="Decription"></textarea>
                             <div id="VideoFile">
                                 <label>
                                     MP4 Video File<sup style="color:red">*</sup> @Html.ValidationMessage("UploadVideoPath", "", new { @class = "text-danger" })
