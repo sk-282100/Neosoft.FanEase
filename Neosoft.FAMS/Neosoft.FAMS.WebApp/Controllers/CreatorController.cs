@@ -140,6 +140,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             model.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
             model.PublishStatus = false;
+            model.PlayerTypeId = 1;
             model.VideoCategoryId = 0;
             model.VideoStatus = 0;
             model.CreatedOn = DateTime.Now;
@@ -413,6 +414,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         [HttpPost]
         public IActionResult EditVideoView([FromRoute] long id, AddVideo editVideo)
         {
+            editVideo.PlayerTypeId = 1;
             var updateVideo = _mapper.Map<UpdateVideoByIdCommand>(editVideo);
 
             if (editVideo.VideoImage == null && editVideo.UploadVideoPath == null)

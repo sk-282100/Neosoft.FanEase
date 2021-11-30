@@ -45,6 +45,10 @@ function CheckFileSize(input) {
             $el.wrap('<form>').closest('form').get(0).reset();
             $el.unwrap();
             $('#errorFileSize').text("Only png, jpg and jpeg Images allowed");
+            setTimeout(
+                function () {
+                    $('#errorFileSize').text("");
+                }, 10000);
         }
     }
 }
