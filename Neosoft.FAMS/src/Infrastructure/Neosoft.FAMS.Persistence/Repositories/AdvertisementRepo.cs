@@ -37,7 +37,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public async Task<List<AdvertisementDetail>> GetLatestAdvertisement()
         {
-            var data = await _dbContext.AdvertisementDetails.Where(p => p.CreatedOn >= DateTime.Today).OrderByDescending(p => p.AdvertisementId).ToListAsync();
+            var data = await _dbContext.AdvertisementDetails.Where(p => p.CreatedOn >= DateTime.Today && p.IsDeleted==false).OrderByDescending(p => p.AdvertisementId).ToListAsync();
             return data;
         }
 

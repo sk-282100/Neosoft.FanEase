@@ -63,7 +63,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         public async Task<List<VideoDetail>> GetLatestVideo()
         {
-            var data = await _dbContext.VideoDetails.Where(p => p.CreatedOn >= DateTime.Today).OrderByDescending(p => p.VideoId).ToListAsync();
+            var data = await _dbContext.VideoDetails.Where(p => p.CreatedOn >= DateTime.Today && p.IsDeleted==false).OrderByDescending(p => p.VideoId).ToListAsync();
             return data;
         }
 

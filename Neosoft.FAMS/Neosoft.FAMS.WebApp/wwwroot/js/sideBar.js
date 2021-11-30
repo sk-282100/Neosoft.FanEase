@@ -6,7 +6,7 @@
     else if (path.includes("Viewer")) {
         path = "/Admin/ViewerList";
     }
-    console.log("hello");
+
     var element = $(".nav-item a[href='" + path + "']");
 
     element.addClass("myactive");
