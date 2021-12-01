@@ -1,0 +1,21 @@
+﻿#deleteTag:hover {
+    color: #56baed;
+    cursor: pointer;
+}
+
+.border-dark {
+    border: 3px solid grey !important;
+    box-shadow: grey 0.4em 0.5em 0.5em;
+}
+
+.templateImg:hover {
+    border: 3px solid grey;
+}
+
+.ml-5 {
+    margin-left: 120px !important;
+}
+
+.bord {
+    border: 3px solid grey;
+}
