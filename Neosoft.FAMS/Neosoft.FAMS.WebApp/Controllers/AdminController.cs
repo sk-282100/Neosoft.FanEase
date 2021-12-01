@@ -67,6 +67,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return result;
         }
         [HttpGet]
+        public List<long> yearlyLiveStats([FromQuery] long years)
+        {
+            var result = _adminDashboard.GetYearlyLiveStatistics(years);
+            return result;
+        }
+        [HttpGet]
         public bool checkForEmailExist([FromQuery] string email)
         {
             bool isPresent = _common.checkForEmail(email);
