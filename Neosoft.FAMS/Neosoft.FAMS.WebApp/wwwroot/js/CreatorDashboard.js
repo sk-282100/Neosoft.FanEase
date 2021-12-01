@@ -19,7 +19,7 @@
 
 $(function () {
 
-    $(".progress").each(function () {
+    $(".progress").each(function() {
 
         var value = $(this).attr('data-value');
         var datas = $(this).attr('data-value-temp');
@@ -29,14 +29,14 @@ $(function () {
         if (value > 0) {
             var temp = value / 2;
             if (datas <= temp) {
-                right.css('transform', 'rotate(' + percentageToDegrees(datas, value) + 'deg)')
+                right.css('transform', 'rotate(' + percentageToDegrees(datas, value) + 'deg)');
             } else {
-                right.css('transform', 'rotate(180deg)')
-                left.css('transform', 'rotate(' + percentageToDegrees((datas - temp), value) + 'deg)')
+                right.css('transform', 'rotate(180deg)');
+                left.css('transform', 'rotate(' + percentageToDegrees((datas - temp), value) + 'deg)');
             }
         }
 
-    })
+    });
 
     function percentageToDegrees(percentage,value) {
 
