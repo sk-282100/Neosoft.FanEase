@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Neosoft.FAMS.Application.Contracts.Persistence;
 using Neosoft.FAMS.Domain.Entities;
@@ -19,7 +21,11 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         }
 
-        
+        public async Task<List<VideoDetail>> GetCreatedByIdAsync(long id)
+        {
+            var listofVideos = await _dbContext.VideoDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now).ToListAsync();
+            return listofVideos;
+        }
         public List<object> GetTopCampaigns(long id)
         {
             

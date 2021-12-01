@@ -16,20 +16,22 @@ namespace Neosoft.FAMS.Application.Features.ContentCreatorDashboard.Queries.GetC
         private readonly IAdvertisementRepo _advertisementRepo;
         private readonly IContentCreatorRepo _contentCreatorRepo;
         private readonly IVideoRepository _videoRepository;
+        private readonly ICreatorDashboard _creatorDashboard;
 
-        public GetCreatorStatisticQueryhandler(IMapper mapper, IVideoPageRepository videoPageRepository, IAdvertisementRepo advertisementRepo, IContentCreatorRepo contentCreatorRepo, IVideoRepository videoRepository)
+        public GetCreatorStatisticQueryhandler(IMapper mapper, IVideoPageRepository videoPageRepository, IAdvertisementRepo advertisementRepo, IContentCreatorRepo contentCreatorRepo, IVideoRepository videoRepository,ICreatorDashboard creatorDashboard)
         {
             _mapper = mapper;
             _videoPageRepository = videoPageRepository;
             _advertisementRepo = advertisementRepo;
             _contentCreatorRepo = contentCreatorRepo;
             _videoRepository = videoRepository;
+            _creatorDashboard = creatorDashboard;
         }
         public async Task<List<long>> Handle(GetCreatorStatisticQuery request, CancellationToken cancellationToken)
         {
             
             
-            var Videos = await _videoRepository.GetCreatedByIdAsync(request.ContentCreatorId);
+            var Videos = await _creatorDashboard.GetCreatedByIdAsync(request.ContentCreatorId);
             var countOfVideos = Videos.Count;
             var Advertisements = await _advertisementRepo.GetCreatedByIdAsync(request.ContentCreatorId);
             var countofAds = Advertisements.Count;

@@ -22,23 +22,25 @@ $(function () {
     $(".progress").each(function () {
 
         var value = $(this).attr('data-value');
+        var datas = $(this).attr('data-value-temp');
         var left = $(this).find('.progress-left .progress-bar');
         var right = $(this).find('.progress-right .progress-bar');
 
         if (value > 0) {
-            if (value <= 50) {
-                right.css('transform', 'rotate(' + percentageToDegrees(value) + 'deg)')
+            var temp = value / 2;
+            if (datas <= temp) {
+                right.css('transform', 'rotate(' + percentageToDegrees(datas, value) + 'deg)')
             } else {
                 right.css('transform', 'rotate(180deg)')
-                left.css('transform', 'rotate(' + percentageToDegrees(value - 50) + 'deg)')
+                left.css('transform', 'rotate(' + percentageToDegrees((datas - temp), value) + 'deg)')
             }
         }
 
     })
 
-    function percentageToDegrees(percentage) {
+    function percentageToDegrees(percentage,value) {
 
-        return 360 * percentage / 100;;
+        return 360 * percentage / value;
 
     }
 
