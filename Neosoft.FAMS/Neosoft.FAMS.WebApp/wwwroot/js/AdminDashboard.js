@@ -67,7 +67,7 @@ $(document).ready(function () {
     }
 
     var LiveData = [];
-    //https://localhost:44330/api/AdminDashboard/GetYearlyLiveStatistics?years=2021&api-version=1
+
     $.ajax({
         type: 'GET',
         url: "/Admin/yearlyLiveStats?years=" + currentYear,
