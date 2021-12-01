@@ -88,7 +88,20 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        public List<long> GetYearlyLiveStatistics(long year)
+        {
+            var result = new List<long>();
+            var uri = API.AdminDashboard.GetYearlyLiveStats(_baseUrl, _path, year);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
 
-        
+
     }
 }

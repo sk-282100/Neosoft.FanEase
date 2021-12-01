@@ -13,5 +13,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         public List<GetTopVideoDto> GetTopVideo();
         public List<GetTopCampaignDto> GetTopCampaignName();
         public List<long> GetYearlyStatistics(long year);
+        public List<long> GetYearlyLiveStatistics(long year);
     }
 }
