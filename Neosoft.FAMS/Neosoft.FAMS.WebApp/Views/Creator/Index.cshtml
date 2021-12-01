@@ -32,11 +32,11 @@
     <div class="row">
         <div class="col-xl-3 col-lg-6 mb-4">
             <div class="bg-white rounded-lg p-3 shadow">
-                <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Video Uploads</h2>
+                <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Live Videos</h2>
                 <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@CreatorStatVideos</h3>
 
                 <!-- Progress bar 1 -->
-                <div class="progress mx-auto" data-value='@CreatorStatVideos'>
+                <div class="progress mx-auto" data-value='@CreatorStatVideos' data-value-temp='@LatestCreatorVideo'>
                     <span class="progress-left">
                         <span class="progress-bar border-orange"></span>
                     </span>
@@ -44,7 +44,7 @@
                         <span class="progress-bar border-orange"></span>
                     </span>
                     <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                        <div class="h2 font-weight-bold">+@LatestCreatorVideo<sup class="small"></sup></div>
+                        <div class="h2 font-weight-bold" data-value="@LatestCreatorVideo">+@LatestCreatorVideo<sup class="small"></sup></div>
                     </div>
                 </div>
 
@@ -53,11 +53,11 @@
 
         <div class="col-xl-3 col-lg-6 mb-4">
             <div class="bg-white rounded-lg p-3 shadow">
-                <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Advertisements</h2>
+                <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Live Advertisements</h2>
                 <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@CreatorStatAdvertisements</h3>
 
                 <!-- Progress bar 2 -->
-                <div class="progress mx-auto" data-value='@CreatorStatAdvertisements'>
+                <div class="progress mx-auto" data-value='@CreatorStatAdvertisements' data-value-temp='@LatestCreatorAds'>
                     <span class="progress-left">
                         <span class="progress-bar border-orange"></span>
                     </span>
@@ -65,7 +65,7 @@
                         <span class="progress-bar border-orange"></span>
                     </span>
                     <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                        <div class="h2 font-weight-bold">+@LatestCreatorAds<sup class="small"></sup></div>
+                        <div class="h2 font-weight-bold" data-value="@LatestCreatorAds">+@LatestCreatorAds<sup class="small"></sup></div>
                     </div>
                 </div>
 
@@ -74,11 +74,11 @@
 
         <div class="col-xl-3 col-lg-6 mb-4">
             <div class="bg-white rounded-lg p-3 shadow">
-                <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Video Views</h2>
+                <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Total Video Views</h2>
                 <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@CreatorStatViews</h3>
 
                 <!-- Progress bar 3 -->
-                <div class="progress mx-auto" data-value='@CreatorStatViews'>
+                <div class="progress mx-auto" data-value='@CreatorStatViews' data-value-temp='@CreatorLatestViews'>
                     <span class="progress-left">
                         <span class="progress-bar border-orange"></span>
                     </span>
@@ -86,7 +86,7 @@
                         <span class="progress-bar border-orange"></span>
                     </span>
                     <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                        <div class="h2 font-weight-bold">+@CreatorLatestViews<sup class="small"></sup></div>
+                        <div class="h2 font-weight-bold" data-value="@CreatorLatestViews">+@CreatorLatestViews<sup class="small"></sup></div>
                     </div>
                 </div>
 
@@ -95,11 +95,11 @@
         <input type="text" id="CreatorId" value="@session" hidden />
         <div class="col-xl-3 col-lg-6 mb-4">
             <div class="bg-white rounded-lg p-3 shadow">
-                <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Video Likes</h2>
+                <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Total Video Likes</h2>
                 <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@CreatorStatLikes</h3>
 
                 <!-- Progress bar 4 -->
-                <div class="progress mx-auto" data-value='@CreatorStatLikes'>
+                <div class="progress mx-auto" data-value='@CreatorStatLikes' data-value-temp='@CreatorLatestLikes'>
                     <span class="progress-left">
                         <span class="progress-bar border-orange"></span>
                     </span>
@@ -107,7 +107,7 @@
                         <span class="progress-bar border-orange"></span>
                     </span>
                     <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                        <div class="h2 font-weight-bold">+@CreatorLatestLikes<sup class="small"></sup></div>
+                        <div class="h2 font-weight-bold" data-value="@CreatorLatestLikes">+@CreatorLatestLikes<sup class="small"></sup></div>
                     </div>
                 </div>
 

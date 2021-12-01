@@ -52,7 +52,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         public async Task<List<AdvertisementDetail>> GetCreatedByIdAsync(long id)
         {
-            var listofads = await _dbContext.AdvertisementDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false).ToListAsync();
+            var listofads = await _dbContext.AdvertisementDetails.Where(p => p.CreatedBy == id && p.IsDeleted == false && p.EndDate >= DateTime.Now).ToListAsync();
             return listofads;
         }
         

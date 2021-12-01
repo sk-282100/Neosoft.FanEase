@@ -1,0 +1,29 @@
+[
+  {
+    "outputFileName": "wwwroot/css/bundleSite.min.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "wwwroot/css/site.css",
+      "wwwroot/css/StepBar.css",
+      "wwwroot/css/layout.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/bundleSite.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/dist/jquery.min.js",
+      "wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "wwwroot/js/site.js",
+      "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]
