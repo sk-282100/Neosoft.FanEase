@@ -102,7 +102,7 @@ $(document).ready(function () {
             type: 'GET',
            //https://localhost:44330/Views/6?viewerId=2&api-version=1
             url: "/VideoViewer/GetViews?videoId=" + videoId + "&viewerId=" + viewerId,
-            async: false,
+            async: true,
             contentType: 'application/json',
             success: function (data) {
                 views = data
