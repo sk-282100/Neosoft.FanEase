@@ -70,7 +70,7 @@ $(document).ready(function () {
     //https://localhost:44330/api/AdminDashboard/GetYearlyLiveStatistics?years=2021&api-version=1
     $.ajax({
         type: 'GET',
-        url: 'https://localhost:44330/api/AdminDashboard/GetYearlyLiveStatistics?years=' + currentYear + '&api-version=1',
+        url: "/Admin/yearlyLiveStats?years=" + currentYear,
         async: false,
         contentType: 'application/json',
         success: function (data) {
@@ -113,7 +113,7 @@ $(document).ready(function () {
                 data: [{
                     type: "line",
                     axisYType: "primary",
-                    name: "Total Videos",
+                    name: "Videos Uploaded",
                     showInLegend: true,
 
                     markerSize: 1,
@@ -168,7 +168,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44330/api/AdminDashboard/GetYearlyLiveStatistics?years=' + year + '&api-version=1',
+            url: "/Admin/yearlyLiveStats?years=" + year,
             async: false,
             contentType: 'application/json',
             success: function (data) {
@@ -189,9 +189,7 @@ $(document).ready(function () {
                 var chart = new CanvasJS.Chart("chartContainer", {
                     animationEnabled: true,
                     theme: "light2",
-                    title: {
-                        text: "Statistics"
-                    },
+                    
                     axisX: {
                         title: "Months"
 
@@ -213,7 +211,7 @@ $(document).ready(function () {
                     data: [{
                         type: "line",
                         axisYType: "primary",
-                        name: "Total Videos",
+                        name: "Videos Uploaded",
                         showInLegend: true,
                         maximum: 100,
                         markerSize: 1,

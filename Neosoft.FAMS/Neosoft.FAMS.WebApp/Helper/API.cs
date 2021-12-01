@@ -117,6 +117,8 @@
             public static string GetTopCampaign(string baseUri,string path) => $"{baseUri}{path}/GetTopCampaign?api-version=1";
            
             public static string GetYearlyStats(string baseUri, string path,long year) => $"{baseUri}{path}/GetYearlyStatistics?years={year}&api-version=1";
+            public static string GetYearlyLiveStats(string baseUri, string path, long year) => $"{baseUri}{path}/GetYearlyLiveStatistics?years={year}&api-version=1";
+
         }
 
         public static class CreatorDashboard
