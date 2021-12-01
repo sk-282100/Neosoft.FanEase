@@ -87,5 +87,17 @@ namespace Neosoft.FAMS.Persistence.Repositories
             return data;
         }
 
+        public List<long> GetYearlyLiveVideoStats(long id,long years)
+        {
+            List<long> data = new List<long>();
+            var year = _dbContext.VideoDetails.Where(p => (p.CreatedOn.Value.Year == years && p.IsDeleted == false) && p.CreatedBy==id);
+            for (int i = 1; i <= 12; i++)
+            {
+                var months = year.Where(p => p.StartDate.Value.Month == i).Count();
+                data.Add(months);
+            }
+            return data;
+        }
+
     }
 }

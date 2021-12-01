@@ -118,6 +118,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("Creator/yearlyLiveStats/{id}/{years}")]
+        public List<long> yearlyLiveStats([FromRoute] long id, [FromRoute] long years)
+        {
+            var result = _creatorDashboard.GetYearlyLiveStatistics(id,years);
+            return result;
+        }
+
         public ActionResult ViewCampaign()
         {
             return View();

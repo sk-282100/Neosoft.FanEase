@@ -129,7 +129,7 @@
             public static string GetTopCampaign(string baseUri, string path,long id) => $"{baseUri}{path}/GetTopCampaign/{id}?api-version=1";
             public static string GetYearlyStats(string baseUri, string path,long id, long year) => $"{baseUri}{path}/GetYearlyStatistics/{id}?years={year}&api-version=1";
 
-
+            public static string GetYearlyLiveStats(string baseUri, string path,long id, long year) => $"{baseUri}{path}/GetYearlyLiveStatistics/{id}?years={year}&api-version=1";
         }
     }
 }
