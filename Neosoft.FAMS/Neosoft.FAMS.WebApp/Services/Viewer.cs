@@ -33,6 +33,12 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
 
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 20-11-2021
+        /// Reason: It will check Email URL
+        /// </summary>
+        /// <returns></returns>
         public bool checkEmail(string email)
         {
             bool isPresent = false;
@@ -95,6 +101,12 @@ namespace Neosoft.FAMS.WebApp.Services
             return _id;
         }
 
+        /// <summary>
+        /// Author:Kajal Padhiyar
+        /// Date: 20-11-2021
+        /// Reason: It will return User according to Email
+        /// </summary>
+        /// <returns></returns>
         public ViewerDto GetViewerByEmail(string username)
         {
             var result = new ViewerDto();
@@ -110,6 +122,12 @@ namespace Neosoft.FAMS.WebApp.Services
         }
 
 
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will return List of Top Liked Videos
+        /// </summary>
+        /// <returns></returns>
         public List<GetTopLikesVideoListDto> GetTopLikedVideo()
         {
             var result = new List<GetTopLikesVideoListDto>();

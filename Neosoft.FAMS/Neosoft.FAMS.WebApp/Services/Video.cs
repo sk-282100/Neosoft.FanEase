@@ -82,6 +82,14 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will return List of  Video Created by a specific Content Creator
+        /// </summary>
+        /// <returns></returns>
+
         public List<VideoGetAllDto> VideosCreatedByContentCreator(long id)
         {
             var result = new List<VideoGetAllDto>();
@@ -96,6 +104,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will return a Video By VideoId
+        /// </summary>
+        /// <returns></returns>
         public VideoGetAllDto VideoGetById(long id)
         {
             var result = new VideoGetAllDto();
@@ -133,6 +148,12 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will Delete a Video
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> DeleteVideo(DeleteVideoByIdCommand command)
         {
             var uri = API.Video.DeleteVideo(_baseUrl, _path, command.VideoId);
@@ -146,6 +167,12 @@ namespace Neosoft.FAMS.WebApp.Services
             return false;
         }
 
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will return List of  Videos Created by Content Creator
+        /// </summary>
+        /// <returns></returns>
         public List<GetVideoOfCreatorDto> creatorVideoListById(long id)
         {
             var result = new List<GetVideoOfCreatorDto>();

@@ -92,6 +92,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author:Kajal Padhiyar
+        /// Date: 25-10-2021
+        /// Reason: It will check Viewer by Email
+        /// </summary>
+        /// <returns></returns>
+
         [HttpGet]
         [Route("getViewerByEmail")]
         public async Task<IActionResult> GetByEmail([FromQuery] string username)
@@ -102,6 +109,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will Return Top Liked Videos
+        /// /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetTopLikes")]
         public async Task<IActionResult> GetTopLikes()

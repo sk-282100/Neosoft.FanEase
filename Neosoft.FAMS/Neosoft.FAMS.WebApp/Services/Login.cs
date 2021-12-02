@@ -132,6 +132,14 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 15-11-2021
+        /// Reason: If User Forgot Password,Will be Able to Reset Password
+        /// </summary>
+        /// <param name="forgotPasswordCommand"></param>
+        /// <returns></returns>
         public async Task<bool> ForgotPassword(ForgotPasswordCommand forgotPasswordCommand)
         {
             bool result = false;

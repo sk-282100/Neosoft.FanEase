@@ -22,7 +22,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             _mediator = mediator;
         }
-
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will Update Details of Video
+        /// </summary>
+        /// <returns></returns>
         [HttpPut]
         [Route("")]
         public async Task<IActionResult> Update([FromBody] UpdateVideoPageByIdCommand updateVideoPageByIdCommand)
@@ -31,6 +36,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will Check details in Video Statistics, if not it will create
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("id")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -43,6 +54,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(checkClickId);
             return Ok(data);
         }
+
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will Return All Statistics of a particular video
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetCounters([FromRoute] long id)
@@ -53,6 +71,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(VideoQuery);
             return Ok(data);
         }
+
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will update and  Return Likes and dislikes of a Particular Video
+        /// </summary>
+        /// <returns></returns>
 
         [HttpGet]
         [Route("/Likes/{id}")]
@@ -65,7 +90,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(GetLikes);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will update and  Return Likes and dislikes of a Particular Video
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("/Dislikes/{id}")]
 
@@ -78,6 +108,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will update and  Return Views of a Particular Video
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("/Views/{id}")]
 
@@ -89,6 +125,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(GetViews);
             return Ok(data);
         }
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will check whether Video is Liked or not
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("/IsLikedById/{VideoId}/{ViewerId}")]
 

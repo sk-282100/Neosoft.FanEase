@@ -107,6 +107,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 15-11-2021
+        /// Reason:If User Forgot Password,Will be Able to Reset Password 
+        /// </summary>
+        /// <param name="forgot"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("ForgotPassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -22,7 +22,7 @@ $(document).ready(function () {
     $('#like').click(function () {
         $.ajax({
             type: 'GET',
-            url: "/VideoViewer/GetLikes?videoId=" + videoId + "&viewerId="+viewerId,
+            url: "/VideoViewer/GetLikes?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
             contentType: 'application/json',
             success: function (data) {
@@ -31,7 +31,7 @@ $(document).ready(function () {
                 dislikes = data[0];
                 $('#likeSpan').text(likes);
                 $('#dislikeSpan').text(dislikes);
-                
+
                 var elementLike = $('#likeIcon');
                 var elementClassLike = $('#likeIcon').attr("class");
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
                 if (elementClassLike == "fa fa-thumbs-o-up" && elementClassdisLike == "fa fa-thumbs-o-down") {
                     elementLike.removeClass();
                     elementLike.addClass("fas fa-thumbs-up");
-                    
+
                 }
                 else if (elementClassLike == "fas fa-thumbs-up" && elementClassdisLike == "fa fa-thumbs-o-down") {
                     elementLike.removeClass();
@@ -97,12 +97,28 @@ $(document).ready(function () {
             }
         });
     });
-    $('.vjs-big-play-button,.vjs-icon-placeholder').click(function () {
+    $('.vjs-icon-placeholder').click(function () {
         $.ajax({
             type: 'GET',
-           //https://localhost:44330/Views/6?viewerId=2&api-version=1
+            //https://localhost:44330/Views/6?viewerId=2&api-version=1
             url: "/VideoViewer/GetViews?videoId=" + videoId + "&viewerId=" + viewerId,
-            async: true,
+            async: false,
+            contentType: 'application/json',
+            success: function (data) {
+                views = data
+                $('#views').text(views);
+            }
+        });
+
+        //$.get("/VideoViewer/GetViews?videoId=", { videoId: videoId, viewerId:viewerId });
+    });
+
+    $('.vjs-big-play-button,').click(function () {
+        $.ajax({
+            type: 'GET',
+            //https://localhost:44330/Views/6?viewerId=2&api-version=1
+            url: "/VideoViewer/GetViews?videoId=" + videoId + "&viewerId=" + viewerId,
+            async: false,
             contentType: 'application/json',
             success: function (data) {
                 views = data
@@ -110,7 +126,5 @@ $(document).ready(function () {
             }
         });
     });
-    
-
 
 });

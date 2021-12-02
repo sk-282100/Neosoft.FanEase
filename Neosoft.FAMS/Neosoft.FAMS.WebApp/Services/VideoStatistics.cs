@@ -30,6 +30,12 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
 
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will update and Return Likes and Dislikes of a Particular Video
+        /// </summary>
+        /// <returns></returns>
         public List<long> GetLikes(long id,long viewerId)
         {
             var result = new List<long>();
@@ -43,6 +49,12 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will Update and Return Likes and Dislikes of a Particular Video
+        /// </summary>
+        /// <returns></returns>
 
         public List<long> GetDislikes(long id, long viewerId)
         {
@@ -57,7 +69,12 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will Return Views of a Particular Video
+        /// </summary>
+        /// <returns></returns>
         public long GetViews(long id, long viewerId)
         {
             long result = 0;
@@ -97,7 +114,13 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
 
         }
-        public  bool CheckClickBy(long videoId,long viewerId)
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will check whether data is present in videoStatistics, if not it will create it
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckClickBy(long videoId,long viewerId)
         {
             var uri = API.VideoStatistics.CheckClickBy(_baseUrl, _path,videoId,viewerId);
             HttpResponseMessage response =  _client.GetAsync(uri).Result;
@@ -109,6 +132,12 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return false;
         }
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 20-11-2021
+        /// Reason: It will Return Likes Status of a Particular Video
+        /// </summary>
+        /// <returns></returns>
         public bool? LikeStatus(long videoId,long viewerId)
         {
             //https://localhost:44330/IsLikedById/87/12?api-version=1;
