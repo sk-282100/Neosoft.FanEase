@@ -48,6 +48,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _creatorDashboard = creatorDashboard;
 
         }
+        /// <summary>
+        /// Author : Sharma Aman<br></br>
+        /// Date : 12/11/2021 <br></br>
+        /// Reason : It will add Existing campaign Id to CampaignAdvertisement Mapping Table
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult AddExistingCampaignIdToMapped(long id)
         {
             MappingViewModel.CampaignId = id;
@@ -55,7 +62,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
             HttpContext.Session.SetString("isCampaignAdded",true.ToString());
             return RedirectToAction("AddAsset");
         }
-
+        /// <summary>
+        /// Author : Sharma Aman<br></br>
+        /// Date : 12/11/2021 <br></br>
+        /// Reason : It will fetch all linked advertisement to particular Campaign
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult AddExistingCampaignId(long id)
         {
             var campaignData=_campaign.GetCampaignById(id);
@@ -64,7 +77,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
             ViewData["AdvertisementData"] = _asset.GetAllMappedAsset(id);
             return View("AddCampaignView");
         }
-
+        /// <summary>
+        /// Author : Sharma Aman<br></br>
+        /// Date : 12/11/2021 <br></br>
+        /// Reason : It will add existing advertisement to mapped table with particular Campaign
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AddExistingAssets()
         {
             foreach (var id in AddExistingAssetViewModel.AdvertisementId)
@@ -75,18 +93,31 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
             return RedirectToAction("AddCampaignView");
         }
-        public void AddExistingAssetId(long id)
+        /// <summary>
+        /// Author : Sharma Aman<br></br>
+        /// Date : 12/11/2021 <br></br>
+        /// Reason : It will add multiple existing selected advertisement to Model so we can map advertisement with Campaign 
+        /// </summary>
+        /// <param name="advertisementId"></param>
+        [NonAction]
+        public void AddExistingAssetId(long advertisementId)
         {
             //long advertisementId = Convert.ToInt64(id);
-            if (AddExistingAssetViewModel.AdvertisementId.Contains(id))
-                AddExistingAssetViewModel.AdvertisementId.Remove(id);
+            if (AddExistingAssetViewModel.AdvertisementId.Contains(advertisementId))
+                AddExistingAssetViewModel.AdvertisementId.Remove(advertisementId);
             else
-                AddExistingAssetViewModel.AdvertisementId.Add(id);
+                AddExistingAssetViewModel.AdvertisementId.Add(advertisementId);
         }
         public IActionResult GetAdvertisement()
         {
             return Json(_common.GetAdvertisement());
         }
+        /// <summary>
+        /// Author : Sana Haju<br></br>
+        /// Date : 13/11/2021 <br></br>
+        /// Reason : It will fetch all creator dashboard details
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Index()
         {
@@ -108,7 +139,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
             TempData["CreatorLatestLikes"] = CreatorStatData[3];
             return View();
         }
-
+        /// <summary>
+        /// Author : Sana Haju<br></br>
+        /// Date : 13/11/2021 <br></br>
+        /// Reason : It will fetch all statistic detail of creator based on year
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="years"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Creator/yearlyStats/{id}/{years}")]
 
@@ -117,7 +155,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var result = _creatorDashboard.GetYearlyStatistics(id,years);
             return result;
         }
-
+        /// <summary>
+        /// Author : Sana Haju<br></br>
+        /// Date : 15/11/2021 <br></br>
+        /// Reason : It will fetch all statistic detail that are live of creator based on year
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="years"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Creator/yearlyLiveStats/{id}/{years}")]
         public List<long> yearlyLiveStats([FromRoute] long id, [FromRoute] long years)

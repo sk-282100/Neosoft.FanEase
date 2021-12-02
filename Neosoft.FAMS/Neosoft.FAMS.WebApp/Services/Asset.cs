@@ -38,6 +38,13 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 29/10/2021 <br></br>
+        /// Reason :  It will add new advertisement detail
+        /// </summary>
+        /// <param name="createAdvertisementCommand"></param>
+        /// <returns></returns>
         public async Task<long> SaveAssetDetail(CreateAdvertisementCommand createAdvertisementCommand)
         {
             long result = 0;
@@ -60,7 +67,12 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
-
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 29/10/2021 <br></br>
+        /// Reason : It will fetch all advertisement detail
+        /// </summary>
+        /// <returns></returns>
         public List<AdvertisementListQueryDto> GetAllAsset()
         {
             var result = new List<AdvertisementListQueryDto>();
@@ -75,6 +87,11 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 25/11/2021 <br></br>
+        /// Reason : It will add video,campaign and advertisement mapped data
+        /// </summary>
         public void AddMappedData()
         {
 
@@ -82,12 +99,19 @@ namespace Neosoft.FAMS.WebApp.Services
             addCampaignAdvertisement.AdvertisementId = MappingViewModel.AdvertisementId;
             addCampaignAdvertisement.CampaignId = MappingViewModel.CampaignId;
             addCampaignAdvertisement.VideoId = MappingViewModel.VideoId;
-            addCampaignAdvertisement.CreatedBy = MappingViewModel.CreatedBy;/*long.Parse(HttpContext.Session.GetString("ContentCreatorId"));*/
+            addCampaignAdvertisement.CreatedBy = MappingViewModel.CreatedBy;
             addCampaignAdvertisement.CreatedOn = DateTime.Now;
 
             var id = AddCampaignAdvertiseMappedData(addCampaignAdvertisement);
 
         }
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 25/11/2021 <br></br>
+        /// Reason : It will add Campaign and advertisement that are linked into Campaign-Advertisement mapped table
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         public async Task<long> AddCampaignAdvertiseMappedData(AddCampaignAdvertisementCommand command)
         {
             long result = 0;
@@ -104,7 +128,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 25/11/2021 <br></br>
+        /// Reason : It will fetch advertisement detail by id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public AdvertisementListQueryDto GetAssetById(long id)
         {
             var result = new AdvertisementListQueryDto();
@@ -118,7 +148,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 26/10/2021 <br></br>
+        /// Reason : It will update advertisement detail
+        /// </summary>
+        /// <param name="update"></param>
+        /// <returns></returns>
         public async Task<bool> UpdateAssetDetail(UpdateAdvertisementCommand update)
         {
             bool result = false;
@@ -135,7 +171,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
-
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 26/10/2021 <br></br>
+        /// Reason : It will delete advertisement by Id
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         public async Task<bool> DeleteAsset(DeleteAdvertisementCommand command)
         {
             var uri = API.Asset.DeleteAsset(_baseUrl, _path, command.AdvertisementId);
@@ -148,7 +190,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return false;
         }
-
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 26/11/2021 <br></br>
+        /// Reason : It will fetch advertisement details that are linked with Campaign by campaign Id
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <returns></returns>
         public List<AdvertisementListQueryDto> GetAllMappedAsset(long campaignId)
         {
             var result = new List<AdvertisementListQueryDto>();
