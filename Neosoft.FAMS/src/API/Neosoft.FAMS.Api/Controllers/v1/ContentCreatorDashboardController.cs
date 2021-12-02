@@ -22,7 +22,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             _mediator = mediator;
         }
-
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 22-11-2021
+        /// Reason: To Get Creator Account Statistics
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetCreatorStats([FromRoute] long id)
@@ -32,6 +38,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 22-11-2021
+        /// Reason: To Get Creator Video Statistics
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("/VideoStatistics/{id}")]
         public async Task<IActionResult> GetCreatorVideoStats([FromRoute] long id)
@@ -41,6 +55,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: To Get Creator's Yearly Video Statistics 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="years"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetYearlyStatistics/{id}")]
         public async Task<IActionResult> GetYearlyStatistics([FromRoute] long id,long years)
@@ -50,6 +72,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: To Get Creator's Top Videos 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetTopVideos/{id}")]
         public async Task<IActionResult> GetTopVideos([FromRoute] long id)
@@ -59,6 +88,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: To Get Creator's Top Campaigns
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetTopCampaign/{id}")]
         public async Task<IActionResult> GetTopCampaign([FromRoute] long id)
@@ -69,6 +106,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
 
         }
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 1-12-2021
+        /// Reason:To Get Creator's Yearly Live Video Statistics 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="years"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetYearlyLiveStatistics/{id}")]
         public async Task<IActionResult> GetYearlyLiveStatistics([FromRoute] long id, long years)
