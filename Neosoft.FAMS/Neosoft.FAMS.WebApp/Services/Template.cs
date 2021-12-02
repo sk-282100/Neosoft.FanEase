@@ -33,7 +33,13 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
-
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 22/11/2021 <br></br>
+        /// Reason : It will add Template that is linked with video into Template-Video mapping table
+        /// </summary>
+        /// <param name="mappedCommand"></param>
+        /// <returns></returns>
         public async Task<long> AddTemplateVideo(TemplateVideoMappedCommand mappedCommand)
         {
             var Uri = API.Template.TemplateVideoMap(_baseUrl,_path);
@@ -49,7 +55,13 @@ namespace Neosoft.FAMS.WebApp.Services
             return 0;
 
         }
-
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 23/11/2021 <br></br>
+        /// Reason : It will fetch all advertisement details by video Id that is linked with video
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<GetAllTemplateByIdDto> GetAdvertiseByVideoId(long id)
         {
             var result = new List<GetAllTemplateByIdDto>();
@@ -64,7 +76,12 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return null;
         }
-
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 22/11/2021 <br></br>
+        /// Reason : It will fetch all template details
+        /// </summary>
+        /// <returns></returns>
         public List<TemplateListDto> GetAllTemplate()
         {
             var result = new List<TemplateListDto>();
@@ -79,6 +96,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 22/11/2021 <br></br>
+        /// Reason : It will fetch template details by template id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public TemplateListDto GetTemplate(long id)
         {
             var uri = API.Template.GetTemplate(_baseUrl, _path,id);

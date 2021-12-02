@@ -11,5 +11,6 @@ namespace Neosoft.FAMS.Application.Contracts.Persistence
         public List<object> GetTopCampaigns(long id);
         public List<long> GetYearlyStats(long id,long years);
         Task<List<VideoDetail>> GetCreatedByIdAsync(long id);
+        public List<long> GetYearlyLiveVideoStats(long id,long years);
     }
 }
