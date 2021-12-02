@@ -24,223 +24,231 @@
 <div class="container-fluid">
     <div class="row" style="background-color: #F5F5F5;">
         @Html.Partial("_SideBar")
-        <div class="col">
-            <div class="jumbotron" style="margin: 15px 13px 5px 5px; max-height: 400px; padding-top: 5px;padding-bottom: 5px;">
-                <h4 class="h4 font-weight-bold text-left mb-4" style="color: black; text-transform: capitalize;">Account Analysis</h4>
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 mb-4">
-                        <div class="bg-white rounded-sm p-3 shadow">
-                            <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Content Creators</h2>
-                            <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@ContentCreator</h3>
+        <div class="col-10">
+            <div class="row">
+                <div class="col">
+                    <div class="jumbotron" style="margin: 15px 13px 5px 5px; max-height: 100%; padding-top: 5px;padding-bottom: 5px;">
+                        <h4 class="h4 font-weight-bold text-left mb-4" style="color: black; text-transform: capitalize;">Account Analysis</h4>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6 mb-4">
+                                <div class="bg-white rounded-sm p-3 shadow">
+                                    <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Content Creators</h2>
+                                    <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@ContentCreator</h3>
 
-                            <!-- Progress bar 1 -->
-                            <div class="progress mx-auto" data-value='@ContentCreator' data-value-temp='@LatestCreator'>
-                                <span class="progress-left">
-                                    <span class="progress-bar border-oranage"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar border-orange"></span>
-                                </span>
-                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                    <div id="LCreator" class="h2 font-weight-bold data" data-value="@LatestCreator">+@LatestCreator<sup class="small"></sup></div>
+                                    <!-- Progress bar 1 -->
+                                    <div class="progress mx-auto" data-value='@ContentCreator' data-value-temp='@LatestCreator'>
+                                        <span class="progress-left">
+                                            <span class="progress-bar border-oranage"></span>
+                                        </span>
+                                        <span class="progress-right">
+                                            <span class="progress-bar border-orange"></span>
+                                        </span>
+                                        <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                            <div id="LCreator" class="h2 font-weight-bold data" data-value="@LatestCreator">+@LatestCreator<sup class="small"></sup></div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
+
+                            <div class="col-xl-3 col-lg-6 mb-4">
+                                <div class="bg-white rounded-lg p-3 shadow">
+                                    <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">No. of Live Videos</h2>
+                                    <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@Videos</h3>
+
+                                    <!-- Progress bar 2 -->
+                                    <div class="progress mx-auto" data-value='@Videos' data-value-temp='@LatestVideos'>
+                                        <span class="progress-left">
+                                            <span class="progress-bar border-orange"></span>
+                                        </span>
+                                        <span class="progress-right">
+                                            <span class="progress-bar border-orange"></span>
+                                        </span>
+                                        <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                            <div id="LVideos" class="h2 font-weight-bold data" data-value="@LatestVideos">+@LatestVideos<sup class="small"></sup></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-6 mb-4">
+                                <div class="bg-white rounded-lg p-3 shadow">
+                                    <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Advertisements</h2>
+                                    <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@Advertisements</h3>
+
+                                    <!-- Progress bar 3 -->
+                                    <div class="progress mx-auto" data-value='@Advertisements' data-value-temp='@LatestAdvertisements'>
+                                        <span class="progress-left">
+                                            <span class="progress-bar border-orange"></span>
+                                        </span>
+                                        <span class="progress-right">
+                                            <span class="progress-bar border-orange"></span>
+                                        </span>
+                                        <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                            <div id="LAdvertisemnt" class="h2 font-weight-bold data" data-value="@LatestAdvertisements">+@LatestAdvertisements<sup class="small"></sup></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-6 mb-4">
+                                <div class="bg-white rounded-lg p-3 shadow">
+                                    <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Views on Videos</h2>
+                                    <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@Views</h3>
+
+                                    <!-- Progress bar 4 -->
+                                    <div class="progress mx-auto" data-value='@Views' data-value-temp='@LatestViews'>
+                                        <span class="progress-left">
+                                            <span class="progress-bar border-orange"></span>
+                                        </span>
+                                        <span class="progress-right">
+                                            <span class="progress-bar border-orange"></span>
+                                        </span>
+                                        <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                            <div id="LViews" class="h2 font-weight-bold data" data-value="@LatestViews">+@LatestViews<sup class="small"></sup></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
 
-                    <div class="col-xl-3 col-lg-6 mb-4">
-                        <div class="bg-white rounded-lg p-3 shadow">
-                            <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">No. of Live Videos</h2>
-                            <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@Videos</h3>
 
-                            <!-- Progress bar 2 -->
-                            <div class="progress mx-auto" data-value='@Videos' data-value-temp='@LatestVideos'>
-                                <span class="progress-left">
-                                    <span class="progress-bar border-orange"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar border-orange"></span>
-                                </span>
-                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                    <div id="LVideos" class="h2 font-weight-bold data" data-value="@LatestVideos">+@LatestVideos<sup class="small"></sup></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-lg-6 mb-4">
-                        <div class="bg-white rounded-lg p-3 shadow">
-                            <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Advertisements</h2>
-                            <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@Advertisements</h3>
-
-                            <!-- Progress bar 3 -->
-                            <div class="progress mx-auto" data-value='@Advertisements' data-value-temp='@LatestAdvertisements'>
-                                <span class="progress-left">
-                                    <span class="progress-bar border-orange"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar border-orange"></span>
-                                </span>
-                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                    <div id="LAdvertisemnt" class="h2 font-weight-bold data" data-value="@LatestAdvertisements">+@LatestAdvertisements<sup class="small"></sup></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-lg-6 mb-4">
-                        <div class="bg-white rounded-lg p-3 shadow">
-                            <h2 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">Views on Videos</h2>
-                            <h3 class="h6 font-weight-bold text-center mb-4" style="text-transform: capitalize;">@Views</h3>
-
-                            <!-- Progress bar 4 -->
-                            <div class="progress mx-auto" data-value='@Views' data-value-temp='@LatestViews'>
-                                <span class="progress-left">
-                                    <span class="progress-bar border-orange"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar border-orange"></span>
-                                </span>
-                                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                    <div id="LViews" class="h2 font-weight-bold data" data-value="@LatestViews">+@LatestViews<sup class="small"></sup></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="jumbotron" style="max-height: 650px; margin: 10px 10px 10px 5px; padding-top: 30px; padding-bottom: 30px;">
+                            <div class="panel panel-top">
+                                <div class="panel-heading">
 
+                                    <select style="width: 200px; float: right; margin-right: 5px; margin-top: 5px;" class="form-select" aria-label="Default select example" name="Year" id="selectYear" required>
+                                    </select><br /><br />
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <div class="jumbotron" style="max-height: 650px; margin: 10px 10px 10px 5px; padding-top: 30px; padding-bottom: 30px;">
-                        <div class="panel panel-top">
-                            <div class="panel-heading">
-
-                    <select style="width: 200px; float: right; margin-right: 5px; margin-top: 5px;" class="form-select" aria-label="Default select example" name="Year" id="selectYear" required>
-                    </select><br /><br/>
-
-                                <div id="chartContainer" style="height: 500px; width: 100%;"></div>
-                                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                                    <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+                                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group col-md-6">
-                    <div class="jumbotron" style="margin: 10px 13px 10px 0px; height: 628px; padding-top: 30px; padding-bottom: 30px;">
-                        <div class="panel panel-top">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <a href="#" class="active" id="TV-form-link">Top Videos</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="#" id="TC-form-link">Top Campaigns</a>
+                    <div class="form-group col-md-6">
+                        <div class="jumbotron" style="margin: 10px 13px 10px 0px; height: 628px; padding-top: 30px; padding-bottom: 30px;">
+                            <div class="panel panel-top">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <a href="#" class="active" id="TV-form-link">Top Videos</a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#" id="TC-form-link">Top Campaigns</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card" id="TV-form" style="height: 523px;">
-                            <div class="card-body">
+                            <div class="card" id="TV-form" style="height: 523px;">
+                                <div class="card-body">
 
-                                <div class="table-responsive" style="max-height: 480px;">
-                                    <table class="table table-borderless" style="max-height: 600px;">
-                                        <thead>
-                                            <tr class="border-bottom">
-                                                <th style="padding: 0px 2px 0px 40px;"></th>
-                                                <th style="padding: 0px 2px 0px 40px;">Views</th>
-                                                <th style="padding: 0px 2px 0px 40px;">Clicks</th>
-                                                <th style="padding: 0px 2px 0px 40px;">Shares</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if (records.Count <= 0)
-                                            {
-                                                <h6 style="text-align: center;"><b>No Record Found</b></h6>
-                                            }
-                                            else
-                                            {
-                                                @foreach (var record in records)
-                                                {
-                                                    <tr class="border-bottom" id="tblRow">
-                                                        <td>
-                                                            <b>@record.Title</b><br />
-                                                            <video id="my_video_1"
-                                                                   class="video-js vjs-default-skin vjs-big-play-centered"
-                                                                   width="200px" height="80px"
-                                                                   controls
-                                                                   preload="none" poster='/Uploads/Creators/Videos/@record.UploadVideoPath'
-                                                                   @*data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'*@>
-                                                                <source src="/Uploads/Creators/Videos/@record.UploadVideoPath" type='video/mp4' />
-                                                            </video>
-
-                                                        </td>
-                                                        <td style="padding: 50px;">@record.topViews</td>
-                                                        <td style="padding: 50px;">@record.topClicks</td>
-                                                        <td style="padding: 50px;">@record.topShares</td>
-                                                    </tr>
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card" id="TC-form" style="display: none; height: 523px;">
-                            <div class="card-body">
-
-
-                                @if (topCampaign.Count <= 0)
-                                {
-                                    <h6 style="text-align: center;"><b>No Record Found</b></h6>
-                                }
-                                else
-                                {
-                                    <div class="table-responsive" style="height: 480px;">
+                                    <div class="table-responsive" style="max-height: 480px;">
                                         <table class="table table-borderless" style="max-height: 600px;">
                                             <thead>
                                                 <tr class="border-bottom">
-                                                    <th style="padding: 0px 2px 0px 40px;">Campaign Name</th>
+                                                    <th style="padding: 0px 2px 0px 40px;"></th>
                                                     <th style="padding: 0px 2px 0px 40px;">Views</th>
                                                     <th style="padding: 0px 2px 0px 40px;">Clicks</th>
-                                                    <th style="padding: 0px 2px 0px 40px;">Likes</th>
+                                                    <th style="padding: 0px 2px 0px 40px;">Shares</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                @foreach (var tC in topCampaign)
+                                                @if (records.Count <= 0)
                                                 {
-                                                <tr class="border-bottom">
-                                                    <td style="padding-left: 40px;">
-                                                        <b>@tC.CampaignName</b>
+                                                    <h6 style="text-align: center;"><b>No Record Found</b></h6>
+                                                }
+                                                else
+                                                {
+                                                    @foreach (var record in records)
+                                                    {
+                                                        <tr class="border-bottom" id="tblRow">
+                                                            <td>
+                                                                <b>@record.Title</b><br />
+                                                                <video id="my_video_1"
+                                                                       class="video-js vjs-default-skin vjs-big-play-centered"
+                                                                       width="200px" height="80px"
+                                                                       controls
+                                                                       preload="none" poster='/Uploads/Creators/Videos/@record.UploadVideoPath'
+                                                                       @*data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'*@>
+                                                                    <source src="/Uploads/Creators/Videos/@record.UploadVideoPath" type='video/mp4' />
+                                                                </video>
 
-                                                    </td>
-                                                    <td style="padding-left: 50px;">@tC.ViewCount</td>
-                                                    <td style="padding-left: 50px;">@tC.ClickCount</td>
-                                                    <td style="padding-left: 50px;">@tC.LikeCount</td>
-                                                </tr>
+                                                            </td>
+                                                            <td style="padding: 50px;">@record.topViews</td>
+                                                            <td style="padding: 50px;">@record.topClicks</td>
+                                                            <td style="padding: 50px;">@record.topShares</td>
+                                                        </tr>
+                                                    }
                                                 }
                                             </tbody>
                                         </table>
                                     </div>
-                                }
+                                </div>
+                            </div>
+                            <div class="card" id="TC-form" style="display: none; height: 523px;">
+                                <div class="card-body">
+
+
+                                    @if (topCampaign.Count <= 0)
+                                    {
+                                        <h6 style="text-align: center;"><b>No Record Found</b></h6>
+                                    }
+                                    else
+                                    {
+                                        <div class="table-responsive" style="height: 480px;">
+                                            <table class="table table-borderless" style="max-height: 600px;">
+                                                <thead>
+                                                    <tr class="border-bottom">
+                                                        <th style="padding: 0px 2px 0px 40px;">Campaign Name</th>
+                                                        <th style="padding: 0px 2px 0px 40px;">Views</th>
+                                                        <th style="padding: 0px 2px 0px 40px;">Clicks</th>
+                                                        <th style="padding: 0px 2px 0px 40px;">Likes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach (var tC in topCampaign)
+                                                    {
+                                                        <tr class="border-bottom">
+                                                            <td style="padding-left: 40px;">
+                                                                <b>@tC.CampaignName</b>
+
+                                                            </td>
+                                                            <td style="padding-left: 50px;">@tC.ViewCount</td>
+                                                            <td style="padding-left: 50px;">@tC.ClickCount</td>
+                                                            <td style="padding-left: 50px;">@tC.LikeCount</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    }
+
+                                </div>
+
 
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>
 @section Scripts{
 

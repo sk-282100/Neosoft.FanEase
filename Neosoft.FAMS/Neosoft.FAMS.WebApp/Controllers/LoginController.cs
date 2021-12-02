@@ -243,7 +243,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
             HttpContext.Session.Remove("Username");
             HttpContext.Session.Remove("RoleId");
             HttpContext.Session.Remove("LoginId");
-
+            HttpContext.Session.Remove("isVideoAdded");
+            HttpContext.Session.Remove("isCampaignAdded");
+            HttpContext.Session.Remove("isAssetAdded");
             return RedirectToAction("Index", "Login");
         }
     }

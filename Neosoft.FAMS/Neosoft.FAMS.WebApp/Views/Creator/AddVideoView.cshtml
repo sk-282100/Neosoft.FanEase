@@ -18,7 +18,7 @@
 
     <div class="row">
         @Html.Partial("_CreatorSideBar")
-        <div class="col mt-2">
+        <div class="col mt-2 col-10">
             <div id="formContent">
                 <!-- Tabs Titles -->
                 <div class="row">
@@ -38,16 +38,16 @@
                 @using (Html.BeginForm("AddVideoView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
     <div class="row">
-        <div class="col">
+        <div class="col-4">
             <label>Video Thumbnail Image<sup style="color:red">*</sup>  </label>
             <span id="errorFileSize" style="font-size: 12px" class="text-danger"></span>
         </div>
-        <div class="col" style="padding-right:50px">
+        <div class="col-5" style="padding-right:50px">
             <br />
-            <input asp-for="VideoImage" class="form-control" type="file" name="VideoImage" accept="image/*" id="videoThumbnail" onchange="readURL(this);" style="width: 300px;" />
+            <input asp-for="VideoImage" class="form-control" type="file" name="VideoImage" accept="image/*" id="videoThumbnail" onchange="readURL(this);" />
 
         </div>
-        <div class="col">
+        <div class="col-3">
             <br />
             <img id="thumbnail" class="img-thumbnail" src="#" alt="Thumbnail image">
         </div>
