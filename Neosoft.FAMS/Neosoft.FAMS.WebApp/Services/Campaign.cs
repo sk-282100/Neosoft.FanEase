@@ -35,6 +35,12 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
 
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 15-11-2021
+        /// Reason: Returns list of Live Campaigns.
+        /// </summary>
+        /// <returns>Returns list of Live Campaigns.</returns>
         public List<CampaignGetAllDto> GetAllCampaign()
         {
             var result = new List<CampaignGetAllDto>();
@@ -49,6 +55,14 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 15-11-2021
+        /// Reason: Add new campaign.
+        /// </summary>
+        /// <param name="campaignCreateCommand"></param>
+        /// <returns>Id of new campaign.</returns>
 
         public async Task<long> SaveCampaignDetail(CampaignCreateCommand campaignCreateCommand)
         {
@@ -68,6 +82,13 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 15-11-2021
+        /// Reason: Get a particular campaign.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Details of a particular campaign</returns>
         public CampaignGetAllDto GetCampaignById(long id)
         {
             var result = new CampaignGetAllDto();
@@ -81,6 +102,14 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 15-11-2021
+        /// Reason: Update a particular campaign details.
+        /// </summary>
+        /// <param name="update"></param>
+        /// <returns>true or false</returns>
         public async Task<bool> UpdateCampaignDetail(UpdateCampaignCommand update)
         {
             bool result = false;
@@ -97,6 +126,14 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+
+        /// <summary>
+        /// Author: Kajal Padhiyar
+        /// Date: 15-11-2021
+        /// Reason: Update a campaign.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns>true or false</returns>
         public async Task<bool> DeleteCampaign(DeleteCampaignByIdCommand command)
         {
             var uri = API.Campaign.DeleteCampaign(_baseUrl, _path, command.CampaignId);
@@ -110,6 +147,13 @@ namespace Neosoft.FAMS.WebApp.Services
             return false;
         }
 
+        /// <summary>
+        /// Author: Aman sharma and Kajal Padhiyar
+        /// Date: 15-11-2021
+        /// Reason: Get video id of a particular campaign from mapping table.
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <returns>Video id</returns>
         public long GetMappedVideoIdCampaign(long campaignId)
         {
             var uri = API.Campaign.GetMappedVideoIdCampaign(_baseUrl, campaignId);

@@ -21,7 +21,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
         {
             _mediator = mediator;
         }
-
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: Returns list of all counts(Videos,Advertisements,views,Clicks) of analysis.
+        /// </summary>
+        /// <returns>Returns list of all counts(Videos,Advertisements,views,Clicks) of analysis.</returns>
         [HttpGet]
         public async Task<IActionResult> GetAdminStats()
         {
@@ -29,7 +34,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(adminStats);
             return Ok(data);
         }
-
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: Returns list of top videos(most Viewed,Clicked).
+        /// </summary>
+        /// <returns>Returns list of top videos(most Viewed,Clicked).</returns>
         [HttpGet]
         [Route("GetTopVideos")]
         public async Task<IActionResult> GetTopVideos()
@@ -38,6 +48,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(topVideos);
             return Ok(data);
         }
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 26-11-2021
+        /// Reason: Returns list of top Campaigns(most Viewed,Clicked).
+        /// </summary>
+        /// <returns>Returns list of top Campaigns(most Viewed,Clicked).</returns>
         [HttpGet]
         [Route("GetTopCampaign")]
         public async Task<IActionResult> GetTopCampaign() 
@@ -47,6 +63,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
 
         }
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 26-11-2021
+        /// Reason: Returns array of total videos uploaded by creators.
+        /// </summary>
+        /// <returns>Returns array of total videos uploaded by creators.</returns>
         [HttpGet]
         [Route("GetYearlyStatistics")]
         public async Task<IActionResult> GetYearlyStatistics(long years)
@@ -55,6 +77,12 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(yearlyStats);
             return Ok(data);
         }
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 26-11-2021
+        /// Reason: Returns array of total videos uploaded by creators(which is live).
+        /// </summary>
+        /// <returns>Returns array of total videos uploaded by creators(which is live).</returns>
         [HttpGet]
         [Route("GetYearlyLiveStatistics")]
         public async Task<IActionResult> GetYearlyLiveStatistics(long years)

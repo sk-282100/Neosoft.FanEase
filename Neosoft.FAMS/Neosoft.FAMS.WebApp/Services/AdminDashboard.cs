@@ -32,6 +32,13 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: Returns list of all counts(Videos,Advertisements,views,Clicks) of analysis.
+        /// </summary>
+        /// <returns>Returns list of all counts(Videos,Advertisements,views,Clicks) of analysis.</returns>
         public List<long> GetAdminStats()
         {
             var result = new List<long>();
@@ -46,6 +53,12 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: Returns list of top videos(most Viewed,Clicked).
+        /// </summary>
+        /// <returns>Returns list of top videos(most Viewed,Clicked).</returns>
         public List<GetTopVideoDto> GetTopVideo()
         {
             var result = new List<GetTopVideoDto>();
@@ -60,6 +73,12 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 26-11-2021
+        /// Reason: Returns list of top Campaigns(most Viewed,Clicked).
+        /// </summary>
+        /// <returns>Returns list of top Campaigns(most Viewed,Clicked).</returns>
         public List<GetTopCampaignDto> GetTopCampaignName()
         {
             var result = new List<GetTopCampaignDto>();
@@ -74,7 +93,12 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
-
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 26-11-2021
+        /// Reason: Returns array of total videos uploaded by creators.
+        /// </summary>
+        /// <returns>Returns array of total videos uploaded by creators.</returns>
         public List<long> GetYearlyStatistics(long year)
         {
             var result = new List<long>();
@@ -88,6 +112,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+
+        /// <summary>
+        /// Author: Raj Bhosale
+        /// Date: 26-11-2021
+        /// Reason: Returns array of total videos uploaded by creators(which is live).
+        /// </summary>
+        /// <returns>Returns array of total videos uploaded by creators(which is live).</returns>
         public List<long> GetYearlyLiveStatistics(long year)
         {
             var result = new List<long>();
