@@ -32,7 +32,7 @@
             max-width: 100%;
             max-height: 50%;
             text-align: left;
-            margin: 30px 190px;
+            margin: 30px 100px;
         }
         /* Show the controls (hidden at the start by default) */
         .video-js .vjs-control-bar {
@@ -46,29 +46,35 @@
             height: 470px;
             width: 200px;
         }
-        .imgStyle{
+
+        .imgStyle {
             height: 220px;
             width: 250px;
         }
+
         video {
             height: 220px;
             width: 250px;
             object-fit: cover !important;
         }
+
         .videoOne {
             height: 220px;
             width: 440px;
             object-fit: cover !important;
         }
+
         #centreImg1 {
             height: 460px;
             margin-left: 120px;
             width: 400px;
         }
+
         .imgW {
             width: 460px;
         }
-        .col-12, .col-md-12,.pl-3 {
+
+        .col-12, .col-md-12, .pl-3 {
             padding-left: 0px;
         }
     </style>
@@ -77,7 +83,7 @@
 
     <video id="my_video_1"
            class="video-js vjs-default-skin vjs-big-play-centered"
-           width="100%" height="267px"
+           width="100%" height="100%"
            controls
            preload="none" poster='/Uploads/Creators/Videos/@videoRecords.VideoImage'
            data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
@@ -93,19 +99,14 @@
     <br />
 
 
-    <div class="col-12" align="left">
-        <button id="like" type="button" class="btn btn-primary"><span id="likeSpan">@likes</span><span>  </span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
-        <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan">@dislikes</span><span>  </span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
-        <button type="button" class="btn btn-primary view-modal">@shares <span class="fa fa-share share"><span>  </span></span> Share</button>
+    <div class="row" align="left">
+        <div class="col">
+            <button id="like" type="button" class="btn btn-primary"><span id="likeSpan">@likes</span><span>  </span><span id="likeIcon" class="fa fa-thumbs-o-up"></span></button>&emsp;&emsp;
 
-        <span id="Auto">
-            &emsp;
-            <b>Auto Next</b>
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-            </label>
-        </span>
+            <button id="dislike" type="button" class="btn btn-primary"><span id="dislikeSpan">@dislikes</span><span>  </span><span id="dislikeIcon" class="fa fa-thumbs-o-down"></span> </button>&emsp;&emsp;
+
+            <button type="button" class="btn btn-primary view-modal">@shares <span class="fa fa-share share"><span>  </span></span> Share</button>
+        </div>
     </div>
 
     <input type="text" id="videoId" value="@videoRecords.VideoId" hidden />
@@ -125,19 +126,19 @@
                 <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle" />
             }
         </div>
-        <div class="col-3 ml-1">
+        <div class="col-3">
             <h4><b>@creatorRecords.CreatorName</b></h4>
             <h6>@videos Videos</h6>
             <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
         </div>
 
-        <div class="col-7" style="border-left: 3px solid #D3D3D3; justify-content: center; ">
+        <div class="col-3" style="border-left: 3px solid #D3D3D3; justify-content: center; ">
             <h4 style="margin-left: 15px;"><b>Video Description : </b></h4>
             <p style="text-indent:1em each-line; margin-left: 15px;" id="ContentDescription">
-                    
-                    @videoRecords.Decription
-                </p>
-            </div>
+
+                @videoRecords.Decription
+            </p>
+        </div>
     </div>
     <hr />
 

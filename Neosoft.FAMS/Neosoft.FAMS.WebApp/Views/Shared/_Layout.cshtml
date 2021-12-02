@@ -27,7 +27,7 @@
        {
             <a id="logoText" href="~/Login/Home" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png"/></span>Fan<span id="logonext">Ease</span></a>
         }
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <div class="navbar-collapse" id="navbarTogglerDemo03">
                 @if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "1")
                 {
                     <div style="margin-left: auto; margin-right: 5px;">
