@@ -62,6 +62,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var result = await _mediator.Send(getAdvertisement);
             return Ok(result);
         }
+        /// <summary>
+        /// Author:Aman Sharma <br></br>
+        /// Date:25/10/2021 <br></br>
+        /// Reason:It will get Details of a Advertisement that are linked with video by video Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetMappedVideoById/{id}")]
         public async Task<IActionResult> GetMappedVideoById([FromRoute] long id)

@@ -33,9 +33,9 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
         /// <summary>
-        /// Author:Aman Sharma
-        /// Date:27/10/2021
-        /// Reason:Get All Creators List
+        /// Author : Aman Sharma<br></br>
+        /// Date : 27/10/2021 <br></br>
+        /// Reason : Get All Creators List
         /// </summary>
         /// <returns></returns>
         public List<ContentCreatorDto> GetAllCreator()
@@ -53,9 +53,9 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
         /// <summary>
-        /// Author:Aman Sharma
-        /// Date:27/10/2021
-        /// Reason:Save Creators Details
+        /// Author : Aman Sharma <br></br>
+        /// Date:27/10/2021 <br></br>
+        /// Reason:It will Save new  Creators Details
         /// </summary>
         /// <param name="registeration"></param>
         /// <returns></returns>
@@ -79,9 +79,9 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
         /// <summary>
-        /// Author:Aman Sharma
-        /// Date:27/10/2021
-        /// Reason:View Creator By Id
+        /// Author : Aman Sharma <br></br>
+        /// Date : 27/10/2021 <br></br>
+        /// Reason : Fetch detail of  Creator By Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -124,7 +124,7 @@ namespace Neosoft.FAMS.WebApp.Services
         /// <summary>
         /// Author:Aman Sharma
         /// Date:02/11/2021
-        /// Reason:Will fetch record by Email ID
+        /// Reason:Will fetch record of creator by Email ID
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>

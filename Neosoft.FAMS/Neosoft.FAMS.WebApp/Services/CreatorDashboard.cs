@@ -33,6 +33,14 @@ namespace Neosoft.FAMS.WebApp.Services
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
         }
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 22-11-2021
+        /// Reason: To Get Creator Account Statistics(Videos,Advertisements)  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<long> GetCreatorStats(long id)
         {
             var result = new List<long>();
@@ -47,7 +55,13 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
-        
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 22-11-2021
+        /// Reason: To Get Creator Video Statistics(Likes,Views) 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<long> GetCreatorVideoStats(long id)
         {
             var result = new List<long>();
@@ -62,6 +76,13 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: To Get Creator's Top Videos 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<GetTopVideoDto> GetTopVideo(long id)
         {
             var result = new List<GetTopVideoDto>();
@@ -76,6 +97,13 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason: To Get Creator's Top Campaigns 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<GetTopCampaignDto> GetTopCampaignName(long id)
         {
             var result = new List<GetTopCampaignDto>();
@@ -90,10 +118,40 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 25-11-2021
+        /// Reason:To Get Creator's Yearly Video Statistics  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
         public List<long> GetYearlyStatistics(long id,long year)
         {
             var result = new List<long>();
             var uri = API.CreatorDashboard.GetYearlyStats(_baseUrl, _path,id, year);
+            HttpResponseMessage response = _client.GetAsync(uri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<List<long>>(jsonDataStatus);
+                return data;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Author: Sana Haju
+        /// Date: 1-12-2021
+        /// Reason:To Get Creator's Yearly Live Video Statistics  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public List<long> GetYearlyLiveStatistics(long id,long year)
+        {
+            var result = new List<long>();
+            var uri = API.CreatorDashboard.GetYearlyLiveStats(_baseUrl, _path,id, year);
             HttpResponseMessage response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
