@@ -34,6 +34,12 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
 
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 18/11/2021 <br></br>
+        /// Reason :  It will get advertisements detail that creator has added in their current video.
+        /// </summary>
+        /// <returns></returns>
         public List<AdvertisementViewModel> GetAdvertisement()
         {
             IEnumerable<AdvertisementViewModel> result = null;
@@ -53,6 +59,14 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result.ToList();
         }
+
+        /// <summary>
+        /// Author : Aman Sharma <br></br>
+        /// Date : 15/11/2021 <br></br>
+        /// Reason :  It will check email is already exist or not.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>true or false.</returns>
         public bool checkForEmail(string email)
         {
             var uri = API.Common.GetEmailUrl(_baseUrl, email);
@@ -66,6 +80,15 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return false;
         }
+
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 12/11/2021<br></br>
+        /// Reason : It will fetch phone code based on country ID
+        /// </summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Phone code</returns>
         public long GetPhoneCode(int countryId)
         {
             long result = 0;
@@ -79,6 +102,13 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result;
         }
+
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 12/11/2021<br></br>
+        /// Reason : It will get list of country
+        /// </summary>
+        /// <returns></returns>
         public List<ListViewModel> GetCountryList()
         {
             IEnumerable<ListViewModel> result = null;
@@ -94,6 +124,14 @@ namespace Neosoft.FAMS.WebApp.Services
             }
             return result.ToList();
         }
+
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 12/11/2021<br></br>
+        /// Reason : It will get list of states based on country ID
+        /// </summary>
+        /// <param name="countryId"></param>
+        /// <returns></returns>
         public List<ListViewModel> GetStateList(int CountryId)
         {
             IEnumerable<ListViewModel> result = null;
@@ -110,6 +148,13 @@ namespace Neosoft.FAMS.WebApp.Services
             return result.ToList();
         }
 
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 12/11/2021<br></br>
+        /// Reason : It will get list of city based on State ID
+        /// </summary>
+        /// <param name="stateId"></param>
+        /// <returns></returns>
         public List<ListViewModel> GetCityList(int StateId)
         {
             IEnumerable<ListViewModel> result = null;

@@ -21,6 +21,15 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             _logger = logger;
         }
 
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 12/11/2021<br></br>
+        /// Reason : It will fetch phone code based on country ID
+        /// </summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Phone code</returns>
+
         [HttpGet]
         [Route("GetCountryPhoneCode/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -31,6 +40,13 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(dtos);
 
         }
+
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 12/11/2021<br></br>
+        /// Reason : It will get list of country
+        /// </summary>
+        /// <returns></returns>
         [HttpGet()]
         [Route("GetCountryList")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -41,6 +57,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             _logger.LogInformation("GetCountryList Completed");
             return Ok(dtos);
         }
+
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 12/11/2021<br></br>
+        /// Reason : It will get list of states based on country ID
+        /// </summary>
+        /// <param name="countryId"></param>
+        /// <returns></returns>
         [HttpGet()]
         [Route("GetStateList")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -53,6 +77,14 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             _logger.LogInformation("GetStateList Completed");
             return Ok(dtos);
         }
+
+        /// <summary>
+        /// Author : Aman Sharma,Kajal Padhiyar<br></br>
+        /// Date : 12/11/2021<br></br>
+        /// Reason : It will get list of city based on State ID
+        /// </summary>
+        /// <param name="stateId"></param>
+        /// <returns></returns>
         [HttpGet()]
         [Route("GetCityList")]
         [ProducesResponseType(StatusCodes.Status200OK)]
