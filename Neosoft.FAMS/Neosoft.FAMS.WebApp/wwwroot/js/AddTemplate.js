@@ -104,7 +104,7 @@ function loadValues()
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loader').css("visibility", "visible");
+            $('.ajax-loadero').css("visibility", "visible");
         },
         url: '/Creator/GetAdvertisement',
         async: false,
@@ -119,7 +119,7 @@ function loadValues()
                 });
         },
         complete: function () {
-            $('.ajax-loader').css("visibility", "hidden");
+            $('.ajax-loadero').css("visibility", "hidden");
         }
     });
 
@@ -155,7 +155,7 @@ $(document).ready(function () {
 
                     $.ajax({
                         beforeSend: function () {
-                            $('.ajax-loader').css("visibility", "visible");
+                            $('.ajax-loadero').css("visibility", "visible");
                         },
                         url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3,
                         type: 'POST',
@@ -163,7 +163,7 @@ $(document).ready(function () {
                             window.location = '/Template/TemplateList';
                         },
                         complete: function () {
-                            $('.ajax-loader').css("visibility", "hidden");
+                            $('.ajax-loadero').css("visibility", "hidden");
                         },
                         error: function(result) {
                         }
@@ -194,7 +194,7 @@ $(document).ready(function () {
 
                     $.ajax({
                         beforeSend: function () {
-                            $('.ajax-loader').css("visibility", "visible");
+                            $('.ajax-loadero').css("visibility", "visible");
                         },
                         url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3 + section4 + section5,
                         type: 'POST',
@@ -202,7 +202,7 @@ $(document).ready(function () {
                             window.location = '/Template/TemplateList';
                         },
                         complete: function () {
-                            $('.ajax-loader').css("visibility", "hidden");
+                            $('.ajax-loadero').css("visibility", "hidden");
                         },
                         error: function (result) {
                         }

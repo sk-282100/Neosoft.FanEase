@@ -84,6 +84,9 @@ $(document).ready(function () {
         if ($('#selectVideo').val() == 2) {
             $.ajax({
                 type: 'GET',
+                beforeSend: function () {
+                    $('.ajax-loader').css("visibility", "visible");
+                },
                 url: "/Viewer/GetVideos",
                 async: false,
                 contentType: 'application/json',
@@ -112,6 +115,9 @@ $(document).ready(function () {
                             </div>
                         `);
                     }
+                },
+                complete: function () {
+                    $('.ajax-loader').css("visibility", "hidden");
                 }
             });
         }
@@ -122,6 +128,9 @@ $(document).ready(function () {
         if ($('#selectVideo').val() == 3) {
             $.ajax({
                 type: 'GET',
+                beforeSend: function () {
+                    $('.ajax-loader').css("visibility", "visible");
+                },
                 url: "/Viewer/GetTopLikedVideos",
                 async: false,
                 contentType: 'application/json',
@@ -150,6 +159,9 @@ $(document).ready(function () {
                             </div>
                         `);
                     }
+                },
+                complete: function () {
+                    $('.ajax-loader').css("visibility", "hidden");
                 }
             });
 
@@ -161,6 +173,9 @@ $(document).ready(function () {
         if ($('#selectVideo').val() == 4) {
             $.ajax({
                 type: 'GET',
+                beforeSend: function () {
+                    $('.ajax-loader').css("visibility", "visible");
+                },
                 url: "/Viewer/topViewsVideo",
                 async: false,
                 contentType: 'application/json',
@@ -188,6 +203,9 @@ $(document).ready(function () {
                             </div>
                         `);
                     }
+                },
+                complete: function () {
+                    $('.ajax-loader').css("visibility", "hidden");
                 }
             });
         }

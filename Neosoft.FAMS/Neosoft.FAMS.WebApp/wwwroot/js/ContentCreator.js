@@ -7,7 +7,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loader').css("visibility", "visible");
+            $('.ajax-loadero').css("visibility", "visible");
         },
         url: '/Admin/GetCountry',
         async: false,
@@ -22,13 +22,13 @@ $(document).ready(function () {
                 });
         },
         complete: function () {
-            $('.ajax-loader').css("visibility", "hidden");
+            $('.ajax-loadero').css("visibility", "hidden");
         }
     });
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loader').css("visibility", "visible");
+            $('.ajax-loadero').css("visibility", "visible");
         },
         url: "GetStates/1",
         async: false,
@@ -44,13 +44,13 @@ $(document).ready(function () {
             });
         },
         complete: function () {
-            $('.ajax-loader').css("visibility", "hidden");
+            $('.ajax-loadero').css("visibility", "hidden");
         }
     });
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loader').css("visibility", "visible");
+            $('.ajax-loadero').css("visibility", "visible");
         },
         url: "GetCity/42",
         async: false,
@@ -66,7 +66,7 @@ $(document).ready(function () {
             });
         },
         complete: function () {
-            $('.ajax-loader').css("visibility", "hidden");
+            $('.ajax-loadero').css("visibility", "hidden");
         }
     });
 
@@ -76,7 +76,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                $('.ajax-loadero').css("visibility", "visible");
             },
             url: "GetStates/"+countryId.toString(),
             async: false,
@@ -97,7 +97,7 @@ $(document).ready(function () {
                 });
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                $('.ajax-loadero').css("visibility", "hidden");
             }
         });
     });
@@ -115,7 +115,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                $('.ajax-loadero').css("visibility", "visible");
             },
             url: "GetCity/" + stateId.toString(),
             async: false,
@@ -132,7 +132,7 @@ $(document).ready(function () {
                     });
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                $('.ajax-loadero').css("visibility", "hidden");
             }
         });
 

@@ -71,7 +71,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loader').css("visibility", "visible");
+            $('.ajax-loadero').css("visibility", "visible");
         },
         url: "/Admin/yearlyLiveStats?years=" + currentYear,
         async: false,
@@ -81,7 +81,7 @@ $(document).ready(function () {
             LiveData = data;
         },
         complete: function () {
-            $('.ajax-loader').css("visibility", "hidden");
+            $('.ajax-loadero').css("visibility", "hidden");
         }
     });
 
@@ -90,7 +90,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loader').css("visibility", "visible");
+            $('.ajax-loadero').css("visibility", "visible");
         },
         url: "/Admin/yearlyStats?years=" + currentYear,
         async: false,
@@ -169,7 +169,7 @@ $(document).ready(function () {
             chart.render();
         },
         complete: function () {
-            $('.ajax-loader').css("visibility", "hidden");
+            $('.ajax-loadero').css("visibility", "hidden");
         }
     });
 
@@ -181,7 +181,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                $('.ajax-loadero').css("visibility", "visible");
             },
             url: "/Admin/yearlyLiveStats?years=" + year,
             async: false,
@@ -191,7 +191,7 @@ $(document).ready(function () {
                 LiveData = data;
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                $('.ajax-loadero').css("visibility", "hidden");
             }
         });
 
@@ -199,7 +199,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                $('.ajax-loadero').css("visibility", "visible");
             },
             url: "/Admin/yearlyStats?years=" + year,
             async: false,
@@ -280,7 +280,7 @@ $(document).ready(function () {
                 chart.render();
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                $('.ajax-loadero').css("visibility", "hidden");
             }
         });
 
