@@ -26,6 +26,19 @@ namespace Neosoft.FAMS.WebApp.Controllers
             
             return View("Error500");
         }
+        public IActionResult Error401()
+        {
+           /* var exception = HttpContext.Features.Get<IExceptionHandlerFeature>();
+
+            var statusCode = exception.Error.GetType().Name switch
+            {
+                "ArgumentException" => HttpStatusCode.BadRequest,
+                _ => HttpStatusCode.ServiceUnavailable
+            };*/
+
+
+            return View("Error401");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
