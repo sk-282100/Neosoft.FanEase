@@ -7,6 +7,9 @@ $(document).ready(function () {
         $.ajax({
             url: "/Admin/checkForEmailExist?email="+emailId,
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             success: function (data) {
                 console.log(data);
                 if (data) {
@@ -14,6 +17,9 @@ $(document).ready(function () {
                 } else {
                     $('#emailSpan').text("");
                 }
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             },
             error: function (error) {
                 alert("Some Error occurred! Please reload the Page");

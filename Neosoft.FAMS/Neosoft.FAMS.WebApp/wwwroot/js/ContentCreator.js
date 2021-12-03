@@ -6,6 +6,9 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: '/Admin/GetCountry',
         async: false,
         contentType: 'application/json',
@@ -17,10 +20,16 @@ $(document).ready(function () {
                         $('<option></option>').val(text.id).html(text.text)
                     );
                 });
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: "GetStates/1",
         async: false,
         contentType: 'application/json',
@@ -33,10 +42,16 @@ $(document).ready(function () {
                     );
                 }
             });
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: "GetCity/42",
         async: false,
         contentType: 'application/json',
@@ -49,6 +64,9 @@ $(document).ready(function () {
                     );
                 }
             });
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
 
@@ -57,6 +75,9 @@ $(document).ready(function () {
         var countryId = $('#formCountry').val();
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "GetStates/"+countryId.toString(),
             async: false,
             contentType: 'application/json',
@@ -74,6 +95,9 @@ $(document).ready(function () {
                     }
 
                 });
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
     });
@@ -90,6 +114,9 @@ $(document).ready(function () {
         
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "GetCity/" + stateId.toString(),
             async: false,
             contentType: 'application/json',
@@ -103,6 +130,9 @@ $(document).ready(function () {
                             );
                         }
                     });
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
 

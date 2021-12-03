@@ -70,12 +70,18 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: "/Admin/yearlyLiveStats?years=" + currentYear,
         async: false,
         contentType: 'application/json',
         success: function (data) {
             chartdata = data;
             LiveData = data;
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
 
@@ -83,6 +89,9 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: "/Admin/yearlyStats?years=" + currentYear,
         async: false,
         contentType: 'application/json',
@@ -158,6 +167,9 @@ $(document).ready(function () {
                 }]
             });
             chart.render();
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
 
@@ -168,20 +180,28 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "/Admin/yearlyLiveStats?years=" + year,
             async: false,
             contentType: 'application/json',
             success: function (data) {
                 chartdata = data;
                 LiveData = data;
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
 
 
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "/Admin/yearlyStats?years=" + year,
-
             async: false,
             contentType: 'application/json',
             success: function (data) {
@@ -258,6 +278,9 @@ $(document).ready(function () {
                     }]
                 });
                 chart.render();
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
 

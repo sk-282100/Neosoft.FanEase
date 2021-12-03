@@ -4,6 +4,9 @@ $(document).ready(function () {
   
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: "/Viewer/GetVideos",
         async: false,
         contentType: 'application/json',
@@ -30,18 +33,24 @@ $(document).ready(function () {
                             </div>
                         `);
                 }
+        },
+          complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
     $('#selectVideo').click(function () {
         if ($('#selectVideo').val() == 1) {
             $.ajax({
                 type: 'GET',
+                beforeSend: function () {
+                    $('.ajax-loader').css("visibility", "visible");
+                },
                 url: "/Viewer/GetVideos",
                 async: false,
                 contentType: 'application/json',
                 success: function (data) {
-                    videodata = data;
                     $('#showTable').empty();
+                    videodata = data;
                     for (i = 0; i < (videodata.length); i++) {
                         var temp = new Date(videodata[i].createdOn);
 
@@ -64,9 +73,11 @@ $(document).ready(function () {
                             </div>
                         `);
                     }
+                },
+                complete: function () {
+                    $('.ajax-loader').css("visibility", "hidden");
                 }
             });
-
         }
     });
     $('#selectVideo').click(function () {

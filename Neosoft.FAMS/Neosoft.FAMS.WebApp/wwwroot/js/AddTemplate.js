@@ -103,6 +103,9 @@ function loadValues()
 {
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: '/Creator/GetAdvertisement',
         async: false,
         contentType: 'application/json',
@@ -114,6 +117,9 @@ function loadValues()
                         $('<option></option>').val(text.advertisementId).html(text.title)
                     );
                 });
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
 
@@ -148,10 +154,16 @@ $(document).ready(function () {
                     var section3 = $('#selectId2').val();
 
                     $.ajax({
+                        beforeSend: function () {
+                            $('.ajax-loader').css("visibility", "visible");
+                        },
                         url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3,
                         type: 'POST',
                         success: function (result) {
                             window.location = '/Template/TemplateList';
+                        },
+                        complete: function () {
+                            $('.ajax-loader').css("visibility", "hidden");
                         },
                         error: function(result) {
                         }
@@ -181,10 +193,16 @@ $(document).ready(function () {
                     var section5 = $('#selectId4').val();
 
                     $.ajax({
+                        beforeSend: function () {
+                            $('.ajax-loader').css("visibility", "visible");
+                        },
                         url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3 + section4 + section5,
                         type: 'POST',
                         success: function (result) {
                             window.location = '/Template/TemplateList';
+                        },
+                        complete: function () {
+                            $('.ajax-loader').css("visibility", "hidden");
                         },
                         error: function (result) {
                         }

@@ -66,12 +66,18 @@ $(document).ready(function() {
 
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: "/Creator/yearlyLiveStats/" + CreatorId.toString() + "/" + currentYear.toString(),
         async: false,
         contentType: 'application/json',
         success: function(data) {
             chartdata = data;
             LiveData = data;
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
 
@@ -164,12 +170,18 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "/Creator/yearlyLiveStats/" + CreatorId.toString() + "/" + year.toString(),
             async: false,
             contentType: 'application/json',
             success: function(data) {
                 chartdata = data;
                 LiveData = data;
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
 
@@ -178,6 +190,9 @@ $(document).ready(function() {
             var year = document.getElementById("selectYear").value;
             $.ajax({
                 type: 'GET',
+                beforeSend: function () {
+                    $('.ajax-loader').css("visibility", "visible");
+                },
                 url: "/Creator/yearlyStats/" + CreatorId.toString() + "/" + year.toString(),
                 //url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + year + "&api-version=1",
 
@@ -258,6 +273,9 @@ $(document).ready(function() {
                             ]
                         });
                     chart.render();
+                },
+                complete: function () {
+                    $('.ajax-loader').css("visibility", "hidden");
                 }
             });
 

@@ -17,17 +17,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body style="background-color: #ffffff;">
+    <div class="ajax-loader">
+        <img src="~/DefaultPhotos/loading-36.gif"/>
+    </div>
 
     <div id="head">
         <nav class="navbar navbar-expand-lg navbar-light " id="nav">
-        @if (@Context.Session.GetString("Username") != null){
-            <a id="logoText" href="#" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png"/></span>Fan<span id="logonext">Ease</span></a>
-        }
-       else
-       {
-            <a id="logoText" href="~/Login/Home" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png"/></span>Fan<span id="logonext">Ease</span></a>
-        }
-    <div class="navbar-collapse" id="navbarTogglerDemo03">
+            @if (@Context.Session.GetString("Username") != null)
+            {
+                <a id="logoText" href="#" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png" /></span>Fan<span id="logonext">Ease</span></a>
+            }
+            else
+            {
+                <a id="logoText" href="~/Login/Home" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png" /></span>Fan<span id="logonext">Ease</span></a>
+            }
+            <div class="navbar-collapse" id="navbarTogglerDemo03">
                 @if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "1")
                 {
                     <div style="margin-left: auto; margin-right: 5px;">
@@ -97,7 +101,7 @@
         </footer>
     </div>
     <script src="~/js/bundleSite.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="~/js/validateDates.js"></script>
     @RenderSection("Scripts", required: false)

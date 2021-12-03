@@ -9,6 +9,9 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: '/Admin/GetCountry',
         async: false,
         contentType: 'application/json',
@@ -20,6 +23,9 @@ $(document).ready(function () {
                         $('<option></option>').val(text.id).html(text.text)
                     );
                 });
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
     
@@ -27,6 +33,9 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: "/Admin/GetStates/"+countryId,
         async: false,
         contentType: 'application/json',
@@ -40,12 +49,18 @@ $(document).ready(function () {
                     );
                 }
             });
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
     $(`#formState option[value='${stateId}']`).attr("selected", "selected");
 
     $.ajax({
         type: 'GET',
+        beforeSend: function () {
+            $('.ajax-loader').css("visibility", "visible");
+        },
         url: "/Admin/GetCity/"+stateId,
         async: false,
         contentType: 'application/json',
@@ -59,6 +74,9 @@ $(document).ready(function () {
                     );
                 }
             });
+        },
+        complete: function () {
+            $('.ajax-loader').css("visibility", "hidden");
         }
     });
     $(`#formCity option[value='${cityId}']`).attr("selected", "selected");
@@ -70,6 +88,9 @@ $(document).ready(function () {
         console.log(countryId);
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "/Admin/GetStates/" + countryId.toString(),
             async: false,
             contentType: 'application/json',
@@ -83,6 +104,9 @@ $(document).ready(function () {
                         );
                     }
                 });
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
     });
@@ -93,6 +117,9 @@ $(document).ready(function () {
         console.log(stateId);
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "/Admin/GetCity/" + stateId.toString(),
             async: false,
             contentType: 'application/json',
@@ -106,6 +133,9 @@ $(document).ready(function () {
                         );
                     }
                 });
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
 

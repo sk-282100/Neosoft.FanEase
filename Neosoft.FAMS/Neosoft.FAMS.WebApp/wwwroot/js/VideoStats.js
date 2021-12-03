@@ -22,6 +22,9 @@ $(document).ready(function () {
     $('#like').click(function () {
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "/VideoViewer/GetLikes?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
             contentType: 'application/json',
@@ -54,6 +57,9 @@ $(document).ready(function () {
                     elementdisLike.addClass("fa fa-thumbs-o-down");
 
                 }
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
     });
@@ -63,6 +69,9 @@ $(document).ready(function () {
     $('#dislike').click(function () {
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             url: "/VideoViewer/GetDisLikes?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
             contentType: 'application/json',
@@ -94,12 +103,18 @@ $(document).ready(function () {
                     elementdisLike.addClass("fas fa-thumbs-down");
 
                 }
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
     });
     $('.vjs-icon-placeholder').click(function () {
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             //https://localhost:44330/Views/6?viewerId=2&api-version=1
             url: "/VideoViewer/GetViews?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
@@ -107,6 +122,9 @@ $(document).ready(function () {
             success: function (data) {
                 views = data
                 $('#views').text(views);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
 
@@ -116,6 +134,9 @@ $(document).ready(function () {
     $('.vjs-big-play-button,').click(function () {
         $.ajax({
             type: 'GET',
+            beforeSend: function () {
+                $('.ajax-loader').css("visibility", "visible");
+            },
             //https://localhost:44330/Views/6?viewerId=2&api-version=1
             url: "/VideoViewer/GetViews?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
@@ -123,6 +144,9 @@ $(document).ready(function () {
             success: function (data) {
                 views = data
                 $('#views').text(views);
+            },
+            complete: function () {
+                $('.ajax-loader').css("visibility", "hidden");
             }
         });
     });
