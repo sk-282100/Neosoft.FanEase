@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
+    [CustomAuthorizationFilter]
     public class AdminController : Controller
     {
         #region PrivateVariables

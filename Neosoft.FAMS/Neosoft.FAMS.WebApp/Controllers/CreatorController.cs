@@ -26,6 +26,7 @@ using Neosoft.FAMS.WebApp.Models.CreatorModel;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
+    [CustomAuthorizationFilter]
     public class CreatorController : Controller
     {
         private IMapper _mapper;
