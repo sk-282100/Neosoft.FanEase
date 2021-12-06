@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Neosoft.FAMS.Application.Features.Events.Login.Commands;
-using Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword;
 using Neosoft.FAMS.Application.Features.Login.Commands;
+using Neosoft.FAMS.Application.Features.Login.Commands.ForgotPassword;
 using Neosoft.FAMS.Application.Features.Login.Queries;
-using System.Threading.Tasks;
 using Neosoft.FAMS.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.Api.Controllers.v1
 {
@@ -38,7 +38,7 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             loginQuery.Password = _login.Password;
             loginQuery.UserName = _login.Username;
             var data = await _mediator.Send(loginQuery);
-            if(data==null)
+            if (data==null)
                 return NotFound();
             return Ok(data);
         }
@@ -83,7 +83,6 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             return Ok(data);
         }
 
-
         /// <summary>
         /// Author: Sana Haju
         /// Date: 27-10-2021
@@ -127,5 +126,6 @@ namespace Neosoft.FAMS.Api.Controllers.v1
             var data = await _mediator.Send(forgotPasswordCommand);
             return Ok(data);
         }
+      
     }
 }
