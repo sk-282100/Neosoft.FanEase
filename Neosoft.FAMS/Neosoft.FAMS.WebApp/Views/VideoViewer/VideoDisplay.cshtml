@@ -44,29 +44,34 @@
         #centreImg {
             height: 470px;
             width: 200px;
+            border: 5px solid gray;
         }
 
         .imgStyle {
             height: 220px;
             width: 250px;
+            border: 5px solid #D3D3D3;
         }
 
         video {
             height: 220px;
             width: 250px;
             object-fit: cover !important;
+            border: 5px solid #D3D3D3;
         }
 
         .videoOne {
             height: 220px;
             width: 440px;
             object-fit: cover !important;
+            border: 5px solid #D3D3D3;
         }
 
         #centreImg1 {
             height: 460px;
             margin-left: 120px;
             width: 400px;
+            border: 5px solid #D3D3D3;
         }
 
         .imgW {
@@ -142,7 +147,7 @@
         </div>
         <hr />
 
-        <div style="padding-left:0px;" id="imgStyle">
+        <div style="padding-left: 0px;" id="imgStyle">
             @if (advertiserecords.Count() == 3)
             {
 
@@ -233,7 +238,7 @@
             }
             else if (advertiserecords.Count() == 5)
             {
-                <div class="container pt-4 " style="border:1px solid gray;">
+                <div class="container pt-4 " style="padding-bottom: 20px; padding-left:30px; border: 5px solid #D3D3D3 ">
                     <div class="row pt-4 pr-2">
                         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                             @if (advertiserecords[0].ImagePath == null)
