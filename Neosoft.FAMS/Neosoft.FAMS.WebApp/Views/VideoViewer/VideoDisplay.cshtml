@@ -115,8 +115,8 @@
         <br />
         <hr />
 
-        <div class="row no-gutters">
-            <div class="col-1">
+        <div class="d-flex flex-row no-gutters">
+            <div class="flex-shrink-1 flex-md-shrink-1 flex-lg-shrink-1 mr-3">
                 @if (creatorRecords.ProfilePhotoPath == null)
                 {
                     <img src="~/DefaultPhotos/default_profile.png" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle" />
@@ -126,13 +126,13 @@
                     <img src="~/Uploads/Creators/Images/@creatorRecords.ProfilePhotoPath" alt="Avatar" style="width: 80px; height: 80px;" class="rounded-circle" />
                 }
             </div>
-            <div class="col-3">
+            <div class="mr-3">
                 <h4><b>@creatorRecords.CreatorName</b></h4>
                 <h6>@videos Videos</h6>
                 <h6 style="color: grey;">Published On :@string.Format("{0:MMM dd, yyyy}", @videoRecords.CreatedOn)</h6>
             </div>
 
-            <div class="col-3" style="border-left: 3px solid #D3D3D3; justify-content: center; ">
+            <div class="flex-fill" style="border-left: 3px solid #D3D3D3; justify-content: center; ">
                 <h4 style="margin-left: 15px;"><b>Video Description : </b></h4>
                 <p style="text-indent:1em each-line; margin-left: 15px;" id="ContentDescription">
 
@@ -233,7 +233,7 @@
             }
             else if (advertiserecords.Count() == 5)
             {
-                <div class="container pt-4 " style="border:1px solid gray;">
+                <div class="container pt-4 ">
                     <div class="row pt-4 pr-2">
                         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                             @if (advertiserecords[0].ImagePath == null)
