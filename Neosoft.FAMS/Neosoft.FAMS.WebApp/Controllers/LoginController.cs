@@ -18,11 +18,13 @@ namespace Neosoft.FAMS.WebApp.Controllers
     {
         private ILogin _login;
         private ICreator _creator;
+        private readonly ICommon _common;
         private IUser _user;
-        public LoginController(ILogin login, IUser user, ICreator creator)
+        public LoginController(ILogin login, IUser user, ICreator creator,ICommon common)
         {
             _login = login;
             _creator = creator;
+            _common = common;
             _user = user;
         }
         public IActionResult Index()
@@ -37,12 +39,12 @@ namespace Neosoft.FAMS.WebApp.Controllers
             {
                 string Username = model.Username;
                 string Password = model.Password;
-                // var userList = _user.GetAllUserList();
 
                 var data = await _login.CheckUsernameAndPassword(Username, Password);
                 if (data != null)
                 {
-                    //int RoleId = 0;
+                    var token = await _common.GetToken(Username, Password);
+
                     int RoleId = Convert.ToInt32(data.RoleId);
                     HttpContext.Session.SetString("LoginId", data.Id.ToString());
 

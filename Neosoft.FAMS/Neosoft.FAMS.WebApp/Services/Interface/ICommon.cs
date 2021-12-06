@@ -1,6 +1,7 @@
 ﻿using Neosoft.FAMS.WebApp.Models.CommonViewModel;
 using System.Collections.Generic;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetMappedData;
+using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Services.Interface
 {
@@ -12,6 +13,7 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         List<ListViewModel> GetCityList(int StateId);
         long GetPhoneCode(int countryId);
         List<AdvertisementViewModel> GetAdvertisement();
+        Task<string> GetToken(string userName, string password);
 
     }
 }

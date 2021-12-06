@@ -12,6 +12,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Neosoft.FAMS.WebApp.Models;
 using Neosoft.FAMS.Application.Features.ContentCreator.Queries.GetMappedData;
+using System.Threading.Tasks;
+using System.Text;
 
 namespace Neosoft.FAMS.WebApp.Services
 {
@@ -32,6 +34,26 @@ namespace Neosoft.FAMS.WebApp.Services
                 _client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
             }
+        }
+        public async Task<string> GetToken(string userName,string password)
+        {
+            string pass = EncryptionDecryption.EncryptString(password);
+            Domain.Entities.Login _login = new Domain.Entities.Login();
+            _login.Password = EncryptionDecryption.EncryptString(password);
+            _login.Username = userName;
+
+            string result=string.Empty;
+            var uri = API.Common.GetToken(_baseUrl);
+            var content = JsonConvert.SerializeObject(_login);
+            HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
+                          "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<string>(jsonDataStatus);
+                return data;
+            }
+            return result;
         }
 
         /// <summary>
