@@ -2051,6 +2051,17 @@ $(document).ready(function () {
 
     $('.hideAfter3Sec').delay(5000).fadeOut(2000);
 });
+
+function loaderVisible() {
+    $('.ajax-loader').css("visibility", "visible");
+}
+
+function loaderHide() {
+    $('.ajax-loader').css("visibility", "hidden");
+}
+function ajaxErrorOccured() {
+    $('.ajaxError').css("visibility", "visible");
+}
    
 
 /*!

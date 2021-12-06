@@ -67,7 +67,7 @@ $(document).ready(function() {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: "/Creator/yearlyLiveStats/" + CreatorId.toString() + "/" + currentYear.toString(),
         async: false,
@@ -77,14 +77,14 @@ $(document).ready(function() {
             LiveData = data;
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
 
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: "/Creator/yearlyStats/" + CreatorId.toString() + "/" + currentYear.toString(),
         //url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + currentYear +"&api-version=1",
@@ -166,7 +166,7 @@ $(document).ready(function() {
             chart.render();
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
 
@@ -177,7 +177,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loadero').css("visibility", "visible");
+                loaderVisible();
             },
             url: "/Creator/yearlyLiveStats/" + CreatorId.toString() + "/" + year.toString(),
             async: false,
@@ -187,7 +187,7 @@ $(document).ready(function() {
                 LiveData = data;
             },
             complete: function () {
-                $('.ajax-loadero').css("visibility", "hidden");
+                loaderHide();
             }
         });
 
@@ -197,7 +197,7 @@ $(document).ready(function() {
             $.ajax({
                 type: 'GET',
                 beforeSend: function () {
-                    $('.ajax-loadero').css("visibility", "visible");
+                    loaderVisible();
                 },
                 url: "/Creator/yearlyStats/" + CreatorId.toString() + "/" + year.toString(),
                 //url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + year + "&api-version=1",
@@ -281,7 +281,7 @@ $(document).ready(function() {
                     chart.render();
                 },
                 complete: function () {
-                    $('.ajax-loadero').css("visibility", "hidden");
+                    loaderHide();
                 }
             });
 

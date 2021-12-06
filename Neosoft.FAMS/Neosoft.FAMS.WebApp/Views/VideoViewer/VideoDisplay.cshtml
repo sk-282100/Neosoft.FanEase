@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="~/css/Viewer/VideoPlayer.css" />
     <link rel="stylesheet" href="~/css/temp.css" />
     <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
-    <script src="~/js/VideoStats.js"></script>
     <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
     <style>
         #instructions {
@@ -77,6 +76,7 @@
         .col-12, .col-md-12, .pl-3 {
             padding-left: 0px;
         }
+
     </style>
 </head>
 <div id="instructions">
@@ -419,3 +419,6 @@
         }
     }
 </script>
+@section Scripts{
+    <script src="~/js/VideoStats.js"></script>
+}

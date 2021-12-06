@@ -8,7 +8,7 @@ $(document).ready(function () {
             url: "/Admin/checkForEmailExist?email="+emailId,
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loadero').css("visibility", "visible");
+                loaderVisible();
             },
             success: function (data) {
                 console.log(data);
@@ -19,7 +19,7 @@ $(document).ready(function () {
                 }
             },
             complete: function () {
-                $('.ajax-loadero').css("visibility", "hidden");
+                loaderHide();
             },
             error: function (error) {
                 alert("Some Error occurred! Please reload the Page");

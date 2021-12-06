@@ -10,7 +10,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: '/Admin/GetCountry',
         async: false,
@@ -25,7 +25,7 @@ $(document).ready(function () {
                 });
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
     
@@ -34,7 +34,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: "/Admin/GetStates/"+countryId,
         async: false,
@@ -51,7 +51,7 @@ $(document).ready(function () {
             });
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
     $(`#formState option[value='${stateId}']`).attr("selected", "selected");
@@ -59,7 +59,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: "/Admin/GetCity/"+stateId,
         async: false,
@@ -76,7 +76,7 @@ $(document).ready(function () {
             });
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
     $(`#formCity option[value='${cityId}']`).attr("selected", "selected");
@@ -89,7 +89,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loadero').css("visibility", "visible");
+                loaderVisible();
             },
             url: "/Admin/GetStates/" + countryId.toString(),
             async: false,
@@ -106,7 +106,7 @@ $(document).ready(function () {
                 });
             },
             complete: function () {
-                $('.ajax-loadero').css("visibility", "hidden");
+                loaderHide();
             }
         });
     });
@@ -118,7 +118,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loadero').css("visibility", "visible");
+                loaderVisible();
             },
             url: "/Admin/GetCity/" + stateId.toString(),
             async: false,
@@ -135,7 +135,7 @@ $(document).ready(function () {
                 });
             },
             complete: function () {
-                $('.ajax-loadero').css("visibility", "hidden");
+                loaderHide();
             }
         });
 

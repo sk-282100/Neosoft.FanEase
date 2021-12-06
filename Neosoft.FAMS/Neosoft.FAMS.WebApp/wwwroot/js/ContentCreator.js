@@ -7,7 +7,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: '/Admin/GetCountry',
         async: false,
@@ -22,13 +22,13 @@ $(document).ready(function () {
                 });
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: "GetStates/1",
         async: false,
@@ -44,13 +44,13 @@ $(document).ready(function () {
             });
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: "GetCity/42",
         async: false,
@@ -66,7 +66,7 @@ $(document).ready(function () {
             });
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
 
@@ -76,7 +76,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loadero').css("visibility", "visible");
+                loaderVisible();
             },
             url: "GetStates/"+countryId.toString(),
             async: false,
@@ -97,7 +97,7 @@ $(document).ready(function () {
                 });
             },
             complete: function () {
-                $('.ajax-loadero').css("visibility", "hidden");
+                loaderHide();
             }
         });
     });
@@ -115,7 +115,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loadero').css("visibility", "visible");
+                loaderVisible();
             },
             url: "GetCity/" + stateId.toString(),
             async: false,
@@ -132,7 +132,7 @@ $(document).ready(function () {
                     });
             },
             complete: function () {
-                $('.ajax-loadero').css("visibility", "hidden");
+                loaderHide();
             }
         });
 

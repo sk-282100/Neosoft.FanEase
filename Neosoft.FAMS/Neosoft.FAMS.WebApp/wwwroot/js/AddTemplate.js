@@ -104,7 +104,7 @@ function loadValues()
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loadero').css("visibility", "visible");
+            loaderVisible();
         },
         url: '/Creator/GetAdvertisement',
         async: false,
@@ -119,7 +119,7 @@ function loadValues()
                 });
         },
         complete: function () {
-            $('.ajax-loadero').css("visibility", "hidden");
+            loaderHide();
         }
     });
 
@@ -155,7 +155,7 @@ $(document).ready(function () {
 
                     $.ajax({
                         beforeSend: function () {
-                            $('.ajax-loadero').css("visibility", "visible");
+                            loaderVisible();
                         },
                         url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3,
                         type: 'POST',
@@ -163,7 +163,7 @@ $(document).ready(function () {
                             window.location = '/Template/TemplateList';
                         },
                         complete: function () {
-                            $('.ajax-loadero').css("visibility", "hidden");
+                            loaderHide();
                         },
                         error: function(result) {
                         }
@@ -194,7 +194,7 @@ $(document).ready(function () {
 
                     $.ajax({
                         beforeSend: function () {
-                            $('.ajax-loadero').css("visibility", "visible");
+                            loaderVisible();
                         },
                         url: "/Template/AddTemplateVideoData/" + section1 + section2 + section3 + section4 + section5,
                         type: 'POST',
@@ -202,7 +202,7 @@ $(document).ready(function () {
                             window.location = '/Template/TemplateList';
                         },
                         complete: function () {
-                            $('.ajax-loadero').css("visibility", "hidden");
+                            loaderHide();
                         },
                         error: function (result) {
                         }

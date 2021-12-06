@@ -5,7 +5,7 @@ $(document).ready(function () {
 
         $.ajax({
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                loaderVisible();
             },
             url: "/Viewer/checkForEmailExist?email=" + emailId,
             type: 'GET',
@@ -18,7 +18,7 @@ $(document).ready(function () {
                 }
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                loaderHide();
             },
             error: function (error) {
                 alert("Some Error occurred! Please reload the Page");

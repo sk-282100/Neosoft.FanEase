@@ -23,7 +23,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                loaderVisible();
             },
             url: "/VideoViewer/GetLikes?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
@@ -59,7 +59,7 @@ $(document).ready(function () {
                 }
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                loaderHide();
             }
         });
     });
@@ -70,7 +70,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                loaderVisible();
             },
             url: "/VideoViewer/GetDisLikes?videoId=" + videoId + "&viewerId=" + viewerId,
             async: false,
@@ -105,7 +105,7 @@ $(document).ready(function () {
                 }
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                loaderHide();
             }
         });
     });
@@ -113,7 +113,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                loaderVisible();
             },
             //https://localhost:44330/Views/6?viewerId=2&api-version=1
             url: "/VideoViewer/GetViews?videoId=" + videoId + "&viewerId=" + viewerId,
@@ -124,7 +124,7 @@ $(document).ready(function () {
                 $('#views').text(views);
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                loaderHide();
             }
         });
 
@@ -135,7 +135,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             beforeSend: function () {
-                $('.ajax-loader').css("visibility", "visible");
+                loaderVisible();
             },
             //https://localhost:44330/Views/6?viewerId=2&api-version=1
             url: "/VideoViewer/GetViews?videoId=" + videoId + "&viewerId=" + viewerId,
@@ -146,7 +146,7 @@ $(document).ready(function () {
                 $('#views').text(views);
             },
             complete: function () {
-                $('.ajax-loader').css("visibility", "hidden");
+                loaderHide();
             }
         });
     });

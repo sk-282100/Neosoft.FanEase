@@ -5,9 +5,9 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         beforeSend: function () {
-            $('.ajax-loader').css("visibility", "visible");
+            loaderVisible();
         },
-        url: "/Viewer/GetVideos",
+        url: "/Viewer/GetVideossss/123",
         async: false,
         contentType: 'application/json',
         success: function (data) {
@@ -35,7 +35,10 @@ $(document).ready(function () {
                 }
         },
           complete: function () {
-            $('.ajax-loader').css("visibility", "hidden");
+              loaderHide();
+        },
+        error: function (error) {
+            ajaxErrorOccured();
         }
     });
     $('#selectVideo').click(function () {
@@ -43,7 +46,7 @@ $(document).ready(function () {
             $.ajax({
                 type: 'GET',
                 beforeSend: function () {
-                    $('.ajax-loader').css("visibility", "visible");
+                    loaderVisible();
                 },
                 url: "/Viewer/GetVideos",
                 async: false,
@@ -75,7 +78,7 @@ $(document).ready(function () {
                     }
                 },
                 complete: function () {
-                    $('.ajax-loader').css("visibility", "hidden");
+                    loaderHide();
                 }
             });
         }
@@ -85,7 +88,7 @@ $(document).ready(function () {
             $.ajax({
                 type: 'GET',
                 beforeSend: function () {
-                    $('.ajax-loader').css("visibility", "visible");
+                    loaderVisible();
                 },
                 url: "/Viewer/GetVideos",
                 async: false,
@@ -117,7 +120,7 @@ $(document).ready(function () {
                     }
                 },
                 complete: function () {
-                    $('.ajax-loader').css("visibility", "hidden");
+                    loaderHide();
                 }
             });
         }
@@ -129,7 +132,7 @@ $(document).ready(function () {
             $.ajax({
                 type: 'GET',
                 beforeSend: function () {
-                    $('.ajax-loader').css("visibility", "visible");
+                    loaderVisible();
                 },
                 url: "/Viewer/GetTopLikedVideos",
                 async: false,
@@ -161,7 +164,7 @@ $(document).ready(function () {
                     }
                 },
                 complete: function () {
-                    $('.ajax-loader').css("visibility", "hidden");
+                    loaderHide();
                 }
             });
 
@@ -174,7 +177,7 @@ $(document).ready(function () {
             $.ajax({
                 type: 'GET',
                 beforeSend: function () {
-                    $('.ajax-loader').css("visibility", "visible");
+                    loaderVisible();
                 },
                 url: "/Viewer/topViewsVideo",
                 async: false,
@@ -205,7 +208,7 @@ $(document).ready(function () {
                     }
                 },
                 complete: function () {
-                    $('.ajax-loader').css("visibility", "hidden");
+                    loaderHide();
                 }
             });
         }
