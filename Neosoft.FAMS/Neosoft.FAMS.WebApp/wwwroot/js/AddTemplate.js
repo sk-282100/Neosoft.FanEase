@@ -120,6 +120,9 @@ function loadValues()
         },
         complete: function () {
             loaderHide();
+        },
+        error: function (error) {
+            ajaxErrorOccured();
         }
     });
 
@@ -165,7 +168,8 @@ $(document).ready(function () {
                         complete: function () {
                             loaderHide();
                         },
-                        error: function(result) {
+                        error: function (error) {
+                            ajaxErrorOccured();
                         }
                     });
                 }
@@ -204,7 +208,8 @@ $(document).ready(function () {
                         complete: function () {
                             loaderHide();
                         },
-                        error: function (result) {
+                        error: function (error) {
+                            ajaxErrorOccured();
                         }
                     });
                 }

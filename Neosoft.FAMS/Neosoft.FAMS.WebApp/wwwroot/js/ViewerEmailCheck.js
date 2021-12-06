@@ -21,7 +21,7 @@ $(document).ready(function () {
                 loaderHide();
             },
             error: function (error) {
-                alert("Some Error occurred! Please reload the Page");
+                ajaxErrorOccured();
             }
         });
     });

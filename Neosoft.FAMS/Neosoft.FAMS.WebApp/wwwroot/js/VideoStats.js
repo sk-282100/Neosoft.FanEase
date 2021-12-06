@@ -60,6 +60,9 @@ $(document).ready(function () {
             },
             complete: function () {
                 loaderHide();
+            },
+            error: function (error) {
+                ajaxErrorOccured();
             }
         });
     });
@@ -106,6 +109,9 @@ $(document).ready(function () {
             },
             complete: function () {
                 loaderHide();
+            },
+            error: function (error) {
+                ajaxErrorOccured();
             }
         });
     });
@@ -125,6 +131,9 @@ $(document).ready(function () {
             },
             complete: function () {
                 loaderHide();
+            },
+            error: function (error) {
+                ajaxErrorOccured();
             }
         });
 
@@ -147,6 +156,9 @@ $(document).ready(function () {
             },
             complete: function () {
                 loaderHide();
+            },
+            error: function (error) {
+                ajaxErrorOccured();
             }
         });
     });
