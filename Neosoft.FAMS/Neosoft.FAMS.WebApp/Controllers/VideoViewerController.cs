@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
+    [CustomAuthorizationFilter]
     public class VideoViewerController : Controller
     {
         private IVideoStatistics _videoStatistics;

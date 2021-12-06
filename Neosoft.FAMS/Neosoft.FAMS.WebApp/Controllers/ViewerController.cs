@@ -95,22 +95,29 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return isPresent;
         }
 
+        [CustomAuthorizationFilter]
         public ActionResult DisplayAllVideos()
         {
             return View();
         }
+
+        [CustomAuthorizationFilter]
         public List<GetTopVideoDto> topViewsVideo()
         {
             var videoList = _adminDashboard.GetTopVideo();
             return videoList;
 
         }
+
+        [CustomAuthorizationFilter]
         [HttpGet]
         public List<VideoGetAllDto> GetVideos([FromQuery] long videoId, [FromQuery] long viewerId)
         { 
             var videoList = _video.GetAllVideoList();
             return videoList;
         }
+
+        [CustomAuthorizationFilter]
         public List<GetTopLikesVideoListDto> GetTopLikedVideos()
         {
             var videoList = _viewer.GetTopLikedVideo();

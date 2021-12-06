@@ -13,6 +13,7 @@ using Neosoft.FAMS.WebApp.Models;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
+    [CustomAuthorizationFilter]
     public class TemplateController : Controller
     {
         private IMapper _mapper;
