@@ -7,7 +7,7 @@ $(document).ready(function () {
         beforeSend: function () {
             loaderVisible();
         },
-        url: "/Viewer/GetVideossss/123",
+        url: "/Viewer/GetVideos",
         async: false,
         contentType: 'application/json',
         success: function (data) {

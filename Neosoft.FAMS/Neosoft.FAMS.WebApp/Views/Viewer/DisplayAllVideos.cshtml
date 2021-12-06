@@ -43,7 +43,6 @@
     <div class="row" style="background-color: #F5F5F5;">
         <div class="col mt-2">
             <div id="formContent">
-                <partial name="_ajaxError">
                 <!-- Tabs Titles -->
                 <div class="row">
                     <div class="col-6">
@@ -53,19 +52,19 @@
                     </div>
                     <div class="col">
                         <select style="float: right;" class="form-select mt-4 mr-0 w3-right" aria-label="Default select example" name="sorts" id="selectVideo" required>
-                                <option value="1" selected>Date(Ascending)</option>
-                                <option value="2">Date(Descending)</option>
-                                <option value="3">Most Liked </option>
-                                <option value="4">Most Viewed </option>
+                            <option value="1" selected>Date(Ascending)</option>
+                            <option value="2">Date(Descending)</option>
+                            <option value="3">Most Liked </option>
+                            <option value="4">Most Viewed </option>
 
-                            </select>
+                        </select>
                     </div>
 
                 </div>
                 <div id="showTable" class="row d-flex">
-
                 </div>
             </div>
         </div>
     </div>
+    <partial name="_ajaxError">
 </div>
