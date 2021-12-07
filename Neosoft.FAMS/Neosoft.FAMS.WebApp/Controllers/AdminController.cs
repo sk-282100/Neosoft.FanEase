@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,6 @@ using System.Threading.Tasks;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
-    [CustomAuthorizationFilter]
     public class AdminController : Controller
     {
         #region PrivateVariables
@@ -43,6 +43,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             throw new NullReferenceException();
         }
+
+        
         [HttpGet]
         public IActionResult Index()
         {
@@ -85,6 +87,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             var phoneCode = _common.GetPhoneCode(id);
             return phoneCode;
         }
+
         [HttpGet]
         public IActionResult GetCountry()
         {

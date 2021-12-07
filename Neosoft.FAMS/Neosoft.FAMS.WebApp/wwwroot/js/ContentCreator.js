@@ -14,6 +14,7 @@ $(document).ready(function () {
         contentType: 'application/json',
         success: function (data) {
             countrydata = data;
+            console.log(data);
             $.each(data,
                 function(id, text) {
                     $('#formCountry').append(
