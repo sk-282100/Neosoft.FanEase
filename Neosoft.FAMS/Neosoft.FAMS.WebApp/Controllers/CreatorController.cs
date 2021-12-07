@@ -60,7 +60,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             MappingViewModel.CampaignId = id;
             HttpContext.Session.SetString("isCampaignAdded",true.ToString());
-            return RedirectToAction("AddAsset");
+            return RedirectToAction("AddCampaignView");
         }
         /// <summary>
         /// Author : Sharma Aman<br></br>
@@ -304,6 +304,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public IActionResult AddAsset()
         {
+            ViewData["isInsert"] = false;
             return View();
         }
         [HttpPost]
@@ -337,6 +338,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 var result = _asset.SaveAssetDetail(createAdvertisement);
                 HttpContext.Session.SetString("isAssetAdded", true.ToString());
                 ModelState.Clear();
+                ViewData["isInsert"] = true;
                 return View();
 
             }

@@ -44,7 +44,7 @@
                 <div asp-validation-summary="All" class="text text-danger help-block"></div>
                 @if (@isInserted)
                 {
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show hideAfter3Sec" role="alert">
                         <strong>New Asset Added Successfully</strong>
                         <button style="margin-top: 10px; background-color: transparent !important;" type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="row">
                         <div class="col d-flex justify-content-end">
-                            @if (isAddedVideo == true && isAddedCampaign == true && isAddedAsset==true)
+                            @if (isAddedVideo == true && isAddedCampaign == true && isAddedAsset == true)
                             {
                                 <input type="button" id="btnCancel" class="btn btn-secondary" onclick="window.location = '@Url.Action("AddTemplate", "Template")'" value="Select Template">
                             }
