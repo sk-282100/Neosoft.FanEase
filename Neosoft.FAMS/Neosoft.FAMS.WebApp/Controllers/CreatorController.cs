@@ -60,6 +60,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
         {
             MappingViewModel.CampaignId = id;
             HttpContext.Session.SetString("isCampaignAdded",true.ToString());
+            TempData["isExistingCampAdded"] = true;
             return RedirectToAction("AddCampaignView");
         }
         /// <summary>
@@ -242,12 +243,10 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 createCampaign.CreatedOn = DateTime.Now;
                 createCampaign.CreatedBy = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
                 var result = _campaign.SaveCampaignDetail(createCampaign);
-                if (result != null)
-                {
-                    ViewData["isInsert"] = true;
-                }
+                 ViewData["isInsert"] = true;
                 HttpContext.Session.SetString("isCampaignAdded", true.ToString());
-                return RedirectToAction("AddCampaignView", "Creator");
+                ModelState.Clear();
+                return View();
             }
             ViewData["isInsert"] = false;
             return View();

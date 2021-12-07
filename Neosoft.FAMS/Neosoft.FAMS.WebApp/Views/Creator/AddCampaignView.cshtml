@@ -7,7 +7,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "AddCampaignView";
     var records = (List<AdvertisementListQueryDto>)ViewData["AdvertisementData"];
+    bool isInserted = Convert.ToBoolean(ViewData["isInsert"]);
     bool isDeleted = Convert.ToBoolean(ViewData["isDelete"]);
+    bool isExistingCampAdded = Convert.ToBoolean(TempData["isExistingCampAdded"]);
     bool isAddedCampaign = Convert.ToBoolean(Context.Session.GetString("isCampaignAdded"));
     var campaignData=(CampaignGetAllDto)ViewData["campaignData"];
     ViewData["step"] = 2;
@@ -33,189 +35,198 @@
                     <h3 class="ml-1 mt-4 text-left" style="color: #8b8b8b;">
                         Add New Campaign
                     </h3>
-                </div> 
+                </div>
                 <div class="col-6">
                     @*@{Html.Partial("ShowProgressBar", "Creator", new object { step = 1 });}*@
                     <partial name="_ProgressBar" view-data="ViewData">
                 </div>
             </div>
 
-                <div id="try" style="display: flex">
-                    <div style="margin-left: 50px; color: red;">
-                        <a><label style="text-decoration: underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
-                        <a href="~/Creator/ExistingCampaign"><label>Select Existing Campaign</label></a>
-
-                    </div>
+            <div id="try" style="display: flex">
+                <div style="margin-left: 50px; color: red;">
+                    <a><label style="text-decoration: underline; color: dodgerblue">Create New Campaign</label></a>&emsp;&emsp;
+                    <a href="~/Creator/ExistingCampaign"><label>Select Existing Campaign</label></a>
 
                 </div>
-                <hr />
-                @if (records == null)
+
+            </div>
+            <hr />
+            @if (records == null)
+            {
+                @if (@isInserted || isExistingCampAdded)
                 {
-                    @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
-                    {
+                    <div class="alert alert-success alert-dismissible fade show hideAfter3Sec" role="alert">
+                        <strong>Campaign Mapped Successfully with Video</strong>
+                        <button style="margin-top: 5px; background-color: transparent !important;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
+                {
 
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="txt_campaignName">
-                                    Campaign Name<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="CampaignName" type="text" name="CampaignName" class="form-control" placeholder="Campaign Name ">
-                            </div>
-                            <div class="form-group col-6">
-                                <div style="float: right;">
-                                    @if (isAddedCampaign)
-                                    {
-                                        <button id="selectAsset" type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("SelectAsset", "Creator")'">View Existing Assets</button>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="txt_campaignName">
+                                Campaign Name<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="CampaignName" type="text" name="CampaignName" class="form-control" placeholder="Campaign Name ">
+                        </div>
+                        <div class="form-group col-6">
+                            <div style="float: right;">
+                                @if (isAddedCampaign)
+                                {
+                                    <button id="selectAsset" type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("SelectAsset", "Creator")'">View Existing Assets</button>
 
-                                    }
-                                    <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
-                                </div>
+                                }
+                                <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
                             </div>
                         </div>
-                        <div class="row">
+                    </div>
+                    <div class="row">
 
-                            <div class="form-group col-6">
-                                <label for="start_campaign">
-                                    Start Date of Campaign<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="StartDate" type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
-                                <label for="end_campaign" style="margin-top: 15px;">
-                                    End Date of Campaign<sup style="color: red">*</sup>
-                                    @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="EndDate" type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
-                            </div>
-
-                            <div class="row">
-                                <div class="col d-flex justify-content-end">
-                                    <button type="button" id="btnCancel" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
-                                    <input type="submit" id="btnProceed" class="btn btn-primary" value="Proceed" />
-                                </div>
-                            </div>
-
+                        <div class="form-group col-6">
+                            <label for="start_campaign">
+                                Start Date of Campaign<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("StartDate", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="StartDate" type="date" name="StartDate" class="form-control" id="start_campaign" placeholder="Campaign Name ">
+                            <label for="end_campaign" style="margin-top: 15px;">
+                                End Date of Campaign<sup style="color: red">*</sup>
+                                @Html.ValidationMessage("EndDate", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="EndDate" type="date" name="EndDate" class="form-control" id="end_campaign" placeholder="Campaign Name ">
                         </div>
-                    }
 
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <button type="button" id="btnCancel" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
+                                <input type="submit" id="btnProceed" class="btn btn-primary" value="Proceed" />
+                            </div>
+                        </div>
+
+                    </div>
                 }
 
-                else
+            }
+
+            else
+            {
+                @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
                 {
-                    @using (Html.BeginForm("AddCampaignView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-5" }))
+                    DateTime EndDate = (DateTime)campaignData.EndDate;
+                    DateTime StartDate = (DateTime)campaignData.StartDate;
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="txt_campaignName">
+                                Campaign Name
+                                @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
+                            </label>
+                            <input asp-for="CampaignName" type="text" name="CampaignName" style="background-color: #f6f6f6;" class="form-control" readonly value="@campaignData.CampaignName">
+                        </div>
+                        <div class="form-group col-6">
+                            <div style="float: right;">
+                                @if (isAddedCampaign)
+                                {
+                                    <button id="selectAsset" type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("SelectAsset", "Creator")'">View Existing Assets</button>
+
+                                }
+                                <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-6">
+                            <label for="start_campaign">
+                                Start Date of Campaign
+                            </label>
+                            @Html.EditorFor(model => StartDate, new { htmlAttributes = new { @class = "form-control,Dateecss", @readonly = "readonly" } })
+
+                            <label for="end_campaign" style="margin-top: 15px;">
+                                End Date of Campaign
+                            </label>
+                            @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control,Dateecss", @readonly = "readonly" } })
+                        </div>
+
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <button type="button" id="btnCancel" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
+                                <input type="button" id="btnProceed" class="btn btn-primary" onclick="window.location = '@Url.Action("AddExistingCampaignIdToMapped", "Creator",new{id=@campaignData.CampaignId})'" value="Proceed" />
+                            </div>
+                        </div>
+
+                    </div>
+                    @if (@isDeleted)
                     {
-                        DateTime EndDate = (DateTime)campaignData.EndDate;
-                        DateTime StartDate = (DateTime)campaignData.StartDate;
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="txt_campaignName">
-                                    Campaign Name 
-                                    @Html.ValidationMessage("CampaignName", "", new { @class = "text-danger" })
-                                </label>
-                                <input asp-for="CampaignName" type="text" name="CampaignName" style="background-color: #f6f6f6;" class="form-control" readonly value="@campaignData.CampaignName">
-                            </div>
-                            <div class="form-group col-6">
-                                <div style="float: right;">
-                                    @if (isAddedCampaign)
-                                    {
-                                        <button id="selectAsset" type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("SelectAsset", "Creator")'">View Existing Assets</button>
-
-                                    }
-                                    <button type="button" class="btn" style="background-color: #C1C0C0; color: white;" onclick="window.location = '@Url.Action("AddAsset", "Creator")'">Add More Asset</button>
-                                </div>
-                            </div>
+                        <div class="alert alert-success alert-dismissible fade show hideAfter3Sec" role="alert">
+                            <strong>Data Deleted Successfully !</strong>
+                            <button style="margin-top: 10px; background-color: transparent !important;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="row">
+                    }
+                    <div id="tbl" style="margin-top: 40px;">
+                        <table id="myTable" class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="nosort">Thumbnail Image</th>
+                                    <th>Content Type</th>
+                                    <th>Asset Title</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th class="nosort">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var record in records)
+                                {
 
-                            <div class="form-group col-6">
-                                <label for="start_campaign">
-                                    Start Date of Campaign 
-                                </label>
-                                @Html.EditorFor(model => StartDate , new { htmlAttributes = new { @class = "form-control,Dateecss", @readonly = "readonly" } })
-                               
-                                <label for="end_campaign" style="margin-top: 15px;">
-                                    End Date of Campaign 
-                                </label>
-                                @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control,Dateecss", @readonly="readonly" } })
-                            </div>
-
-                            <div class="row">
-                                <div class="col d-flex justify-content-end">
-                                    <button type="button" id="btnCancel" onclick="window.location = '@Url.Action("AddVideoView", "Creator")'" class="btn btn-secondary">Cancel</button>
-                                    <input type="button" id="btnProceed" class="btn btn-primary" onclick="window.location = '@Url.Action("AddExistingCampaignIdToMapped", "Creator",new{id=@campaignData.CampaignId})'" value="Proceed" />
-                                </div>
-                            </div>
-
-                        </div>
-                        @if (@isDeleted)
-                        {
-                            <div class="alert alert-success alert-dismissible fade show hideAfter3Sec" role="alert">
-                                <strong>Data Deleted Successfully !</strong>
-                                <button style="margin-top: 10px; background-color: transparent !important;" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        }
-                        <div id="tbl" style="margin-top: 40px;">
-                            <table id="myTable" class="table table-sm table-hover">
-                                <thead>
                                     <tr>
-                                        <th class="nosort">Thumbnail Image</th>
-                                        <th>Content Type</th>
-                                        <th>Asset Title</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th class="nosort">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var record in records)
-                                    {
-                                        
-                                        <tr>
-                                            @if (@record.ImagePath == null)
-                                            {
-                                                <td><video src="~/Uploads/Creators/Videos/@record.VideoPath" controls alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"></video></td>
-                                                <td>Video</td>
-                                            }
-                                            else
-                                            {
-                                                <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
-                                                <td>Image</td>
-                                            }
-                                            
-                          
-                                            <td>@record.Title</td>
-                                            <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
-                                            <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
-                                            <td>
-                                                <a class="edit" href="~/Creator/EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+                                        @if (@record.ImagePath == null)
+                                        {
+                                            <td><video src="~/Uploads/Creators/Videos/@record.VideoPath" controls alt="profile" style="height: 50px; width: 50px;" class="rounded-circle"></video></td>
+                                            <td>Video</td>
+                                        }
+                                        else
+                                        {
+                                            <td><img src="~/Uploads/Creators/Videos/@record.ImagePath" alt="profile" style="height:50px;width:50px;" class="rounded-circle" /></td>
+                                            <td>Image</td>
+                                        }
 
-                                            </td>
-                                        </tr>
-                                        
-                                    }
-                                </tbody>
-                            </table>
-                            @* Popup Modal *@
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body" style="height: 60px;">
-                                            Are you sure you want to Delete this record?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a href="AddCampaignView" class="btn btn-secondary">No</a>
-                                            <a id="hrefElement" class="btn btn-primary">Yes</a>
-                                        </div>
+
+                                        <td>@record.Title</td>
+                                        <td>@string.Format("{0:MMM dd, yyyy}", @record.StartDate)</td>
+                                        <td>@string.Format("{0:MMM dd, yyyy}", @record.EndDate)</td>
+                                        <td>
+                                            <a class="edit" href="~/Creator/EditAsset/@record.AdvertisementId.ToString()" title="Edit" data-toggle="tooltip"><i class="material-icons" style="color: green"></i></a>
+
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                        @* Popup Modal *@
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body" style="height: 60px;">
+                                        Are you sure you want to Delete this record?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="AddCampaignView" class="btn btn-secondary">No</a>
+                                        <a id="hrefElement" class="btn btn-primary">Yes</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    }
-
+                    </div>
                 }
-              </div>
+
+            }
+        </div>
 </div>
     </div>
 </div>
