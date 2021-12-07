@@ -6,10 +6,12 @@
         var data = d.split('/');
         var todayDate = year + "-" + data[0] + "-" + data[1];
         var selectedDate = value.toLocaleString().split("T");
-        if (selectedDate[0] < todayDate) {
+        var selected = selectedDate[0];
+        if (Date.parse(selectedDate[0]) < Date.parse(todayDate)) {
             return false;
         }
         else {
+
             return true;
         }
     });

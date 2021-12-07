@@ -72,6 +72,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
             HttpContext.Session.SetString("isVideoAdded",false.ToString());
             HttpContext.Session.SetString("isCampaignAdded", false.ToString());
             HttpContext.Session.SetString("isAssetAdded", false.ToString());
+            MappingViewModel.VideoId = 0;
+            MappingViewModel.CampaignId = 0;
+            MappingViewModel.AdvertisementId = 0;
             return RedirectToAction("TemplateList");
         }
     }
