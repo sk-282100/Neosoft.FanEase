@@ -59,7 +59,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
         public IActionResult AddExistingCampaignIdToMapped(long id)
         {
             MappingViewModel.CampaignId = id;
-            _campaign.GetMappedVideoIdCampaign(id);
             HttpContext.Session.SetString("isCampaignAdded",true.ToString());
             return RedirectToAction("AddAsset");
         }
@@ -100,8 +99,9 @@ namespace Neosoft.FAMS.WebApp.Controllers
         /// Reason : It will add multiple existing selected advertisement to Model so we can map advertisement with Campaign 
         /// </summary>
         /// <param name="advertisementId"></param>
-        [NonAction]
-        public void AddExistingAssetId(long advertisementId)
+        [HttpGet]
+        [Route("/Creator/AddExistingAssetId/{advertisementId}")]
+        public void AddExistingAssetId([FromRoute]long advertisementId)
         {
             //long advertisementId = Convert.ToInt64(id);
             if (AddExistingAssetViewModel.AdvertisementId.Contains(advertisementId))

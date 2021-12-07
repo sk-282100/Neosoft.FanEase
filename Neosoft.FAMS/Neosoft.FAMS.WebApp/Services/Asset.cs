@@ -94,7 +94,6 @@ namespace Neosoft.FAMS.WebApp.Services
         /// </summary>
         public void AddMappedData()
         {
-
             var addCampaignAdvertisement = new AddCampaignAdvertisementCommand();
             addCampaignAdvertisement.AdvertisementId = MappingViewModel.AdvertisementId;
             addCampaignAdvertisement.CampaignId = MappingViewModel.CampaignId;
