@@ -26,7 +26,6 @@ namespace Neosoft.FAMS.Application.Features.Advertisement.Queries.GetMappedDataB
             var mappedData =await _advertisementRepo.GetMappedByIdAsync(request.CampaignId);
             foreach (var data in mappedData)
             {
-                long a=0;
                 advertisementId.Add(await _advertisementRepo.GetByIdAsync(data.AdvertisementId ?? 0));   
             }
 
