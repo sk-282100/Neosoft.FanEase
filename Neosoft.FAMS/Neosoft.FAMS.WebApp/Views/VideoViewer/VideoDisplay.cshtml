@@ -69,13 +69,13 @@
 
         #centreImg1 {
             height: 460px;
-            margin-left: 120px;
-            width: 400px;
+            margin-left: 0px;
+            width: 100%;
             border: 5px solid #D3D3D3;
         }
 
         .imgW {
-            width: 460px;
+            width: 100% !important;
         }
 
         .col-12, .col-md-12, .pl-3 {
@@ -152,8 +152,7 @@
 
             <div class="container pt-4">
                 <div class="row pt-4" style="border: 5px solid #D3D3D3">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-4 mb-3 mb-lg-0 ">
+                    <div class="col-lg-6 mb-3 mb-lg-0 ">
                         @if (advertiserecords[0].ImagePath == null)
                         {
                             <img src="/Uploads/Creators/Images/1185912a-2478-47ab-95c9-d8ed94358969_img3.jfif"
@@ -203,7 +202,7 @@
 
                     </div>
 
-                    <div class="col-lg-4 mb-3 mb-lg-0">
+                    <div class="col-lg-6 mb-3 mb-lg-0">
 
                         @if (advertiserecords[1].ImagePath == null)
                         {
@@ -232,7 +231,6 @@
                         }
 
                     </div>
-                    <div class="col-lg-2"></div>
                 </div>
             </div>
             }
