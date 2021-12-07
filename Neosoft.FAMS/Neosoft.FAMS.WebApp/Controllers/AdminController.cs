@@ -44,7 +44,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             throw new NullReferenceException();
         }
 
-        
+        [CustomAuthorizationFilter]
         [HttpGet]
         public IActionResult Index()
         {
@@ -200,12 +200,16 @@ namespace Neosoft.FAMS.WebApp.Controllers
             TempData["isDeleted"] = true;
             return RedirectToAction("CreatorsList");
         }
+
+        [CustomAuthorizationFilter]
         public IActionResult VideoTable()
         {
             var data = _video.GetAllVideoList();
             ViewData["data"] = data;
             return View();
         }
+
+        [CustomAuthorizationFilter]
         public IActionResult CreatorsList()
         {
             if (TempData["isDeleted"] != null)
@@ -221,6 +225,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             return View();
         }
 
+        [CustomAuthorizationFilter]
         public ActionResult ViewerList()
         {
             var data = _viewer.GetAllViewer();
