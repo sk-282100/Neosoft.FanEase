@@ -13,7 +13,6 @@ namespace Neosoft.FAMS.WebApp.Services.Interface
         List<ListViewModel> GetCityList(int StateId);
         long GetPhoneCode(int countryId);
         List<AdvertisementViewModel> GetAdvertisement();
-        Task<string> GetToken(string userName, string password);
 
     }
 }

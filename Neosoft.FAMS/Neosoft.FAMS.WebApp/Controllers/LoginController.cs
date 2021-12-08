@@ -43,8 +43,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 var data = await _login.CheckUsernameAndPassword(Username, Password);
                 if (data != null)
                 {
-                    var token = await _common.GetToken(Username, Password);
-
                     int RoleId = Convert.ToInt32(data.RoleId);
                     HttpContext.Session.SetString("LoginId", data.Id.ToString());
 
