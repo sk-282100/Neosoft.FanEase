@@ -23,6 +23,7 @@ using Neosoft.FAMS.Application.Features.Campaign.Commands.Delete;
 using Neosoft.FAMS.Application.Features.Campaign.Commands.Update;
 using Neosoft.FAMS.Application.Features.ContentCreator.Commands.Update;
 using Neosoft.FAMS.WebApp.Models.CreatorModel;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -37,7 +38,8 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private IAsset _asset;
         private ICreator _creator;
         private ICreatorDashboard _creatorDashboard;
-        public CreatorController(IMapper mapper,ICommon common, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset, ICreator creator,ICreatorDashboard creatorDashboard)
+        private readonly INotyfService _notyf;
+        public CreatorController(IMapper mapper,ICommon common, IVideo video, ICampaign campaign, IWebHostEnvironment webHostEnvironment, IAsset asset, ICreator creator,ICreatorDashboard creatorDashboard, INotyfService notyf)
         {
             _mapper = mapper;
             _common = common;
@@ -47,7 +49,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             _asset = asset;
             _creator = creator;
             _creatorDashboard = creatorDashboard;
-
+            _notyf = notyf;
         }
         /// <summary>
         /// Author : Sharma Aman<br></br>
@@ -211,6 +213,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     ViewData["data"] = id;
                 }
                 HttpContext.Session.SetString("isVideoAdded",true.ToString());
+                _notyf.Success("Video added successfully",5);
                 return RedirectToAction("AddCampaignView", "Creator");
             }
             return View();

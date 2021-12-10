@@ -48,7 +48,7 @@ namespace Neosoft.FAMS.WebApp.Services
             _login.Password = EncryptionDecryption.EncryptString(password);
             _login.Username = userName;
             var content = JsonConvert.SerializeObject(_login);
-            var uri = API.Login.CheckUsernameAndPassword(_path);
+            var uri = API.Login.CheckUsernameAndPassword(_baseUrl,_path);
             HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(content, Encoding.Default,
                "application/json"));
 

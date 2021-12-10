@@ -8,6 +8,8 @@ using Neosoft.FAMS.WebApp.Profiles;
 using Neosoft.FAMS.WebApp.Services;
 using System;
 using Neosoft.FAMS.WebApp.Models;
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 
 namespace Neosoft.FAMS.WebApp
 {
@@ -53,7 +55,7 @@ namespace Neosoft.FAMS.WebApp
             {
                 options.MaxRequestBodySize = int.MaxValue;
             });
-
+            services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
             //services.AddDbContext<SuperHeroContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DemoCustDb")));
         }
@@ -79,7 +81,7 @@ namespace Neosoft.FAMS.WebApp
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSession();
-
+            app.UseNotyf();
             app.UseAuthorization();
 
 
