@@ -11,6 +11,7 @@ using System;
 using System.Linq;
 using Neosoft.FAMS.WebApp.Models;
 using System.Threading.Tasks;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -20,12 +21,15 @@ namespace Neosoft.FAMS.WebApp.Controllers
         private ICreator _creator;
         private readonly ICommon _common;
         private IUser _user;
-        public LoginController(ILogin login, IUser user, ICreator creator,ICommon common)
+        private readonly INotyfService _notyf;
+        public LoginController(ILogin login, IUser user, ICreator creator,ICommon common, INotyfService notyfService)
         {
             _login = login;
             _creator = creator;
             _common = common;
             _user = user;
+            _notyf = notyfService;
+
         }
         public IActionResult Index()
         {
@@ -115,6 +119,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     });
                     if (Convert.ToBoolean(result.Result))
                     {
+                        _notyf.Success("Password has been updated successfully", 6);
                         Logout();
                         return RedirectToAction("Index", "Login");
                     }
@@ -222,6 +227,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 });
                 if (Convert.ToBoolean(result.Result))
                 {
+                    _notyf.Success("Password has been updated successfully", 6);
                     return RedirectToAction("Index", "Login");
                 }
                 else

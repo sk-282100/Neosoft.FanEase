@@ -306,7 +306,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
 
         public IActionResult AddAsset()
         {
-            ViewData["isInsert"] = true;
+            ViewData["isInsert"] = false;
             return View();
         }
         [HttpPost]
