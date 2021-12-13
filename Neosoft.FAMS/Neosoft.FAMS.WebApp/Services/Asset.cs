@@ -39,7 +39,7 @@ namespace Neosoft.FAMS.WebApp.Services
             }
         }
         /// <summary>
-        /// Author : Aman Sharma <br></br>
+        /// Author : Kajal Padhiyar <br></br>
         /// Date : 29/10/2021 <br></br>
         /// Reason :  It will add new advertisement detail
         /// </summary>
@@ -68,7 +68,7 @@ namespace Neosoft.FAMS.WebApp.Services
         }
 
         /// <summary>
-        /// Author : Aman Sharma <br></br>
+        /// Author : Kajal Padhiyar <br></br>
         /// Date : 29/10/2021 <br></br>
         /// Reason : It will fetch all advertisement detail
         /// </summary>
@@ -128,7 +128,7 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
         /// <summary>
-        /// Author : Aman Sharma <br></br>
+        /// Author : Kajal Padhiyar <br></br>
         /// Date : 25/11/2021 <br></br>
         /// Reason : It will fetch advertisement detail by id 
         /// </summary>
@@ -148,7 +148,7 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
         /// <summary>
-        /// Author : Aman Sharma <br></br>
+        /// Author : Kajal Padhiyar <br></br>
         /// Date : 26/10/2021 <br></br>
         /// Reason : It will update advertisement detail
         /// </summary>
@@ -171,7 +171,7 @@ namespace Neosoft.FAMS.WebApp.Services
             return result;
         }
         /// <summary>
-        /// Author : Aman Sharma <br></br>
+        /// Author : Kajal Padhiyar <br></br>
         /// Date : 26/10/2021 <br></br>
         /// Reason : It will delete advertisement by Id
         /// </summary>
