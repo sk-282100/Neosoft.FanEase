@@ -24,7 +24,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
 
             var data = (from VSvID in _dbContext.VideoStatisticsDetails.Where(p => p.IsClicked == true)
-                        join VId in _dbContext.VideoDetails.Where(p => p.StartDate<=DateTime.Now && p.EndDate >=DateTime.Now)
+                        join VId in _dbContext.VideoDetails.Where(p => p.EndDate >=DateTime.Now)
                         on VSvID.VideoId equals VId.VideoId
                         join CMvID in _dbContext.CampaignAdvertiseMappings
                         on VId.VideoId equals CMvID.VideoId 

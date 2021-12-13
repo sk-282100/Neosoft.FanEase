@@ -29,7 +29,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         {
             var temp = _dbContext.VideoStatisticsDetails.Where(p => p.IsViewed == true);
             var result = (from vs in temp
-                          join VD in _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now)
+                          join VD in _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.EndDate >= DateTime.Now)
                           on vs.VideoId equals VD.VideoId
                           join CD in _dbContext.ContentCreatorDetails
                           on VD.CreatedBy equals CD.ContentCreatorId
@@ -54,7 +54,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
         public  List<long> GetTopVideos()
         {
-            var temp = _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+            var temp = _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.EndDate >= DateTime.Now);
             var result = (from vd in temp
                           join CC in _dbContext.ContentCreatorDetails
                           on vd.CreatedBy equals CC.ContentCreatorId
@@ -66,7 +66,7 @@ namespace Neosoft.FAMS.Persistence.Repositories
         }
         public List<VideoDetail> GetAllVideos()
         {
-            var temp = _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.StartDate <= DateTime.Now && p.EndDate >= DateTime.Now);
+            var temp = _dbContext.VideoDetails.Where(p => p.IsDeleted == false && p.EndDate >= DateTime.Now);
             var result = (from vd in temp
                           join CC in _dbContext.ContentCreatorDetails
                           on vd.CreatedBy equals CC.ContentCreatorId

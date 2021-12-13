@@ -31,7 +31,7 @@
     }
 
     <div id="head">
-        <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-expand-md navbar-light " id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light " id="nav">
             @if (@Context.Session.GetString("Username") != null)
             {
                 <a id="logoText" href="#" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png" /></span>Fan<span id="logonext">Ease</span></a>
@@ -40,6 +40,9 @@
             {
                 <a id="logoText" href="~/Login/Home" class="navbar-brand"><span><img src="~/DefaultPhotos/logo.png" /></span>Fan<span id="logonext">Ease</span></a>
             }
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="navbar-collapse" id="navbarTogglerDemo03">
                 @if (@Context.Session.GetString("Username") != null && @Context.Session.GetString("RoleId") == "1")
                 {
@@ -84,10 +87,10 @@
                 @if (@Context.Session.GetString("Username") == null)
                 {
                     <form class="form-inline" action="~/Viewer/ViewerRegisteration">
-                        <input type="submit" class="text-capitalize" style="background-color: whitesmoke; color: dodgerblue;margin: 0px 20px 0px 20px !important;" value="Sign Up">
+                        <input type="submit" class="text-capitalize" style="background-color: whitesmoke; color: dodgerblue; margin: 0px 20px 5px 0px !important; padding-right: 50px; padding-left: 50px;" value="Sign Up">
                     </form>
-                    <form style="margin: 0px 20px 0px 20px !important;" class="form-inline " action="~/Login/Index">
-                        <input type="submit" class="text-capitalize" style="background-color: whitesmoke; color: dodgerblue; margin: 0px 20px 0px 20px !important;" value="Log In">
+                    <form  class="form-inline " action="~/Login/Index">
+                        <input type="submit" class="text-capitalize" style="background-color: whitesmoke; color: dodgerblue; margin: 0px 20px 5px 0px !important;padding-right:58px;padding-left:50px;" value="Log In">
                     </form>
                 }
             </div>

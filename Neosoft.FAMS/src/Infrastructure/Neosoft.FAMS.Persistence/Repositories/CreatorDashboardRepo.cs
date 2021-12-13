@@ -49,7 +49,6 @@ namespace Neosoft.FAMS.Persistence.Repositories
 
             List<object> campaignName = new List<object>();
             var groupedData = data.GroupBy(c => c.VideoId).ToList();
-            var counts = 0;
             var Name = "";
 
             foreach (var gd in groupedData)
