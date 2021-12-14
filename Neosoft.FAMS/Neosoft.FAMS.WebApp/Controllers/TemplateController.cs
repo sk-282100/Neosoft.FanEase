@@ -10,6 +10,7 @@ using Neosoft.FAMS.Application.Features.Advertisement.Queries.GetById;
 using Neosoft.FAMS.WebApp.Services.Interface;
 using Neosoft.FAMS.Application.Features.Template.Commands.TemplateVideo;
 using Neosoft.FAMS.WebApp.Models;
+using Neosoft.FAMS.WebApp.Models.CommonViewModel;
 
 namespace Neosoft.FAMS.WebApp.Controllers
 {
@@ -76,6 +77,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             MappingViewModel.CampaignId = 0;
             MappingViewModel.AdvertisementId = 0;
             AddExistingAssetViewModel.AdvertisementId.Clear();
+            //AdvertisementViewModel = null;
             return RedirectToAction("TemplateList");
         }
     }

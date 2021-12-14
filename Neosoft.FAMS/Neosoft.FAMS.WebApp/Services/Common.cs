@@ -45,21 +45,28 @@ namespace Neosoft.FAMS.WebApp.Services
         public List<AdvertisementViewModel> GetAdvertisement()
         {
             IEnumerable<AdvertisementViewModel> result = null;
-            var uri = API.Common.GetAdvertisementUrl(_baseUrl,MappingViewModel.VideoId);
-            HttpResponseMessage response = _client.GetAsync(uri).Result;
-            if (response.IsSuccessStatusCode)
+            if(MappingViewModel.VideoId>0)
             {
-                var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
-                var deserializedata = JsonConvert.DeserializeObject<MappedDto>(jsonDataStatus);
-                result =
-                    from data in deserializedata.AdvertisementDetail.ToList()
-                    select new AdvertisementViewModel
-                    {
-                        AdvertisementId = data.AdvertisementId,Title = data.Title,
-                        Description = data.Description,ImagePath = data.ImagePath,VideoPath = data.VideoPath
-                    };
+                var uri = API.Common.GetAdvertisementUrl(_baseUrl, MappingViewModel.VideoId);
+                HttpResponseMessage response = _client.GetAsync(uri).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonDataStatus = response.Content.ReadAsStringAsync().Result;
+                    var deserializedata = JsonConvert.DeserializeObject<MappedDto>(jsonDataStatus);
+                    result =
+                        from data in deserializedata.AdvertisementDetail.ToList()
+                        select new AdvertisementViewModel
+                        {
+                            AdvertisementId = data.AdvertisementId,
+                            Title = data.Title,
+                            Description = data.Description,
+                            ImagePath = data.ImagePath,
+                            VideoPath = data.VideoPath
+                        };
+                }
+                return result.ToList();
             }
-            return result.ToList();
+            return null;
         }
 
         /// <summary>
