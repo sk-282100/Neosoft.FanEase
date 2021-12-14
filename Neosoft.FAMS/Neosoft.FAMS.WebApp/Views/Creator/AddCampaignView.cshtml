@@ -142,12 +142,12 @@
                             <label for="start_campaign">
                                 Start Date of Campaign
                             </label>
-                            @Html.EditorFor(model => StartDate, new { htmlAttributes = new { @class = "form-control,Dateecss", @readonly = "readonly" } })
 
+                            <input asp-for="StartDate" type="text" name="StartDate" style="background-color: #f6f6f6;" class="form-control" readonly value="@string.Format("{0:dd MMM, yyyy}", campaignData.StartDate)">
                             <label for="end_campaign" style="margin-top: 15px;">
                                 End Date of Campaign
                             </label>
-                            @Html.EditorFor(model => EndDate, new { htmlAttributes = new { @class = "form-control,Dateecss", @readonly = "readonly" } })
+                            <input asp-for="EndDate" type="text" name="EndDate" style="background-color: #f6f6f6;" class="form-control" readonly value="@string.Format("{0:dd MMM, yyyy}", campaignData.EndDate)">
                         </div>
 
                         <div class="row">

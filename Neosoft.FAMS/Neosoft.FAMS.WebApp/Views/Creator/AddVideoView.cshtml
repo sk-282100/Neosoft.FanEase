@@ -33,26 +33,26 @@
                     </div>
                 </div>
 
-                <div asp-validation-summary="All" class="text text-danger help-block"></div>
+                <div asp-validation-summary="ModelOnly" class="text text-danger help-block"></div>
                 <!-- Login Form -->
                 @using (Html.BeginForm("AddVideoView", "Creator", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-    <div class="row">
-        <div class="col-4">
-            <label>Video Thumbnail Image<sup style="color:red">*</sup>  </label>
-            <span id="errorFileSize" style="font-size: 12px" class="text-danger"></span>
-        </div>
-        <div class="col-5" style="padding-right:50px">
-            <br />
-            <input asp-for="VideoImage" class="form-control" type="file" name="VideoImage" accept="image/*" id="videoThumbnail" onchange="readURL(this);" />
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Video Thumbnail Image<sup style="color:red">*</sup>  </label>
+                            <span id="errorFileSize" style="font-size: 12px" class="text-danger"></span>
+                        </div>
+                        <div class="col-5" style="padding-right:50px">
+                            <br />
+                            <input asp-for="VideoImage" class="form-control" type="file" name="VideoImage" accept="image/*" id="videoThumbnail" onchange="readURL(this);" />
 
-        </div>
-        <div class="col-3">
-            <br />
-            <img id="thumbnail" class="img-thumbnail" src="#" alt="Thumbnail image">
-        </div>
+                        </div>
+                        <div class="col-3">
+                            <br />
+                            <img id="thumbnail" class="img-thumbnail" src="#" alt="Thumbnail image">
+                        </div>
 
-    </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>Video Title<sup style="color:red">*</sup>  @Html.ValidationMessage("Title", "", new { @class = "text-danger" })</label>
@@ -91,12 +91,12 @@
                             <br />
                         </div>
                     </div>
-                        <div class="row">
-                            <div class="col d-flex justify-content-end">
-                                <button type="button" class="btn btn-secondary" id="btnCancel" onclick="window.location= '@Url.Action( "VideoTable", "Creator")'">Cancel</button>
-                                <input type="submit" class="btn btn-primary" id="btnProceed" value="Proceed" />
-                            </div>
-                         </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary" id="btnCancel" onclick="window.location= '@Url.Action( "VideoTable", "Creator")'">Cancel</button>
+                            <input type="submit" class="btn btn-primary" id="btnProceed" value="Proceed" />
+                        </div>
+                    </div>
 
                 }
 
