@@ -15,14 +15,14 @@ namespace Neosoft.FAMS.WebApp.Models.VideoModel
         public IFormFile VideoImage { get; set; }
 
 
-        [Required(ErrorMessage = "Start Time is required")]
+        [Required(ErrorMessage = "Start Date is required")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "Date cannot be less than today date")]
 
         public DateTime StartDate { get; set; }
 
-        [Required(ErrorMessage = "End Time is required")]
+        [Required(ErrorMessage = "End Date is required")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "Date cannot be less than today date")]

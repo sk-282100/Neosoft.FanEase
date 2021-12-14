@@ -28,7 +28,8 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [DateMustBeEqualOrGreaterThanCurrentDateValidation(ErrorMessage = "End Date cannot be less than today date")]
         public DateTime EndDate { get; set; }
 
-        [Required(ErrorMessage = "Content Type is required")]
+  
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Please select Content Type")]
         [DisplayName("Content Type")]
         public short? ContentTypeId { get; set; }
 
@@ -41,15 +42,15 @@ namespace Neosoft.FAMS.WebApp.Models.AdvertisementModel
         [Required(ErrorMessage = "Url is required")]
         [DisplayName("Url")]
         public string Url { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Image file is required")]
         [MaxFileSize(1 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile ProfilePhotoPath { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Video file is required")]
         [MaxFileSize(20 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} MB")]
         public IFormFile VideoPath { get; set; }
 
-        [Required(ErrorMessage = "Placement is required")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Please select Placement")]
         [DisplayName("Placement")]
         public long? PlacementId { get; set; }
         public long? CreatedBy { get; set; }

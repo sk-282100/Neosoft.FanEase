@@ -9,6 +9,7 @@ namespace Neosoft.FAMS.WebApp.Models.LoginModel
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
+       
         public string Password { get; set; }
 
         public string confirmPassword { get; set; }

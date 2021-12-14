@@ -51,7 +51,7 @@
 
                         <div class="form-group col-md-6">
                             <label id="lbl" class="form-group required">
-                                Full Name<sup style="color:red">*</sup>
+                                Full Name<sup style="color:red;">*</sup>
                                 @Html.ValidationMessage("CreatorName", "", new { @class = "text-danger" })
                             </label>
                             <input asp-for="CreatorName" type="text" class="fadeIn second" name="CreatorName" placeholder="Enter Name">
@@ -106,7 +106,7 @@
                                 City<sup style="color: red">*</sup>
                                 @Html.ValidationMessage("CityId", "", new { @class = "text-danger" })
                             </label>
-                            <select id="formCity" asp-for="CityId" style="margin: 10px 10px 0px 35px" name="CityId">
+                            <select id="formCity" asp-for="CityId" style="margin: 10px 0px 0px 35px" name="CityId">
                                 <option value="0">Please Select City</option>
                             </select>
 

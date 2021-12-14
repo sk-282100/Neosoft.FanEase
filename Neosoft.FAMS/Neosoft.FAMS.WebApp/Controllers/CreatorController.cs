@@ -201,6 +201,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             model.VideoCategoryId = 0;
             model.VideoStatus = 0;
             model.CreatedOn = DateTime.Now;
+            model.VideoTypeId = 2;
             if (ModelState.IsValid)
             {
                 var createCommand = _mapper.Map<VideoCreateCommand>(model);

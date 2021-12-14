@@ -17,7 +17,7 @@
 
     <style>
         label span {
-            font-size: 12px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -68,6 +68,7 @@
                                 @Html.ValidationMessage("ContentTypeId", "", new { @class = "text-danger" })
                             </label>
                             <select asp-for="ContentTypeId" name="ContentTypeId" id="ContentType" onchange="onContentType()">
+                                <option value="0">Please Select Content Type</option>
                                 <option value="1">Images</option>
                                 <option value="2">Videos</option>
                             </select>
@@ -113,6 +114,7 @@
                                 @Html.ValidationMessage("PlacementId", "", new { @class = "text-danger" })
                             </label>
                             <select asp-for="PlacementId" name="PlacementId" id="AdvertisementPlacement">
+                                <option value="0">Please Select Placement</option>
                                 <option value="1">Top-Left</option>
                                 <option value="2">Top-Right</option>
                                 <option value="3">Bottom-Left</option>

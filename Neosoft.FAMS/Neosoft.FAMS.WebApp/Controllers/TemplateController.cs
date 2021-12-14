@@ -75,6 +75,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
             MappingViewModel.VideoId = 0;
             MappingViewModel.CampaignId = 0;
             MappingViewModel.AdvertisementId = 0;
+            AddExistingAssetViewModel.AdvertisementId.Clear();
             return RedirectToAction("TemplateList");
         }
     }
