@@ -181,10 +181,14 @@ namespace Neosoft.FAMS.WebApp.Controllers
         }
         public ActionResult VideoTable()
         {
-            var id = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
-            var data = _video.VideosCreatedByContentCreator(id);
-            ViewData["data"] = data;
-            return View();
+            if (RoleSessionStaticModel.RoleId == 2)
+            {
+                var id = long.Parse(HttpContext.Session.GetString("ContentCreatorId"));
+                var data = _video.VideosCreatedByContentCreator(id);
+                ViewData["data"] = data;
+                return View();
+            }
+            return RedirectToAction("Error401", "Error");
         }
 
 
@@ -214,7 +218,6 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     ViewData["data"] = id;
                 }
                 HttpContext.Session.SetString("isVideoAdded",true.ToString());
-                _notyf.Success("Video added successfully",5);
                 return RedirectToAction("AddCampaignView", "Creator");
             }
             return View();

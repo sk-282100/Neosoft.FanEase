@@ -209,7 +209,6 @@ $(document).ready(function() {
                     loaderVisible();
                 },
                 url: "/Creator/yearlyStats/" + CreatorId.toString() + "/" + year.toString(),
-                //url: "https://localhost:44330/api/ContentCreatorDashboard/GetYearlyStatistics/" + CreatorId + "?years=" + year + "&api-version=1",
 
                 async: false,
                 contentType: 'application/json',
@@ -221,10 +220,12 @@ $(document).ready(function() {
                             theme: "light2",
 
                             axisX: {
+                                titleFontColor: "black",
                                 title: "Months"
 
                             },
                             axisY: {
+                                titleFontColor: "black",
                                 title: "No of Videos Uploaded",
                                 maximum: 100
                             },
@@ -244,7 +245,6 @@ $(document).ready(function() {
                                     axisYType: "primary",
                                     name: "Videos Uploaded",
                                     showInLegend: true,
-                                    maximum: 100,
                                     markerSize: 1,
                                     dataPoints: [
                                         { y: chartdata[0], label: "January" },
@@ -267,8 +267,7 @@ $(document).ready(function() {
                                     name: "Live Videos",
                                     showInLegend: true,
                                     markerSize: 1,
-                                    color: "orangered",
-                                    maximum: 100,
+                                    color: "green",
                                     dataPoints: [
                                         { y: LiveData[0], label: "January" },
                                         { y: LiveData[1], label: "February" },

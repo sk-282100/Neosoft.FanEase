@@ -49,12 +49,11 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 {
                     int RoleId = Convert.ToInt32(data.RoleId);
                     HttpContext.Session.SetString("LoginId", data.Id.ToString());
-
+                    RoleSessionStaticModel.RoleId = Convert.ToInt32(data.RoleId);
                     if (RoleId == 1)
                     {
                         HttpContext.Session.SetString("Username", model.Username);
                         HttpContext.Session.SetString("RoleId", RoleId.ToString());
-
                         return RedirectToAction("Index", "Admin");
                     }
                     else if (RoleId == 2)
@@ -119,7 +118,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                     });
                     if (Convert.ToBoolean(result.Result))
                     {
-                        _notyf.Success("Password has been updated successfully", 6);
+                       /* _notyf.Success("Password has been updated successfully", 6);*/
                         Logout();
                         return RedirectToAction("Index", "Login");
                     }
@@ -227,7 +226,7 @@ namespace Neosoft.FAMS.WebApp.Controllers
                 });
                 if (Convert.ToBoolean(result.Result))
                 {
-                    _notyf.Success("Password has been updated successfully", 6);
+                    /*_notyf.Success("Password has been updated successfully", 6);*/
                     return RedirectToAction("Index", "Login");
                 }
                 else
