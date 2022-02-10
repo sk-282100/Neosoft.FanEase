@@ -1,1 +1,94 @@
-<p>viewer works!</p>
+<div class="wrapper">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active"> Sign Up </h2>
+        
+        <form class="form-signin" #regForm="ngForm" (ngSubmit)="regForm.form.valid && reg(regForm)">
+
+            <div *ngIf="regForm.form.valid" class="alert alert-success alert-dismissible fade show hideAfter3Sec" role="alert">
+                <strong>Viewer Registered Successfully</strong>
+                <button style="margin-top: 5px; background-color: transparent !important;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="form d-flex flex-row">
+                <div class="form-group col-md-6">
+                    <label id="lbl" class="form-group required">
+                        First Name<sup style="color:red">*</sup><span [hidden]="FirstName.valid || FirstName.pristine"> First Name is required</span>
+                    </label>
+                    <input type="text" ngModel class="fadeIn second" name="FirstName" #FirstName="ngModel" placeholder="First Name" required>
+
+                    <label id="lbl">
+                        Last Name<sup style="color:red">*</sup><span [hidden]="LastName.valid || LastName.pristine"> Last Name is required</span>
+                    </label>
+                    <input type="text" ngModel class="fadeIn third" name="LastName"  #LastName="ngModel" placeholder="Last Name" required>
+
+                    <label id="lbl">
+                        Address1<sup style="color:red">*</sup><span [hidden]="Address1.valid || Address1.pristine"> Address1 is required</span>
+                    </label>
+                    <textarea style="height: 90px;" ngModel type="text" class="fadeIn second" name="Address1" #Address1="ngModel" placeholder="Address1" required></textarea>
+
+                    <label id="lbl">
+                        Country<sup style="color: red">*</sup><span [hidden]="CountryId.valid || CountryId.pristine"> <span *ngIf="CountryId.errors?.['required']"> Country is required</span></span>
+                    </label>
+                    <select id="formCountry" ngModel style="margin:10px 10px 0px 15px" class="js-example-basic-single" name="CountryId" #CountryId="ngModel" (change)="loadState($event)" required>
+                        <option value="">Please Select Country</option>
+                        <option *ngFor="let coun of country?.data" value="{{coun.countryId}}">{{coun.countryName}}</option>
+                    </select>
+
+                    <label id="lbl">
+                        City<sup style="color: red">*</sup><span [hidden]="CityId.valid || CityId.pristine"> <span *ngIf="CityId.errors?.['required']"> City is required</span></span>
+                    </label>
+                    <select id="formCity" ngModel style="margin: 10px 10px 0px 35px" name="CityId" #CityId="ngModel" required>
+                        <option value="">Please Select City</option>
+                        <option *ngFor="let cit of city?.data" value="{{cit.id}}">{{cit.name}}</option>
+                    </select>
+
+                    <label id="lbl">
+                        Password<sup style="color:red">*</sup><span [hidden]="Password.valid || Password.pristine"> Password is required</span>
+                    </label>
+                    <input asp-for="Password" type="password" ngModel class="fadeIn first" name="Password" #Password="ngModel" placeholder="Enter password" required>
+
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label id="lbl">
+                        Middle Name<sup style="color:red">*</sup><span [hidden]="MiddleName.valid || MiddleName.pristine"> Middle Name is required</span>
+                    </label>
+                    <input asp-for="MiddleName" type="text"  ngModel class="fadeIn first" name="MiddleName" #MiddleName="ngModel" placeholder="Middle Name" required>
+
+                    <label id="lbl">
+                        Contact<sup style="color:red">*</sup><span [hidden]="MobileNumber.valid || MobileNumber.pristine"><span *ngIf="MobileNumber.errors?.['pattern']"> Enter Valid Mobile Number</span> <span *ngIf="MobileNumber.errors?.['required']"> Mobile Number is required</span></span>
+                    </label>
+                    <input asp-for="MobileNumber" type="text" ngModel class="fadeIn second" name="MobileNumber" #MobileNumber="ngModel" placeholder="Enter contact number" required pattern="^[0-9]{10,10}$"><br />
+
+                    <label id="lbl">
+                        Address2<sup style="color:red">*</sup><span [hidden]="Address2.valid || Address2.pristine"> Address2 is required</span>
+                    </label>
+                    <textarea asp-for="Address2" type="text"  ngModel style="height: 90px;" class="fadeIn second" name="Address2" #Address2="ngModel" placeholder="Address2" required></textarea>
+
+
+                    <label id="lbl">
+                        State<sup style="color: red">*</sup><span [hidden]="StateId.valid || StateId.pristine"> <span *ngIf="StateId.errors?.['required']"> State is required</span></span>
+                    </label>
+                    <select id="formState" ngModel style="margin: 10px 10px 0px 15px" name="StateId" #StateId="ngModel" (change)="loadCity($event)" required>
+                        <option value="">Please Select State</option>
+                        <option *ngFor="let stat of state?.data" value="{{stat.id}}">{{stat.name}}</option>
+                    </select>
+
+                    <label id="lbl">
+                        Email<sup style="color:red">*</sup><span [hidden]="EmailId.valid || EmailId.pristine"><span *ngIf="EmailId.errors?.['pattern']"> Enter Valid Email</span> <span *ngIf="EmailId.errors?.['required']"> EmailId is required</span></span>
+                        <span id="emailSpan" class="text-danger"></span>
+                    </label>
+                    <input id="viewerEmailId" asp-for="EmailId" ngModel type="text" class="fadeIn first" name="EmailId" #EmailId="ngModel" placeholder="Enter Email ID" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
+
+                </div>
+            </div>
+            <input type="submit" class="fadeIn fourth" value="Save">
+            <input type="button" id="btnCancel" class="fadeIn fourth" value="Cancel">
+        </form>
+
+
+    </div>
+</div>

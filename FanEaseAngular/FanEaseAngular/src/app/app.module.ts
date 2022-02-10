@@ -8,6 +8,11 @@ import { ViewerComponent } from './viewer/viewer.component';
 import { LoginComponent } from './login/login/login.component';
 import { HomeComponent } from './home/home/home.component';
 
+
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,9 +22,10 @@ import { HomeComponent } from './home/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
