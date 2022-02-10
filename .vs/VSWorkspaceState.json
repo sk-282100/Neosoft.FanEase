@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Neosoft.FAMS",
+    "\\Neosoft.FAMS\\Neosoft.FAMS.WebApp",
+    "\\Neosoft.FAMS\\Neosoft.FAMS.WebApp\\Controllers",
+    "\\Neosoft.FAMS\\Neosoft.FAMS.WebApp\\Models",
+    "\\Neosoft.FAMS\\Neosoft.FAMS.WebApp\\Services",
+    "\\Neosoft.FAMS\\Neosoft.FAMS.WebApp\\Views",
+    "\\Neosoft.FAMS\\Neosoft.FAMS.WebApp\\Views\\Admin",
+    "\\Neosoft.FAMS\\src\\API",
+    "\\Neosoft.FAMS\\src\\API\\Neosoft.FAMS.Api"
   ],
+  "SelectedNode": "\\Neosoft.FAMS\\Neosoft.FAMS.WebApp\\Controllers\\LoginController.cs",
   "PreviewInSolutionExplorer": false
 }
