@@ -1,0 +1,39 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active"> Log In </h2>
+
+
+        <!-- Login Form -->
+        <form class="form-signin" #loginForm="ngForm" (ngSubmit)=" loginForm.form.valid && login(loginForm)">
+                <div *ngIf="invalidLogin" class="alert alert-danger alert-dismissible fade show hideAfter3Sec" role="alert">
+                    <strong>Username and/or Password is Invalid</strong> 
+                    <button style="margin-top: 5px; background-color: transparent !important;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            
+            <label id="lbl" for="username" class="form-group required">
+                Username<sup style="color:red">*</sup><span [hidden]="name.valid || name.pristine">Username is required</span>
+               
+            </label>
+            <input for="username"  id="username" type="text" class="fadeIn second" name="username" #name="ngModel" ngModel class="form-control" placeholder="Username" required>
+            
+
+           
+            <label id="lbl" class="form-group required">
+                Password<sup style="color:red">*</sup><span [hidden]="name.valid || name.pristine">Password is required</span>
+               
+            </label>
+            <input for="password" type="password" class="fadeIn third" name="password"  #name="ngModel" ngModel class="form-control" placeholder="Password" required>
+
+            <input style="margin-top: 30px;" type="submit" class="btn btn-primary" id="btnProceed" value="Log In">
+        
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" style="color:black">Forgot Password?</a>
+        </div>
+    </form>
+    </div>
+</div>
