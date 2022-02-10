@@ -9,8 +9,6 @@ import { LoginComponent } from './login/login/login.component';
 import { HomeComponent } from './home/home/home.component';
 
 
-import {HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
