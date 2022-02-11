@@ -15,7 +15,7 @@
             <div class="form d-flex flex-row">
                 <div class="form-group col-md-6">
                     <label id="lbl" class="form-group required">
-                        First Name<sup style="color:red">*</sup><span [hidden]="FirstName.valid || FirstName.pristine"> First Name is required</span>
+                        First Name<sup style="color:red">*</sup><span [hidden]="FirstName.valid || FirstName.pristine || regForm.submitted"> First Name is required</span>
                     </label>
                     <input type="text" ngModel class="fadeIn second" name="FirstName" #FirstName="ngModel" placeholder="First Name" required>
 
