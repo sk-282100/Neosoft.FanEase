@@ -10,13 +10,15 @@ import { HomeComponent } from './home/home/home.component';
 
 
 import { RouterModule } from '@angular/router';
+import { VideoDisplayComponent } from './Video/video-display/video-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewerComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    VideoDisplayComponent
   ],
   imports: [
     BrowserModule,
