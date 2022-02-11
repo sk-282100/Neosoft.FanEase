@@ -15,22 +15,22 @@
             <div class="form d-flex flex-row">
                 <div class="form-group col-md-6">
                     <label id="lbl" class="form-group required">
-                        First Name<sup style="color:red">*</sup><span [hidden]="FirstName.valid || FirstName.pristine || regForm.submitted"> First Name is required</span>
+                        First Name<sup style="color:red">*</sup><span *ngIf="(FirstName.touched || regForm.submitted) && FirstName.errors?.required"> First Name is required</span>
                     </label>
                     <input type="text" ngModel class="fadeIn second" name="FirstName" #FirstName="ngModel" placeholder="First Name" required>
 
                     <label id="lbl">
-                        Last Name<sup style="color:red">*</sup><span [hidden]="LastName.valid || LastName.pristine"> Last Name is required</span>
+                        Last Name<sup style="color:red">*</sup><span *ngIf="(LastName.touched || regForm.submitted) && LastName.errors?.required"> Last Name is required</span>
                     </label>
                     <input type="text" ngModel class="fadeIn third" name="LastName"  #LastName="ngModel" placeholder="Last Name" required>
 
                     <label id="lbl">
-                        Address1<sup style="color:red">*</sup><span [hidden]="Address1.valid || Address1.pristine"> Address1 is required</span>
+                        Address1<sup style="color:red">*</sup><span *ngIf="(Address1.touched || regForm.submitted) && Address1.errors?.required"> Address1 is required</span>
                     </label>
                     <textarea style="height: 90px;" ngModel type="text" class="fadeIn second" name="Address1" #Address1="ngModel" placeholder="Address1" required></textarea>
 
                     <label id="lbl">
-                        Country<sup style="color: red">*</sup><span [hidden]="CountryId.valid || CountryId.pristine"> <span *ngIf="CountryId.errors?.['required']"> Country is required</span></span>
+                        Country<sup style="color: red">*</sup> <span *ngIf="(CountryId.touched || regForm.submitted) && CountryId.errors?.required"> Country is required</span>
                     </label>
                     <select id="formCountry" ngModel style="margin:10px 10px 0px 15px" class="js-example-basic-single" name="CountryId" #CountryId="ngModel" (change)="loadState($event)" required>
                         <option value="">Please Select Country</option>
@@ -38,7 +38,7 @@
                     </select>
 
                     <label id="lbl">
-                        City<sup style="color: red">*</sup><span [hidden]="CityId.valid || CityId.pristine"> <span *ngIf="CityId.errors?.['required']"> City is required</span></span>
+                        City<sup style="color: red">*</sup><span *ngIf="(CityId.touched || regForm.submitted) && CityId.errors?.required"> City is required</span>
                     </label>
                     <select id="formCity" ngModel style="margin: 10px 10px 0px 35px" name="CityId" #CityId="ngModel" required>
                         <option value="">Please Select City</option>
@@ -46,7 +46,7 @@
                     </select>
 
                     <label id="lbl">
-                        Password<sup style="color:red">*</sup><span [hidden]="Password.valid || Password.pristine"> Password is required</span>
+                        Password<sup style="color:red">*</sup><span *ngIf="(Password.touched || regForm.submitted) && Password.errors?.required"> Password is required</span>
                     </label>
                     <input asp-for="Password" type="password" ngModel class="fadeIn first" name="Password" #Password="ngModel" placeholder="Enter password" required>
 
@@ -54,23 +54,23 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label id="lbl">
-                        Middle Name<sup style="color:red">*</sup><span [hidden]="MiddleName.valid || MiddleName.pristine"> Middle Name is required</span>
+                        Middle Name<sup style="color:red">*</sup><span *ngIf="(MiddleName.touched || regForm.submitted) && MiddleName.errors?.required"> Middle Name is required</span>
                     </label>
                     <input asp-for="MiddleName" type="text"  ngModel class="fadeIn first" name="MiddleName" #MiddleName="ngModel" placeholder="Middle Name" required>
 
                     <label id="lbl">
-                        Contact<sup style="color:red">*</sup><span [hidden]="MobileNumber.valid || MobileNumber.pristine"><span *ngIf="MobileNumber.errors?.['pattern']"> Enter Valid Mobile Number</span> <span *ngIf="MobileNumber.errors?.['required']"> Mobile Number is required</span></span>
+                        Contact<sup style="color:red">*</sup><span *ngIf="MobileNumber.touched || regForm.submitted"><span *ngIf="MobileNumber.errors?.['pattern']"> Enter Valid Mobile Number</span> <span *ngIf="MobileNumber.errors?.['required']"> Mobile Number is required</span></span>
                     </label>
                     <input asp-for="MobileNumber" type="text" ngModel class="fadeIn second" name="MobileNumber" #MobileNumber="ngModel" placeholder="Enter contact number" required pattern="^[0-9]{10,10}$"><br />
 
                     <label id="lbl">
-                        Address2<sup style="color:red">*</sup><span [hidden]="Address2.valid || Address2.pristine"> Address2 is required</span>
+                        Address2<sup style="color:red">*</sup><span *ngIf="(Address2.touched || regForm.submitted) && Address2.errors?.required"> Address2 is required</span>
                     </label>
                     <textarea asp-for="Address2" type="text"  ngModel style="height: 90px;" class="fadeIn second" name="Address2" #Address2="ngModel" placeholder="Address2" required></textarea>
 
 
                     <label id="lbl">
-                        State<sup style="color: red">*</sup><span [hidden]="StateId.valid || StateId.pristine"> <span *ngIf="StateId.errors?.['required']"> State is required</span></span>
+                        State<sup style="color: red">*</sup><span *ngIf="(StateId.touched || regForm.submitted) && StateId.errors?.required"> State is required</span>
                     </label>
                     <select id="formState" ngModel style="margin: 10px 10px 0px 15px" name="StateId" #StateId="ngModel" (change)="loadCity($event)" required>
                         <option value="">Please Select State</option>
@@ -78,7 +78,7 @@
                     </select>
 
                     <label id="lbl">
-                        Email<sup style="color:red">*</sup><span [hidden]="EmailId.valid || EmailId.pristine"><span *ngIf="EmailId.errors?.['pattern']"> Enter Valid Email</span> <span *ngIf="EmailId.errors?.['required']"> EmailId is required</span></span>
+                        Email<sup style="color:red">*</sup><span *ngIf="EmailId.touched || regForm.submitted"><span *ngIf="EmailId.errors?.['pattern']"> Enter Valid Email</span> <span *ngIf="EmailId.errors?.['required']"> EmailId is required</span></span>
                         <span id="emailSpan" class="text-danger"></span>
                     </label>
                     <input id="viewerEmailId" asp-for="EmailId" ngModel type="text" class="fadeIn first" name="EmailId" #EmailId="ngModel" placeholder="Enter Email ID" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
